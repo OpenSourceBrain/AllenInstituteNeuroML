@@ -1,7 +1,11 @@
+/CellTypesDatabase/info
 /NeuroML2/simplenet.nml
+
 *~
 *.svg
 *.pov
 *.ini
 
 CellTypesDatabase/*.swc
+CellTypesDatabase/*.nml
+CellTypesDatabase/temp
