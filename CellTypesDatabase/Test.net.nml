@@ -10,27 +10,36 @@
   <include href="324257146.cell.nml"/>
   <include href="471410185.cell.nml"/>
 
+  <include href="471358165.cell.nml"/>
+  <include href="471789504.cell.nml"/>
+
 
   <network id="network" type="networkWithTemperature" temperature="35 degC">
       	<population id="Pop_325941643" component="325941643" type="populationList" size="1">
 	    <instance id="0">
-		<location x="8010.62" y="1460.48" z="2804.88"/>
+		<location x="0" y="0" z="0"/>
 	    </instance>
 	</population>
     	<population id="Pop_324466858" component="324466858" type="populationList" size="1">
 	    <instance id="0">
-		<location x="8875.42" y="1741.73" z="2406.0"/>
+		<location x="0" y="0" z="0"/>
 	    </instance>
 	</population>
     	<population id="Pop_324257146" component="324257146" type="populationList" size="1">
 	    <instance id="0">
-		<location x="7805.4" y="893.332" z="3307.7"/>
+		<location x="0" y="0" z="0"/>
 	    </instance>
 	</population>
 
     	<population id="Pop_471410185" component="471410185" type="populationList" size="1">
 	    <instance id="0">
-		<location x="9057.95" y="1674.14" z="3042.66"/>
+		<location x="0" y="0" z="0"/>
+	    </instance>
+	</population>
+
+    	<population id="Pop_471789504" component="471789504" type="populationList" size="1">
+	    <instance id="0">
+		<location x="0" y="0" z="0"/>
 	    </instance>
 	</population>
   </network>

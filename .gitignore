@@ -1,3 +1,4 @@
+/CellTypesDatabase/*.png
 /CellTypesDatabase/info
 /NeuroML2/simplenet.nml
 
@@ -9,3 +10,8 @@
 CellTypesDatabase/*.swc
 CellTypesDatabase/*.nml
 CellTypesDatabase/temp
+
+x86_64
+
+CellTypesDatabase/models/neuronal_model/modfiles/*.dat
+CellTypesDatabase/models/neuronal_model/modfiles/*.mod
