@@ -1,4 +1,4 @@
 mv *.swc *.cell.nml temp
-mv *.png *.svg /tmp
+rm -rf *.png *.svg *.pov *.ini
 
 

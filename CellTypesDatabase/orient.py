@@ -36,6 +36,7 @@ def rotate_z(x, y, theta):
     
     return x_, y_
 
+count = 0
 for cell in cells:
     
     suffix = '_trans'
@@ -92,11 +93,16 @@ for cell in cells:
 
         inst = Instance(id="0")
         pop.instances.append(inst)
-
-        inst.location = Location(x=200*random.random(), y=1000*random.random(), z=200*random.random())
+        
+        width = 6
+        X = count%width
+        Z = (count -X) / width
+        inst.location = Location(x=300*X, y=0, z=300*Z)
+        
+        count+=1
 
 
 net_file = net_ref+'.net.nml'
 writers.NeuroMLWriter.write(net_doc, net_file)
 
-print("Written network file to: "+net_file)
+print("Written network with %i cells in network to: %s"%(count,net_file))
