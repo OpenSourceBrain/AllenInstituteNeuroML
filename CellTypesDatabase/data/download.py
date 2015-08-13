@@ -13,6 +13,8 @@ if not os.path.isfile(raw_ephys_file_name):
     ct.save_ephys_data(dataset_id, raw_ephys_file_name)
 
     print('Saved: %s'%raw_ephys_file_name)
+    
+print('Loading data from: %s'%raw_ephys_file_name)
 
 from allensdk.core.nwb_data_set import NwbDataSet
 data_set = NwbDataSet(raw_ephys_file_name)
@@ -20,7 +22,7 @@ data_set = NwbDataSet(raw_ephys_file_name)
 import matplotlib.pyplot as plt
 import numpy as np
 
-sweep_numbers = range(55,60)
+sweep_numbers = range(54,58)
 
 for sweep_number in sweep_numbers:
     sweep_data = data_set.get_sweep(sweep_number)
