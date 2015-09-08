@@ -71,7 +71,13 @@ for dataset_id in dataset_ids:
         
         sweep_info[IF.COMMENT] = comment
         
-        analysis = utils.simple_iclamp_analysis(response, time_pts, end_analysis=1300, plot=plot, show_plot_already=False)
+        analysis = utils.simple_network_analysis({sweep_number:response}, 
+                                                 time_pts, 
+                                                 end_analysis=1300, 
+                                                 plot=plot, 
+                                                 show_plot_already=False,
+                                                 verbose=True)
+        
         sweep_info[IF.ICLAMP_ANALYSIS] = analysis
 
     analysis_file_name = '%s_analysis.json'%(dataset_id)
