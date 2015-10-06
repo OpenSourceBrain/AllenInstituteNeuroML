@@ -5,7 +5,7 @@
          id="NaV">
 
 
-    <ionChannel id="NaV" conductance="10pS" type="ionChannelHH" species="na">
+    <ionChannelKS id="NaV" conductance="10pS" species="na">
 
         <notes>Mouse sodium current
 : Kinetics of Carter et al. (2012)
@@ -28,13 +28,22 @@
             </rdf:RDF>
         </annotation>
 
-        <gate id="O" type="gateHHrates" instances="1">
-            <q10Settings type="q10Fixed" fixedQ10="2.95288264"/>
-            <forwardRate type="HHExpLinearRate" rate="1.092per_ms" scale="6mV" midpoint="-38mV"/>
-            <reverseRate type="HHExpLinearRate" rate="0.744per_ms" scale="-6mV" midpoint="-38mV"/>
-        </gate>
+    
+        <gateKS id="n" instances="1">
+            <closedState id="C1"/>
+            <openState id="O"/>
+            
+            <forwardTransition id="ft" from="C1" to="O" >
+                <rate id="r1" type="HHExpLinearRate" rate="0.1per_ms" midpoint="-55mV" scale="10mV"/>
+            </forwardTransition>
+    
+            <reverseTransition id="rt" from="C1" to="O" >
+                <rate id="r1" type="HHExpRate" rate="0.125per_ms" midpoint="-65mV" scale="-80mV"/>
+            </reverseTransition>
+        </gateKS>
 
                             
-    </ionChannel>
+    </ionChannelKS>
+    
 
 </neuroml>

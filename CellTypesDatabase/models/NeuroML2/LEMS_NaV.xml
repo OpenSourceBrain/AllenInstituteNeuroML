@@ -29,8 +29,10 @@
         </Display>
         
         <Display id="GraphWin_0" title="Soma channels" xmin="-60.0" xmax="660.0" ymin="-0.1" ymax="1.1" timeScale="1ms">
-            <Line id="O" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/O/q" scale="1" color="#000000"/>
-          </Display>
+            <Line id="n" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/q" scale="1" color="#000000"/>
+            <Line id="C1" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/C1/q" scale="1" color="#FF0000"/>
+            <Line id="O" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/O/q" scale="1" color="#FFFF00"/>
+        </Display>
         
         
         
