@@ -1,0 +1,45 @@
+<Lems xmlns="http://www.neuroml.org/lems/0.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.2  https://raw.github.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.2.xsd">
+
+    <Target component="sim1" reportFile="simulator.props" timesFile="time.dat"/>
+
+        <!--Include standard NeuroML 2 ComponentType definitions-->
+
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+
+
+        <!--   Channel/synapse files-->
+    <Include file="NaV.channel.nml"/>
+
+    <Include file="pas.channel.nml"/>
+
+        <!--   Cell files-->
+    <Include file="Soma_NaV.cell.nml"/>
+        <!--   Network file-->
+    <Include file="Soma_NaV.net.nml"/>
+    
+
+        <!--Note: this could be: Simulation id="sim1" ... , but Component type="Simulation" ... 
+        is used to allow validation of this file according to the LEMS schema specified above...-->
+    <Component type="Simulation" id="sim1" length="600.0ms" step="0.01ms" target="network_Soma">
+        
+        <Display id="CG_TestMod_v" title="Soma VOLTAGE" xmin="-60.0" xmax="660.0" ymin="-104.0" ymax="64.0" timeScale="1ms">
+            <Line id="VOLTAGE" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/v" scale="1 mV" color="#000000"/>
+        </Display>
+        
+        <Display id="GraphWin_0" title="Soma channels" xmin="-60.0" xmax="660.0" ymin="-0.1" ymax="1.1" timeScale="1ms">
+            <Line id="O" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/O/q" scale="1" color="#000000"/>
+          </Display>
+        
+        
+        
+        <OutputFile id="CG_TestCML_v_OF" fileName="CG_TestCML_0.dat">
+            <OutputColumn id="v" quantity="CG_TestCML/0/Soma_NaV/v"/>
+        </OutputFile>
+        
+        
+    </Component>
+
+
+</Lems>

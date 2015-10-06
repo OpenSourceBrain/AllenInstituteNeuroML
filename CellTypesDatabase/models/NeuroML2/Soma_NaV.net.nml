@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" 
+         id="network_Soma">
+
+
+
+    <pulseGenerator id="Input_4" delay="300.0ms" duration="100.0ms" amplitude="1.8E-5uA"/>
+    <pulseGenerator id="Input_3" delay="100.0ms" duration="100.0ms" amplitude="-1.0E-5uA"/>
+
+    
+    <network id="network_Soma" type="networkWithTemperature" temperature="34 degC">
+
+        
+
+        <population id="CG_TestCML" component="Soma_NaV" type="populationList" size="1">
+            <instance id="0">
+                <location x="0" y="0" z="0"/>
+            </instance>
+        </population>
+
+
+
+            <!--There are no synaptic connections present in the network-->
+
+
+        <inputList id="Input_4" component="Input_4" population="CG_TestCML">
+            <input id="0" target="../CG_TestCML/0/Soma_NaV" destination="synapses"/>
+        </inputList>
+
+
+
+        <inputList id="Input_3" component="Input_3" population="CG_TestCML">
+            <input id="0" target="../CG_TestCML/0/Soma_NaV" destination="synapses"/>
+        </inputList>
+
+
+
+
+
+    </network>
+
+</neuroml>

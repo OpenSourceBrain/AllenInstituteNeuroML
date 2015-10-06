@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="Soma_NaV">
+
+    <include href="NaV.channel.nml"/>
+
+    <include href="pas.channel.nml"/>
+
+    <cell id="Soma_NaV">
+
+        <notes>A single segment/compartment cell</notes>
+
+        <morphology id="morphology">
+
+            <segment id="0" name="Soma">
+                <proximal x="0.0" y="0.0" z="0.0" diameter="9.923"/>
+                <distal x="0.0" y="9.923" z="0.0" diameter="9.923"/>
+            </segment>
+
+            <segmentGroup id="Soma" neuroLexId="sao864921383">    <!--
+                This group contains an unbranched set of segments, and all of the segmentGroups marked with
+                neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+                These segmentGroups correspond to the 'cables' of NeuroML v1.8.1. -->
+
+                <member segment="0"/>
+            </segmentGroup>
+
+            <segmentGroup id="all">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+
+            <segmentGroup id="soma_group" neuroLexId="GO:0043025">    <!--Soma group-->
+
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+
+            
+        </morphology>
+
+        <!--Adding the biophysical parameters-->
+
+        <biophysicalProperties id="biophys">
+
+            <membraneProperties>
+                
+                <channelDensity condDensity="0.000153169 S_per_cm2" id="pas_all" ionChannel="pas" ion="non_specific" erev="-99.7317 mV"/>
+                
+                <channelDensity condDensity="0.00 S_per_cm2" id="NaV_all" ionChannel="NaV" ion="na" erev="53 mV"/>
+
+
+                <spikeThresh value="0 mV"/>
+
+                <specificCapacitance value="1.0 uF_per_cm2"/>
+
+                <initMembPotential value="-90.0 mV"/>
+
+            </membraneProperties>
+
+            <intracellularProperties>
+
+                <resistivity value="0.1 kohm_cm"/>
+
+            </intracellularProperties>
+
+        </biophysicalProperties>
+
+    </cell>
+    
+</neuroml>
