@@ -38,13 +38,13 @@ Note: mtau is an approximation from the plots
         </annotation>
 
         <gate id="m" type="gateHHtauInf" instances="2">
-            <q10Settings type="q10Fixed" fixedQ10="2.95288264"/>
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21 degC"/>
             <timeCourse type="Ca_LVA_m_tau_tau"/>
             <steadyState type="HHSigmoidVariable" rate="1" scale="6mV" midpoint="-40mV"/>
         </gate>
 
         <gate id="h" type="gateHHtauInf" instances="1">
-            <q10Settings type="q10Fixed" fixedQ10="2.95288264"/>
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21 degC"/>
             <timeCourse type="Ca_LVA_h_tau_tau"/>
             <steadyState type="HHSigmoidVariable" rate="1" scale="-6.4mV" midpoint="-90mV"/>
         </gate>
