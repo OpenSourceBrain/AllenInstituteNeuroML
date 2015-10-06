@@ -24,7 +24,7 @@ print("Cell loaded from: %s"%morphology_path)
 stimulus_path = description.manifest.get_path('stimulus_path')
 
 run_params = description.data['runs'][0]
-sweeps = [59,60]
+sweeps = [23, 57, 60]
 
 junction_potential = description.data['fitting'][0]['junction_potential']
 mV = 1.0e-3
