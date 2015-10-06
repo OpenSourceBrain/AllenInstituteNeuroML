@@ -4,6 +4,11 @@
 /CellTypesDatabase/data/471141261_raw_data.nwb
 /CellTypesDatabase/*.png
 /CellTypesDatabase/info
+/CellTypesDatabase/models/NEURON/*.dat
+/CellTypesDatabase/models/NEURON/old
+/CellTypesDatabase/models/NeuroML2/*.dat
+/CellTypesDatabase/models/NeuroML2/LEMS_Test_*.xml
+/CellTypesDatabase/models/neuronal_model*
 /NeuroML2/simplenet.nml
 
 *~
