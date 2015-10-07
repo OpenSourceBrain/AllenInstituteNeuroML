@@ -27,29 +27,33 @@
     <Component type="Simulation" id="sim1" length="600.0ms" step="0.01ms" target="network_Soma">
         
         <Display id="CG_TestMod_v" title="Soma VOLTAGE" xmin="-60.0" xmax="660.0" ymin="-104.0" ymax="64.0" timeScale="1ms">
-            <Line id="VOLTAGE" timeScale="1ms" quantity="CG_TestCML/0/Soma_Test/v" scale="1 mV" color="#000000"/>
+            <Line id="VOLTAGE" timeScale="1ms" quantity="TestSoma/0/Soma_Test/v" scale="1 mV" color="#000000"/>
         </Display>
         
         <Display id="GraphWin_0" title="Soma channels" xmin="-60.0" xmax="660.0" ymin="-0.1" ymax="1.1" timeScale="1ms">
-            <Line id="m Ca_LVA" timeScale="1ms" quantity="CG_TestCML/0/Soma_Test/biophys/membraneProperties/Ca_LVA_all/Ca_LVA/m/q" scale="1" color="#000000"/>
-            <Line id="h Ca_LVA" timeScale="1ms" quantity="CG_TestCML/0/Soma_Test/biophys/membraneProperties/Ca_LVA_all/Ca_LVA/h/q" scale="1" color="#FF0000"/>
-            <Line id="m Ca_HVA" timeScale="1ms" quantity="CG_TestCML/0/Soma_Test/biophys/membraneProperties/Ca_HVA_all/Ca_HVA/m/q" scale="1" color="#00FF00"/>
-            <Line id="h Ca_HVA" timeScale="1ms" quantity="CG_TestCML/0/Soma_Test/biophys/membraneProperties/Ca_HVA_all/Ca_HVA/h/q" scale="1" color="#FFFF00"/>
+            <Line id="m Ca_LVA" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_LVA_all/Ca_LVA/m/q" scale="1" color="#000000"/>
+            <Line id="h Ca_LVA" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_LVA_all/Ca_LVA/h/q" scale="1" color="#FF0000"/>
+            <Line id="m Ca_HVA" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_HVA_all/Ca_HVA/m/q" scale="1" color="#00FF00"/>
+            <Line id="h Ca_HVA" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_HVA_all/Ca_HVA/h/q" scale="1" color="#FFFF00"/>
         </Display>
         
     
-        <Display id="GraphWin_5" title="Soma CaDynamics:CONC:ca" xmin="-60.0" xmax="660.0" ymin="-1e-8" ymax="1e-9" timeScale="1ms">
-            <Line id="CONC_ca" timeScale="1ms" quantity="CG_TestCML/0/Soma_Test/caConc" scale="1 mM" color="#000000"/>
+        <Display id="GraphWin_5" title="Soma CaDynamics:CONC:ca" xmin="-60.0" xmax="660.0" ymin="0" ymax="0.005" timeScale="1ms">
+            <Line id="CONC_ca" timeScale="1ms" quantity="TestSoma/0/Soma_Test/caConc" scale="1 mM" color="#000000"/>
         </Display>
     
-        <Display id="GraphWin_4" title="Ca erev" xmin="-60.0" xmax="660.0" ymin="70" ymax="130" timeScale="1ms">
-            <Line id="Ca_erev" timeScale="1ms" quantity="CG_TestCML/0/Soma_Test/biophys/membraneProperties/Ca_HVA_all/erev" scale="1mV" color="#000000"/>
+        <Display id="GraphWin_4" title="Ca erev" xmin="-60.0" xmax="660.0" ymin="70" ymax="140" timeScale="1ms">
+            <Line id="Ca_erev" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_HVA_all/erev" scale="1mV" color="#000000"/>
         
         </Display>
         
         
-        <OutputFile id="CG_TestCML_v_OF" fileName="CG_TestCML_0.dat">
-            <OutputColumn id="v" quantity="CG_TestCML/0/Soma_Test/v"/>
+        <OutputFile id="TestSoma_v_OF" fileName="TestSoma.v.dat">
+            <OutputColumn id="v" quantity="TestSoma/0/Soma_Test/v"/>
+        </OutputFile>
+        
+        <OutputFile id="TestSoma_ca_OF" fileName="TestSoma.ca.dat">
+            <OutputColumn id="v" quantity="TestSoma/0/Soma_Test/caConc"/>
         </OutputFile>
         
         

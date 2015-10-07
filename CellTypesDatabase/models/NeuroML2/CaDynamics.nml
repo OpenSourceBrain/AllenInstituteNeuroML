@@ -8,7 +8,7 @@
 
     <!--<decayingPoolConcentrationModel id="CaDynamics_E2_NML2" restingConc="1e-10mol_per_cm3" decayConstant="80ms" ion="ca" shellThickness="2.787e-4cm"/>-->
     
-    <concentrationModel id="CaDynamics" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="80 ms" depth="0.1 um" gamma="0.05" ion="ca"/>
+    <concentrationModel id="CaDynamics" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="739.8 ms" depth="0.1 um" gamma="0.0264831" ion="ca"/>
     
     <!--
     This is a new, custom ComponentType to handle the calcium mechanism with parameters

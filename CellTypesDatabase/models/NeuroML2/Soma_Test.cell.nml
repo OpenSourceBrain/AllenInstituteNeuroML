@@ -63,7 +63,7 @@
 
             <intracellularProperties>
 
-                <species id="ca" ion="ca" concentrationModel="CaDynamics" initialConcentration="1.0E-11 mol_per_cm3" initialExtConcentration="2.0E-6 mol_per_cm3"/>
+                <species id="ca" ion="ca" concentrationModel="CaDynamics" initialConcentration="1e-4 mM" initialExtConcentration="2 mM"/>
 
                 <resistivity value="0.1 kohm_cm"/>
 
