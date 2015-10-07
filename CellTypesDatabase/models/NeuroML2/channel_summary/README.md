@@ -33,7 +33,8 @@ Comment from original mod file:
             <i>g = gmax * m<sup>3</sup> * h </i><br/>
             Fast inactivating Na+ current. 
 Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
-            
+ - Added Q10 scaling to rate variables 
+ - Values for midpoint changed to match mod 
             
 Comment from mod file (NaTs2_t.mod): took the NaTa and shifted both activation/inactivation by 6 mv</sup>
 </td>
@@ -42,6 +43,54 @@ Comment from mod file (NaTs2_t.mod): took the NaTa and shifted both activation/i
 </td>
 <td>
 <a href="NaTs.tau.png"><img alt="NaTs time course" src="NaTs.tau.png" height="220"/></a>
+</td>
+</tr>
+    <tr>
+<td width="120px">
+            <sup><b>K_P</b><br/>
+            <a href="../K_P.channel.nml">K_P.channel.nml</a><br/>
+            <b>Ion: k</b><br/>
+            <i>g = gmax * m<sup>2</sup> * h </i><br/>
+            Slow inactivating K+ current
+Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
+ - Added Q10 scaling to rate variables 
+ - Equations for tau/inf updated to match mod
+            
+Comment from original mod file: 
+:Comment : The persistent component of the K current
+:Reference : :		Voltage-gated K+ channels in layer 5 neocortical pyramidal neurones from young rats:subtypes and gradients,Korngreen and Sakmann, J. Physiology, 2000
+:Comment : shifted -10 mv to correct for junction potential
+:Comment: corrected rates using q10 = 2.3, target temperature 34, orginal 21</sup>
+</td>
+<td>
+<a href="K_P.inf.png"><img alt="K_P steady state" src="K_P.inf.png" height="220"/></a>
+</td>
+<td>
+<a href="K_P.tau.png"><img alt="K_P time course" src="K_P.tau.png" height="220"/></a>
+</td>
+</tr>
+    <tr>
+<td width="120px">
+            <sup><b>K_T</b><br/>
+            <a href="../K_T.channel.nml">K_T.channel.nml</a><br/>
+            <b>Ion: k</b><br/>
+            <i>g = gmax * m<sup>4</sup> * h </i><br/>
+            Fast inactivating K+ current
+Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
+ - Added Q10 scaling to rate variables 
+ - Equations for tau/inf updated to match mod
+            
+Comment from original mod file: 
+:Comment : The transient component of the K current
+:Reference : :		Voltage-gated K+ channels in layer 5 neocortical pyramidal neurones from young rats:subtypes and gradients,Korngreen and Sakmann, J. Physiology, 2000
+:Comment : shifted -10 mv to correct for junction potential
+:Comment: corrected rates using q10 = 2.3, target temperature 34, orginal 21</sup>
+</td>
+<td>
+<a href="K_T.inf.png"><img alt="K_T steady state" src="K_T.inf.png" height="220"/></a>
+</td>
+<td>
+<a href="K_T.tau.png"><img alt="K_T time course" src="K_T.tau.png" height="220"/></a>
 </td>
 </tr>
     <tr>

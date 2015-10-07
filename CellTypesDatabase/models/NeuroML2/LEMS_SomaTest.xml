@@ -13,6 +13,9 @@
         
     <Include file="NaTs.channel.nml"/>
     
+    <Include file="K_P.channel.nml"/>
+    <Include file="K_T.channel.nml"/>
+    
     <Include file="Ca_HVA.channel.nml"/>
     <Include file="Ca_LVA.channel.nml"/>
     <Include file="CaDynamics.nml"/>

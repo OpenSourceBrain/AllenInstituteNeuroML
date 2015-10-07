@@ -11,7 +11,8 @@
 
         <notes>Fast inactivating Na+ current. 
 Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
-            
+ - Added Q10 scaling to rate variables 
+ - Values for midpoint changed to match mod 
             
 Comment from mod file (NaTs2_t.mod): took the NaTa and shifted both activation/inactivation by 6 mv</notes>
                 

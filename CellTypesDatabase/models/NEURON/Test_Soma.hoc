@@ -24,6 +24,13 @@ insert NaTs
 insert na_ion 
 { ena=53}
 
+insert K_P 
+{ gbar_K_P=0.0198868}
+insert K_T 
+{ gbar_K_T=6.5088e-05}
+insert k_ion 
+{ ek=-107}
+
 /*
 insert Im 
 { gbar_Im=0.0079231}
@@ -32,16 +39,10 @@ insert Ih
 insert Nap 
 { gbar_Nap=0.000115828}
 
-insert K_P 
-{ gbar_K_P=0.0198868}
-insert K_T 
-{ gbar_K_T=6.5088e-05}
 insert SK 
 { gbar_SK=0.000797996}
 insert Kv3_1 
-{ gbar_Kv3_1=0.0281648}
-insert k_ion 
-{ ek=-107}*/
+{ gbar_Kv3_1=0.0281648}*/
 
 insert Ca_HVA 
 { gbar_Ca_HVA=2.69146e-05}

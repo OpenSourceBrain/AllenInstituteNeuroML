@@ -3,9 +3,9 @@ import matplotlib.pyplot as pylab
 import os.path
 
 
-chans = ['K_Tst', 'K_Pst', 'NaTa', 'Nap_Et2', 'NaTs2_t', 'Ih', 'Ca_LVAst', 'Ca_HVA', 'SKv3_1', 'KdShu2007']
+chans = ['K_T', 'K_P', 'NaTa', 'Nap', 'NaTs', 'Ih', 'Ca_LVA', 'Ca_HVA', 'SKv3_1']
 chans = ['Ca_LVA', 'NaTa']
-chans = ['NaTs']
+chans = ['K_P', 'K_T']
 
 problematic = ['Im']
 

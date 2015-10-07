@@ -2,16 +2,16 @@
 
 target: LEMS_SomaTest.xml 
 engine: jNeuroML_NEURON
-#mep: ../NEURON/.test.mep
-#experiments:
-#  Current clamp:
-#    observables:
-#      spike times:
-#        file: 
-#          path: CG_TestCML_0.dat
-#          columns: [0,1]
-#          scaling: [1000, 1000]
-#        spike detection: 
-#          method: threshold
-#          threshold: 0
-#        tolerance: 0.00047
+mep: ../NEURON/.test.mep
+experiments:
+  Current clamp:
+    observables:
+      spike times:
+        file: 
+          path: TestSoma.v.dat
+          columns: [0,1]
+          scaling: [1000, 1000]
+        spike detection: 
+          method: threshold
+          threshold: 0
+        tolerance: 0.000352
