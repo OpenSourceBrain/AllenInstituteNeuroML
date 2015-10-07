@@ -3,14 +3,15 @@ import matplotlib.pyplot as pylab
 import os.path
 
 
-chans = ['K_Tst', 'K_Pst', 'NaTa_t', 'Nap_Et2', 'NaTs2_t', 'Ih', 'Ca_LVAst', 'Ca_HVA', 'SKv3_1', 'KdShu2007']
-chans = ['Ca_LVA']
+chans = ['K_Tst', 'K_Pst', 'NaTa', 'Nap_Et2', 'NaTs2_t', 'Ih', 'Ca_LVAst', 'Ca_HVA', 'SKv3_1', 'KdShu2007']
+chans = ['Ca_LVA', 'NaTa']
+chans = ['NaTa']
 
 problematic = ['Im']
 
 gates = ['m', 'h']
 
-temperatures = [26,34]
+temperatures = [26]
 
 for temperature in temperatures:
 
