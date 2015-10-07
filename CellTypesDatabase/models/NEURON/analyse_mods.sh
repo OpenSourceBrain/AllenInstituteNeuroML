@@ -3,8 +3,8 @@
 pynml-modchananalysis Ca_LVA -stepV 5 -temperature [26,34]
 pynml-modchananalysis Ca_HVA -stepV 5 -temperature [26,34]
 
-#pynml-modchananalysis NaTa -stepV 5 -temperature [26,34]
-#pynml-modchananalysis NaTs -stepV 5 -temperature [26,34]
+pynml-modchananalysis NaTa -stepV 5 -temperature [26,34]
+pynml-modchananalysis NaTs -stepV 5 -temperature [26,34]
 #pynml-modchananalysis Nap -stepV 5 -temperature [26,34]
 
 #pynml-modchananalysis K_P -stepV 5 -temperature [26,34]

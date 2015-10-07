@@ -6,6 +6,7 @@
 
     <include href="Ca_HVA.channel.nml"/>
     <include href="Ca_LVA.channel.nml"/>
+    <include href="NaTs.channel.nml"/>
 
     <include href="pas.channel.nml"/>
 
@@ -47,6 +48,8 @@
             <membraneProperties>
                 
                 <channelDensity condDensity="0.000153169 S_per_cm2" id="pas_all" ionChannel="pas" ion="non_specific" erev="-99.7317 mV"/>
+                
+                <channelDensity condDensity="0.831809 S_per_cm2" id="NaTs_all" ionChannel="NaTs" ion="non_specific" erev="53 mV"/>
                 
                 <channelDensityNernst condDensity="0.000783165 S_per_cm2" id="Ca_LVA_all" ionChannel="Ca_LVA" ion="ca"/>
                 

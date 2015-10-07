@@ -19,17 +19,19 @@ insert pas
 { g_pas=0.000153169 }
 { e_pas=-99.7317 }
 
+insert NaTs 
+{ gbar_NaTs=0.831809}
+insert na_ion 
+{ ena=53}
+
 /*
 insert Im 
 { gbar_Im=0.0079231}
 insert Ih 
 { gbar_Ih=8.61267e-06}
-insert NaTs 
-{ gbar_NaTs=0.831809}
 insert Nap 
 { gbar_Nap=0.000115828}
-insert na_ion 
-{ ena=53}
+
 insert K_P 
 { gbar_K_P=0.0198868}
 insert K_T 
