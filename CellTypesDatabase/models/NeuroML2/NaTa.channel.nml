@@ -9,6 +9,9 @@
     <ionChannel id="NaTa" conductance="10pS" type="ionChannelHH" species="na">
 
         <notes>Fast inactivating Na+ current
+Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
+ - Added Q10 scaling to rate variables 
+ - Values for midpoint changed to match mod            
             
 Comment from original mod file: 
 :Reference :Colbert and Pan 2002</notes>

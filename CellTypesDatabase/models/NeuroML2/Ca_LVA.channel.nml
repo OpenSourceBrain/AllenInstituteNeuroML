@@ -6,6 +6,8 @@
     <ionChannel id="Ca_LVA" conductance="10pS" type="ionChannelHH" species="ca">
 
         <notes>Low voltage activated Ca2+ current
+Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
+ - Added Q10 scaling to rate variables 
             
 Comment from original mod file: 
 Note: mtau is an approximation from the plots
