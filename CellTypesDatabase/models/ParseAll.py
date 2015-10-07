@@ -6,6 +6,8 @@ from allensdk.model.biophysical_perisomatic.runner import load_description
 from pyneuroml.neuron import export_to_neuroml2
 from pyneuroml.neuron.nrn_export_utils import clear_neuron
 
+from pyneuroml import pynml
+
 import os
 import os.path
 
@@ -46,7 +48,7 @@ for cell_dir in cell_dirs:
     
     nml_file_name = "%s.net.nml"%cell_dir
     nml_net_loc = "%s/%s"%(nml2_cell_dir,nml_file_name)
-    nml_cell_file = "%s_0_0.cell.nml"%cell_dir
+    nml_cell_file = "Cell0.cell.nml"
     nml_cell_loc = "%s/%s"%(nml2_cell_dir,nml_cell_file)
 
 
@@ -56,3 +58,16 @@ for cell_dir in cell_dirs:
                        nml_net_loc, 
                        separateCellFiles=True,
                        includeBiophysicalProperties=False)
+
+    print(' > Exported to: %s and %s'%(nml_net_loc, nml_cell_loc))
+
+    nml_doc = pynml.read_neuroml2_file(nml_cell_loc)
+        
+    cell = nml_doc.cells[0]
+        
+    print(' > Altering groups')
+    
+    for sg in cell.morphology.segment_groups:
+        print("Found group: %s"%sg.id)
+    
+    pynml.write_neuroml2_file(nml_doc, nml_cell_loc)
