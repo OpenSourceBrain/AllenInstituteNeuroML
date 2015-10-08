@@ -105,11 +105,32 @@ for cell_dir in cell_dirs:
         if  chan['name'] == 'g_pas':
             chan_name = 'pas'
         if chan['mechanism'] != 'CaDynamics':
-            cd = neuroml.ChannelDensity(id='%s_%s'%(chan_name, chan['section']),
-                                        ion_channel=chan_name,
-                                        cond_density='%s S_per_cm2'%float(chan['value']),
-                                        erev='0.0000000000000000000000000000000000mV')
-            membrane_properties.channel_densities.append(cd)
+            erev = '??'
+            if chan_name == 'pas':
+                erev = '%s mV'%cell_info['passive'][0]['e_pas']
+            elif chan['mechanism'].startswith('Na'):
+                erev = '%s mV'%cell_info['conditions'][0]['erev'][0]['ena']
+            elif chan['mechanism'].startswith('K') or chan['mechanism'].startswith('SK'):
+                erev = '%s mV'%cell_info['conditions'][0]['erev'][0]['ek']
+            elif chan['mechanism'].startswith('I'):
+                erev = '-45 mV'
+                
+            
+            if chan['mechanism'] == 'Ca_HVA' or chan['mechanism'] == 'Ca_LVA':
+                
+                cdn = neuroml.ChannelDensityNernst(id='%s_%s'%(chan_name, chan['section']),
+                                            ion_channel=chan_name,
+                                            segment_groups=chan['section'],
+                                            cond_density='%s S_per_cm2'%float(chan['value']))
+                membrane_properties.channel_density_nernsts.append(cdn)
+            else:
+                cd = neuroml.ChannelDensity(id='%s_%s'%(chan_name, chan['section']),
+                                            ion_channel=chan_name,
+                                            segment_groups=chan['section'],
+                                            cond_density='%s S_per_cm2'%float(chan['value']),
+                                            erev=erev)
+                membrane_properties.channel_densities.append(cd)
+                                            
 
     resistivities = []
     resistivities.append(neuroml.Resistivity(value="%s ohm_cm"%cell_info['passive'][0]['ra'], segment_groups='all'))
