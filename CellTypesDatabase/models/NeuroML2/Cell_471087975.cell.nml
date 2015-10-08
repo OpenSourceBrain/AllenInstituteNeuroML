@@ -1,5 +1,5 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="NeuroML2_file_exported_from_NEURON">
-    <cell id="471087975">
+    <cell id="Cell_471087975">
         <notes>Cell: Cell0 exported from NEURON ModelView</notes>
         <morphology id="morphology">
             <segment id="0" name="Seg0_soma_0">
@@ -22008,12 +22008,12 @@
             <segmentGroup id="soma">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_40">
+            <segmentGroup id="ModelViewParmSubset_302">
                 <include segmentGroup="soma_0"/>
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_41">
+            <segmentGroup id="ModelViewParmSubset_303">
                 <include segmentGroup="dend_44"/>
                 <include segmentGroup="dend_43"/>
                 <include segmentGroup="dend_24"/>
@@ -22237,7 +22237,7 @@
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="OneSecGrp_SectionRef_1569">
+            <segmentGroup id="OneSecGrp_SectionRef_13489">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
         </morphology>

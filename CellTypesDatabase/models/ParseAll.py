@@ -21,15 +21,25 @@ cell_dirs = [ f for f in os.listdir('.') if (os.path.isdir(f) and os.path.isfile
 
 nml2_cell_dir = '../NeuroML2/'
 
-count = 0
-for cell_dir in cell_dirs:
+
+net_ref = "ManyCells"
+net_doc = neuroml.NeuroMLDocument(id=net_ref)
+
+net = neuroml.Network(id=net_ref)
+net_doc.networks.append(net)
+
+
+clear_neuron()
     
-    if os.path.isdir(cell_dir):
-        os.chdir(cell_dir)
+count = 0
+for model_id in cell_dirs:
+    
+    if os.path.isdir(model_id):
+        os.chdir(model_id)
     else:
-        os.chdir('../'+cell_dir)
+        os.chdir('../'+model_id)
         
-    print('\n\n************************************************************\n\n    Parsing %s (cell %i/%i)\n'%(cell_dir, count, len(cell_dirs)))
+    print('\n\n************************************************************\n\n    Parsing %s (cell %i/%i)\n'%(model_id, count, len(cell_dirs)))
     
     description = load_description('manifest.json')
 
@@ -50,11 +60,11 @@ for cell_dir in cell_dirs:
     h.finitialize()
     h.psection()
     
-    nml_file_name = "%s.net.nml"%cell_dir
+    nml_file_name = "%s.net.nml"%model_id
     nml_net_loc = "%s/%s"%(nml2_cell_dir,nml_file_name)
     nml_cell_file0 = "Cell0.cell.nml"
     nml_cell_loc0 = "%s/%s"%(nml2_cell_dir,nml_cell_file0)
-    nml_cell_file = "%s.cell.nml"%cell_dir
+    nml_cell_file = "Cell_%s.cell.nml"%model_id
     nml_cell_loc = "%s/%s"%(nml2_cell_dir,nml_cell_file)
 
 
@@ -66,10 +76,15 @@ for cell_dir in cell_dirs:
                        includeBiophysicalProperties=False)
 
     print(' > Exported to: %s and %s'%(nml_net_loc, nml_cell_loc))
+    
+    
+    clear_neuron()
 
     nml_doc = pynml.read_neuroml2_file(nml_cell_loc0)
         
     cell = nml_doc.cells[0]
+    
+    cell.id = 'Cell_%s'%model_id
         
     print(' > Altering groups')
     
@@ -90,7 +105,7 @@ for cell_dir in cell_dirs:
                     print("Replacing group named %s with %s"%(sg.id,replace[prefix]))
                     sg.id = replace[prefix]
     
-    with open('%s_fit.json'%cell_dir, "r") as json_file:
+    with open('%s_fit.json'%model_id, "r") as json_file:
         cell_info = json.load(json_file)
         
     
@@ -154,3 +169,29 @@ for cell_dir in cell_dirs:
     
     
     pynml.write_neuroml2_file(nml_doc, nml_cell_loc)
+    
+    pynml.nml2_to_svg(nml_cell_loc)
+    
+    net_doc.includes.append(neuroml.IncludeType(nml_cell_file))
+
+    pop = neuroml.Population(id="Pop_%s"%model_id, component=cell.id, type="populationList")
+
+    net.populations.append(pop)
+
+    inst = neuroml.Instance(id="0")
+    pop.instances.append(inst)
+
+    width = 7
+    X = count%width
+    Z = (count -X) / width
+    inst.location = neuroml.Location(x=300*X, y=0, z=300*Z)
+
+    count+=1
+    
+
+net_file = '%s/%s.net.nml'%(nml2_cell_dir,net_ref)
+neuroml.writers.NeuroMLWriter.write(net_doc, net_file)
+
+print("Written network with %i cells in network to: %s"%(count,net_file))
+
+pynml.nml2_to_svg(net_file)
