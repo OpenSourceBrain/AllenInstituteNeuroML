@@ -1,0 +1,34 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="ManyCells">
+    <include href="471085845.cell.nml"></include>
+    <include href="472451419.cell.nml"></include>
+    <include href="471081668.cell.nml"></include>
+    <include href="471086533.cell.nml"></include>
+    <include href="471087975.cell.nml"></include>
+    <network id="ManyCells">
+        <population id="Pop_471085845" type="populationList" component="471085845">
+            <instance id="0">
+                <location y="0." x="0." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_472451419" type="populationList" component="472451419">
+            <instance id="0">
+                <location y="0." x="300." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_471081668" type="populationList" component="471081668">
+            <instance id="0">
+                <location y="0." x="600." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_471086533" type="populationList" component="471086533">
+            <instance id="0">
+                <location y="0." x="900." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_471087975" type="populationList" component="471087975">
+            <instance id="0">
+                <location y="0." x="1200." z="0."/>
+            </instance>
+        </population>
+    </network>
+</neuroml>
