@@ -20,6 +20,11 @@
 /CellTypesDatabase/models/neuronal_model*
 /NeuroML2/simplenet.nml
 
+/CellTypesDatabase/models/3*
+/CellTypesDatabase/models/4723*
+/CellTypesDatabase/models/4729*
+/CellTypesDatabase/models/473*
+
 *~
 *.svg
 *.pov
