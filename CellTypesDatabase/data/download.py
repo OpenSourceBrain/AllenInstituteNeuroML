@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 sweep_numbers = range(54,58)
+sweep_numbers = [34,38,42,46,50,54,58]
 
 for sweep_number in sweep_numbers:
     sweep_data = data_set.get_sweep(sweep_number)
@@ -42,15 +43,18 @@ for sweep_number in sweep_numbers:
     # define some time points in seconds (i.e., convert to absolute time)
     time_pts = np.arange(0,len(stimulus)/sampling_rate,1./sampling_rate)
 
+    metadata = data_set.get_sweep_metadata(sweep_number)
+    ampl = round(metadata['aibs_stimulus_amplitude_pa'],4)
 
     # plot the stimulus and the voltage response for the random trial
     plt.subplot(2,1,1)
     plt.plot(time_pts,stimulus)
-    plt.ylabel('Stimulus (Amps)')
+    plt.ylabel('Stimulus (A)')
     plt.subplot(2,1,2)
-    plt.plot(time_pts,response)
-    plt.ylabel('membrane voltage (mV)')
-    plt.xlabel('Time (s)')
+    plt.plot(time_pts,response, label = 'S %s, %s pA'%(sweep_number, ampl))
 
+plt.ylabel('Membrane voltage (mV)')
+plt.xlabel('Time (s)')
+plt.legend()
 plt.show()
 

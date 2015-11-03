@@ -32,8 +32,8 @@ for dataset_id in dataset_ids:
     sweep_numbers = data_set.get_experiment_sweep_numbers()
     sweep_numbers.sort()
 
-    sweep_numbers = range(34,58)  # just for 471141261
-    sweep_numbers = range(55,58)  # just for 471141261
+    sweep_numbers = range(34,59)  # just for 471141261
+    #sweep_numbers = range(55,59)  # just for 471141261
 
     info = {}
     info[IF.DATASET] = dataset_id
@@ -49,6 +49,8 @@ for dataset_id in dataset_ids:
         sweep_info = {}
         info[IF.SWEEPS].append(sweep_info)
         sweep_info[IF.SWEEP] = sweep_number
+        
+        sweep_info[IF.METADATA] = data_set.get_sweep_metadata(sweep_number)
         
 
         # start/stop indices that exclude the experimental test pulse (if applicable)
