@@ -14,6 +14,8 @@ from pyelectro import __version__ as pyel_ver
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
+import json
+
 ct = CellTypesApi()
 
 dataset_ids = [471141261]
@@ -33,21 +35,21 @@ for dataset_id in dataset_ids:
     sweep_numbers.sort()
 
     sweep_numbers = range(34,59)  # just for 471141261
-    #sweep_numbers = range(55,59)  # just for 471141261
+    #sweep_numbers = range(58,59)  # just for 471141261
 
     info = {}
     info[IF.DATASET] = dataset_id
     info[IF.COMMENT] = 'Data analysed on %s'%(time.ctime())
     
     info[IF.PYELECTRO_VERSION] = pyel_ver
-    info[IF.SWEEPS] = []
+    info[IF.SWEEPS] = {}
 
     for sweep_number in sweep_numbers:
 
         sweep_data = data_set.get_sweep(sweep_number)
         
         sweep_info = {}
-        info[IF.SWEEPS].append(sweep_info)
+        info[IF.SWEEPS]['%i'%sweep_number] = sweep_info
         sweep_info[IF.SWEEP] = sweep_number
         
         sweep_info[IF.METADATA] = data_set.get_sweep_metadata(sweep_number)
@@ -84,7 +86,10 @@ for dataset_id in dataset_ids:
 
     analysis_file_name = '%s_analysis.json'%(dataset_id)
     analysis_file = open(analysis_file_name, 'w')
-    analysis_file.write(pp.pformat(info))
+    pretty = pp.pformat(info)
+    pretty = pretty.replace('\'', '"')
+    pretty = pretty.replace('u"', '"')
+    analysis_file.write(pretty)
     analysis_file.close()
     
     print('Written info to %s'%analysis_file_name)
