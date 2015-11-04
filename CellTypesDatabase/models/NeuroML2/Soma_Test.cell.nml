@@ -61,7 +61,7 @@
                 
                 <channelDensity condDensity="0.831809 S_per_cm2" id="NaTs_all" ionChannel="NaTs" ion="na" erev="53 mV"/>
                 
-                <!--<channelDensity condDensity="0.000115828 S_per_cm2" id="Nap_all" ionChannel="Nap" ion="na" erev="53 mV"/>-->
+                <channelDensity condDensity="0.000115828 S_per_cm2" id="Nap_all" ionChannel="Nap" ion="na" erev="53 mV"/>
                 
                 <channelDensity condDensity="0.0198868 S_per_cm2" id="K_P_all" ionChannel="K_P" ion="k" erev="-107 mV"/>
                 
@@ -69,7 +69,7 @@
                 
                 <channelDensity condDensity="0.0281648 S_per_cm2" id="Kv3_1_all" ionChannel="Kv3_1" ion="k" erev="-107 mV"/>
                 
-                <channelDensity condDensity="0.000797996 S_per_cm2" id="SK_all" ionChannel="SK" ion="k" erev="-107 mV"/>
+                <channelDensity condDensity="0.0000797996 S_per_cm2" id="SK_all" ionChannel="SK" ion="k" erev="-107 mV"/>
                 
                 <channelDensity condDensity="0.0079231 S_per_cm2" id="Im_all" ionChannel="Im" ion="k" erev="-107 mV"/>
                 
