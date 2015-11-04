@@ -6,6 +6,8 @@ from allensdk.model.biophysical_perisomatic.runner import load_description
 from pyneuroml.neuron import export_to_neuroml2
 from pyneuroml.neuron.nrn_export_utils import clear_neuron
 
+from pyneuroml.lems import generate_lems_file_for_neuroml
+
 import json
 
 from pyneuroml import pynml
@@ -85,6 +87,14 @@ for model_id in cell_dirs:
     cell = nml_doc.cells[0]
     
     cell.id = 'Cell_%s'%model_id
+    
+    notes = ''
+    notes+="\n\nExport of a cell model (%s) obtained from the Allen Institute Cell Types Database into NeuroML2"%model_id + \
+            "\n\n******************************************************\n*  This export to NeuroML2 has not yet been fully validated!!"+ \
+            "\n*  Use with caution!!\n******************************************************\n\n"
+
+
+    cell.notes = notes
         
     print(' > Altering groups')
     
@@ -145,7 +155,18 @@ for model_id in cell_dirs:
                                             cond_density='%s S_per_cm2'%float(chan['value']),
                                             erev=erev)
                 membrane_properties.channel_densities.append(cd)
-                                            
+   
+    inc_chans =[]
+    for cd in membrane_properties.channel_densities:
+        if not cd.ion_channel in inc_chans:
+            nml_doc.includes.append(
+                    neuroml.IncludeType(href="%s.channel.nml" % cd.ion_channel))
+            inc_chans.append(cd.ion_channel)
+    for cdn in membrane_properties.channel_density_nernsts:
+        if not cdn.ion_channel in inc_chans:
+            nml_doc.includes.append(
+                    neuroml.IncludeType(href="%s.channel.nml" % cdn.ion_channel))
+            inc_chans.append(cdn.ion_channel)
 
     resistivities = []
     resistivities.append(neuroml.Resistivity(value="%s ohm_cm"%cell_info['passive'][0]['ra'], segment_groups='all'))
@@ -157,6 +178,8 @@ for model_id in cell_dirs:
                         initial_ext_concentration='2 mM', \
                         concentration_model="CaDynamics", \
                         segment_groups="soma"))
+    nml_doc.includes.append(
+                    neuroml.IncludeType(href="%s.nml" % 'CaDynamics'))
                         
     intracellular_properties = neuroml.IntracellularProperties(resistivities=resistivities, species=species)
 
@@ -171,6 +194,51 @@ for model_id in cell_dirs:
     pynml.write_neuroml2_file(nml_doc, nml_cell_loc)
     
     pynml.nml2_to_svg(nml_cell_loc)
+    
+    
+    
+
+    new_nml_file_name = "Network_%s.net.nml"%model_id
+    
+    new_net_loc = "%s/%s"%(nml2_cell_dir, new_nml_file_name)
+    new_net_doc = pynml.read_neuroml2_file(nml_net_loc)
+    new_net = new_net_doc.networks[0]
+    new_net_doc.notes = notes
+    
+    new_net_doc.includes[0].href = nml_cell_file
+    
+    pop_id = 'Pop_Cell_%s'%model_id
+    pop_comp = 'Cell_%s'%model_id
+    new_net.populations[0].id = pop_id
+    new_net.populations[0].component = pop_comp
+
+    stim_ref = "stim"
+    stim = neuroml.PulseGenerator(id=stim_ref, delay="200ms", duration="1000ms", amplitude="350pA")
+    new_net_doc.pulse_generators.append(stim)
+    
+    input_list = neuroml.InputList(id="%s_input"%stim_ref,
+                         component=stim_ref,
+                         populations=pop_id)
+
+    input = neuroml.Input(id=0, 
+                          target="../%s/0/%s"%(pop_id, pop_comp), 
+                          destination="synapses")  
+
+    input_list.input.append(input)
+    new_net.input_lists.append(input_list)
+    
+    pynml.write_neuroml2_file(new_net_doc, new_net_loc)
+
+    generate_lems_file_for_neuroml(model_id,
+                                   new_net_loc,
+                                   "network",
+                                   1500,
+                                   0.025,
+                                   "LEMS_%s.xml"%model_id,
+                                   nml2_cell_dir,
+                                   copy_neuroml = False,
+                                   seed=1234)
+    
     
     net_doc.includes.append(neuroml.IncludeType(nml_cell_file))
 

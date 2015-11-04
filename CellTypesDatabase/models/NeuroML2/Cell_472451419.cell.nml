@@ -1,6 +1,27 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="NeuroML2_file_exported_from_NEURON">
+    <include href="Im.channel.nml"></include>
+    <include href="Ih.channel.nml"></include>
+    <include href="NaTs.channel.nml"></include>
+    <include href="Nap.channel.nml"></include>
+    <include href="K_P.channel.nml"></include>
+    <include href="K_T.channel.nml"></include>
+    <include href="SK.channel.nml"></include>
+    <include href="Kv3_1.channel.nml"></include>
+    <include href="pas.channel.nml"></include>
+    <include href="Ca_HVA.channel.nml"></include>
+    <include href="Ca_LVA.channel.nml"></include>
+    <include href="CaDynamics.nml"></include>
     <cell id="Cell_472451419">
-        <notes>Cell: Cell0 exported from NEURON ModelView</notes>
+        <notes>
+
+Export of a cell model (472451419) obtained from the Allen Institute Cell Types Database into NeuroML2
+
+******************************************************
+*  This export to NeuroML2 has not yet been fully validated!!
+*  Use with caution!!
+******************************************************
+
+</notes>
         <morphology id="morphology">
             <segment id="0" name="Seg0_soma_0">
                 <proximal y="4.047470e+02" x="4.458890e+02" z="2.744000e+01" diameter="9.923000e+00"/>
@@ -10078,12 +10099,12 @@
             <segmentGroup id="soma">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_46">
+            <segmentGroup id="ModelViewParmSubset_2">
                 <include segmentGroup="soma_0"/>
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_47">
+            <segmentGroup id="ModelViewParmSubset_3">
                 <include segmentGroup="dend_13"/>
                 <include segmentGroup="dend_12"/>
                 <include segmentGroup="dend_11"/>
@@ -10181,7 +10202,7 @@
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="OneSecGrp_SectionRef_2145">
+            <segmentGroup id="OneSecGrp_SectionRef_1">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
         </morphology>
