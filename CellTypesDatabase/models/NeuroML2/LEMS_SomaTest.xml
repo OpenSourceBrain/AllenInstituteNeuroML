@@ -12,12 +12,16 @@
         <!--   Channel/synapse files-->
         
     <Include file="NaTs.channel.nml"/>
+    <Include file="Nap.channel.nml"/>
     
     <Include file="K_P.channel.nml"/>
     <Include file="K_T.channel.nml"/>
     
     <Include file="Ca_HVA.channel.nml"/>
     <Include file="Ca_LVA.channel.nml"/>
+    
+    <Include file="Ih.channel.nml"/>
+    
     <Include file="CaDynamics.nml"/>
 
     <Include file="pas.channel.nml"/>
@@ -36,13 +40,21 @@
             <Line id="VOLTAGE" timeScale="1ms" quantity="TestSoma/0/Soma_Test/v" scale="1 mV" color="#000000"/>
         </Display>
         
-        <Display id="GraphWin_0" title="Soma channels" xmin="-60.0" xmax="660.0" ymin="-0.1" ymax="1.1" timeScale="1ms">
+        <Display id="GraphWin_1a" title="Soma channels: Na etc" xmin="-60.0" xmax="660.0" ymin="-0.1" ymax="1.1" timeScale="1ms">
+            <Line id="m NaTs" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/NaTs_all/NaTs/m/q" scale="1" color="#000000"/>
+            <Line id="h NaTs" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/NaTs_all/NaTs/h/q" scale="1" color="#FF0000"/>
+            <!--<Line id="m Nap" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Nap_all/Nap/m/q" scale="1" color="#00FF00"/>
+            <Line id="h Nap" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Nap_all/Nap/h/q" scale="1" color="#FFFF00"/>-->
+            <Line id="m Ih" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ih_all/Ih/m/q" scale="1" color="#00ffff"/>
+        </Display>
+        
+        <!--
+        <Display id="GraphWin_0" title="Soma channels: Ca" xmin="-60.0" xmax="660.0" ymin="-0.1" ymax="1.1" timeScale="1ms">
             <Line id="m Ca_LVA" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_LVA_all/Ca_LVA/m/q" scale="1" color="#000000"/>
             <Line id="h Ca_LVA" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_LVA_all/Ca_LVA/h/q" scale="1" color="#FF0000"/>
             <Line id="m Ca_HVA" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_HVA_all/Ca_HVA/m/q" scale="1" color="#00FF00"/>
             <Line id="h Ca_HVA" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_HVA_all/Ca_HVA/h/q" scale="1" color="#FFFF00"/>
         </Display>
-        
     
         <Display id="GraphWin_5" title="Soma CaDynamics:CONC:ca" xmin="-60.0" xmax="660.0" ymin="0" ymax="0.005" timeScale="1ms">
             <Line id="CONC_ca" timeScale="1ms" quantity="TestSoma/0/Soma_Test/caConc" scale="1 mM" color="#000000"/>
@@ -51,7 +63,7 @@
         <Display id="GraphWin_4" title="Ca erev" xmin="-60.0" xmax="660.0" ymin="70" ymax="140" timeScale="1ms">
             <Line id="Ca_erev" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ca_HVA_all/erev" scale="1mV" color="#000000"/>
         
-        </Display>
+        </Display>-->
         
         
         <OutputFile id="TestSoma_v_OF" fileName="TestSoma.v.dat">

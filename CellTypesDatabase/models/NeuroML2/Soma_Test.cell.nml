@@ -8,9 +8,12 @@
     <include href="Ca_LVA.channel.nml"/>
     
     <include href="NaTs.channel.nml"/>
+    <include href="Nap.channel.nml"/>
     
     <include href="K_P.channel.nml"/>
     <include href="K_T.channel.nml"/>
+    
+    <include href="Ih.channel.nml"/>
 
     <include href="pas.channel.nml"/>
 
@@ -53,11 +56,15 @@
                 
                 <channelDensity condDensity="0.000153169 S_per_cm2" id="pas_all" ionChannel="pas" ion="non_specific" erev="-99.7317 mV"/>
                 
-                <channelDensity condDensity="0.831809 S_per_cm2" id="NaTs_all" ionChannel="NaTs" ion="non_specific" erev="53 mV"/>
+                <channelDensity condDensity="0.831809 S_per_cm2" id="NaTs_all" ionChannel="NaTs" ion="na" erev="53 mV"/>
                 
-                <channelDensity condDensity="0.0198868 S_per_cm2" id="K_P_all" ionChannel="K_P" ion="non_specific" erev="-107 mV"/>
+                <!--<channelDensity condDensity="0.000115828 S_per_cm2" id="Nap_all" ionChannel="Nap" ion="na" erev="53 mV"/>-->
                 
-                <channelDensity condDensity="6.5088e-05 S_per_cm2" id="K_T_all" ionChannel="K_T" ion="non_specific" erev="-107 mV"/>
+                <channelDensity condDensity="0.0198868 S_per_cm2" id="K_P_all" ionChannel="K_P" ion="k" erev="-107 mV"/>
+                
+                <channelDensity condDensity="6.5088e-05 S_per_cm2" id="K_T_all" ionChannel="K_T" ion="k" erev="-107 mV"/>
+                
+                <channelDensity condDensity="8.61267e-06 S_per_cm2" id="Ih_all" ionChannel="Ih" ion="hcn" erev="-45 mV"/>
                 
                 <channelDensityNernst condDensity="0.000783165 S_per_cm2" id="Ca_LVA_all" ionChannel="Ca_LVA" ion="ca"/>
                 

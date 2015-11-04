@@ -160,5 +160,23 @@ Reuveni, Friedman, Amitai, and Gutnick, J.Neurosci. 1993</sup>
 <a href="Ca_HVA.tau.png"><img alt="Ca_HVA time course" src="Ca_HVA.tau.png" height="220"/></a>
 </td>
 </tr>
+    <tr>
+<td width="120px">
+            <sup><b>Ih</b><br/>
+            <a href="../Ih.channel.nml">Ih.channel.nml</a><br/>
+            <b>Ion: hcn</b><br/>
+            <i>g = gmax * m </i><br/>
+            Non-specific cation current
+            
+Comment from original mod file: 
+Reference : :		Kole,Hallermann,and Stuart, J. Neurosci. 2006</sup>
+</td>
+<td>
+<a href="Ih.inf.png"><img alt="Ih steady state" src="Ih.inf.png" height="220"/></a>
+</td>
+<td>
+<a href="Ih.tau.png"><img alt="Ih time course" src="Ih.tau.png" height="220"/></a>
+</td>
+</tr>
 </table>
 
