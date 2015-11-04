@@ -20,6 +20,7 @@
     <Include file="Ca_HVA.channel.nml"/>
     <Include file="Ca_LVA.channel.nml"/>
     
+    <Include file="Im.channel.nml"/>
     <Include file="Ih.channel.nml"/>
     
     <Include file="CaDynamics.nml"/>
@@ -34,7 +35,7 @@
 
         <!--Note: this could be: Simulation id="sim1" ... , but Component type="Simulation" ... 
         is used to allow validation of this file according to the LEMS schema specified above...-->
-    <Component type="Simulation" id="sim1" length="600.0ms" step="0.005ms" target="network_Soma">
+    <Component type="Simulation" id="sim1" length="600.0ms" step="0.0025ms" target="network_Soma">
         
         <Display id="CG_TestMod_v" title="Soma VOLTAGE" xmin="-60.0" xmax="660.0" ymin="-104.0" ymax="64.0" timeScale="1ms">
             <Line id="VOLTAGE" timeScale="1ms" quantity="TestSoma/0/Soma_Test/v" scale="1 mV" color="#000000"/>
@@ -46,6 +47,7 @@
             <!--<Line id="m Nap" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Nap_all/Nap/m/q" scale="1" color="#00FF00"/>
             <Line id="h Nap" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Nap_all/Nap/h/q" scale="1" color="#FFFF00"/>-->
             <Line id="m Ih" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ih_all/Ih/m/q" scale="1" color="#00ffff"/>
+            <Line id="m Im" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Im_all/Im/m/q" scale="1" color="#ff00ff"/>
         </Display>
         
         <!--

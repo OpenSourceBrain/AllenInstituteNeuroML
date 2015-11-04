@@ -7,9 +7,9 @@ chans = ['K_T', 'K_P', 'NaTa', 'Nap', 'NaTs', 'Ih', 'Ca_LVA', 'Ca_HVA', 'SKv3_1'
 chans = ['Ca_LVA', 'NaTa']
 chans = ['K_P', 'K_T']
 chans = ['Nap']
-chans = ['Ih']
+chans = ['Ih', 'Im']
 
-problematic = ['Im']
+problematic = []
 
 gates = ['m', 'h']
 #gates = ['h']

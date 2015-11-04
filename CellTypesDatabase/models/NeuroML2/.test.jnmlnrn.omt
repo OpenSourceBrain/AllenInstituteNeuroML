@@ -14,4 +14,15 @@ experiments:
         spike detection: 
           method: threshold
           threshold: 0
-        tolerance: 0.00032
+        tolerance: 0.000093
+  Ca:
+    observables:
+      spike times:
+        file: 
+          path: TestSoma.ca.dat
+          columns: [0,1]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.005
+        tolerance: 0.001001

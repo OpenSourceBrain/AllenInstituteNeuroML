@@ -119,6 +119,27 @@ Comment from original mod file:
 </tr>
     <tr>
 <td width="120px">
+            <sup><b>Im</b><br/>
+            <a href="../Im.channel.nml">Im.channel.nml</a><br/>
+            <b>Ion: k</b><br/>
+            <i>g = gmax * m </i><br/>
+            Muscarinic K+ current
+Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
+ - Added Q10 scaling to rate variables 
+            
+Comment from original mod file: 
+:Reference : :		Adams et al. 1982 - M-currents and other potassium currents in bullfrog sympathetic neurones
+:Comment: corrected rates using q10 = 2.3, target temperature 34, orginal 21</sup>
+</td>
+<td>
+<a href="Im.inf.png"><img alt="Im steady state" src="Im.inf.png" height="220"/></a>
+</td>
+<td>
+<a href="Im.tau.png"><img alt="Im time course" src="Im.tau.png" height="220"/></a>
+</td>
+</tr>
+    <tr>
+<td width="120px">
             <sup><b>Ca_LVA</b><br/>
             <a href="../Ca_LVA.channel.nml">Ca_LVA.channel.nml</a><br/>
             <b>Ion: ca</b><br/>
