@@ -16,6 +16,7 @@
     
     <Include file="K_P.channel.nml"/>
     <Include file="K_T.channel.nml"/>
+    <Include file="Kv3_1.channel.nml"/>
     
     <Include file="Ca_HVA.channel.nml"/>
     <Include file="Ca_LVA.channel.nml"/>
@@ -48,6 +49,7 @@
             <Line id="h Nap" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Nap_all/Nap/h/q" scale="1" color="#FFFF00"/>-->
             <Line id="m Ih" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Ih_all/Ih/m/q" scale="1" color="#00ffff"/>
             <Line id="m Im" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Im_all/Im/m/q" scale="1" color="#ff00ff"/>
+            <Line id="m Kv3_1" timeScale="1ms" quantity="TestSoma/0/Soma_Test/biophys/membraneProperties/Kv3_1_all/Kv3_1/m/q" scale="1" color="#7733ff"/>
         </Display>
         
         <!--
