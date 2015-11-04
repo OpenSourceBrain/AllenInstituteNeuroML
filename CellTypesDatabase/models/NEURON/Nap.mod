@@ -4,7 +4,7 @@
 NEURON	{
 	SUFFIX Nap
 	USEION na READ ena WRITE ina
-	RANGE gbar, g, ina
+	RANGE gbar, g, ina, mInf   : PG added RANGE variable for mInf to expose it for comparison to NeuroML2 version
 }
 
 UNITS	{
@@ -57,7 +57,7 @@ PROCEDURE rates(){
 
 	UNITSOFF
 		mInf = 1.0/(1+exp((v- -52.6)/-4.6)) : assuming instantaneous activation as modeled by Magistretti and Alonso
-
+        
 		hInf = 1.0/(1+exp((v- -48.8)/10))
 		hAlpha = 2.88e-6 * vtrap(v + 17, 4.63)
 		hBeta = 6.94e-6 * vtrap(-(v + 64.4), 2.63)

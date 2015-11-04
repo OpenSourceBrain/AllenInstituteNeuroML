@@ -6,10 +6,12 @@ import os.path
 chans = ['K_T', 'K_P', 'NaTa', 'Nap', 'NaTs', 'Ih', 'Ca_LVA', 'Ca_HVA', 'SKv3_1']
 chans = ['Ca_LVA', 'NaTa']
 chans = ['K_P', 'K_T']
+chans = ['Nap']
 
 problematic = ['Im']
 
 gates = ['m', 'h']
+gates = ['h']
 
 temperatures = [26]
 temperatures = [26,34]

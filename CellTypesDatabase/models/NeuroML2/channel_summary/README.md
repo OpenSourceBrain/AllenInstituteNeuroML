@@ -47,6 +47,30 @@ Comment from mod file (NaTs2_t.mod): took the NaTa and shifted both activation/i
 </tr>
     <tr>
 <td width="120px">
+            <sup><b>Nap</b><br/>
+            <a href="../Nap.channel.nml">Nap.channel.nml</a><br/>
+            <b>Ion: na</b><br/>
+            <i>g = gmax * m * h </i><br/>
+            Persistent Na+ current
+Modified for Allen Institute cell models from Hay et al. 2011 version:
+- Form of conductance expression changed from: g = gbar * m^3 * h to: g = gbar * minf * h (comment in mod: assuming instantaneous activation as modeled by Magistretti and Alonso)
+- Added Q10 scaling to rate variables            
+
+Comment from original mod file: 
+:Comment : mtau deduced from text (said to be 6 times faster than for NaTa)
+:Comment : so I used the equations from NaT and multiplied by 6
+:Reference : Modeled according to kinetics derived from Magistretti and Alonso 1999
+:Comment: corrected rates using q10 = 2.3, target temperature 34, orginal 21</sup>
+</td>
+<td>
+<a href="Nap.inf.png"><img alt="Nap steady state" src="Nap.inf.png" height="220"/></a>
+</td>
+<td>
+<a href="Nap.tau.png"><img alt="Nap time course" src="Nap.tau.png" height="220"/></a>
+</td>
+</tr>
+    <tr>
+<td width="120px">
             <sup><b>K_P</b><br/>
             <a href="../K_P.channel.nml">K_P.channel.nml</a><br/>
             <b>Ion: k</b><br/>
