@@ -2,8 +2,73 @@
     <title>Channel information</title>
     
     <body>
-        <p style="font-family:arial">Channel information at: T = 26.0 degC, E_rev = 0 mV, [Ca2+] = 0.00043 mM</p>
+        <p style="font-family:arial">Channel information at: T = 34.0 degC, E_rev = 0 mV, [Ca2+] = 0.00043 mM</p>
         <table>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>NaTa</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../NaTa.channel.nml">NaTa.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#1E90FF;"><b>Ion: na</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * m<sup>3</sup> * h </p><br/>
+            <p style="font-size:80%;font-family:arial">Fast inactivating Na+ current
+Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
+ - Added Q10 scaling to rate variables 
+ - Values for midpoint changed to match mod            
+            
+Comment from original mod file: 
+:Reference :Colbert and Pan 2002</p><br/>
+        </td>
+        <td>
+        <a href="NaTa.inf.png"><img alt="NaTa steady state" src="NaTa.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="NaTa.tau.png"><img alt="NaTa time course" src="NaTa.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>NaTs</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../NaTs.channel.nml">NaTs.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#1E90FF;"><b>Ion: na</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * m<sup>3</sup> * h </p><br/>
+            <p style="font-size:80%;font-family:arial">Fast inactivating Na+ current. 
+Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
+ - Added Q10 scaling to rate variables 
+ - Values for midpoint changed to match mod 
+            
+Comment from mod file (NaTs2_t.mod): took the NaTa and shifted both activation/inactivation by 6 mv</p><br/>
+        </td>
+        <td>
+        <a href="NaTs.inf.png"><img alt="NaTs steady state" src="NaTs.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="NaTs.tau.png"><img alt="NaTs time course" src="NaTs.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>Nap</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../Nap.channel.nml">Nap.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#1E90FF;"><b>Ion: na</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * m * h </p><br/>
+            <p style="font-size:80%;font-family:arial">Persistent Na+ current
+Modified for Allen Institute cell models from Hay et al. 2011 version:
+- Form of conductance expression changed from: g = gbar * m^3 * h to: g = gbar * minf * h (comment in mod: assuming instantaneous activation as modeled by Magistretti and Alonso)
+- Added Q10 scaling to rate variables            
+
+Comment from original mod file: 
+:Comment : mtau deduced from text (said to be 6 times faster than for NaTa)
+:Comment : so I used the equations from NaT and multiplied by 6
+:Reference : Modeled according to kinetics derived from Magistretti and Alonso 1999
+:Comment: corrected rates using q10 = 2.3, target temperature 34, orginal 21</p><br/>
+        </td>
+        <td>
+        <a href="Nap.inf.png"><img alt="Nap steady state" src="Nap.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="Nap.tau.png"><img alt="Nap time course" src="Nap.tau.png" height="300"/></a>
+        </td>
+        </tr>
             <tr>
         <td width="130px">
             <p style="font-size:80%;font-family:arial"><b>K_P</b></p>
@@ -68,6 +133,107 @@ Comment from original mod file:
         </td>
         <td>
         <a href="Kv3_1.tau.png"><img alt="Kv3_1 time course" src="Kv3_1.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>Im</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../Im.channel.nml">Im.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#CD5C5C;"><b>Ion: k</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * m </p><br/>
+            <p style="font-size:80%;font-family:arial">Muscarinic K+ current
+Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
+ - Added Q10 scaling to rate variables 
+            
+Comment from original mod file: 
+:Reference : :		Adams et al. 1982 - M-currents and other potassium currents in bullfrog sympathetic neurones
+:Comment: corrected rates using q10 = 2.3, target temperature 34, orginal 21</p><br/>
+        </td>
+        <td>
+        <a href="Im.inf.png"><img alt="Im steady state" src="Im.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="Im.tau.png"><img alt="Im time course" src="Im.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>SK</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../SK.channel.nml">SK.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#CD5C5C;"><b>Ion: k</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * z </p><br/>
+            <p style="font-size:80%;font-family:arial">Small-conductance, Ca2+ activated K+ current
+            
+Comment from original mod file: 
+: SK-type calcium-activated potassium current
+: Reference : Kohler et al. 1996</p><br/>
+        </td>
+        <td>
+        <a href="SK.inf.png"><img alt="SK steady state" src="SK.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="SK.tau.png"><img alt="SK time course" src="SK.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>Ca_LVA</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../Ca_LVA.channel.nml">Ca_LVA.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#8FBC8F;"><b>Ion: ca</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * m<sup>2</sup> * h </p><br/>
+            <p style="font-size:80%;font-family:arial">Low voltage activated Ca2+ current
+Modified slightly for Allen Institute cell models from Hay et al. 2011 version:
+ - Added Q10 scaling to rate variables 
+            
+Comment from original mod file: 
+Note: mtau is an approximation from the plots
+:Reference : :		Avery and Johnston 1996, tau from Randall 1997
+:Comment: shifted by -10 mv to correct for junction potential
+:Comment: corrected rates using q10 = 2.3, target temperature 34, orginal 21</p><br/>
+        </td>
+        <td>
+        <a href="Ca_LVA.inf.png"><img alt="Ca_LVA steady state" src="Ca_LVA.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="Ca_LVA.tau.png"><img alt="Ca_LVA time course" src="Ca_LVA.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>Ca_HVA</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../Ca_HVA.channel.nml">Ca_HVA.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#8FBC8F;"><b>Ion: ca</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * m<sup>2</sup> * h </p><br/>
+            <p style="font-size:80%;font-family:arial">High voltage activated Ca2+ current. 
+NOTE: Most Allen Institute channel models from Hay et al. 2011 use Q10 scaling. This one doesn't...
+See https://github.com/OpenSourceBrain/AllenInstituteNeuroML/issues/2
+            
+Comment from original mod file: 
+Reuveni, Friedman, Amitai, and Gutnick, J.Neurosci. 1993</p><br/>
+        </td>
+        <td>
+        <a href="Ca_HVA.inf.png"><img alt="Ca_HVA steady state" src="Ca_HVA.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="Ca_HVA.tau.png"><img alt="Ca_HVA time course" src="Ca_HVA.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>Ih</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../Ih.channel.nml">Ih.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#A9A9A9;"><b>Ion: hcn</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * m </p><br/>
+            <p style="font-size:80%;font-family:arial">Non-specific cation current
+            
+Comment from original mod file: 
+Reference : :		Kole,Hallermann,and Stuart, J. Neurosci. 2006</p><br/>
+        </td>
+        <td>
+        <a href="Ih.inf.png"><img alt="Ih steady state" src="Ih.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="Ih.tau.png"><img alt="Ih time course" src="Ih.tau.png" height="300"/></a>
         </td>
         </tr>
         </table>

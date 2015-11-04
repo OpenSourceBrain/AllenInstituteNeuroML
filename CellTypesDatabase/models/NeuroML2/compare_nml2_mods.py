@@ -8,11 +8,11 @@ chans = ['Ca_LVA', 'NaTa']
 chans = ['K_P', 'K_T']
 chans = ['Nap']
 chans = ['Ih', 'Im']
-chans = ['Kv3_1']
+chans = ['Kv3_1', 'SK']
 
 problematic = []
 
-gates = ['m', 'h']
+gates = ['m', 'h', 'z']
 #gates = ['h']
 
 temperatures = [26]

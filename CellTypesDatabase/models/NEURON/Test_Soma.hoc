@@ -35,6 +35,9 @@ insert K_T
 insert Kv3_1 
 { gbar_Kv3_1=0.0281648}
 
+insert SK 
+{ gbar_SK=0.000797996}
+
 insert k_ion 
 { ek=-107}
 
@@ -49,9 +52,7 @@ insert Im
 insert Nap 
 { gbar_Nap=0.000115828}
 
-
-insert SK 
-{ gbar_SK=0.000797996}*/
+*/
 
 insert Ca_HVA 
 { gbar_Ca_HVA=2.69146e-05}
@@ -154,6 +155,8 @@ if (usegui==1) {
         GraphWin_1a.addexpr("m_Im", "m_Im", 8, 1, 0.8, 0.9, 2)
 
         GraphWin_1a.addexpr("m_Kv3_1", "m_Kv3_1", 9, 1, 0.8, 0.9, 2)
+
+        GraphWin_1a.addexpr("z_SK", "z_SK", 11, 1, 0.8, 0.9, 2)
         
         graphList[0].append(GraphWin_1a)
     }

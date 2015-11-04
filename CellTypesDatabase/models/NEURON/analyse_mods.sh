@@ -18,7 +18,7 @@ pynml-modchananalysis Ih -stepV 5 -temperature [26,34]
 pynml-modchananalysis Im -stepV 5 -temperature [26,34]
 #pynml-modchananalysis Im_v2 -stepV 5 -temperature [26,34]
 
-#pynml-modchananalysis SK -stepV 5 -temperature [26,34]
+pynml-modchananalysis SK -stepV 5 -temperature [26,34] -caConc 0.00043
 
 # Kinetic scheme based...
 #pynml-modchananalysis NaV -stepV 5 -temperature [26,34]

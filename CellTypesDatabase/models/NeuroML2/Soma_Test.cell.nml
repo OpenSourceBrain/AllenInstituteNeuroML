@@ -13,6 +13,7 @@
     <include href="K_P.channel.nml"/>
     <include href="K_T.channel.nml"/>
     <include href="Kv3_1.channel.nml"/>
+    <include href="SK.channel.nml"/>
     
     <include href="Im.channel.nml"/>
     <include href="Ih.channel.nml"/>
@@ -67,6 +68,8 @@
                 <channelDensity condDensity="6.5088e-05 S_per_cm2" id="K_T_all" ionChannel="K_T" ion="k" erev="-107 mV"/>
                 
                 <channelDensity condDensity="0.0281648 S_per_cm2" id="Kv3_1_all" ionChannel="Kv3_1" ion="k" erev="-107 mV"/>
+                
+                <channelDensity condDensity="0.000797996 S_per_cm2" id="SK_all" ionChannel="SK" ion="k" erev="-107 mV"/>
                 
                 <channelDensity condDensity="0.0079231 S_per_cm2" id="Im_all" ionChannel="Im" ion="k" erev="-107 mV"/>
                 
