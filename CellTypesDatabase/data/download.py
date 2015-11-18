@@ -10,6 +10,7 @@ dataset_id = 471141261
 raw_ephys_file_name = '%d_raw_data.nwb' % dataset_id
 
 if not os.path.isfile(raw_ephys_file_name):
+    print('Downloading data: %s'%raw_ephys_file_name)
     ct.save_ephys_data(dataset_id, raw_ephys_file_name)
 
     print('Saved: %s'%raw_ephys_file_name)
