@@ -14,6 +14,9 @@ if not os.path.isfile(raw_ephys_file_name):
     ct.save_ephys_data(dataset_id, raw_ephys_file_name)
 
     print('Saved: %s'%raw_ephys_file_name)
+else:
+    print('File: %s already present...'%raw_ephys_file_name)
+    
     
 print('Loading data from: %s'%raw_ephys_file_name)
 
@@ -26,6 +29,8 @@ import numpy as np
 sweep_numbers = range(54,58)
 sweep_numbers = [34,38,42,46,50,54,58]
 
+subset = {}
+
 for sweep_number in sweep_numbers:
     sweep_data = data_set.get_sweep(sweep_number)
 
@@ -37,12 +42,14 @@ for sweep_number in sweep_numbers:
 
     # response is a numpy array in volts
     response = sweep_data['response'][index_range[0]:index_range[-1]]*1000
+    subset[sweep_number] = response
 
     # sampling rate is in Hz
     sampling_rate = sweep_data['sampling_rate']
 
     # define some time points in seconds (i.e., convert to absolute time)
     time_pts = np.arange(0,len(stimulus)/sampling_rate,1./sampling_rate)
+    subset['t'] = time_pts
 
     metadata = data_set.get_sweep_metadata(sweep_number)
     ampl = round(metadata['aibs_stimulus_amplitude_pa'],4)
@@ -53,6 +60,18 @@ for sweep_number in sweep_numbers:
     plt.ylabel('Stimulus (A)')
     plt.subplot(2,1,2)
     plt.plot(time_pts,response, label = 'S %s, %s pA'%(sweep_number, ampl))
+
+volts_file = open('%s.dat'%dataset_id, 'w')
+max = 1.5 # s
+
+for i in range(len(subset['t'])):
+    t = subset['t'][i]
+    if t <= max:
+        line = '%s '%t
+        for s in sweep_numbers:
+            line += '%s '% (float(subset[s][i])/1000)
+        volts_file.write(line+'\n')
+volts_file.close()
 
 plt.ylabel('Membrane voltage (mV)')
 plt.xlabel('Time (s)')

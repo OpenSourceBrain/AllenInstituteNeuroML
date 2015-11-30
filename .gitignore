@@ -47,3 +47,4 @@ x86_64
 
 CellTypesDatabase/models/neuronal_model/modfiles/*.dat
 CellTypesDatabase/models/neuronal_model/modfiles/*.mod
+/CellTypesDatabase/data/471141261.dat
