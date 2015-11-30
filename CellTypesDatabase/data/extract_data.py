@@ -77,6 +77,7 @@ for dataset_id in dataset_ids:
         
         analysis = utils.simple_network_analysis({sweep_number:response}, 
                                                  time_pts, 
+                                                 extra_targets = ['%s:value_280'%sweep_number, '%s:value_1000'%sweep_number],
                                                  end_analysis=1300, 
                                                  plot=plot, 
                                                  show_plot_already=False,
