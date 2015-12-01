@@ -1,5 +1,6 @@
 
 import os
+import sys
 import os.path
 import json
 
@@ -12,6 +13,8 @@ analysed = []
 analysed = [ f for f in os.listdir('.') if (f.endswith('_analysis.json')) ]
 
 analysed.sort()
+
+nogui = '-nogui' in sys.argv
 
 for f in analysed:
     
@@ -50,6 +53,7 @@ for f in analysed:
                         "Subthreshold responses: %s"%id, 
                         colors = ['k'], 
                         linestyles=['-'],
+                        markers=['o'],
                         xaxis = "Current (pA)", 
                         yaxis = "Steady state (mV)", 
                         show_plot_already=False,
@@ -65,10 +69,26 @@ for f in analysed:
                         "Spiking frequencies: %s"%id, 
                         colors = ['k'], 
                         linestyles=['-'],
+                        markers=['o'],
                         xaxis = "Current (pA)", 
                         yaxis = "Firing frequency (Hz)", 
                         show_plot_already=False,
                         save_figure_to = target_file%('spikes', id))
+                        
+    data, indices = pynml.reload_standard_dat_file('%s.dat'%id)
+    x = []
+    y = []
+    for i in indices:
+        x.append(data['t'])
+        y.append(data[i])
+        
+    pynml.generate_plot(x,
+                        y, 
+                        "Example traces from: %s"%id, 
+                        xaxis = "Time (ms)", 
+                        yaxis = "Membrane potential (mV)", 
+                        show_plot_already=False,
+                        save_figure_to = target_file%('traces', id))
 
-    
-plt.show()
+if not nogui:
+    plt.show()
