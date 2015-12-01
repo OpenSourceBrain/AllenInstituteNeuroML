@@ -4,9 +4,7 @@
          id="network_RS">
 
 
-    <izhikevich2007Cell id="RS" v0 = "-79mV" C="100 pF" k = "0.7 nS_per_mV"
-                            vr = "-80 mV" vt = "-40 mV" vpeak = "35 mV" 
-                            a = "0.03 per_ms" b = "-2 nS" c = "-50 mV" d = "100 pA"/>
+    <include href="Izh.cell.nml"/>
 
     <pulseGenerator id="inp0" delay="270.0ms" duration="1000.0ms" amplitude="-110pA"/>
     <pulseGenerator id="inp1" delay="270.0ms" duration="1000.0ms" amplitude="-30pA"/>

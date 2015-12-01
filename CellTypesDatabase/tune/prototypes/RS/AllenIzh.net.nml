@@ -2,12 +2,11 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" 
          id="network_RS">
+    
+
+    <include href="Izh.cell.nml"/>
 
     <pulseGenerator id="inp" delay="270.0ms" duration="1000.0ms" amplitude="370pA"/>
-    
-    <izhikevich2007Cell id="RS" v0 = "-79mV" C="100 pF" k = "0.7 nS_per_mV"
-                            vr = "-80 mV" vt = "-40 mV" vpeak = "35 mV" 
-                            a = "0.03 per_ms" b = "-2 nS" c = "-50 mV" d = "100 pA"/>
 
     <network id="network_RS" type="networkWithTemperature" temperature="32.0 degC">
 

@@ -27,7 +27,8 @@ parameters_hh = ['cell:RS/channelDensity:Na_all/mS_per_cm2',
               'cell:RS/erev_id:LeakConductance_all/mV',
               'cell:RS/erev_id:Na_all/mV',
               'cell:RS/erev_id:Kd_all/mV',
-              'cell:RS/erev_id:IM_all/mV']
+              'cell:RS/erev_id:IM_all/mV',
+              'cell:RS/specificCapacitance:all/uF_per_cm2']
 
 # Example parameter ranges for above
 min_constraints = [20,   1,    1e-6,  0.001, -100, 50, -100, -100]
@@ -467,8 +468,8 @@ if __name__ == '__main__':
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
-        scale1 = 0.1
-        scale2 = 0.1
+        scale1 = 0.2
+        scale2 = 0.2
 
         r1, r2 = run_2stage_optimization('Allen2stage',
                                 neuroml_file =     'prototypes/RS/AllenTestMulti.net.nml',
