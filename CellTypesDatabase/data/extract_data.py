@@ -17,11 +17,14 @@ pp = pprint.PrettyPrinter(indent=4)
 
 ct = CellTypesApi()
 
-
-
 plot = not '-nogui' in sys.argv
+test = '-test' in sys.argv
 
-for dataset_id in DH.CURRENT_DATASETS:
+dataset_ids = DH.CURRENT_DATASETS
+if test:
+    dataset_ids = [471141261]
+
+for dataset_id in dataset_ids:
 
     raw_ephys_file_name = '%d_raw_data.nwb' % dataset_id
 
@@ -31,6 +34,9 @@ for dataset_id in DH.CURRENT_DATASETS:
 
 
     sweep_numbers = data_set.get_experiment_sweep_numbers()
+    if test:
+        sweep_numbers = [36,54,58]
+        
     sweep_numbers.sort()
 
     info = {}
@@ -73,7 +79,8 @@ for dataset_id in DH.CURRENT_DATASETS:
 
             analysis = utils.simple_network_analysis({sweep_number:response}, 
                                                      time_pts, 
-                                                     extra_targets = ['%s:value_280'%sweep_number, '%s:value_1000'%sweep_number],
+                                                     extra_targets = ['%s:value_280'%sweep_number,      
+                                                                      '%s:average_1000_1200'%sweep_number],
                                                      end_analysis=1300, 
                                                      plot=plot, 
                                                      show_plot_already=False,
