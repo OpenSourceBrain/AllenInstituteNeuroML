@@ -32,6 +32,15 @@
 /CellTypesDatabase/models/472450023
 /CellTypesDatabase/models/472455509
 
+/CellTypesDatabase/tune/*.dat
+/CellTypesDatabase/tune/*.hoc
+/CellTypesDatabase/tune/*.mod
+/CellTypesDatabase/tune/*nrn.py
+/CellTypesDatabase/tune/old
+/CellTypesDatabase/tune/NT_*
+/CellTypesDatabase/tune/Allen*ml
+/CellTypesDatabase/tune/LEMS_Allen*ml
+
 
 *~
 *.svg
