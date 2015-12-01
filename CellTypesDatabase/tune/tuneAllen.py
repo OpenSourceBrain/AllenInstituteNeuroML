@@ -10,13 +10,19 @@ from pyneuroml.tune.NeuroMLTuner import run_optimisation, run_2stage_optimizatio
 
 from pyneuroml.tune.NeuroMLController import NeuroMLController
 
+import neuroml
+
 import sys
 from collections import OrderedDict
 
 import json
 
-import matplotlib.pyplot as plt
 
+import random
+
+
+
+from pyneuroml import pynml
 
 sys.path.append("../data")
 import data_helper as DH
@@ -229,42 +235,43 @@ def scale(scale, number, min=1):
 
 
 
-def reload_standard_dat_file(file_name):
-
-    dat_file = open(file_name)
-    data = {}
-    indeces = []
-    for line in dat_file:
-        words = line.split()
-
-        if not data.has_key('t'):
-            data['t'] = []
-            for i in range(len(words)-1):
-                data[i] = []
-                indeces.append(i)
-        data['t'].append(float(words[0]))
-        for i in range(len(words)-1):
-            data[i].append(float(words[i+1]))
-
-    print("Loaded data from %s, %s"%(file_name, indeces))
-
-    return data, indeces
 
 
-def compare(sim_data_file):
+def compare(sim_data_file, show_plot_already=True):
     dat_file_name = '../data/471141261.dat'
+    
+    x = []
+    y = []
+    colors = []
+    linestyles = []
 
-    data, indeces = reload_standard_dat_file(dat_file_name)
+    data, indeces = pynml.reload_standard_dat_file(dat_file_name)
 
     for ii in indeces:
-        plt.plot(data['t'],data[ii], color='grey')
+        x.append(data['t'])
+        y.append(data[ii])
+        colors.append('lightgrey')
+        linestyles.append('-')
 
-    data, indeces = reload_standard_dat_file(sim_data_file)
+    data, indeces = pynml.reload_standard_dat_file(sim_data_file)
+
+    r = lambda: random.randint(0,255)
 
     for ii in indeces:
-        plt.plot(data['t'],data[ii])
+        x.append(data['t'])
+        y.append(data[ii])
+        c = '#%02X%02X%02X' % (r(),r(),r())
+        colors.append(c)
+        linestyles.append('-')
 
-    plt.show()
+    pynml.generate_plot(x,
+                        y, 
+                        "Comparing tuned cell to: %s"%dat_file_name, 
+                        xaxis = 'Input current (nA)', 
+                        yaxis = 'Membrane potential (mV)', 
+                        colors = colors, 
+                        linestyles = linestyles, 
+                        show_plot_already=show_plot_already)
 
 
 
@@ -394,7 +401,8 @@ if __name__ == '__main__':
         print("Running 2 stage optimisation")
         simulator  = 'jNeuroML_NEURON'
         dataset = 471141261
-        ref = 'network_%s_Izh'%(dataset)
+        type = 'Izh'
+        ref = 'network_%s_%s'%(dataset, type)
 
         #                     a,   b,  c,  d,   C,    vr,  vt, vpeak, k
         min_constraints_1 = [0.1, 1, -50, 300,  30,  -90, -30, 30,   0.01]
@@ -410,6 +418,7 @@ if __name__ == '__main__':
         scale1 = 1
         scale2 = 0.2
 
+        
         r1, r2 = run_2stage_optimization('AllenIzh2stage',
                                 neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
                                 target = ref,
@@ -437,13 +446,37 @@ if __name__ == '__main__':
                                 num_elites = 2,
                                 simulator = simulator,
                                 nogui = nogui,
-                                show_plot_already = True,
+                                show_plot_already = False,
                                 seed = 1234,
                                 known_target_values = {},
                                 dry_run = False)
+        
                                 
-        compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']))
-        compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']))
+        compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False)
+        '''
+        r2={}
+        r2['run_directory'] ='NT_AllenIzh2stage_STAGE2_Tue_Dec__1_17.26.38_2015'
+        r2['reference'] = 'AllenIzh2stage_STAGE2'  '''
+        
+        compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=True)
+        
+        final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
+        
+        nml_doc = pynml.read_neuroml2_file(final_network)
+        
+        cell = nml_doc.izhikevich2007_cells[0]
+        
+        print("Extracted cell: %s from tuned model"%cell.id)
+        
+        new_id = '%s_%s'%(type, dataset)
+        new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
+        cell.id = new_id
+        
+        new_cell_doc.izhikevich2007_cells.append(cell)
+        new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
+        
+        pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
+        
 
 
     ####  Run a 'quick' optimisation for HH cell model
