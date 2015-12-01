@@ -59,3 +59,4 @@ CellTypesDatabase/models/neuronal_model/modfiles/*.mod
 /CellTypesDatabase/data/471141261.dat
 /CellTypesDatabase/data/464198958.dat
 /CellTypesDatabase/data/464198958_raw_data.nwb
+/CellTypesDatabase/tune/network_471141261_HH.net.nml

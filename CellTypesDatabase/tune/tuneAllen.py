@@ -393,6 +393,8 @@ if __name__ == '__main__':
 
         print("Running 2 stage optimisation")
         simulator  = 'jNeuroML_NEURON'
+        dataset = 471141261
+        ref = 'network_%s_Izh'%(dataset)
 
         #                     a,   b,  c,  d,   C,    vr,  vt, vpeak, k
         min_constraints_1 = [0.1, 1, -50, 300,  30,  -90, -30, 30,   0.01]
@@ -405,12 +407,12 @@ if __name__ == '__main__':
         
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
-        scale1 = 0.01
-        scale2 = 0.01
+        scale1 = 1
+        scale2 = 0.2
 
         r1, r2 = run_2stage_optimization('AllenIzh2stage',
-                                neuroml_file =     'prototypes/RS/AllenIzhMulti.net.nml',
-                                target =           'network_RS',
+                                neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
+                                target = ref,
                                 parameters = parameters_iz,
                                 max_constraints_1 = max_constraints_1,
                                 max_constraints_2 = max_constraints_2,

@@ -5,6 +5,8 @@ import json
 
 import matplotlib.pyplot as plt
 
+from pyneuroml import pynml
+
 analysed = []
 
 analysed = [ f for f in os.listdir('.') if (f.endswith('_analysis.json')) ]
@@ -37,15 +39,36 @@ for f in analysed:
             currents_rate_spike[current] = 0
             currents_v_sub[current] = sweeps[s]["pyelectro_iclamp_analysis"][steady_state_key]
             
-    plt.figure()
     curents_sub = currents_v_sub.keys()
     curents_sub.sort()
-    plt.plot(curents_sub, [currents_v_sub[c] for c in curents_sub], color='k', linestyle='-', marker='o')
+    v = [currents_v_sub[c] for c in curents_sub]
     
-    plt.figure()
+    target_file = 'summary/%s_%s.png'
+    
+    pynml.generate_plot([curents_sub],
+                        [v], 
+                        "Subthreshold responses: %s"%id, 
+                        colors = ['k'], 
+                        linestyles=['-'],
+                        xaxis = "Current (pA)", 
+                        yaxis = "Steady state (mV)", 
+                        show_plot_already=False,
+                        save_figure_to = target_file%('subthreshold', id))
+    #plt.plot(curents_sub, , color='k', linestyle='-', marker='o')
+    
     curents_spike = currents_rate_spike.keys()
     curents_spike.sort()
-    plt.plot(curents_spike, [currents_rate_spike[c] for c in curents_spike], color='k', linestyle='-', marker='o')
+    v = [currents_rate_spike[c] for c in curents_spike]
+    
+    pynml.generate_plot([curents_spike],
+                        [v], 
+                        "Spiking frequencies: %s"%id, 
+                        colors = ['k'], 
+                        linestyles=['-'],
+                        xaxis = "Current (pA)", 
+                        yaxis = "Firing frequency (Hz)", 
+                        show_plot_already=False,
+                        save_figure_to = target_file%('spikes', id))
 
     
 plt.show()
