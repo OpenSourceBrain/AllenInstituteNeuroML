@@ -18,7 +18,11 @@ import json
 
 ct = CellTypesApi()
 
-dataset_ids = [471141261]
+dataset_ids = [471141261, 464198958]
+
+sweep_numbers_for_data = {}
+sweep_numbers_for_data[471141261] = range(34,59) # [34,38,42,46,50,54,58] # range(54,58)
+sweep_numbers_for_data[464198958] = [20, 24, 36,28,30,32,34] # range(54,58)
 
 plot = True
 
@@ -34,8 +38,7 @@ for dataset_id in dataset_ids:
     sweep_numbers = data_set.get_experiment_sweep_numbers()
     sweep_numbers.sort()
 
-    sweep_numbers = range(34,59)  # just for 471141261
-    #sweep_numbers = range(58,59)  # just for 471141261
+    sweep_numbers = sweep_numbers_for_data[dataset_id]
 
     info = {}
     info[IF.DATASET] = dataset_id
