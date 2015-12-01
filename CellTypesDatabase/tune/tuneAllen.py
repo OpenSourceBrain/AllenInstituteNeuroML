@@ -33,7 +33,7 @@ parameters_hh = ['cell:RS/channelDensity:Na_all/mS_per_cm2',
 min_constraints = [20,   1,    1e-6,  0.001, -100, 50, -100, -100]
 max_constraints = [100,  25,   4,     0.1,     -70,  60, -70,  -70]
 
-#  typical spiking cell
+#  typical (tuned) spiking cell
 example_vars_hh = {'cell:RS/channelDensity:IM_all/mS_per_cm2': 0.18764779330203835,
                 'cell:RS/channelDensity:Kd_all/mS_per_cm2': 16.95202053476659,
                 'cell:RS/channelDensity:LeakConductance_all/mS_per_cm2': 0.09988609723098822,
@@ -61,7 +61,7 @@ parameters_iz = ['izhikevich2007Cell:RS/a/per_ms',
 min_constraints_iz = [0.01, -5, -65, 10,  30,  -90, -60, 0,    0.1]
 max_constraints_iz = [0.2,  20, -10, 400, 300, -70,  50, 70,   1]
 
-#  typical spiking cell
+#  typical (tuned) spiking cell
 example_vars_iz = {'izhikevich2007Cell:RS/C/pF': 121.89939137782264,
                     'izhikevich2007Cell:RS/a/per_ms': 0.08048276778661327,
                     'izhikevich2007Cell:RS/b/nS': 0.42252877652260556,
@@ -96,73 +96,78 @@ target_data = {average_maximum: 33.320915,
 
 
 
-####     Improved target data
+####     Target data
 
-sweep_numbers = [34,38,42,46,50,54,58]
+target_sweep_numbers = {}
+target_sweep_numbers[471141261] = [34,38,42,46,50,54,58]
 
+def get_2stage_target_values(dataset_id):
 
-with open("../data/471141261_analysis.json", "r") as json_file:
-    metadata = json.load(json_file)
-
-ref0 = 'Pop0/0/RS/v:'
-ref1 = 'Pop0/1/RS/v:'
-ref2 = 'Pop0/2/RS/v:'
-ref3 = 'Pop0/3/RS/v:'
-ref5 = 'Pop0/5/RS/v:'
-ref6 = 'Pop0/6/RS/v:'
-
-minimum0 = ref0+'minimum'
-average_last_1percent0 = ref0+'average_last_1percent'
-ref0_280 = ref0+'value_280'
-minimum1 = ref1+'minimum'
-ref2_1000 = ref2+'value_1000'
-ref3_1000 = ref3+'value_1000'
-
-
-weights_1 = {minimum0: 1,
-             average_last_1percent0: 1,
-             ref0_280: 1,
-             minimum1: 1,
-             ref2_1000: 1,
-             ref3_1000: 1}
-
-sw0 = "%s"%sweep_numbers[0]
-sw1 = "%s"%sweep_numbers[1]
-sw2 = "%s"%sweep_numbers[2]
-sw3 = "%s"%sweep_numbers[3]
-sw4 = "%s"%sweep_numbers[4]
-sw5 = "%s"%sweep_numbers[5]
-sw6 = "%s"%sweep_numbers[6]
-
-target_data_1 = {minimum0:               metadata['sweeps'][sw0]["pyelectro_iclamp_analysis"][sw0+":minimum"],
-                 average_last_1percent0: metadata['sweeps'][sw0]["pyelectro_iclamp_analysis"][sw0+":average_last_1percent"],
-                 ref0_280:               metadata['sweeps'][sw0]["pyelectro_iclamp_analysis"][sw0+":value_280"],
-                 minimum1:               metadata['sweeps'][sw1]["pyelectro_iclamp_analysis"][sw1+":minimum"],
-                 ref2_1000:              metadata['sweeps'][sw2]["pyelectro_iclamp_analysis"][sw2+":value_1000"],
-                 ref3_1000:              metadata['sweeps'][sw3]["pyelectro_iclamp_analysis"][sw3+":value_1000"]}
-
-average_maximum6 = ref6+'average_maximum'
-average_minimum6 = ref6+'average_minimum'
-mean_spike_frequency6 = ref6+'mean_spike_frequency'
-mean_spike_frequency5 = ref5+'mean_spike_frequency'
-
-weights_2 = {average_maximum6: 1,
-           average_minimum6: 1,
-           mean_spike_frequency6: 1,
-           mean_spike_frequency5: 1}
-           
-for w in weights_1.keys():
-    weights_2[w] = weights_1[w]*0.5
-
-target_data_2 = {average_maximum6:      metadata['sweeps'][sw6]["pyelectro_iclamp_analysis"][sw6+":average_maximum"],
-                 average_minimum6:      metadata['sweeps'][sw6]["pyelectro_iclamp_analysis"][sw6+":average_minimum"],
-                 mean_spike_frequency6: metadata['sweeps'][sw6]["pyelectro_iclamp_analysis"][sw6+":mean_spike_frequency"],
-                 mean_spike_frequency5: metadata['sweeps'][sw5]["pyelectro_iclamp_analysis"][sw5+":mean_spike_frequency"]} 
-
-for td in target_data_1.keys():
-    target_data_2[td] = target_data_1[td]
+    sweep_numbers = target_sweep_numbers[dataset_id]
     
-    
+    with open("../data/%s_analysis.json"%dataset_id, "r") as json_file:
+        metadata = json.load(json_file)
+
+    ref0 = 'Pop0/0/RS/v:'
+    ref1 = 'Pop0/1/RS/v:'
+    ref2 = 'Pop0/2/RS/v:'
+    ref3 = 'Pop0/3/RS/v:'
+    ref5 = 'Pop0/5/RS/v:'
+    ref6 = 'Pop0/6/RS/v:'
+
+    steady_average = 'average_1000_1200'
+    steady0 = ref0+steady_average
+    average_last_1percent0 = ref0+'average_last_1percent'
+    ref0_280 = ref0+'value_280'
+    steady1 = ref1+steady_average
+    steady2 = ref2+steady_average
+    steady3 = ref3+steady_average
+
+
+    weights_1 = {steady0: 1,
+                 average_last_1percent0: 1,
+                 ref0_280: 1,
+                 steady1: 1,
+                 steady2: 1,
+                 steady3: 1}
+
+    sw0 = "%s"%sweep_numbers[0]
+    sw1 = "%s"%sweep_numbers[1]
+    sw2 = "%s"%sweep_numbers[2]
+    sw3 = "%s"%sweep_numbers[3]
+    sw4 = "%s"%sweep_numbers[4]
+    sw5 = "%s"%sweep_numbers[5]
+    sw6 = "%s"%sweep_numbers[6]
+
+    target_data_1 = {steady0:                metadata['sweeps'][sw0]["pyelectro_iclamp_analysis"][sw0+":"+steady_average],
+                     average_last_1percent0: metadata['sweeps'][sw0]["pyelectro_iclamp_analysis"][sw0+":average_last_1percent"],
+                     ref0_280:               metadata['sweeps'][sw0]["pyelectro_iclamp_analysis"][sw0+":value_280"],
+                     steady1:                metadata['sweeps'][sw1]["pyelectro_iclamp_analysis"][sw1+":"+steady_average],
+                     steady2:                metadata['sweeps'][sw2]["pyelectro_iclamp_analysis"][sw2+":"+steady_average],
+                     steady3:                metadata['sweeps'][sw3]["pyelectro_iclamp_analysis"][sw3+":"+steady_average]}
+
+    average_maximum6 = ref6+'average_maximum'
+    average_minimum6 = ref6+'average_minimum'
+    mean_spike_frequency6 = ref6+'mean_spike_frequency'
+    mean_spike_frequency5 = ref5+'mean_spike_frequency'
+
+    weights_2 = {average_maximum6: 1,
+               average_minimum6: 1,
+               mean_spike_frequency6: 1,
+               mean_spike_frequency5: 1}
+
+    for w in weights_1.keys():
+        weights_2[w] = weights_1[w]*0.5
+
+    target_data_2 = {average_maximum6:      metadata['sweeps'][sw6]["pyelectro_iclamp_analysis"][sw6+":average_maximum"],
+                     average_minimum6:      metadata['sweeps'][sw6]["pyelectro_iclamp_analysis"][sw6+":average_minimum"],
+                     mean_spike_frequency6: metadata['sweeps'][sw6]["pyelectro_iclamp_analysis"][sw6+":mean_spike_frequency"],
+                     mean_spike_frequency5: metadata['sweeps'][sw5]["pyelectro_iclamp_analysis"][sw5+":mean_spike_frequency"]} 
+
+    for td in target_data_1.keys():
+        target_data_2[td] = target_data_1[td]
+
+    return sweep_numbers, weights_1, target_data_1, weights_2, target_data_2
     
     
 def run_one_optimisation(ref,
@@ -384,6 +389,8 @@ if __name__ == '__main__':
         #                     a,     b,  c,  d,   C,    vr,  vt, vpeak, k
         min_constraints_2 = [0.01, -5, -65, 10,  'x',  'x', -60, 0,   'x']
         max_constraints_2 = [0.2,  20, -10, 400, 'x',  'x',  50, 70,  'x']
+        
+        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
         scale1 = 0.1
         scale2 = 0.1
@@ -458,6 +465,7 @@ if __name__ == '__main__':
         max_constraints_2 = ['x',   'x',   'x',    100,  25,   4,    60, -70,  -70]
         min_constraints_2 = ['x',   'x',   'x',    20,   1,    1e-6, 50, -100, -100]
 
+        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
         scale1 = 0.1
         scale2 = 0.1
@@ -498,20 +506,18 @@ if __name__ == '__main__':
         compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']))
 
 
-    ####  Run an optimisation for HH cell model
     else:
 
-        simulator  = 'jNeuroML_NEURON'
-        run_one_optimisation('AllenTest',
-                            1234,
-                            population_size =  20,
-                            max_evaluations =  100,
-                            num_selected =     15,
-                            num_offspring =    15,
-                            mutation_rate =    0.1,
-                            num_elites =       1,
-                            simulator =        simulator,
-                            nogui =            nogui)
+        print("Options to try:\n\n   (Izhikevich cell model)")
+        print("     python tuneAllen.py -izhone     (run one Izhikevich cell with typical values)")
+        print("     python tuneAllen.py -izhmone    (run multiple Izhikevich cells with different current inputs)")
+        print("     python tuneAllen.py -izhquick   (quick optimisation example using Izhikevich cell)")
+        print("     python tuneAllen.py -izh2stage  (2 stage optimisation example using Izhikevich cell)")
+        print("\n   (HH cell model, based on Pospischil et al 2008)")
+        print("     python tuneAllen.py -one    (run one HH cell with typical values)")
+        print("     python tuneAllen.py -mone   (run multiple HH cells with different current inputs)")
+        print("     python tuneAllen.py -quick  (quick optimisation example using HH cell)")
+        print("     python tuneAllen.py -2stage  (2 stage optimisation example using HH cell)\n")
 
 
 
