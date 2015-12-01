@@ -5,11 +5,11 @@ import os
 
 ct = CellTypesApi()
 
-dataset_ids = [471141261, 464198958]
+from data_helper import CURRENT_DATASETS, DATASET_TARGET_SWEEPS
 
-sweep_numbers_for_data = {}
-sweep_numbers_for_data[471141261] = [34,38,42,46,50,54,58] # range(54,58)
-sweep_numbers_for_data[464198958] = [20, 24, 36,28,30,32,34] # range(54,58)
+dataset_ids = CURRENT_DATASETS
+
+sweep_numbers_for_data = DATASET_TARGET_SWEEPS
 
 
 for dataset_id in dataset_ids:

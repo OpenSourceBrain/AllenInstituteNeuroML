@@ -7,7 +7,7 @@ from allensdk.api.queries.cell_types_api import CellTypesApi
 import time
 import sys
 
-import info_file as IF
+import data_helper as DH
 
 from pyelectro import utils
 from pyelectro import __version__ as pyel_ver
@@ -17,12 +17,11 @@ pp = pprint.PrettyPrinter(indent=4)
 
 ct = CellTypesApi()
 
-dataset_ids = [471141261, 464198958]
 
 
 plot = not '-nogui' in sys.argv
 
-for dataset_id in dataset_ids:
+for dataset_id in DH.CURRENT_DATASETS:
 
     raw_ephys_file_name = '%d_raw_data.nwb' % dataset_id
 
@@ -35,11 +34,11 @@ for dataset_id in dataset_ids:
     sweep_numbers.sort()
 
     info = {}
-    info[IF.DATASET] = dataset_id
-    info[IF.COMMENT] = 'Data analysed on %s'%(time.ctime())
+    info[DH.DATASET] = dataset_id
+    info[DH.COMMENT] = 'Data analysed on %s'%(time.ctime())
     
-    info[IF.PYELECTRO_VERSION] = pyel_ver
-    info[IF.SWEEPS] = {}
+    info[DH.PYELECTRO_VERSION] = pyel_ver
+    info[DH.SWEEPS] = {}
 
     for sweep_number in sweep_numbers:
 
@@ -47,9 +46,9 @@ for dataset_id in dataset_ids:
         
         if data_set.get_sweep_metadata(sweep_number)['aibs_stimulus_name'] == "Long Square":
             sweep_info = {}
-            sweep_info[IF.METADATA] = data_set.get_sweep_metadata(sweep_number)
-            info[IF.SWEEPS]['%i'%sweep_number] = sweep_info
-            sweep_info[IF.SWEEP] = sweep_number
+            sweep_info[DH.METADATA] = data_set.get_sweep_metadata(sweep_number)
+            info[DH.SWEEPS]['%i'%sweep_number] = sweep_info
+            sweep_info[DH.SWEEP] = sweep_number
 
 
             # start/stop indices that exclude the experimental test pulse (if applicable)
@@ -70,7 +69,7 @@ for dataset_id in dataset_ids:
             comment = 'Sweep: %i in %i; %sms -> %sms; %sA -> %sA; %smV -> %smV'%(sweep_number, dataset_id, time_pts[0], time_pts[-1], np.amin(stimulus), np.amax(stimulus), np.amin(response), np.amax(response))
             print(comment)
 
-            sweep_info[IF.COMMENT] = comment
+            sweep_info[DH.COMMENT] = comment
 
             analysis = utils.simple_network_analysis({sweep_number:response}, 
                                                      time_pts, 
@@ -80,7 +79,7 @@ for dataset_id in dataset_ids:
                                                      show_plot_already=False,
                                                      verbose=True)
 
-            sweep_info[IF.ICLAMP_ANALYSIS] = analysis
+            sweep_info[DH.ICLAMP_ANALYSIS] = analysis
 
     analysis_file_name = '%s_analysis.json'%(dataset_id)
     analysis_file = open(analysis_file_name, 'w')
