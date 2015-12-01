@@ -38,14 +38,14 @@ for f in analysed:
             currents_v_sub[current] = sweeps[s]["pyelectro_iclamp_analysis"][steady_state_key]
             
     plt.figure()
-    curents = currents_v_sub.keys()
-    curents.sort()
-    plt.plot(curents, [currents_v_sub[c] for c in curents], color='k', linestyle='-', marker='o')
+    curents_sub = currents_v_sub.keys()
+    curents_sub.sort()
+    plt.plot(curents_sub, [currents_v_sub[c] for c in curents_sub], color='k', linestyle='-', marker='o')
     
     plt.figure()
-    curents = currents_rate_spike.keys()
-    curents.sort()
-    plt.plot(curents, [currents_rate_spike[c] for c in curents], color='k', linestyle='-', marker='o')
+    curents_spike = currents_rate_spike.keys()
+    curents_spike.sort()
+    plt.plot(curents_spike, [currents_rate_spike[c] for c in curents_spike], color='k', linestyle='-', marker='o')
 
     
 plt.show()

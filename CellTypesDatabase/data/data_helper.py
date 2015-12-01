@@ -16,3 +16,6 @@ SWEEP = 'sweep_id'
 ICLAMP_ANALYSIS = 'pyelectro_iclamp_analysis' 
 METADATA = 'sweep_metadata' 
 
+
+SIMULATION_TEMPERATURE = '34 degC'
+

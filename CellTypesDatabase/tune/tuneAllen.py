@@ -18,21 +18,25 @@ import json
 import matplotlib.pyplot as plt
 
 
-#####    Pospischil et al 2008
+sys.path.append("../data")
+import data_helper as DH
 
-parameters_hh = ['cell:RS/channelDensity:Na_all/mS_per_cm2',
+#####    Pospischil et al 2008
+              
+parameters_hh = ['cell:RS/channelDensity:LeakConductance_all/mS_per_cm2',
+              'cell:RS/erev_id:LeakConductance_all/mV',
+              'cell:RS/specificCapacitance:all/uF_per_cm2',
+              'cell:RS/channelDensity:Na_all/mS_per_cm2',
               'cell:RS/channelDensity:Kd_all/mS_per_cm2',
               'cell:RS/channelDensity:IM_all/mS_per_cm2',
-              'cell:RS/channelDensity:LeakConductance_all/mS_per_cm2',
-              'cell:RS/erev_id:LeakConductance_all/mV',
               'cell:RS/erev_id:Na_all/mV',
               'cell:RS/erev_id:Kd_all/mV',
-              'cell:RS/erev_id:IM_all/mV',
-              'cell:RS/specificCapacitance:all/uF_per_cm2']
+              'cell:RS/erev_id:IM_all/mV']
 
-# Example parameter ranges for above
-min_constraints = [20,   1,    1e-6,  0.001, -100, 50, -100, -100]
-max_constraints = [100,  25,   4,     0.1,     -70,  60, -70,  -70]
+
+max_constraints_hh = [0.1,   -70,  2, 40, 20, 1,    60, -70, -70]
+min_constraints_hh = [0.05, -90, 0.2, 20, 10, 1e-3, 50, -90, -90]
+
 
 #  typical (tuned) spiking cell
 example_vars_hh = {'cell:RS/channelDensity:IM_all/mS_per_cm2': 0.18764779330203835,
@@ -99,8 +103,7 @@ target_data = {average_maximum: 33.320915,
 
 ####     Target data
 
-target_sweep_numbers = {}
-target_sweep_numbers[471141261] = [34,38,42,46,50,54,58]
+target_sweep_numbers = DH.DATASET_TARGET_SWEEPS
 
 def get_2stage_target_values(dataset_id):
 
@@ -181,11 +184,11 @@ def run_one_optimisation(ref,
                      num_elites,
                      simulator,
                      nogui,
+                     parameters,
+                     max_constraints,
+                     min_constraints,
                      neuroml_file =     'prototypes/RS/AllenTest.net.nml',
                      target =           'network_RS',
-                     parameters =       parameters_hh,
-                     max_constraints =  max_constraints,
-                     min_constraints =  min_constraints,
                      weights =          weights,
                      target_data =      target_data,
                      dt =               0.025):
@@ -297,10 +300,12 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         #simulator  = 'jNeuroML'
+        dataset = 471141261
 
+        ref = 'network_%s_HH'%(dataset)
         cont = NeuroMLController('AllenTest', 
-                                 'prototypes/RS/AllenTestMulti.net.nml',
-                                 'network_RS',
+                                 'prototypes/RS/%s.net.nml'%ref,
+                                 ref,
                                  1500, 
                                  0.01, 
                                  simulator)
@@ -334,10 +339,14 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML'
         simulator  = 'jNeuroML_NEURON'
-
+        
+        dataset = 471141261
+        #dataset = 464198958
+        
+        ref = 'network_%s_Izh'%(dataset)
         cont = NeuroMLController('AllenIzhMulti', 
-                                 'prototypes/RS/AllenIzhMulti.net.nml',
-                                 'network_RS',
+                                 'prototypes/RS/%s.net.nml'%ref,
+                                 ref,
                                  1500, 
                                  0.05, 
                                  simulator)
@@ -354,9 +363,15 @@ if __name__ == '__main__':
         simulator  = 'jNeuroML_NEURON'
 
         scale1 = 0.1
+        
+        dataset = 471141261
+        ref = 'network_%s_Izh'%(dataset)
 
         report = run_one_optimisation('AllenIzh',
                             12345,
+                            parameters =       parameters_iz,
+                            max_constraints =  max_constraints_iz,
+                            min_constraints =  min_constraints_iz,
                             population_size =  scale(scale1,100),
                             max_evaluations =  scale(scale1,500),
                             num_selected =     scale(scale1,30),
@@ -366,11 +381,8 @@ if __name__ == '__main__':
                             simulator =        simulator,
                             nogui =            nogui,
                             dt =               0.05,
-                            neuroml_file =     'prototypes/RS/AllenIzh.net.nml',
-                            target =           'network_RS',
-                            parameters =       parameters_iz,
-                            max_constraints =  max_constraints_iz,
-                            min_constraints =  min_constraints_iz)
+                            neuroml_file =     'prototypes/RS/%s.net.nml'%ref,
+                            target =           ref)
 
         compare('%s/%s.Pop0.v.dat'%(report['run_directory'], report['reference']))
 
@@ -393,8 +405,8 @@ if __name__ == '__main__':
         
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
-        scale1 = 0.1
-        scale2 = 0.1
+        scale1 = 0.01
+        scale2 = 0.01
 
         r1, r2 = run_2stage_optimization('AllenIzh2stage',
                                 neuroml_file =     'prototypes/RS/AllenIzhMulti.net.nml',
@@ -437,16 +449,27 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        run_one_optimisation('AllenTestQ',
+        dataset = 471141261
+        ref = 'network_%s_HH'%(dataset)
+        
+        report = run_one_optimisation('AllenTestQ',
                             1234,
+                            parameters =       parameters_hh,
+                            max_constraints =  max_constraints_hh,
+                            min_constraints =  min_constraints_hh,
                             population_size =  10,
                             max_evaluations =  30,
                             num_selected =     5,
                             num_offspring =    5,
                             mutation_rate =    0.9,
                             num_elites =       1,
+                            neuroml_file =     'prototypes/RS/%s.net.nml'%ref,
+                            target =           ref,
                             simulator =        simulator,
+                            dt =               0.025,
                             nogui =            nogui)
+
+        compare('%s/%s.Pop0.v.dat'%(report['run_directory'], report['reference']))
 
 
     ####  Run a 2 stage optimisation for HH cell model
@@ -469,7 +492,7 @@ if __name__ == '__main__':
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
         scale1 = 0.2
-        scale2 = 0.2
+        scale2 = 0.1
 
         r1, r2 = run_2stage_optimization('Allen2stage',
                                 neuroml_file =     'prototypes/RS/AllenTestMulti.net.nml',
