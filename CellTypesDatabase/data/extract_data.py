@@ -5,6 +5,7 @@ import numpy as np
 
 from allensdk.api.queries.cell_types_api import CellTypesApi
 import time
+import sys
 
 import info_file as IF
 
@@ -14,17 +15,12 @@ from pyelectro import __version__ as pyel_ver
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-import json
-
 ct = CellTypesApi()
 
 dataset_ids = [471141261, 464198958]
 
-sweep_numbers_for_data = {}
-sweep_numbers_for_data[471141261] = range(34,59) # [34,38,42,46,50,54,58] # range(54,58)
-sweep_numbers_for_data[464198958] = [20, 24, 36,28,30,32,34] # range(54,58)
 
-plot = True
+plot = not '-nogui' in sys.argv
 
 for dataset_id in dataset_ids:
 
@@ -38,8 +34,6 @@ for dataset_id in dataset_ids:
     sweep_numbers = data_set.get_experiment_sweep_numbers()
     sweep_numbers.sort()
 
-    sweep_numbers = sweep_numbers_for_data[dataset_id]
-
     info = {}
     info[IF.DATASET] = dataset_id
     info[IF.COMMENT] = 'Data analysed on %s'%(time.ctime())
@@ -51,42 +45,42 @@ for dataset_id in dataset_ids:
 
         sweep_data = data_set.get_sweep(sweep_number)
         
-        sweep_info = {}
-        info[IF.SWEEPS]['%i'%sweep_number] = sweep_info
-        sweep_info[IF.SWEEP] = sweep_number
-        
-        sweep_info[IF.METADATA] = data_set.get_sweep_metadata(sweep_number)
-        
+        if data_set.get_sweep_metadata(sweep_number)['aibs_stimulus_name'] == "Long Square":
+            sweep_info = {}
+            sweep_info[IF.METADATA] = data_set.get_sweep_metadata(sweep_number)
+            info[IF.SWEEPS]['%i'%sweep_number] = sweep_info
+            sweep_info[IF.SWEEP] = sweep_number
 
-        # start/stop indices that exclude the experimental test pulse (if applicable)
-        index_range = sweep_data['index_range']
 
-        # stimulus is a numpy array in amps
-        stimulus = sweep_data['stimulus'][index_range[0]:index_range[-1]]
+            # start/stop indices that exclude the experimental test pulse (if applicable)
+            index_range = sweep_data['index_range']
 
-        # response is a numpy array in volts
-        response = sweep_data['response'][index_range[0]:index_range[-1]]*1000
+            # stimulus is a numpy array in amps
+            stimulus = sweep_data['stimulus'][index_range[0]:index_range[-1]]
 
-        # sampling rate is in Hz
-        sampling_rate = sweep_data['sampling_rate']
+            # response is a numpy array in volts
+            response = sweep_data['response'][index_range[0]:index_range[-1]]*1000
 
-        # define some time points in seconds (i.e., convert to absolute time)
-        time_pts = np.arange(0,len(stimulus)/sampling_rate,1./sampling_rate)*1000
+            # sampling rate is in Hz
+            sampling_rate = sweep_data['sampling_rate']
 
-        comment = 'Sweep: %i in %i; %sms -> %sms; %sA -> %sA; %smV -> %smV'%(sweep_number, dataset_id, time_pts[0], time_pts[-1], np.amin(stimulus), np.amax(stimulus), np.amin(response), np.amax(response))
-        print(comment)
-        
-        sweep_info[IF.COMMENT] = comment
-        
-        analysis = utils.simple_network_analysis({sweep_number:response}, 
-                                                 time_pts, 
-                                                 extra_targets = ['%s:value_280'%sweep_number, '%s:value_1000'%sweep_number],
-                                                 end_analysis=1300, 
-                                                 plot=plot, 
-                                                 show_plot_already=False,
-                                                 verbose=True)
-        
-        sweep_info[IF.ICLAMP_ANALYSIS] = analysis
+            # define some time points in seconds (i.e., convert to absolute time)
+            time_pts = np.arange(0,len(stimulus)/sampling_rate,1./sampling_rate)*1000
+
+            comment = 'Sweep: %i in %i; %sms -> %sms; %sA -> %sA; %smV -> %smV'%(sweep_number, dataset_id, time_pts[0], time_pts[-1], np.amin(stimulus), np.amax(stimulus), np.amin(response), np.amax(response))
+            print(comment)
+
+            sweep_info[IF.COMMENT] = comment
+
+            analysis = utils.simple_network_analysis({sweep_number:response}, 
+                                                     time_pts, 
+                                                     extra_targets = ['%s:value_280'%sweep_number, '%s:value_1000'%sweep_number],
+                                                     end_analysis=1300, 
+                                                     plot=plot, 
+                                                     show_plot_already=False,
+                                                     verbose=True)
+
+            sweep_info[IF.ICLAMP_ANALYSIS] = analysis
 
     analysis_file_name = '%s_analysis.json'%(dataset_id)
     analysis_file = open(analysis_file_name, 'w')
