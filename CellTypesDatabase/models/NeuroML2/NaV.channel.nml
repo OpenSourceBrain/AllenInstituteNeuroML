@@ -30,20 +30,101 @@
 
     
         <gateKS id="n" instances="1">
+            
             <closedState id="C1"/>
+            <closedState id="C2"/>
+            <closedState id="C2"/>
+            <closedState id="C3"/>
+            <closedState id="C4"/>
+            <closedState id="C5"/>
+            
             <openState id="O"/>
             
-            <forwardTransition id="ft" from="C1" to="O" >
-                <rate id="r1" type="HHExpLinearRate" rate="0.1per_ms" midpoint="-55mV" scale="10mV"/>
+            <forwardTransition id="f01" from="C1" to="C2" >
+                <rate id="r1" type="Generic_NaV_rate1" forward_n="4" backward_n="0"/>
             </forwardTransition>
     
-            <reverseTransition id="rt" from="C1" to="O" >
-                <rate id="r1" type="HHExpRate" rate="0.125per_ms" midpoint="-65mV" scale="-80mV"/>
+            <reverseTransition id="b01" from="C1" to="C2" >
+                <rate id="r1" type="Generic_NaV_rate1" forward_n="0" backward_n="1"/>
             </reverseTransition>
+            
+            <forwardTransition id="f02" from="C2" to="C3" >
+                <rate id="f02" type="Generic_NaV_rate1" forward_n="3" backward_n="0"/>
+            </forwardTransition>
+    
+            <reverseTransition id="b02" from="C2" to="C3" >
+                <rate id="b02" type="Generic_NaV_rate1" forward_n="0" backward_n="2"/>
+            </reverseTransition>
+            
+            <forwardTransition id="f03" from="C3" to="C4" >
+                <rate id="f03" type="Generic_NaV_rate1" forward_n="2" backward_n="0"/>
+            </forwardTransition>
+    
+            <reverseTransition id="b03" from="C3" to="C4" >
+                <rate id="b03" type="Generic_NaV_rate1" forward_n="0" backward_n="3"/>
+            </reverseTransition>
+            
+            <forwardTransition id="f04" from="C4" to="C5" >
+                <rate id="f04" type="Generic_NaV_rate1" forward_n="1" backward_n="0"/>
+            </forwardTransition>
+    
+            <reverseTransition id="b04" from="C4" to="C5" >
+                <rate id="b04" type="Generic_NaV_rate1" forward_n="0" backward_n="4"/>
+            </reverseTransition>
+            
+            <forwardTransition id="f00" from="C5" to="O" >
+                <rate id="f00" type="Generic_NaV_rate2" rate="250 per_ms" factor="1" power="0"/>
+            </forwardTransition>
+    
+            <reverseTransition id="b00" from="C5" to="O" >
+                <rate id="b00" type="Generic_NaV_rate2" rate="60 per_ms" factor="1" power="0"/>
+            </reverseTransition>
+            
         </gateKS>
-
-                            
+  
     </ionChannelKS>
+    
+    
+    <ComponentType name="Generic_NaV_rate1" extends="baseVoltageDepRate">
+        
+        <Parameter name="forward_n" dimension="none"/> 
+        <Parameter name="backward_n" dimension="none"/> 
+        
+        <Constant name="alpha" dimension="per_time" value="400 per_ms"/>
+        <Constant name="beta" dimension="per_time" value="400 per_ms"/>
+
+        <Constant name="x1" dimension="voltage" value="24 mV"/>
+        <Constant name="x2" dimension="voltage" value="-24 mV"/>
+        
+        <Constant name="base_q10" dimension="temperature" value="37 degC"/>
+        <Constant name="TENDEGREES" dimension="temperature" value="10K"/>
+        
+        <Requirement name="temperature" dimension="temperature"/>
+
+        <Dynamics>
+            <DerivedVariable name="qt" dimension="none" value="2.3^((temperature-base_q10)/TENDEGREES)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(qt * forward_n * alpha * exp(v/x1)) + (qt * backward_n * beta * exp(v/x2))"/>
+        </Dynamics>
+
+    </ComponentType>
+    
+    <ComponentType name="Generic_NaV_rate2" extends="baseVoltageDepRate">
+        
+        <Parameter name="rate" dimension="per_time"/> 
+        <Parameter name="factor" dimension="none"/> 
+        <Parameter name="power" dimension="none"/> 
+        
+        <Constant name="base_q10" dimension="temperature" value="37 degC"/>
+        <Constant name="TENDEGREES" dimension="temperature" value="10K"/>
+        
+        <Requirement name="temperature" dimension="temperature"/>
+
+        <Dynamics>
+            <DerivedVariable name="qt" dimension="none" value="2.3^((temperature-base_q10)/TENDEGREES)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="qt * rate * factor^power"/>
+        </Dynamics>
+
+    </ComponentType>
     
 
 </neuroml>

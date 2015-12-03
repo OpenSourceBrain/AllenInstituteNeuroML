@@ -21,6 +21,7 @@ insert pas
 
 insert NaV
 {gbar_NaV = 0.003}
+{gbar_NaV = 0}
 insert na_ion 
 { ena=53}
 
