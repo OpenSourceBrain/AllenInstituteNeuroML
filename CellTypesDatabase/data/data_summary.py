@@ -7,6 +7,7 @@ import json
 import matplotlib.pyplot as plt
 
 from pyneuroml import pynml
+import airspeed
 
 analysed = []
 
@@ -16,7 +17,34 @@ analysed.sort()
 
 nogui = '-nogui' in sys.argv
 
+info = {}
+info['info'] = 'Extracted from Cell Types Database...'
+
+
+HTML_TEMPLATE_FILE = "CellInfo_TEMPLATE.html" 
+                        
+def make_html_file(info):
+    merged = merge_with_template(info, HTML_TEMPLATE_FILE)
+    html_dir = 'summary'
+    new_html_file = os.path.join(html_dir,'CellInfo.html')
+    lf = open(new_html_file, 'w')
+    lf.write(merged)
+    lf.close()
+    print('Written HTML info to: %s' % new_html_file)
+    
+def merge_with_template(model, templfile):
+    if not os.path.isfile(templfile):
+        templfile = os.path.join(os.path.dirname(sys.argv[0]), templfile)
+    with open(templfile) as f:
+        templ = airspeed.Template(f.read())
+    return templ.merge(model)
+    
+info['datasets'] = []
+
 for f in analysed:
+    
+    dataset = {}
+    info['datasets'].append(dataset)
     
     with open(f, "r") as json_file:
         data = json.load(json_file)
@@ -25,6 +53,8 @@ for f in analysed:
     sweeps = data['sweeps']
     
     print("Looking at data analysis in %s (dataset: %s)"%(f,id))
+    
+    dataset['id'] = id
     
     currents_v_sub = {}
     currents_rate_spike = {}
@@ -89,6 +119,9 @@ for f in analysed:
                         yaxis = "Membrane potential (mV)", 
                         show_plot_already=False,
                         save_figure_to = target_file%('traces', id))
+
+print info
+make_html_file(info)
 
 if not nogui:
     plt.show()
