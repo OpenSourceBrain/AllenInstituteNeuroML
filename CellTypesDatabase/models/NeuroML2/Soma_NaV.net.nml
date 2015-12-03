@@ -6,7 +6,7 @@
 
 
 
-    <pulseGenerator id="Input_4" delay="300.0ms" duration="100.0ms" amplitude="1.8E-5uA"/>
+    <pulseGenerator id="Input_4" delay="300.0ms" duration="100.0ms" amplitude="5E-5uA"/>
     <pulseGenerator id="Input_3" delay="100.0ms" duration="100.0ms" amplitude="-1.0E-5uA"/>
 
     
