@@ -416,7 +416,7 @@ if __name__ == '__main__':
         
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
-        scale1 = 1
+        scale1 = 2
         scale2 = 1
 
         
@@ -448,7 +448,7 @@ if __name__ == '__main__':
                                 simulator = simulator,
                                 nogui = nogui,
                                 show_plot_already = False,
-                                seed = 1234,
+                                seed = 12345,
                                 known_target_values = {},
                                 dry_run = False)
         
