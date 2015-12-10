@@ -32,25 +32,25 @@
             </instance>
         </population>
         <inputList id="input_34" component="input_34" population="Pop0">
-            <input destination="synapses" id="0" target="../Pop0[0]"/>
+            <input destination="synapses" id="0" target="../Pop0/0/RS"/>
         </inputList>
         <inputList id="input_38" component="input_38" population="Pop0">
-            <input destination="synapses" id="0" target="../Pop0[1]"/>
+            <input destination="synapses" id="0" target="../Pop0/1/RS"/>
         </inputList>
         <inputList id="input_42" component="input_42" population="Pop0">
-            <input destination="synapses" id="0" target="../Pop0[2]"/>
+            <input destination="synapses" id="0" target="../Pop0/2/RS"/>
         </inputList>
         <inputList id="input_46" component="input_46" population="Pop0">
-            <input destination="synapses" id="0" target="../Pop0[3]"/>
+            <input destination="synapses" id="0" target="../Pop0/3/RS"/>
         </inputList>
         <inputList id="input_50" component="input_50" population="Pop0">
-            <input destination="synapses" id="0" target="../Pop0[4]"/>
+            <input destination="synapses" id="0" target="../Pop0/4/RS"/>
         </inputList>
         <inputList id="input_54" component="input_54" population="Pop0">
-            <input destination="synapses" id="0" target="../Pop0[5]"/>
+            <input destination="synapses" id="0" target="../Pop0/5/RS"/>
         </inputList>
         <inputList id="input_58" component="input_58" population="Pop0">
-            <input destination="synapses" id="0" target="../Pop0[6]"/>
+            <input destination="synapses" id="0" target="../Pop0/6/RS"/>
         </inputList>
     </network>
 </neuroml>

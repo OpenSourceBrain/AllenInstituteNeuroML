@@ -26,10 +26,12 @@ for cell_type in cell_types:
         net_doc.networks.append(net)
         
         net_doc.includes.append(neuroml.IncludeType('%s.cell.nml'%cell_type))
+        
+        cell_id = "RS"
 
         number_cells = len(target_sweep_numbers)
         pop = neuroml.Population(id="Pop0",
-                            component="RS",
+                            component=cell_id,
                             size=number_cells,
                             type="populationList")
         net.populations.append(pop)
@@ -64,7 +66,7 @@ for cell_type in cell_types:
                                      component=pg.id,
                                      populations=pop.id)
             input = neuroml.Input(id='0', 
-                                  target="../%s[%i]"%(pop.id, index), 
+                                  target="../%s/%i/%s"%(pop.id, index, cell_id), 
                                   destination="synapses")
             index+=1
             input_list.input.append(input)
