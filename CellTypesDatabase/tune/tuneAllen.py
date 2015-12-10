@@ -237,8 +237,8 @@ def scale(scale, number, min=1):
 
 
 
-def compare(sim_data_file, show_plot_already=True):
-    dat_file_name = '../data/471141261.dat'
+def compare(sim_data_file, show_plot_already=True, dataset=471141261):
+    dat_file_name = '../data/%s.dat'%dataset
     
     x = []
     y = []
@@ -391,7 +391,7 @@ if __name__ == '__main__':
                             neuroml_file =     'prototypes/RS/%s.net.nml'%ref,
                             target =           ref)
 
-        compare('%s/%s.Pop0.v.dat'%(report['run_directory'], report['reference']))
+        compare('%s/%s.Pop0.v.dat'%(report['run_directory'], report['reference']), dataset=dataset)
 
 
     ####  Run a 2 stage optimisation for Izhikevich cell model
@@ -401,6 +401,7 @@ if __name__ == '__main__':
         print("Running 2 stage optimisation")
         simulator  = 'jNeuroML_NEURON'
         dataset = 471141261
+        dataset = 464198958
         type = 'Izh'
         ref = 'network_%s_%s'%(dataset, type)
 
@@ -413,9 +414,9 @@ if __name__ == '__main__':
         min_constraints_2 = [0.01, -5, -65, 10,  'x',  'x', -60, 0,   'x']
         max_constraints_2 = [0.2,  20, -10, 400, 'x',  'x',  50, 70,  'x']
         
-        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
+        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
-        scale1 = 1
+        scale1 = 0.2
         scale2 = 0.2
 
         
@@ -458,7 +459,7 @@ if __name__ == '__main__':
         r2['run_directory'] ='NT_AllenIzh2stage_STAGE2_Tue_Dec__1_17.26.38_2015'
         r2['reference'] = 'AllenIzh2stage_STAGE2'  '''
         
-        compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=True)
+        compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=True, dataset=dataset)
         
         final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
         

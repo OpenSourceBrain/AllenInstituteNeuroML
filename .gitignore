@@ -64,3 +64,5 @@ CellTypesDatabase/models/neuronal_model/modfiles/*.mod
 /CellTypesDatabase/tune/LEMS_iv_RS.xml
 /CellTypesDatabase/tune/iv_Izh_471141261.net.nml
 /CellTypesDatabase/tune/iv_RS.net.nml
+/CellTypesDatabase/tune/LEMS_iv_Izh_464198958.xml
+/CellTypesDatabase/tune/iv_Izh_464198958.net.nml

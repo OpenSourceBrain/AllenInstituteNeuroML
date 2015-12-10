@@ -23,19 +23,27 @@ def analyse_cell(dataset_id, type, nogui = False):
                                         step_nA =              0.01, 
                                         analysis_duration =    1000, 
                                         analysis_delay =       50,
-                                        plot_voltage_traces =  not nogui,
+                                        plot_voltage_traces =  False,
                                         plot_if =              not nogui,
                                         plot_iv =              not nogui, 
                                         save_if_figure_to=images%(reference, 'if'), 
-                                        save_iv_figure_to=images%(reference, 'iv'))
+                                        save_iv_figure_to=images%(reference, 'iv'),
+                                        show_plot_already = False)
 
 if __name__ == '__main__':
 
     nogui = '-nogui' in sys.argv
+    type = 'Izh'
 
     dataset_id = 471141261
-    type = 'Izh'
     analyse_cell(dataset_id, type, nogui)
+
+    dataset_id = 464198958
+    analyse_cell(dataset_id, type, nogui)
+    
+    if not nogui:
+        import matplotlib.pyplot as plt
+        plt.show()
     
     
     

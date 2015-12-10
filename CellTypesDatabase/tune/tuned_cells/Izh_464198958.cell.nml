@@ -1,0 +1,3 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="Izh_464198958">
+    <izhikevich2007Cell id="Izh_464198958" C="91.6377055593 pF" a="0.0722152741158 per_ms" c="-43.0914348181 mV" b="2.89490866242 nS" d="138.404446753 pA" vpeak="38.2018157282 mV" k="0.50255948796 nS_per_mV" v0="-79mV" vr="-71.5702783406 mV" vt="-48.5955174082 mV"/>
+</neuroml>
