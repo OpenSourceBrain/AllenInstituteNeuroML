@@ -3,19 +3,21 @@ import sys
 import neuroml
 from pyneuroml import pynml
 
+import shutil
 
 from pyneuroml.analysis import generate_current_vs_frequency_curve
 from pyneuroml.lems import generate_lems_file_for_neuroml
+
+from generate_nets import generate_network_for_sweeps
 
 
 def analyse_cell(dataset_id, type, nogui = False):
     
     reference = '%s_%s'%(type,dataset_id)
     cell_file = 'tuned_cells/%s.cell.nml'%(reference)
-    net_file = 'prototypes/RS/network_%s_%s.net.nml'%(dataset_id,type)
     
     images = 'tuned_cells/summary/%s_%s.png'
-    '''
+    
     generate_current_vs_frequency_curve(cell_file, 
                                         reference, 
                                         simulator = 'jNeuroML_NEURON',
@@ -29,10 +31,16 @@ def analyse_cell(dataset_id, type, nogui = False):
                                         plot_iv =              not nogui, 
                                         save_if_figure_to=images%(reference, 'if'), 
                                         save_iv_figure_to=images%(reference, 'iv'),
-                                        show_plot_already = False)'''
-                                        
-    lems_file_name = 'LEMS_Test_%s_%s.xml'%(type,dataset_id)
+                                        show_plot_already = False)
+               
     temp_dir = 'temp/'
+    
+    shutil.copy(cell_file, temp_dir)
+    
+    net_file = generate_network_for_sweeps(type, dataset_id, '%s.cell.nml'%(reference), reference, temp_dir)
+    
+    lems_file_name = 'LEMS_Test_%s_%s.xml'%(type,dataset_id)
+    
     generate_lems_file_for_neuroml('Test_%s_%s'%(dataset_id,type),
                                    net_file,
                                    'network_%s_%s'%(dataset_id,type), 
@@ -40,7 +48,8 @@ def analyse_cell(dataset_id, type, nogui = False):
                                    0.01, 
                                    lems_file_name,
                                    temp_dir,
-                                   gen_plots_for_all_v=False)
+                                   gen_plots_for_all_v=False,
+                                   copy_neuroml = False)
     
     simulator = "jNeuroML_NEURON"
     
@@ -64,7 +73,7 @@ def analyse_cell(dataset_id, type, nogui = False):
     
     for i in range(len(results)-1):
         x.append(results['t'])
-        y.append(results['Pop0/%i/RS/v'%i])
+        y.append(results['Pop0/%i/%s_%s/v'%(i,type,dataset_id)])
         
     pynml.generate_plot(x,
                 y, 
@@ -72,7 +81,7 @@ def analyse_cell(dataset_id, type, nogui = False):
                 xaxis = "Time (ms)", 
                 yaxis = "Membrane potential (mV)",
                 show_plot_already=False,
-                save_figure_to = None)
+                save_figure_to = images%(reference, 'traces'))
     
 
 if __name__ == '__main__':
