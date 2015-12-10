@@ -29,6 +29,10 @@ def analyse_cell(dataset_id, type, nogui = False):
                                         plot_voltage_traces =  False,
                                         plot_if =              not nogui,
                                         plot_iv =              not nogui, 
+                                        xlim_if =              [-200, 400],
+                                        ylim_if =              [-10, 120],
+                                        xlim_iv =              [-200, 400],
+                                        ylim_iv =              [-120, -40],
                                         save_if_figure_to=images%(reference, 'if'), 
                                         save_iv_figure_to=images%(reference, 'iv'),
                                         show_plot_already = False)
@@ -71,9 +75,10 @@ def analyse_cell(dataset_id, type, nogui = False):
     
     print results.keys()
     
+    tt = [t*1000 for t in results['t']]
     for i in range(len(results)-1):
-        x.append(results['t'])
-        y.append(results['Pop0/%i/%s_%s/v'%(i,type,dataset_id)])
+        x.append(tt)
+        y.append([v*1000 for v in results['Pop0/%i/%s_%s/v'%(i,type,dataset_id)]])
         
     pynml.generate_plot(x,
                 y, 
@@ -81,6 +86,7 @@ def analyse_cell(dataset_id, type, nogui = False):
                 xaxis = "Time (ms)", 
                 yaxis = "Membrane potential (mV)",
                 show_plot_already=False,
+                ylim = [-120, 60],
                 save_figure_to = images%(reference, 'traces'))
     
 

@@ -86,6 +86,9 @@ for f in analysed:
                         markers=['o'],
                         xaxis = "Current (pA)", 
                         yaxis = "Steady state (mV)", 
+                        xlim = [-200, 400],
+                        ylim = [-120, -40],
+                        grid = True,
                         show_plot_already=False,
                         save_figure_to = target_file%('subthreshold', id))
     #plt.plot(curents_sub, , color='k', linestyle='-', marker='o')
@@ -102,21 +105,26 @@ for f in analysed:
                         markers=['o'],
                         xaxis = "Current (pA)", 
                         yaxis = "Firing frequency (Hz)", 
+                        xlim = [-200, 400],
+                        ylim = [-10, 120],
+                        grid = True,
                         show_plot_already=False,
                         save_figure_to = target_file%('spikes', id))
                         
     data, indices = pynml.reload_standard_dat_file('%s.dat'%id)
     x = []
     y = []
+    tt = [t*1000 for t in data['t']]
     for i in indices:
-        x.append(data['t'])
-        y.append(data[i])
+        x.append(tt)
+        y.append([v*1000 for v in data[i]])
         
     pynml.generate_plot(x,
                         y, 
                         "Example traces from: %s"%id, 
                         xaxis = "Time (ms)", 
                         yaxis = "Membrane potential (mV)", 
+                        ylim = [-120, 60],
                         show_plot_already=False,
                         save_figure_to = target_file%('traces', id))
 

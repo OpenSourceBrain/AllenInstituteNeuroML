@@ -416,8 +416,8 @@ if __name__ == '__main__':
         
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
-        scale1 = 0.2
-        scale2 = 0.2
+        scale1 = 1
+        scale2 = 1
 
         
         r1, r2 = run_2stage_optimization('AllenIzh2stage',
