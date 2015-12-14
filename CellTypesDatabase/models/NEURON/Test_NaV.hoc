@@ -47,7 +47,7 @@ Soma {
     stim2 = new IClamp(0.5)
     stim2.del = 300.0
     stim2.dur = 100.0
-    stim2.amp = 0.018
+    stim2.amp = 0.05
 }
 
 
@@ -68,7 +68,43 @@ f_time = new File()
 objref Soma_v
 { Soma_v = new Vector() }
 { Soma_v.record(&Soma.v(0.5))} 
-objref f_Soma_v
+
+objref vo
+{ vo = new Vector() }
+{ vo.record(&Soma.O_NaV(0.5))} 
+objref vc1
+{ vc1 = new Vector() }
+{ vc1.record(&Soma.C1_NaV(0.5))} 
+objref vc2
+{ vc2 = new Vector() }
+{ vc2.record(&Soma.C2_NaV(0.5))} 
+objref vc3
+{ vc3 = new Vector() }
+{ vc3.record(&Soma.C3_NaV(0.5))} 
+objref vc4
+{ vc4 = new Vector() }
+{ vc4.record(&Soma.C4_NaV(0.5))} 
+objref vc5
+{ vc5 = new Vector() }
+{ vc5.record(&Soma.C5_NaV(0.5))} 
+objref vi1
+{ vi1 = new Vector() }
+{ vi1.record(&Soma.I1_NaV(0.5))} 
+objref vi2
+{ vi2 = new Vector() }
+{ vi2.record(&Soma.I2_NaV(0.5))} 
+objref vi3
+{ vi3 = new Vector() }
+{ vi3.record(&Soma.I3_NaV(0.5))} 
+objref vi4
+{ vi4 = new Vector() }
+{ vi4.record(&Soma.I4_NaV(0.5))} 
+objref vi5
+{ vi5 = new Vector() }
+{ vi5.record(&Soma.I5_NaV(0.5))} 
+objref vi6
+{ vi6 = new Vector() }
+{ vi6.record(&Soma.I6_NaV(0.5))} 
 
 
 objref GraphWin_0
@@ -113,6 +149,7 @@ if (usegui==1) {
 strdef timeFilename
 
 
+objref f_Soma_v
 f_Soma_v = new File()
 strdef filename
 {sprint(filename, "Soma.dat")}
@@ -135,6 +172,14 @@ for i=0, Soma_v.size()-1 {
 }
 { f_Soma_si.close() }
 
+
+objref f_states
+f_states = new File()
+{ f_states.wopen("Soma.states.dat") }
+for i=0, v_time.size()-1 {
+   f_states.printf("%g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t %g\t \n", v_time.x[i]/1000, vo.x[i], vc1.x[i], vc2.x[i], vc3.x[i], vc4.x[i], vc5.x[i], vi1.x[i], vi2.x[i], vi3.x[i], vi4.x[i], vi5.x[i], vi6.x[i])
+}
+{ f_states.close() }
 
 
 if (usegui==1) {

@@ -134,28 +134,28 @@
                 <rate id="fi2" type="Generic_NaV_rate2" rate="0.01 per_ms" factor="2.51" power="1"/>
             </forwardTransition>
             <reverseTransition id="bi2" from="C2" to="I2" >
-                <rate id="bi2" type="Generic_NaV_rate2" rate="40 per_ms" factor="5.32" power="1"/>
+                <rate id="bi2" type="Generic_NaV_rate2" rate="40 per_ms" factor="5.32" power="-1"/>
             </reverseTransition>
             
             <forwardTransition id="fi3" from="C3" to="I3" >
                 <rate id="fi3" type="Generic_NaV_rate2" rate="0.01 per_ms" factor="2.51" power="2"/>
             </forwardTransition>
             <reverseTransition id="bi3" from="C3" to="I3" >
-                <rate id="bi3" type="Generic_NaV_rate2" rate="40 per_ms" factor="5.32" power="2"/>
+                <rate id="bi3" type="Generic_NaV_rate2" rate="40 per_ms" factor="5.32" power="-2"/>
             </reverseTransition>
             
             <forwardTransition id="fi4" from="C4" to="I4" >
                 <rate id="fi4" type="Generic_NaV_rate2" rate="0.01 per_ms" factor="2.51" power="3"/>
             </forwardTransition>
             <reverseTransition id="bi4" from="C4" to="I4" >
-                <rate id="bi4" type="Generic_NaV_rate2" rate="40 per_ms" factor="5.32" power="3"/>
+                <rate id="bi4" type="Generic_NaV_rate2" rate="40 per_ms" factor="5.32" power="-3"/>
             </reverseTransition>
             
             <forwardTransition id="fi5" from="C5" to="I5" >
                 <rate id="fi5" type="Generic_NaV_rate2" rate="0.01 per_ms" factor="2.51" power="4"/>
             </forwardTransition>
             <reverseTransition id="bi5" from="C5" to="I5" >
-                <rate id="bi5" type="Generic_NaV_rate2" rate="40 per_ms" factor="5.32" power="4"/>
+                <rate id="bi5" type="Generic_NaV_rate2" rate="40 per_ms" factor="5.32" power="-4"/>
             </reverseTransition>
             
             
@@ -174,7 +174,7 @@
         <Parameter name="btfac" dimension="none"/> 
         
         <Constant name="alpha" dimension="per_time" value="400 per_ms"/>
-        <Constant name="beta" dimension="per_time" value="400 per_ms"/>
+        <Constant name="beta" dimension="per_time" value="12 per_ms"/>
 
         <Constant name="x1" dimension="voltage" value="24 mV"/>
         <Constant name="x2" dimension="voltage" value="-24 mV"/>
@@ -204,7 +204,7 @@
 
         <Dynamics>
             <DerivedVariable name="qt" dimension="none" value="2.3^((temperature-base_q10)/TENDEGREES)"/>
-            <DerivedVariable name="r" exposure="r" dimension="per_time" value="qt * rate * factor^power"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="qt * rate * (factor^power)"/>
         </Dynamics>
 
     </ComponentType>

@@ -29,7 +29,7 @@
         </Display>
         
         <Display id="GraphWin_0" title="Soma channels" xmin="-60.0" xmax="660.0" ymin="-0.1" ymax="1.1" timeScale="1ms">
-            <!--<Line id="n" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/q" scale="1" color="#000000"/>-->
+            <Line id="O" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/O/occupancy" scale="1" color="#FFFFFF"/>
             <Line id="C1" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/C1/occupancy" scale="1" color="#FF0000"/>
             <Line id="C2" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/C2/occupancy" scale="1" color="#00FF00"/>
             <Line id="C3" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/C3/occupancy" scale="1" color="#0000FF"/>
@@ -42,8 +42,6 @@
             <Line id="I4" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/I4/occupancy" scale="1" color="#007777"/>
             <Line id="I5" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/I5/occupancy" scale="1" color="#009999"/>
             <Line id="I6" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/I6/occupancy" scale="1" color="#00aaaa"/>
-            
-            <Line id="O" timeScale="1ms" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/O/occupancy" scale="1" color="#FFFFFF"/>
         </Display>
         
         
@@ -53,7 +51,7 @@
         </OutputFile>
         
         <OutputFile id="states" fileName="NaV.states.dat">
-            <!--<OutputColumn id="n" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/q"/>-->
+            <OutputColumn id="O" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/O/occupancy"/>
             <OutputColumn id="C1" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/C1/occupancy"/>
             <OutputColumn id="C2" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/C2/occupancy"/>
             <OutputColumn id="C3" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/C3/occupancy"/>
@@ -67,7 +65,6 @@
             <OutputColumn id="I5" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/I5/occupancy"/>
             <OutputColumn id="I6" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/I6/occupancy"/>
             
-            <OutputColumn id="O" quantity="CG_TestCML/0/Soma_NaV/biophys/membraneProperties/NaV_all/NaV/n/O/occupancy"/>
         </OutputFile>
         
         
