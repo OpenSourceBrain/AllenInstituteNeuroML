@@ -27,12 +27,12 @@
         </morphology>
         <biophysicalProperties id="biophys">
             <membraneProperties>
-                <channelDensity id="LeakConductance_all" segmentGroup="all" ion="non_specific" ionChannel="LeakConductance" erev="-84.3906271957 mV" condDensity="0.0984743856063 mS_per_cm2"/>
-                <channelDensity id="Na_all" segmentGroup="all" ion="na" ionChannel="Na" erev="53.5857582423 mV" condDensity="33.4516491387 mS_per_cm2"/>
-                <channelDensity id="Kd_all" segmentGroup="all" ion="k" ionChannel="Kd" erev="-82.9294558791 mV" condDensity="21.1164844863 mS_per_cm2"/>
-                <channelDensity id="IM_all" segmentGroup="all" ion="k" ionChannel="IM" erev="-89.8677630507 mV" condDensity="0.716649030053 mS_per_cm2"/>
+                <channelDensity id="LeakConductance_all" segmentGroup="all" ion="non_specific" ionChannel="LeakConductance" erev="-77.6252305158 mV" condDensity="0.100143366996 mS_per_cm2"/>
+                <channelDensity id="Na_all" segmentGroup="all" ion="na" ionChannel="Na" erev="50.7820921521 mV" condDensity="41.5674330872 mS_per_cm2"/>
+                <channelDensity id="Kd_all" segmentGroup="all" ion="k" ionChannel="Kd" erev="-78.9618920779 mV" condDensity="18.2606146638 mS_per_cm2"/>
+                <channelDensity id="IM_all" segmentGroup="all" ion="k" ionChannel="IM" erev="-75.4944927335 mV" condDensity="0.249411225162 mS_per_cm2"/>
                 <spikeThresh segmentGroup="all" value="0 mV"/>
-                <specificCapacitance segmentGroup="all" value="1.99116009065 uF_per_cm2"/>
+                <specificCapacitance segmentGroup="all" value="1.60211817956 uF_per_cm2"/>
                 <initMembPotential segmentGroup="all" value="-80.0 mV"/>
             </membraneProperties>
             <intracellularProperties>

@@ -98,12 +98,12 @@ if __name__ == '__main__':
     
     nogui = '-nogui' in sys.argv
     type = 'Izh'
-    '''
+    
     dataset_id = 471141261
     analyse_cell(dataset_id, type, nogui)
 
     dataset_id = 464198958
-    analyse_cell(dataset_id, type, nogui)'''
+    analyse_cell(dataset_id, type, nogui)
     
     type = 'HH'
 

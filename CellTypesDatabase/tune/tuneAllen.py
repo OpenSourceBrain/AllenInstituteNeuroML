@@ -435,10 +435,10 @@ if __name__ == '__main__':
                                 target_data_2 = target_data_2,
                                 sim_time = 1500,
                                 dt = 0.05,
-                                population_size_1 = scale(scale1,50,10),
+                                population_size_1 = scale(scale1,100,10),
                                 population_size_2 = scale(scale2,100,10),
-                                max_evaluations_1 = scale(scale1,200,20),
-                                max_evaluations_2 = scale(scale2,500,10),
+                                max_evaluations_1 = scale(scale1,800,20),
+                                max_evaluations_2 = scale(scale2,800,10),
                                 num_selected_1 = scale(scale1,30,5),
                                 num_selected_2 = scale(scale2,30,5),
                                 num_offspring_1 = scale(scale1,20,5),
@@ -448,7 +448,7 @@ if __name__ == '__main__':
                                 simulator = simulator,
                                 nogui = nogui,
                                 show_plot_already = False,
-                                seed = 12345,
+                                seed = 123456,
                                 known_target_values = {},
                                 dry_run = False)
         
@@ -511,8 +511,12 @@ if __name__ == '__main__':
     ####  Run a 2 stage optimisation for HH cell model
     elif '-2stage' in sys.argv:
 
-        print("Running 2 stage optimisation")
+        print("Running 2 stage hh optimisation")
         simulator  = 'jNeuroML_NEURON'
+        dataset = 471141261
+        dataset = 464198958
+        type = 'HH'
+        ref = 'network_%s_%s'%(dataset, type)
 
 
         max_constraints_1 = [0.1,   -70,  2,   0, 0, 0, 55, -80, -80]
@@ -527,12 +531,12 @@ if __name__ == '__main__':
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
-        scale1 = 0.2
-        scale2 = 0.1
+        scale1 = 1
+        scale2 = 0.5
 
         r1, r2 = run_2stage_optimization('Allen2stage',
-                                neuroml_file =     'prototypes/RS/AllenTestMulti.net.nml',
-                                target =           'network_RS',
+                                neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
+                                target =        ref,
                                 parameters = parameters_hh,
                                 max_constraints_1 = max_constraints_1,
                                 max_constraints_2 = max_constraints_2,
@@ -564,6 +568,28 @@ if __name__ == '__main__':
                                 
         compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']))
         compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']))
+        
+        
+        final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
+        
+        nml_doc = pynml.read_neuroml2_file(final_network)
+        
+        cell = nml_doc.cells[0]
+        
+        print("Extracted cell: %s from tuned model"%cell.id)
+        
+        new_id = '%s_%s'%(type, dataset)
+        new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
+        cell.id = new_id
+        
+        new_cell_doc.cells.append(cell)
+        new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
+        
+        channel_files = ['IM.channel.nml', 'Kd.channel.nml', 'Leak.channel.nml', 'Na.channel.nml']
+        for ch in channel_files:
+            new_cell_doc.includes.append(neuroml.IncludeType(ch))
+        
+        pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
 
 
     else:

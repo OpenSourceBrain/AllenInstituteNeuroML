@@ -1,14 +1,8 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="HH_464198958">
-    
-    
-    <include href="Kd.channel.nml"/>
-
-    <include href="IM.channel.nml"/>
-
-    <include href="Leak.channel.nml"/>
-
-    <include href="Na.channel.nml"/>
-    
+    <include href="IM.channel.nml"></include>
+    <include href="Kd.channel.nml"></include>
+    <include href="Leak.channel.nml"></include>
+    <include href="Na.channel.nml"></include>
     <cell id="HH_464198958">
         <notes>RS cell as illustrated in example script from ModelDB</notes>
         <morphology id="morphology_RS">
@@ -28,12 +22,12 @@
         </morphology>
         <biophysicalProperties id="biophys">
             <membraneProperties>
-                <channelDensity id="LeakConductance_all" segmentGroup="all" ion="non_specific" ionChannel="LeakConductance" erev="-73.5463874548 mV" condDensity="0.0993645319966 mS_per_cm2"/>
-                <channelDensity id="Na_all" segmentGroup="all" ion="na" ionChannel="Na" erev="58.4283041522 mV" condDensity="72.3720859837 mS_per_cm2"/>
-                <channelDensity id="Kd_all" segmentGroup="all" ion="k" ionChannel="Kd" erev="-97.2397185735 mV" condDensity="8.13618522284 mS_per_cm2"/>
-                <channelDensity id="IM_all" segmentGroup="all" ion="k" ionChannel="IM" erev="-78.0799110171 mV" condDensity="0.760238475016 mS_per_cm2"/>
+                <channelDensity id="LeakConductance_all" segmentGroup="all" ion="non_specific" ionChannel="LeakConductance" erev="-74.1860290156 mV" condDensity="0.0842942272606 mS_per_cm2"/>
+                <channelDensity id="Na_all" segmentGroup="all" ion="na" ionChannel="Na" erev="51.4837788629 mV" condDensity="89.7618938776 mS_per_cm2"/>
+                <channelDensity id="Kd_all" segmentGroup="all" ion="k" ionChannel="Kd" erev="-75.4477127394 mV" condDensity="9.63955479465 mS_per_cm2"/>
+                <channelDensity id="IM_all" segmentGroup="all" ion="k" ionChannel="IM" erev="-95.3106754516 mV" condDensity="0.0208029724047 mS_per_cm2"/>
                 <spikeThresh segmentGroup="all" value="0 mV"/>
-                <specificCapacitance segmentGroup="all" value="0.388963655732 uF_per_cm2"/>
+                <specificCapacitance segmentGroup="all" value="0.929176915955 uF_per_cm2"/>
                 <initMembPotential segmentGroup="all" value="-80.0 mV"/>
             </membraneProperties>
             <intracellularProperties>
