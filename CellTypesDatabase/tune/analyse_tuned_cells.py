@@ -1,5 +1,6 @@
 
 import sys
+import os
 import neuroml
 from pyneuroml import pynml
 
@@ -13,10 +14,11 @@ from generate_nets import generate_network_for_sweeps
 
 def analyse_cell(dataset_id, type, nogui = False):
     
-    reference = '%s_%s'%(type,dataset_id)
-    cell_file = 'tuned_cells/%s.cell.nml'%(reference)
     
-    images = 'tuned_cells/summary/%s_%s.png'
+    reference = '%s_%s'%(type,dataset_id)
+    cell_file = '%s.cell.nml'%(reference)
+    
+    images = 'summary/%s_%s.png'
     
     generate_current_vs_frequency_curve(cell_file, 
                                         reference, 
@@ -92,12 +94,22 @@ def analyse_cell(dataset_id, type, nogui = False):
 
 if __name__ == '__main__':
 
+    os.chdir('tuned_cells')
+    
     nogui = '-nogui' in sys.argv
     type = 'Izh'
-
+    '''
     dataset_id = 471141261
     analyse_cell(dataset_id, type, nogui)
 
+    dataset_id = 464198958
+    analyse_cell(dataset_id, type, nogui)'''
+    
+    type = 'HH'
+
+    dataset_id = 471141261
+    analyse_cell(dataset_id, type, nogui)
+    
     dataset_id = 464198958
     analyse_cell(dataset_id, type, nogui)
     

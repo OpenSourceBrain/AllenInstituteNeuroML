@@ -37,7 +37,7 @@ def generate_network_for_sweeps(cell_type, dataset_id, cell_file_name, cell_id, 
         pop.instances.append(neuroml.Instance(id=i,location=location))
 
     print target_sweep_numbers
-    f = "../data/%s_analysis.json"%dataset_id
+    f = "../../data/%s_analysis.json"%dataset_id
     with open(f, "r") as json_file:
         data = json.load(json_file) 
 
@@ -71,7 +71,7 @@ def generate_network_for_sweeps(cell_type, dataset_id, cell_file_name, cell_id, 
 
     net_file_name = '%s/%s.net.nml'%(target_dir,net_id)
     
-    print("Saving geenrated network to: %s"%net_file_name)
+    print("Saving generated network to: %s"%net_file_name)
     pynml.write_neuroml2_file(net_doc, net_file_name)
     
     return net_file_name

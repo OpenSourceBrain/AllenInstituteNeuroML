@@ -41,6 +41,12 @@
 /CellTypesDatabase/tune/Allen*ml
 /CellTypesDatabase/tune/LEMS_Allen*ml
 /CellTypesDatabase/tune/temp
+/CellTypesDatabase/tune/tuned_cells/*.hoc
+/CellTypesDatabase/tune/tuned_cells/*.mod
+/CellTypesDatabase/tune/tuned_cells/*nrn.py
+/CellTypesDatabase/tune/tuned_cells/*iv*ml
+/CellTypesDatabase/tune/tuned_cells/*dat
+/CellTypesDatabase/tune/tuned_cells/temp
 
 
 *~

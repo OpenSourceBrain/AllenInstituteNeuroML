@@ -1,0 +1,43 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="HH_471141261">
+    
+    <include href="Kd.channel.nml"/>
+
+    <include href="IM.channel.nml"/>
+
+    <include href="Leak.channel.nml"/>
+
+    <include href="Na.channel.nml"/>
+    
+    <cell id="HH_471141261">
+        <notes>RS cell as illustrated in example script from ModelDB</notes>
+        <morphology id="morphology_RS">
+            <segment id="0" name="Soma">
+                <proximal y="0.000000e+00" x="0.000000e+00" z="0.000000e+00" diameter="5.000000e+01"/>
+                <distal y="0.000000e+00" x="5.000000e+01" z="0.000000e+00" diameter="5.000000e+01"/>
+            </segment>
+            <segmentGroup neuroLexId="sao864921383" id="Soma">
+                <member segment="0"/>
+            </segmentGroup>
+            <segmentGroup id="all">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="GO:0043025" id="soma_group">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+        </morphology>
+        <biophysicalProperties id="biophys">
+            <membraneProperties>
+                <channelDensity id="LeakConductance_all" segmentGroup="all" ion="non_specific" ionChannel="LeakConductance" erev="-84.3906271957 mV" condDensity="0.0984743856063 mS_per_cm2"/>
+                <channelDensity id="Na_all" segmentGroup="all" ion="na" ionChannel="Na" erev="53.5857582423 mV" condDensity="33.4516491387 mS_per_cm2"/>
+                <channelDensity id="Kd_all" segmentGroup="all" ion="k" ionChannel="Kd" erev="-82.9294558791 mV" condDensity="21.1164844863 mS_per_cm2"/>
+                <channelDensity id="IM_all" segmentGroup="all" ion="k" ionChannel="IM" erev="-89.8677630507 mV" condDensity="0.716649030053 mS_per_cm2"/>
+                <spikeThresh segmentGroup="all" value="0 mV"/>
+                <specificCapacitance segmentGroup="all" value="1.99116009065 uF_per_cm2"/>
+                <initMembPotential segmentGroup="all" value="-80.0 mV"/>
+            </membraneProperties>
+            <intracellularProperties>
+                <resistivity segmentGroup="all" value="100 ohm_cm"/>
+            </intracellularProperties>
+        </biophysicalProperties>
+    </cell>
+</neuroml>
