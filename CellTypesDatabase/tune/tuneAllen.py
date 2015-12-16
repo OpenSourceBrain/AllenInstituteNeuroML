@@ -20,6 +20,8 @@ import json
 
 import random
 
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
 
 
 from pyneuroml import pynml
@@ -418,6 +420,9 @@ if __name__ == '__main__':
 
         scale1 = 4
         scale2 = 4
+        mutation_rate = 0.9,
+        num_elites = 5,
+        seed = 1234,
 
         
         r1, r2 = run_2stage_optimization('AllenIzh2stage',
@@ -443,12 +448,12 @@ if __name__ == '__main__':
                                 num_selected_2 = scale(scale2,30,5),
                                 num_offspring_1 = scale(scale1,20,5),
                                 num_offspring_2 = scale(scale2,20,5),
-                                mutation_rate = 0.1,
-                                num_elites = 2,
+                                mutation_rate = mutation_rate,
+                                num_elites = num_elites,
                                 simulator = simulator,
                                 nogui = nogui,
-                                show_plot_already = False,
-                                seed = 123456,
+                                show_plot_already = True,
+                                seed = seed,
                                 known_target_values = {},
                                 dry_run = False)
         
@@ -472,6 +477,9 @@ if __name__ == '__main__':
         new_id = '%s_%s'%(type, dataset)
         new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
         cell.id = new_id
+        
+        cell.notes = "Cell model tuned to Allen Institute Cell Types Database, dataset: "+ \
+                     "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
         
         new_cell_doc.izhikevich2007_cells.append(cell)
         new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
@@ -531,8 +539,11 @@ if __name__ == '__main__':
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
-        scale1 = 1
-        scale2 = 0.5
+        scale1 = 4
+        scale2 = 4
+        mutation_rate = 0.9,
+        num_elites = 5,
+        seed = 1234,
 
         r1, r2 = run_2stage_optimization('Allen2stage',
                                 neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
@@ -549,20 +560,20 @@ if __name__ == '__main__':
                                 target_data_2 = target_data_2,
                                 sim_time = 1500,
                                 dt = 0.05,
-                                population_size_1 = scale(scale1,50,10),
+                                population_size_1 = scale(scale1,100,10),
                                 population_size_2 = scale(scale2,100,10),
-                                max_evaluations_1 = scale(scale1,200,20),
+                                max_evaluations_1 = scale(scale1,500,20),
                                 max_evaluations_2 = scale(scale2,500,10),
                                 num_selected_1 = scale(scale1,30,5),
                                 num_selected_2 = scale(scale2,30,5),
                                 num_offspring_1 = scale(scale1,20,5),
                                 num_offspring_2 = scale(scale2,20,5),
-                                mutation_rate = 0.1,
-                                num_elites = 2,
+                                mutation_rate = mutation_rate,
+                                num_elites = num_elites,
                                 simulator = simulator,
                                 nogui = nogui,
                                 show_plot_already = True,
-                                seed = 1234,
+                                seed = seed,
                                 known_target_values = {},
                                 dry_run = False)
                                 
@@ -582,13 +593,16 @@ if __name__ == '__main__':
         new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
         cell.id = new_id
         
+        cell.notes = "Cell model tuned to Allen Institute Cell Types Database, dataset: "+ \
+                     "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
+        
         new_cell_doc.cells.append(cell)
         new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
         
         channel_files = ['IM.channel.nml', 'Kd.channel.nml', 'Leak.channel.nml', 'Na.channel.nml']
         for ch in channel_files:
             new_cell_doc.includes.append(neuroml.IncludeType(ch))
-        
+            
         pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
 
 
