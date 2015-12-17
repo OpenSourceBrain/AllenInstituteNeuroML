@@ -13,6 +13,7 @@
         
     <Include file="NaTs.channel.nml"/>
     <Include file="Nap.channel.nml"/>
+    <Include file="NaV.channel.nml"/>
     
     <Include file="K_P.channel.nml"/>
     <Include file="K_T.channel.nml"/>

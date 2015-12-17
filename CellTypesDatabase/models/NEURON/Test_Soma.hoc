@@ -22,6 +22,9 @@ insert pas
 insert NaTs 
 { gbar_NaTs=0.831809}
 
+insert NaV
+{ gbar_NaV=0.1}
+
 insert na_ion 
 { ena=53}
 
