@@ -404,6 +404,8 @@ if __name__ == '__main__':
         simulator  = 'jNeuroML_NEURON'
         dataset = 471141261
         dataset = 464198958
+        dataset = 325941643
+        dataset = 464326095
         type = 'Izh'
         ref = 'network_%s_%s'%(dataset, type)
 
@@ -418,8 +420,8 @@ if __name__ == '__main__':
         
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
-        scale1 = 4
-        scale2 = 4
+        scale1 = 1
+        scale2 = 1
         mutation_rate = 0.9,
         num_elites = 5,
         seed = 1234,
@@ -523,6 +525,8 @@ if __name__ == '__main__':
         simulator  = 'jNeuroML_NEURON'
         dataset = 471141261
         dataset = 464198958
+        dataset = 325941643
+        dataset = 464326095
         type = 'HH'
         ref = 'network_%s_%s'%(dataset, type)
 
@@ -539,8 +543,8 @@ if __name__ == '__main__':
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
-        scale1 = 4
-        scale2 = 4
+        scale1 = 1
+        scale2 = 1
         mutation_rate = 0.9,
         num_elites = 5,
         seed = 1234,

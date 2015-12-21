@@ -97,21 +97,22 @@ if __name__ == '__main__':
     os.chdir('tuned_cells')
     
     nogui = '-nogui' in sys.argv
-    type = 'Izh'
     
-    dataset_id = 471141261
-    analyse_cell(dataset_id, type, nogui)
+    sys.path.append("../data")
+    import data_helper as DH
 
-    dataset_id = 464198958
-    analyse_cell(dataset_id, type, nogui)
-    
-    type = 'HH'
+    dataset_ids = DH.CURRENT_DATASETS
 
-    dataset_id = 471141261
-    analyse_cell(dataset_id, type, nogui)
-    
-    dataset_id = 464198958
-    analyse_cell(dataset_id, type, nogui)
+    for dataset_id in dataset_ids:
+
+        type = 'Izh'
+
+        analyse_cell(dataset_id, type, nogui)
+
+
+        type = 'HH'
+
+        analyse_cell(dataset_id, type, nogui)
     
     if not nogui:
         import matplotlib.pyplot as plt

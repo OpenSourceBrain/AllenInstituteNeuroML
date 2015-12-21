@@ -1,11 +1,18 @@
 <html>
     <title>Cell information</title>
-    
+    <head>
+    <style>
+    table {
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+    </style>
+    </head>
     <body>
         <p style="font-family:arial">${info}</p>
-        <table>
 #foreach ($dataset in $datasets)##
-            <tr>
+        <table border="1">
+            <tr> 
                 <td width="130px">
                     <p style="font-size:80%;font-family:arial"><b>${dataset.id}</b></p>
                     <p style="font-size:80%;font-family:arial"><a href="http://celltypes.brain-map.org/mouse/experiment/electrophysiology/${dataset.id}">Source data</a></p>
@@ -50,8 +57,9 @@
                 <a href="../../tune/tuned_cells/summary/HH_${dataset.id}_iv.png"><img alt="${dataset.id} subthreshold voltage vs current" src="../../tune/tuned_cells/summary/HH_${dataset.id}_iv.png" height="200"/></a>
                 </td>
             </tr>
+        </table> <br/>
+        <br/>
 #end##   
-        </table>
     </body>
 
 </html>

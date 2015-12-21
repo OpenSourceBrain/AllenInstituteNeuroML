@@ -11,7 +11,7 @@ sys.path.append("../data")
 import data_helper as DH
 
 
-def generate_network_for_sweeps(cell_type, dataset_id, cell_file_name, cell_id, target_dir):
+def generate_network_for_sweeps(cell_type, dataset_id, cell_file_name, cell_id, target_dir, data_dir="../../data"):
 
     target_sweep_numbers = DH.DATASET_TARGET_SWEEPS[dataset_id]
 
@@ -37,7 +37,7 @@ def generate_network_for_sweeps(cell_type, dataset_id, cell_file_name, cell_id, 
         pop.instances.append(neuroml.Instance(id=i,location=location))
 
     print target_sweep_numbers
-    f = "../../data/%s_analysis.json"%dataset_id
+    f = "%s/%s_analysis.json"%(data_dir,dataset_id)
     with open(f, "r") as json_file:
         data = json.load(json_file) 
 
@@ -86,4 +86,4 @@ if __name__ == '__main__':
 
         for dataset_id in DH.CURRENT_DATASETS:
             
-            generate_network_for_sweeps(cell_type, dataset_id, '%s.cell.nml'%cell_type, cell_id, 'prototypes/RS')
+            generate_network_for_sweeps(cell_type, dataset_id, '%s.cell.nml'%cell_type, cell_id, 'prototypes/RS', '../data')
