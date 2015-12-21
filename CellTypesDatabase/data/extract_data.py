@@ -17,7 +17,7 @@ pp = pprint.PrettyPrinter(indent=4)
 
 ct = CellTypesApi()
 
-plot = not '-nogui' in sys.argv
+plot = False# not '-nogui' in sys.argv
 test = '-test' in sys.argv
 
 dataset_ids = DH.CURRENT_DATASETS
