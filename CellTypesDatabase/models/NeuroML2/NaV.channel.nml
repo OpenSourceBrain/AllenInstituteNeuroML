@@ -31,13 +31,11 @@
             
             <closedState id="C1"/>
             <closedState id="C2"/>
-            <closedState id="C2"/>
             <closedState id="C3"/>
             <closedState id="C4"/>
             <closedState id="C5"/>
             
             <closedState id="I1"/>
-            <closedState id="I2"/>
             <closedState id="I2"/>
             <closedState id="I3"/>
             <closedState id="I4"/>
