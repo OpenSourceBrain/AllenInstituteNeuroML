@@ -2,3 +2,27 @@
 
 target: Test_NaV.hoc
 engine: NEURON
+mep: .test.nav.mep
+experiments:
+  C2:
+    observables:
+      spike times:
+        file: 
+          path: Soma.states.dat
+          columns: [0,3]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.2
+        tolerance: 0
+  I4:
+    observables:
+      spike times:
+        file: 
+          path: Soma.states.dat
+          columns: [0,10]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.03
+        tolerance: 0

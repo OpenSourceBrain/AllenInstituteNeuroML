@@ -2,16 +2,27 @@
 
 target: LEMS_NaV.xml
 engine: jNeuroML
-#mep: ../NEURON/.test.mep
-#experiments:
-#  Current clamp:
-#    observables:
-#      spike times:
-#        file: 
-#          path: CG_TestCML_0.dat
-#          columns: [0,1]
-#          scaling: [1000, 1000]
-#        spike detection: 
-#          method: threshold
-#          threshold: 0
-#        tolerance: 0.00047
+mep: ../NEURON/.test.nav.mep
+experiments:
+  C2:
+    observables:
+      spike times:
+        file: 
+          path: NaV.states.dat
+          columns: [0,3]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.2
+        tolerance: 1e-4
+  I4:
+    observables:
+      spike times:
+        file: 
+          path: NaV.states.dat
+          columns: [0,10]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.03
+        tolerance: 1e-4

@@ -1,0 +1,10 @@
+system: Testing a single compartment cell
+
+experiments:
+  C2:
+    expected:
+      spike times: [301.75, 407.688]
+  I4:
+    expected:
+      spike times: [305.263, 403.188]
+
