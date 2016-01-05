@@ -131,30 +131,39 @@ for model_id in cell_dirs:
             chan_name = 'pas'
         if chan['mechanism'] != 'CaDynamics':
             erev = '??'
+            ion = '??'
             if chan_name == 'pas':
                 erev = '%s mV'%cell_info['passive'][0]['e_pas']
+                ion = 'non_specific'
             elif chan['mechanism'].startswith('Na'):
                 erev = '%s mV'%cell_info['conditions'][0]['erev'][0]['ena']
-            elif chan['mechanism'].startswith('K') or chan['mechanism'].startswith('SK'):
+                ion = 'na'
+            elif chan['mechanism'].startswith('K') or chan['mechanism'] == 'SK' or chan['mechanism'] == 'Im':
                 erev = '%s mV'%cell_info['conditions'][0]['erev'][0]['ek']
-            elif chan['mechanism'].startswith('I'):
+                ion = 'k'
+            elif chan['mechanism'] == 'Ih':
                 erev = '-45 mV'
+                ion = 'hcn'
+            elif chan['mechanism'].startswith('Ca'):
+                ion = 'ca'
                 
-            
             if chan['mechanism'] == 'Ca_HVA' or chan['mechanism'] == 'Ca_LVA':
                 
                 cdn = neuroml.ChannelDensityNernst(id='%s_%s'%(chan_name, chan['section']),
                                             ion_channel=chan_name,
                                             segment_groups=chan['section'],
-                                            cond_density='%s S_per_cm2'%float(chan['value']))
+                                            cond_density='%s S_per_cm2'%float(chan['value']),
+                                            ion = ion)
                 membrane_properties.channel_density_nernsts.append(cdn)
             else:
                 cd = neuroml.ChannelDensity(id='%s_%s'%(chan_name, chan['section']),
                                             ion_channel=chan_name,
                                             segment_groups=chan['section'],
                                             cond_density='%s S_per_cm2'%float(chan['value']),
-                                            erev=erev)
+                                            erev=erev,
+                                            ion = ion)
                 membrane_properties.channel_densities.append(cd)
+                
    
     inc_chans =[]
     for cd in membrane_properties.channel_densities:

@@ -7,6 +7,7 @@
 /CellTypesDatabase/data/471141261_raw_data.nwb
 /CellTypesDatabase/*.png
 /CellTypesDatabase/info
+/CellTypesDatabase/models/attic
 /CellTypesDatabase/models/*.log
 /CellTypesDatabase/models/NEURON/*.dat
 /CellTypesDatabase/models/NEURON/old
