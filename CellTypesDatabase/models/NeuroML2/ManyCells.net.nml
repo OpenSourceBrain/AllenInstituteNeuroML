@@ -1,57 +1,297 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="ManyCells">
+    <include href="Cell_472912177.cell.nml"></include>
+    <include href="Cell_472306544.cell.nml"></include>
+    <include href="Cell_472440759.cell.nml"></include>
+    <include href="Cell_472299363.cell.nml"></include>
+    <include href="Cell_471081668.cell.nml"></include>
     <include href="Cell_473561729.cell.nml"></include>
+    <include href="Cell_472306460.cell.nml"></include>
+    <include href="Cell_473871592.cell.nml"></include>
+    <include href="Cell_473862845.cell.nml"></include>
+    <include href="Cell_473871773.cell.nml"></include>
+    <include href="Cell_329322394.cell.nml"></include>
     <include href="Cell_472442377.cell.nml"></include>
     <include href="Cell_472363762.cell.nml"></include>
+    <include href="Cell_473862421.cell.nml"></include>
+    <include href="Cell_473860269.cell.nml"></include>
+    <include href="Cell_329321704.cell.nml"></include>
+    <include href="Cell_473863578.cell.nml"></include>
+    <include href="Cell_472915634.cell.nml"></include>
+    <include href="Cell_472304539.cell.nml"></include>
+    <include href="Cell_473835796.cell.nml"></include>
+    <include href="Cell_473834758.cell.nml"></include>
+    <include href="Cell_472299294.cell.nml"></include>
+    <include href="Cell_473862496.cell.nml"></include>
     <include href="Cell_472421285.cell.nml"></include>
+    <include href="Cell_472912107.cell.nml"></include>
     <include href="Cell_472424854.cell.nml"></include>
+    <include href="Cell_472352327.cell.nml"></include>
+    <include href="Cell_472349114.cell.nml"></include>
+    <include href="Cell_472450023.cell.nml"></include>
     <include href="Cell_473863035.cell.nml"></include>
+    <include href="Cell_473871429.cell.nml"></include>
     <include href="Cell_472300877.cell.nml"></include>
+    <include href="Cell_472301074.cell.nml"></include>
     <include href="Cell_473561660.cell.nml"></include>
+    <include href="Cell_473465456.cell.nml"></include>
+    <include href="Cell_473465774.cell.nml"></include>
+    <include href="Cell_473863510.cell.nml"></include>
+    <include href="Cell_471085845.cell.nml"></include>
+    <include href="Cell_472447460.cell.nml"></include>
+    <include href="Cell_473872986.cell.nml"></include>
+    <include href="Cell_472304676.cell.nml"></include>
     <include href="Cell_472451419.cell.nml"></include>
+    <include href="Cell_471086533.cell.nml"></include>
+    <include href="Cell_472430904.cell.nml"></include>
+    <include href="Cell_472455509.cell.nml"></include>
+    <include href="Cell_472427533.cell.nml"></include>
+    <include href="Cell_472306616.cell.nml"></include>
+    <include href="Cell_471087975.cell.nml"></include>
+    <include href="Cell_472434498.cell.nml"></include>
     <network id="ManyCells">
-        <population id="Pop_473561729" type="populationList" component="Cell_473561729">
+        <population id="Pop_472912177" type="populationList" component="Cell_472912177">
             <instance id="0">
                 <location y="0." x="0." z="0."/>
             </instance>
         </population>
-        <population id="Pop_472442377" type="populationList" component="Cell_472442377">
+        <population id="Pop_472306544" type="populationList" component="Cell_472306544">
             <instance id="0">
                 <location y="0." x="300." z="0."/>
             </instance>
         </population>
-        <population id="Pop_472363762" type="populationList" component="Cell_472363762">
+        <population id="Pop_472440759" type="populationList" component="Cell_472440759">
             <instance id="0">
                 <location y="0." x="600." z="0."/>
             </instance>
         </population>
-        <population id="Pop_472421285" type="populationList" component="Cell_472421285">
+        <population id="Pop_472299363" type="populationList" component="Cell_472299363">
             <instance id="0">
                 <location y="0." x="900." z="0."/>
             </instance>
         </population>
-        <population id="Pop_472424854" type="populationList" component="Cell_472424854">
+        <population id="Pop_471081668" type="populationList" component="Cell_471081668">
             <instance id="0">
                 <location y="0." x="1200." z="0."/>
             </instance>
         </population>
-        <population id="Pop_473863035" type="populationList" component="Cell_473863035">
+        <population id="Pop_473561729" type="populationList" component="Cell_473561729">
             <instance id="0">
                 <location y="0." x="1500." z="0."/>
             </instance>
         </population>
-        <population id="Pop_472300877" type="populationList" component="Cell_472300877">
+        <population id="Pop_472306460" type="populationList" component="Cell_472306460">
             <instance id="0">
                 <location y="0." x="1800." z="0."/>
             </instance>
         </population>
-        <population id="Pop_473561660" type="populationList" component="Cell_473561660">
+        <population id="Pop_473871592" type="populationList" component="Cell_473871592">
             <instance id="0">
                 <location y="0." x="0." z="300."/>
             </instance>
         </population>
-        <population id="Pop_472451419" type="populationList" component="Cell_472451419">
+        <population id="Pop_473862845" type="populationList" component="Cell_473862845">
             <instance id="0">
                 <location y="0." x="300." z="300."/>
+            </instance>
+        </population>
+        <population id="Pop_473871773" type="populationList" component="Cell_473871773">
+            <instance id="0">
+                <location y="0." x="600." z="300."/>
+            </instance>
+        </population>
+        <population id="Pop_329322394" type="populationList" component="Cell_329322394">
+            <instance id="0">
+                <location y="0." x="900." z="300."/>
+            </instance>
+        </population>
+        <population id="Pop_472442377" type="populationList" component="Cell_472442377">
+            <instance id="0">
+                <location y="0." x="1200." z="300."/>
+            </instance>
+        </population>
+        <population id="Pop_472363762" type="populationList" component="Cell_472363762">
+            <instance id="0">
+                <location y="0." x="1500." z="300."/>
+            </instance>
+        </population>
+        <population id="Pop_473862421" type="populationList" component="Cell_473862421">
+            <instance id="0">
+                <location y="0." x="1800." z="300."/>
+            </instance>
+        </population>
+        <population id="Pop_473860269" type="populationList" component="Cell_473860269">
+            <instance id="0">
+                <location y="0." x="0." z="600."/>
+            </instance>
+        </population>
+        <population id="Pop_329321704" type="populationList" component="Cell_329321704">
+            <instance id="0">
+                <location y="0." x="300." z="600."/>
+            </instance>
+        </population>
+        <population id="Pop_473863578" type="populationList" component="Cell_473863578">
+            <instance id="0">
+                <location y="0." x="600." z="600."/>
+            </instance>
+        </population>
+        <population id="Pop_472915634" type="populationList" component="Cell_472915634">
+            <instance id="0">
+                <location y="0." x="900." z="600."/>
+            </instance>
+        </population>
+        <population id="Pop_472304539" type="populationList" component="Cell_472304539">
+            <instance id="0">
+                <location y="0." x="1200." z="600."/>
+            </instance>
+        </population>
+        <population id="Pop_473835796" type="populationList" component="Cell_473835796">
+            <instance id="0">
+                <location y="0." x="1500." z="600."/>
+            </instance>
+        </population>
+        <population id="Pop_473834758" type="populationList" component="Cell_473834758">
+            <instance id="0">
+                <location y="0." x="1800." z="600."/>
+            </instance>
+        </population>
+        <population id="Pop_472299294" type="populationList" component="Cell_472299294">
+            <instance id="0">
+                <location y="0." x="0." z="900."/>
+            </instance>
+        </population>
+        <population id="Pop_473862496" type="populationList" component="Cell_473862496">
+            <instance id="0">
+                <location y="0." x="300." z="900."/>
+            </instance>
+        </population>
+        <population id="Pop_472421285" type="populationList" component="Cell_472421285">
+            <instance id="0">
+                <location y="0." x="600." z="900."/>
+            </instance>
+        </population>
+        <population id="Pop_472912107" type="populationList" component="Cell_472912107">
+            <instance id="0">
+                <location y="0." x="900." z="900."/>
+            </instance>
+        </population>
+        <population id="Pop_472424854" type="populationList" component="Cell_472424854">
+            <instance id="0">
+                <location y="0." x="1200." z="900."/>
+            </instance>
+        </population>
+        <population id="Pop_472352327" type="populationList" component="Cell_472352327">
+            <instance id="0">
+                <location y="0." x="1500." z="900."/>
+            </instance>
+        </population>
+        <population id="Pop_472349114" type="populationList" component="Cell_472349114">
+            <instance id="0">
+                <location y="0." x="1800." z="900."/>
+            </instance>
+        </population>
+        <population id="Pop_472450023" type="populationList" component="Cell_472450023">
+            <instance id="0">
+                <location y="0." x="0." z="1200."/>
+            </instance>
+        </population>
+        <population id="Pop_473863035" type="populationList" component="Cell_473863035">
+            <instance id="0">
+                <location y="0." x="300." z="1200."/>
+            </instance>
+        </population>
+        <population id="Pop_473871429" type="populationList" component="Cell_473871429">
+            <instance id="0">
+                <location y="0." x="600." z="1200."/>
+            </instance>
+        </population>
+        <population id="Pop_472300877" type="populationList" component="Cell_472300877">
+            <instance id="0">
+                <location y="0." x="900." z="1200."/>
+            </instance>
+        </population>
+        <population id="Pop_472301074" type="populationList" component="Cell_472301074">
+            <instance id="0">
+                <location y="0." x="1200." z="1200."/>
+            </instance>
+        </population>
+        <population id="Pop_473561660" type="populationList" component="Cell_473561660">
+            <instance id="0">
+                <location y="0." x="1500." z="1200."/>
+            </instance>
+        </population>
+        <population id="Pop_473465456" type="populationList" component="Cell_473465456">
+            <instance id="0">
+                <location y="0." x="1800." z="1200."/>
+            </instance>
+        </population>
+        <population id="Pop_473465774" type="populationList" component="Cell_473465774">
+            <instance id="0">
+                <location y="0." x="0." z="1500."/>
+            </instance>
+        </population>
+        <population id="Pop_473863510" type="populationList" component="Cell_473863510">
+            <instance id="0">
+                <location y="0." x="300." z="1500."/>
+            </instance>
+        </population>
+        <population id="Pop_471085845" type="populationList" component="Cell_471085845">
+            <instance id="0">
+                <location y="0." x="600." z="1500."/>
+            </instance>
+        </population>
+        <population id="Pop_472447460" type="populationList" component="Cell_472447460">
+            <instance id="0">
+                <location y="0." x="900." z="1500."/>
+            </instance>
+        </population>
+        <population id="Pop_473872986" type="populationList" component="Cell_473872986">
+            <instance id="0">
+                <location y="0." x="1200." z="1500."/>
+            </instance>
+        </population>
+        <population id="Pop_472304676" type="populationList" component="Cell_472304676">
+            <instance id="0">
+                <location y="0." x="1500." z="1500."/>
+            </instance>
+        </population>
+        <population id="Pop_472451419" type="populationList" component="Cell_472451419">
+            <instance id="0">
+                <location y="0." x="1800." z="1500."/>
+            </instance>
+        </population>
+        <population id="Pop_471086533" type="populationList" component="Cell_471086533">
+            <instance id="0">
+                <location y="0." x="0." z="1800."/>
+            </instance>
+        </population>
+        <population id="Pop_472430904" type="populationList" component="Cell_472430904">
+            <instance id="0">
+                <location y="0." x="300." z="1800."/>
+            </instance>
+        </population>
+        <population id="Pop_472455509" type="populationList" component="Cell_472455509">
+            <instance id="0">
+                <location y="0." x="600." z="1800."/>
+            </instance>
+        </population>
+        <population id="Pop_472427533" type="populationList" component="Cell_472427533">
+            <instance id="0">
+                <location y="0." x="900." z="1800."/>
+            </instance>
+        </population>
+        <population id="Pop_472306616" type="populationList" component="Cell_472306616">
+            <instance id="0">
+                <location y="0." x="1200." z="1800."/>
+            </instance>
+        </population>
+        <population id="Pop_471087975" type="populationList" component="Cell_471087975">
+            <instance id="0">
+                <location y="0." x="1500." z="1800."/>
+            </instance>
+        </population>
+        <population id="Pop_472434498" type="populationList" component="Cell_472434498">
+            <instance id="0">
+                <location y="0." x="1800." z="1800."/>
             </instance>
         </population>
     </network>

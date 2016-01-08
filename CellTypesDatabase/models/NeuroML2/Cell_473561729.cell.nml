@@ -9702,7 +9702,7 @@ Export of a cell model (473561729) obtained from the Allen Institute Cell Types 
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="OneSecGrp_SectionRef_1">
+            <segmentGroup id="OneSecGrp_SectionRef_2033">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
         </morphology>

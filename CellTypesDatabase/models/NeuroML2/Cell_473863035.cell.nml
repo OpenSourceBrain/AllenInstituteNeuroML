@@ -7893,12 +7893,12 @@ Export of a cell model (473863035) obtained from the Allen Institute Cell Types 
             <segmentGroup id="soma">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_60">
+            <segmentGroup id="ModelViewParmSubset_330">
                 <include segmentGroup="soma_0"/>
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_61">
+            <segmentGroup id="ModelViewParmSubset_331">
                 <include segmentGroup="dend_26"/>
                 <include segmentGroup="apic_0"/>
                 <include segmentGroup="dend_17"/>
@@ -7980,7 +7980,7 @@ Export of a cell model (473863035) obtained from the Allen Institute Cell Types 
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="OneSecGrp_SectionRef_3065">
+            <segmentGroup id="OneSecGrp_SectionRef_15161">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
         </morphology>
