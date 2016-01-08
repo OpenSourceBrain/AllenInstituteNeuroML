@@ -1,6 +1,27 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="NeuroML2_file_exported_from_NEURON">
+    <include href="Im.channel.nml"></include>
+    <include href="Ih.channel.nml"></include>
+    <include href="NaTs.channel.nml"></include>
+    <include href="Nap.channel.nml"></include>
+    <include href="K_P.channel.nml"></include>
+    <include href="K_T.channel.nml"></include>
+    <include href="SK.channel.nml"></include>
+    <include href="Kv3_1.channel.nml"></include>
+    <include href="pas.channel.nml"></include>
+    <include href="Ca_HVA.channel.nml"></include>
+    <include href="Ca_LVA.channel.nml"></include>
+    <include href="CaDynamics.nml"></include>
     <cell id="ROTATED_Cell_473871592">
-        <notes>Cell: Cell0 exported from NEURON ModelView</notes>
+        <notes>
+
+Export of a cell model (473871592) obtained from the Allen Institute Cell Types Database into NeuroML2
+
+******************************************************
+*  This export to NeuroML2 has not yet been fully validated!!
+*  Use with caution!!
+******************************************************
+
+</notes>
         <morphology id="morphology">
             <segment id="0" name="Seg0_soma_0">
                 <proximal y="0.000000e+00" x="-0.000000e+00" z="4.088000e+01" diameter="1.314860e+01"/>
@@ -19268,12 +19289,12 @@
             <segmentGroup id="soma">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_316">
+            <segmentGroup id="ModelViewParmSubset_70">
                 <include segmentGroup="soma_0"/>
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_317">
+            <segmentGroup id="ModelViewParmSubset_71">
                 <include segmentGroup="dend_30"/>
                 <include segmentGroup="dend_29"/>
                 <include segmentGroup="dend_28"/>
@@ -19427,26 +19448,26 @@
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="OneSecGrp_SectionRef_14369">
+            <segmentGroup id="OneSecGrp_SectionRef_3521">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
         </morphology>
         <biophysicalProperties id="biophys">
             <membraneProperties>
-                <channelDensity id="Im_soma" segmentGroup="soma" ionChannel="Im" erev="-45 mV" condDensity="0.0013408285606 S_per_cm2"/>
-                <channelDensity id="Ih_soma" segmentGroup="soma" ionChannel="Ih" erev="-45 mV" condDensity="5.51769629746e-05 S_per_cm2"/>
-                <channelDensity id="NaTs_soma" segmentGroup="soma" ionChannel="NaTs" erev="53.0 mV" condDensity="0.342697665941 S_per_cm2"/>
-                <channelDensity id="Nap_soma" segmentGroup="soma" ionChannel="Nap" erev="53.0 mV" condDensity="0.00080758111823 S_per_cm2"/>
-                <channelDensity id="K_P_soma" segmentGroup="soma" ionChannel="K_P" erev="-107.0 mV" condDensity="0.0520026756909 S_per_cm2"/>
-                <channelDensity id="K_T_soma" segmentGroup="soma" ionChannel="K_T" erev="-107.0 mV" condDensity="0.00230791525589 S_per_cm2"/>
-                <channelDensity id="SK_soma" segmentGroup="soma" ionChannel="SK" erev="-107.0 mV" condDensity="0.000122074019087 S_per_cm2"/>
-                <channelDensity id="Kv3_1_soma" segmentGroup="soma" ionChannel="Kv3_1" erev="-107.0 mV" condDensity="0.0112768761784 S_per_cm2"/>
-                <channelDensity id="pas_soma" segmentGroup="soma" ionChannel="pas" erev="-85.204750061 mV" condDensity="0.000383038194691 S_per_cm2"/>
-                <channelDensity id="pas_axon" segmentGroup="axon" ionChannel="pas" erev="-85.204750061 mV" condDensity="0.00076016120237 S_per_cm2"/>
-                <channelDensity id="pas_dend" segmentGroup="dend" ionChannel="pas" erev="-85.204750061 mV" condDensity="9.96045940202e-05 S_per_cm2"/>
-                <channelDensity id="pas_apic" segmentGroup="apic" ionChannel="pas" erev="-85.204750061 mV" condDensity="0.000313701962891 S_per_cm2"/>
-                <channelDensityNernst id="Ca_HVA_soma" ionChannel="Ca_HVA" condDensity="0.000967165473156 S_per_cm2" segmentGroup="soma"/>
-                <channelDensityNernst id="Ca_LVA_soma" ionChannel="Ca_LVA" condDensity="0.00680874682429 S_per_cm2" segmentGroup="soma"/>
+                <channelDensity id="Im_soma" segmentGroup="soma" ion="k" ionChannel="Im" erev="-107.0 mV" condDensity="0.0013408285606 S_per_cm2"/>
+                <channelDensity id="Ih_soma" segmentGroup="soma" ion="hcn" ionChannel="Ih" erev="-45 mV" condDensity="5.51769629746e-05 S_per_cm2"/>
+                <channelDensity id="NaTs_soma" segmentGroup="soma" ion="na" ionChannel="NaTs" erev="53.0 mV" condDensity="0.342697665941 S_per_cm2"/>
+                <channelDensity id="Nap_soma" segmentGroup="soma" ion="na" ionChannel="Nap" erev="53.0 mV" condDensity="0.00080758111823 S_per_cm2"/>
+                <channelDensity id="K_P_soma" segmentGroup="soma" ion="k" ionChannel="K_P" erev="-107.0 mV" condDensity="0.0520026756909 S_per_cm2"/>
+                <channelDensity id="K_T_soma" segmentGroup="soma" ion="k" ionChannel="K_T" erev="-107.0 mV" condDensity="0.00230791525589 S_per_cm2"/>
+                <channelDensity id="SK_soma" segmentGroup="soma" ion="k" ionChannel="SK" erev="-107.0 mV" condDensity="0.000122074019087 S_per_cm2"/>
+                <channelDensity id="Kv3_1_soma" segmentGroup="soma" ion="k" ionChannel="Kv3_1" erev="-107.0 mV" condDensity="0.0112768761784 S_per_cm2"/>
+                <channelDensity id="pas_soma" segmentGroup="soma" ion="non_specific" ionChannel="pas" erev="-85.204750061 mV" condDensity="0.000383038194691 S_per_cm2"/>
+                <channelDensity id="pas_axon" segmentGroup="axon" ion="non_specific" ionChannel="pas" erev="-85.204750061 mV" condDensity="0.00076016120237 S_per_cm2"/>
+                <channelDensity id="pas_dend" segmentGroup="dend" ion="non_specific" ionChannel="pas" erev="-85.204750061 mV" condDensity="9.96045940202e-05 S_per_cm2"/>
+                <channelDensity id="pas_apic" segmentGroup="apic" ion="non_specific" ionChannel="pas" erev="-85.204750061 mV" condDensity="0.000313701962891 S_per_cm2"/>
+                <channelDensityNernst id="Ca_HVA_soma" ionChannel="Ca_HVA" condDensity="0.000967165473156 S_per_cm2" segmentGroup="soma" ion="ca"/>
+                <channelDensityNernst id="Ca_LVA_soma" ionChannel="Ca_LVA" condDensity="0.00680874682429 S_per_cm2" segmentGroup="soma" ion="ca"/>
                 <specificCapacitance segmentGroup="soma" value="1.0 uF_per_cm2"/>
                 <specificCapacitance segmentGroup="axon" value="1.0 uF_per_cm2"/>
                 <specificCapacitance segmentGroup="apic" value="2.0 uF_per_cm2"/>
