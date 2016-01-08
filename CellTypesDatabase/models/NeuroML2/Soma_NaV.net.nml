@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" 
          id="network_Soma">
 
-
-
+    <include href="Soma_NaV.cell.nml"/>
+    
     <pulseGenerator id="Input_4" delay="300.0ms" duration="100.0ms" amplitude="5E-5uA"/>
     <pulseGenerator id="Input_3" delay="100.0ms" duration="100.0ms" amplitude="-1.0E-5uA"/>
 
