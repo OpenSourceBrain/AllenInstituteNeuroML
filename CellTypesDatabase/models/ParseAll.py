@@ -138,7 +138,7 @@ for model_id in cell_dirs:
             elif chan['mechanism'].startswith('Na'):
                 erev = '%s mV'%cell_info['conditions'][0]['erev'][0]['ena']
                 ion = 'na'
-            elif chan['mechanism'].startswith('K') or chan['mechanism'] == 'SK' or chan['mechanism'] == 'Im':
+            elif chan['mechanism'].startswith('K') or chan['mechanism'] == 'SK' or chan['mechanism'].startswith('Im'):
                 erev = '%s mV'%cell_info['conditions'][0]['erev'][0]['ek']
                 ion = 'k'
             elif chan['mechanism'] == 'Ih':

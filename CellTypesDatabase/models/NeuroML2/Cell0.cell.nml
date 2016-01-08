@@ -10338,7 +10338,7 @@
         <member segment = "1283"/>
       </segmentGroup>
 
-      <segmentGroup id="all"> <!-- Replacing subset name ModelViewParmSubset_0 with all, as it contains all sections -->
+      <segmentGroup id="all"> <!-- Replacing subset name ModelViewParmSubset_94 with all, as it contains all sections -->
         <include segmentGroup = "soma_0"/>
         <include segmentGroup = "axon_0"/>
         <include segmentGroup = "dend_13"/>
@@ -10388,17 +10388,17 @@
         <include segmentGroup = "apic_9"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_1"> 
+      <segmentGroup id="ModelViewParmSubset_95"> 
         <include segmentGroup = "soma_0"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_2"> 
+      <segmentGroup id="ModelViewParmSubset_96"> 
         <include segmentGroup = "soma_0"/>
         <include segmentGroup = "axon_0"/>
         <include segmentGroup = "axon_1"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_3"> 
+      <segmentGroup id="ModelViewParmSubset_97"> 
         <include segmentGroup = "dend_13"/>
         <include segmentGroup = "dend_12"/>
         <include segmentGroup = "dend_11"/>
@@ -10445,7 +10445,7 @@
         <include segmentGroup = "apic_9"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_4"> 
+      <segmentGroup id="ModelViewParmSubset_98"> 
         <include segmentGroup = "dend_13"/>
         <include segmentGroup = "dend_12"/>
         <include segmentGroup = "dend_11"/>
@@ -10469,7 +10469,7 @@
         <include segmentGroup = "dend_3"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_5"> 
+      <segmentGroup id="ModelViewParmSubset_99"> 
         <include segmentGroup = "apic_0"/>
         <include segmentGroup = "apic_22"/>
         <include segmentGroup = "apic_1"/>
@@ -10495,12 +10495,12 @@
         <include segmentGroup = "apic_9"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_6"> 
+      <segmentGroup id="ModelViewParmSubset_100"> 
         <include segmentGroup = "axon_0"/>
         <include segmentGroup = "axon_1"/>
       </segmentGroup>
 
-      <segmentGroup id="OneSecGrp_SectionRef_1"> <!-- Creating a group containing a single section: soma_0... -->
+      <segmentGroup id="OneSecGrp_SectionRef_5209"> <!-- Creating a group containing a single section: soma_0... -->
         <include segmentGroup = "soma_0"/>
       </segmentGroup>
 

@@ -1,9 +1,57 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="ManyCells">
+    <include href="Cell_473561729.cell.nml"></include>
+    <include href="Cell_472442377.cell.nml"></include>
+    <include href="Cell_472363762.cell.nml"></include>
+    <include href="Cell_472421285.cell.nml"></include>
+    <include href="Cell_472424854.cell.nml"></include>
+    <include href="Cell_473863035.cell.nml"></include>
+    <include href="Cell_472300877.cell.nml"></include>
+    <include href="Cell_473561660.cell.nml"></include>
     <include href="Cell_472451419.cell.nml"></include>
     <network id="ManyCells">
-        <population id="Pop_472451419" type="populationList" component="Cell_472451419">
+        <population id="Pop_473561729" type="populationList" component="Cell_473561729">
             <instance id="0">
                 <location y="0." x="0." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_472442377" type="populationList" component="Cell_472442377">
+            <instance id="0">
+                <location y="0." x="300." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_472363762" type="populationList" component="Cell_472363762">
+            <instance id="0">
+                <location y="0." x="600." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_472421285" type="populationList" component="Cell_472421285">
+            <instance id="0">
+                <location y="0." x="900." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_472424854" type="populationList" component="Cell_472424854">
+            <instance id="0">
+                <location y="0." x="1200." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_473863035" type="populationList" component="Cell_473863035">
+            <instance id="0">
+                <location y="0." x="1500." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_472300877" type="populationList" component="Cell_472300877">
+            <instance id="0">
+                <location y="0." x="1800." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_473561660" type="populationList" component="Cell_473561660">
+            <instance id="0">
+                <location y="0." x="0." z="300."/>
+            </instance>
+        </population>
+        <population id="Pop_472451419" type="populationList" component="Cell_472451419">
+            <instance id="0">
+                <location y="0." x="300." z="300."/>
             </instance>
         </population>
     </network>

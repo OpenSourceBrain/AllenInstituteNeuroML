@@ -1,0 +1,44 @@
+<Lems>
+    
+    <!-- 
+
+        This LEMS file has been automatically generated using PyNeuroML v0.1.7 (libNeuroML v0.2.11)
+
+     -->
+    
+    <!-- Specify which component to run -->
+    <Target component="472424854"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="Network_472424854.net.nml"/>
+    <Include file="Cell_472424854.cell.nml"/>
+    <Include file="Im.channel.nml"/>
+    <Include file="Ih.channel.nml"/>
+    <Include file="NaTs.channel.nml"/>
+    <Include file="Nap.channel.nml"/>
+    <Include file="K_P.channel.nml"/>
+    <Include file="K_T.channel.nml"/>
+    <Include file="SK.channel.nml"/>
+    <Include file="Kv3_1.channel.nml"/>
+    <Include file="pas.channel.nml"/>
+    <Include file="Ca_HVA.channel.nml"/>
+    <Include file="Ca_LVA.channel.nml"/>
+    <Include file="CaDynamics.nml"/>
+   
+    <Simulation id="472424854" length="1500ms" step="0.025ms" target="network">
+        
+        <Display id="DispPop__Pop_Cell_472424854" title="Voltages of DispPop__Pop_Cell_472424854" timeScale="1ms" xmin="-150.0" xmax="1650.0" ymin="-90" ymax="50">
+            <Line id="v Pop_Cell_472424854_0_Cell_472424854_v" quantity="Pop_Cell_472424854/0/Cell_472424854/v" scale="1mV" color="#f7697f" timeScale="1ms"/>
+        </Display>
+        
+        <OutputFile id="Volts_file__Pop_Cell_472424854" fileName="472424854.Pop_Cell_472424854.v.dat">
+            <OutputColumn id="v_Pop_Cell_472424854_0_Cell_472424854_v" quantity="Pop_Cell_472424854/0/Cell_472424854/v"/> 
+        </OutputFile>
+        
+    </Simulation>
+
+</Lems>
