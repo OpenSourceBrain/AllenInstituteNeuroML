@@ -1,7 +1,9 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="dipde_example">
+    <iafCell id="generic_iaf_cell" reset="-70mV" C="0.2nF" thresh="-50mV" leakConductance="0.01uS" leakReversal="-70mV"/>
+    
     <network id="dipde_example" type="network">
         <notes>Network generated using libNeuroML v0.2.11</notes>
-        <population id="a_0" type="populationList" component="iafCell" size="1">
+        <population id="a_0" type="populationList" component="generic_iaf_cell" size="1">
             <instance id="0">
                 <location y="0." x="0." z="0."/>
             </instance>
