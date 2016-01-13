@@ -6,6 +6,9 @@
             <instance id="0">
                 <location y="0." x="0." z="0."/>
             </instance>
+            <instance id="1">
+                <location y="0." x="1." z="0."/>
+            </instance>
         </population>
     </network>
 </neuroml>
