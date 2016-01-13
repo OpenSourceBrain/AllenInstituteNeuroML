@@ -2,7 +2,7 @@
     <iafCell id="iaf0" reset="-65mV" C="1.0 nF" thresh="-50mV" leakConductance="10 nS" leakReversal="-65mV"/>
     <network id="dipde_example" type="network">
         <notes>Network generated using libNeuroML v0.2.11</notes>
-        <population id="a_0" type="populationList" component="iaf0" size="1">
+        <population id="a_0" type="populationList" component="iaf0" size="3">
             <instance id="0">
                 <location y="0." x="0." z="0."/>
             </instance>
