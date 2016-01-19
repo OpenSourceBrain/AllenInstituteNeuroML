@@ -1,0 +1,256 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="LargeNet">
+    <include href="ROTATED_Cell_473862496.cell.nml"></include>
+    <include href="ROTATED_Cell_472427533.cell.nml"></include>
+    <include href="ROTATED_Cell_473871773.cell.nml"></include>
+    <include href="ROTATED_Cell_473871592.cell.nml"></include>
+    <network id="LargeNet">
+        <population id="Pop_ROTATED_Cell_473862496" type="populationList" component="ROTATED_Cell_473862496">
+            <instance id="0">
+                <location y="-33.411897741491003" x="131.82945713108856" z="29.00028081817424"/>
+            </instance>
+            <instance id="1">
+                <location y="-80.967529457088389" x="302.65370484461323" z="388.607910240924184"/>
+            </instance>
+            <instance id="2">
+                <location y="-178.442254494062837" x="205.59672006721874" z="256.331274336720185"/>
+            </instance>
+            <instance id="3">
+                <location y="-198.498060878182116" x="261.552353034939699" z="71.524950828958097"/>
+            </instance>
+            <instance id="4">
+                <location y="-139.465168339030015" x="376.604668905765379" z="456.561420645015062"/>
+            </instance>
+            <instance id="5">
+                <location y="-15.311447460079197" x="42.945007671087332" z="209.377256931359511"/>
+            </instance>
+            <instance id="6">
+                <location y="-136.334602250631832" x="58.51166232135602" z="333.81353743537926"/>
+            </instance>
+            <instance id="7">
+                <location y="-105.259953723618167" x="64.388250434609773" z="32.693351854858662"/>
+            </instance>
+            <instance id="8">
+                <location y="-123.81394302867254" x="38.864368089168934" z="149.59773053836102"/>
+            </instance>
+            <instance id="9">
+                <location y="-135.244573486374804" x="121.00140934979575" z="292.691295702619811"/>
+            </instance>
+            <instance id="10">
+                <location y="-146.834384629414444" x="65.964097930102156" z="140.443429318004291"/>
+            </instance>
+            <instance id="11">
+                <location y="-177.966511404601192" x="147.371087541727178" z="498.17290541988632"/>
+            </instance>
+            <instance id="12">
+                <location y="-15.884851267036669" x="255.252027164045103" z="212.52781716188386"/>
+            </instance>
+            <instance id="13">
+                <location y="-21.087792617727352" x="440.286780160326316" z="93.916496676644982"/>
+            </instance>
+            <instance id="14">
+                <location y="-139.504206548797868" x="119.029754649466085" z="488.409333704067933"/>
+            </instance>
+            <instance id="15">
+                <location y="-78.955896528738606" x="21.357075352546552" z="88.029133024268617"/>
+            </instance>
+            <instance id="16">
+                <location y="-176.935790222652571" x="16.001045004873482" z="475.689336647029336"/>
+            </instance>
+            <instance id="17">
+                <location y="-180.193158742342234" x="389.670119700862926" z="190.706915546747354"/>
+            </instance>
+            <instance id="18">
+                <location y="-158.771010439102895" x="158.460281263090366" z="446.700254039641663"/>
+            </instance>
+            <instance id="19">
+                <location y="-134.662456042929847" x="59.763405780497877" z="157.048057538982704"/>
+            </instance>
+        </population>
+        <population id="Pop_ROTATED_Cell_472427533" type="populationList" component="ROTATED_Cell_472427533">
+            <instance id="0">
+                <location y="-279.410013055365596" x="85.965381666080759" z="270.149016349518831"/>
+            </instance>
+            <instance id="1">
+                <location y="-319.504241800608725" x="79.245950847040774" z="177.404324705101743"/>
+            </instance>
+            <instance id="2">
+                <location y="-337.636771947512443" x="287.478305500884801" z="187.131914152228859"/>
+            </instance>
+            <instance id="3">
+                <location y="-270.593443384778482" x="421.152426786717854" z="33.572338429536053"/>
+            </instance>
+            <instance id="4">
+                <location y="-305.069433186786114" x="105.946346837132282" z="451.026397932054351"/>
+            </instance>
+            <instance id="5">
+                <location y="-204.611853538242201" x="348.278844994042799" z="263.274327091540101"/>
+            </instance>
+            <instance id="6">
+                <location y="-278.923776060462387" x="350.605118446736185" z="418.934961366125492"/>
+            </instance>
+            <instance id="7">
+                <location y="-380.337077513206964" x="292.363659295660568" z="333.216722838505063"/>
+            </instance>
+            <instance id="8">
+                <location y="-362.996197199005564" x="89.32907634649473" z="141.487143455690898"/>
+            </instance>
+            <instance id="9">
+                <location y="-330.980408855527685" x="241.82417632853381" z="199.68974643913441"/>
+            </instance>
+            <instance id="10">
+                <location y="-256.116823079857795" x="116.835284178009758" z="307.959653025187038"/>
+            </instance>
+            <instance id="11">
+                <location y="-353.756571303824785" x="194.964988665029495" z="210.260639150761932"/>
+            </instance>
+            <instance id="12">
+                <location y="-375.254213550296129" x="260.111452227100187" z="295.208466478428306"/>
+            </instance>
+            <instance id="13">
+                <location y="-317.39315646772036" x="174.368981567495297" z="308.925219256635103"/>
+            </instance>
+            <instance id="14">
+                <location y="-308.031986577540579" x="458.638674190262918" z="292.188606435180475"/>
+            </instance>
+            <instance id="15">
+                <location y="-257.635785474437739" x="293.812805412668354" z="448.564891739913094"/>
+            </instance>
+            <instance id="16">
+                <location y="-245.272160155002894" x="464.644526530368978" z="437.540648043949773"/>
+            </instance>
+            <instance id="17">
+                <location y="-338.657625994286377" x="437.063367651604551" z="197.738773005053105"/>
+            </instance>
+            <instance id="18">
+                <location y="-389.563329134383594" x="4.379374350665599" z="461.813690484041558"/>
+            </instance>
+            <instance id="19">
+                <location y="-217.756203400383356" x="239.846325336989196" z="232.858986804301509"/>
+            </instance>
+        </population>
+        <population id="Pop_ROTATED_Cell_473871773" type="populationList" component="ROTATED_Cell_473871773">
+            <instance id="0">
+                <location y="-644.683138879965554" x="226.931798734325611" z="216.061416020241325"/>
+            </instance>
+            <instance id="1">
+                <location y="-457.455410645215011" x="111.728903392256825" z="455.40341752723333"/>
+            </instance>
+            <instance id="2">
+                <location y="-513.979267155428715" x="192.52872724363678" z="48.434251642426709"/>
+            </instance>
+            <instance id="3">
+                <location y="-639.083473652560997" x="302.415182886124512" z="32.766118045564511"/>
+            </instance>
+            <instance id="4">
+                <location y="-571.485972164090413" x="390.400856758735017" z="406.476766823417563"/>
+            </instance>
+            <instance id="5">
+                <location y="-519.708878817010827" x="189.474068440477652" z="120.079586550443878"/>
+            </instance>
+            <instance id="6">
+                <location y="-553.139780060580961" x="223.433576711109907" z="496.42323136291742"/>
+            </instance>
+            <instance id="7">
+                <location y="-638.176870465662205" x="124.146168474739355" z="179.014656331450254"/>
+            </instance>
+            <instance id="8">
+                <location y="-535.481515505206175" x="61.170209855312571" z="307.081480587188821"/>
+            </instance>
+            <instance id="9">
+                <location y="-482.642844808806672" x="222.765865634606712" z="265.475929499721531"/>
+            </instance>
+            <instance id="10">
+                <location y="-405.212046621793661" x="52.382588921746354" z="120.500413294807814"/>
+            </instance>
+            <instance id="11">
+                <location y="-531.193160843635724" x="489.801915419331522" z="130.338371013628887"/>
+            </instance>
+            <instance id="12">
+                <location y="-675.391976016513809" x="301.509838929232728" z="127.243289980341572"/>
+            </instance>
+            <instance id="13">
+                <location y="-477.010343329297541" x="53.758326182649917" z="72.89613313486737"/>
+            </instance>
+            <instance id="14">
+                <location y="-680.983193313503307" x="42.477641413514512" z="371.274803157387737"/>
+            </instance>
+            <instance id="15">
+                <location y="-497.517446773701295" x="111.093659560692785" z="231.130950791084928"/>
+            </instance>
+            <instance id="16">
+                <location y="-664.251150262411556" x="158.28947066625787" z="33.283151462418004"/>
+            </instance>
+            <instance id="17">
+                <location y="-456.409555866440826" x="257.069280138743807" z="224.230364094084877"/>
+            </instance>
+            <instance id="18">
+                <location y="-490.630803549937355" x="11.857715854543482" z="120.771377677084459"/>
+            </instance>
+            <instance id="19">
+                <location y="-518.793916658791204" x="304.034360130138225" z="403.123917487058634"/>
+            </instance>
+        </population>
+        <population id="Pop_ROTATED_Cell_473871592" type="populationList" component="ROTATED_Cell_473871592">
+            <instance id="0">
+                <location y="-871.404831248424784" x="52.679444912647142" z="230.645297499601554"/>
+            </instance>
+            <instance id="1">
+                <location y="-832.326867716349966" x="308.678419711981519" z="363.101924460005307"/>
+            </instance>
+            <instance id="2">
+                <location y="-891.159098534690429" x="220.519114564773304" z="321.762816967370043"/>
+            </instance>
+            <instance id="3">
+                <location y="-844.968284855327965" x="471.615404316956472" z="307.022993515863504"/>
+            </instance>
+            <instance id="4">
+                <location y="-767.98851679136817" x="398.51506834139974" z="69.831049420615969"/>
+            </instance>
+            <instance id="5">
+                <location y="-780.106091295965257" x="193.365416752157955" z="346.458772181469783"/>
+            </instance>
+            <instance id="6">
+                <location y="-709.184739038483144" x="417.315776052290914" z="221.803730420561465"/>
+            </instance>
+            <instance id="7">
+                <location y="-920.684700581964876" x="455.154496829672723" z="247.997781040749317"/>
+            </instance>
+            <instance id="8">
+                <location y="-762.005498606832703" x="297.809848250327718" z="118.979548011283072"/>
+            </instance>
+            <instance id="9">
+                <location y="-813.844808975435967" x="122.841266931378925" z="354.04215630697604"/>
+            </instance>
+            <instance id="10">
+                <location y="-695.281656635313311" x="121.603647971432082" z="2.170186885057823"/>
+            </instance>
+            <instance id="11">
+                <location y="-806.378697979755202" x="82.285618326385702" z="65.376940148128952"/>
+            </instance>
+            <instance id="12">
+                <location y="-927.350625348124822" x="344.861661936786902" z="447.325030872391949"/>
+            </instance>
+            <instance id="13">
+                <location y="-915.769978423506245" x="175.006263935175667" z="455.032722451584959"/>
+            </instance>
+            <instance id="14">
+                <location y="-730.822183040392247" x="29.063239592249325" z="317.901317177102214"/>
+            </instance>
+            <instance id="15">
+                <location y="-869.049558177660742" x="280.117049755852577" z="96.360974756632416"/>
+            </instance>
+            <instance id="16">
+                <location y="-957.520363295254469" x="349.325385607228895" z="58.382854744138015"/>
+            </instance>
+            <instance id="17">
+                <location y="-752.09299622975152" x="432.821231739706263" z="392.676833748818922"/>
+            </instance>
+            <instance id="18">
+                <location y="-695.912597044231688" x="106.677608232499551" z="325.50827453656575"/>
+            </instance>
+            <instance id="19">
+                <location y="-861.713033620131341" x="486.894403399013299" z="443.637053987048773"/>
+            </instance>
+        </population>
+    </network>
+</neuroml>
