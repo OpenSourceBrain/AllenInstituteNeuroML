@@ -19,6 +19,8 @@
     <include href="Im.channel.nml"/>
     <include href="Ih.channel.nml"/>
 
+    <include href="CaDynamics.nml"/>
+
     <include href="pas.channel.nml"/>
 
     <cell id="Soma_Test">
