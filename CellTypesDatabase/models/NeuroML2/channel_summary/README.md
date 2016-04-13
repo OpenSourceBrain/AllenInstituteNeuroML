@@ -158,6 +158,24 @@ Comment from original mod file:
 </tr>
     <tr>
 <td width="120px">
+            <sup><b>Im_v2</b><br/>
+            <a href="../Im_v2.channel.nml">Im_v2.channel.nml</a><br/>
+            <b>Ion: k</b><br/>
+            <i>g = gmax * m </i><br/>
+            Im current
+            
+Comment from original mod file: 
+Based on Im model of Vervaeke et al. (2006)</sup>
+</td>
+<td>
+<a href="Im_v2.inf.png"><img alt="Im_v2 steady state" src="Im_v2.inf.png" height="220"/></a>
+</td>
+<td>
+<a href="Im_v2.tau.png"><img alt="Im_v2 time course" src="Im_v2.tau.png" height="220"/></a>
+</td>
+</tr>
+    <tr>
+<td width="120px">
             <sup><b>SK</b><br/>
             <a href="../SK.channel.nml">SK.channel.nml</a><br/>
             <b>Ion: k</b><br/>

@@ -6,9 +6,10 @@ import os.path
 chans = ['K_T', 'K_P', 'NaTa', 'Nap', 'NaTs', 'Ih', 'Ca_LVA', 'Ca_HVA', 'SKv3_1']
 chans = ['Ca_LVA', 'NaTa']
 chans = ['K_P', 'K_T']
-chans = ['Ih', 'Im']
 chans = ['Kv3_1', 'SK']
 chans = ['Nap']
+chans = ['Ih', 'Im']
+chans = ['Im','Im_v2']
 
 problematic = []
 
