@@ -1,0 +1,127 @@
+<Lems xmlns="http://www.neuroml.org/lems/0.7.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.2  https://raw.github.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.2.xsd">
+
+    <Target component="sim1" reportFile="simulator.props" timesFile="time.dat"/>
+
+        <!--Include standard NeuroML 2 ComponentType definitions-->
+
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+
+
+        <!--   Channel/synapse files-->
+    <Include file="Kv2like.channel.nml"/>
+
+    <Include file="pas.channel.nml"/>
+
+        <!--   Cell  -->    
+    <cell id="Soma_Kv2like">
+
+        <notes>A single segment/compartment cell</notes>
+
+        <morphology id="morphology">
+
+            <segment id="0" name="Soma">
+                <proximal x="0.0" y="0.0" z="0.0" diameter="9.923"/>
+                <distal x="0.0" y="9.923" z="0.0" diameter="9.923"/>
+            </segment>
+
+            <segmentGroup id="Soma" neuroLexId="sao864921383">    <!--
+                This group contains an unbranched set of segments, and all of the segmentGroups marked with
+                neuroLexId = sao864921383 form a non-overlapping set of all of the segments. 
+                These segmentGroups correspond to the 'cables' of NeuroML v1.8.1. -->
+
+                <member segment="0"/>
+            </segmentGroup>
+
+            <segmentGroup id="all">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+
+            <segmentGroup id="soma_group" neuroLexId="GO:0043025">    <!--Soma group-->
+
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+
+            
+        </morphology>
+
+        <!--Adding the biophysical parameters-->
+
+        <biophysicalProperties id="biophys">
+
+            <membraneProperties>
+                
+                <channelDensity condDensity="0.000153169 S_per_cm2" id="pas_all" ionChannel="pas" ion="non_specific" erev="-80 mV"/>
+                
+                <channelDensity condDensity="0.00 S_per_cm2" id="Kv2like_all" ionChannel="Kv2like" ion="k" erev="-107 mV"/>
+
+
+                <spikeThresh value="0 mV"/>
+
+                <specificCapacitance value="1.0 uF_per_cm2"/>
+
+                <initMembPotential value="-80.0 mV"/>
+
+            </membraneProperties>
+
+            <intracellularProperties>
+
+                <resistivity value="0.1 kohm_cm"/>
+
+            </intracellularProperties>
+
+        </biophysicalProperties>
+
+    </cell>
+        <!--   Network file-->    
+    <pulseGenerator id="Input_4" delay="300.0ms" duration="100.0ms" amplitude="5E-5uA"/>
+    <pulseGenerator id="Input_3" delay="100.0ms" duration="100.0ms" amplitude="-1.0E-5uA"/>
+
+    <network id="network_Soma" type="networkWithTemperature" temperature="26 degC">
+        <population id="CG_TestCML" component="Soma_Kv2like" type="populationList" size="1">
+            <instance id="0">
+                <location x="0" y="0" z="0"/>
+            </instance>
+        </population>
+        <inputList id="Input_4" component="Input_4" population="CG_TestCML">
+            <input id="0" target="../CG_TestCML/0/Soma_Kv2like" destination="synapses"/>
+        </inputList>
+        <inputList id="Input_3" component="Input_3" population="CG_TestCML">
+            <input id="0" target="../CG_TestCML/0/Soma_Kv2like" destination="synapses"/>
+        </inputList>
+    </network>
+    
+
+        <!--Note: this could be: Simulation id="sim1" ... , but Component type="Simulation" ... 
+        is used to allow validation of this file according to the LEMS schema specified above...-->
+    <Component type="Simulation" id="sim1" length="600.0ms" step="0.001ms" target="network_Soma">
+        
+        <Display id="CG_TestMod_v" title="Soma VOLTAGE" xmin="-60.0" xmax="660.0" ymin="-120.0" ymax="64.0" timeScale="1ms">
+            <Line id="VOLTAGE" timeScale="1ms" quantity="CG_TestCML/0/Soma_Kv2like/v" scale="1 mV" color="#000000"/>
+        </Display>
+        
+        <Display id="GraphWin_0" title="Soma channels" xmin="-60.0" xmax="660.0" ymin="-0.1" ymax="1.1" timeScale="1ms">
+            <Line id="m" timeScale="1ms" quantity="CG_TestCML/0/Soma_Kv2like/biophys/membraneProperties/Kv2like_all/Kv2like/m/q" scale="1" color="#000000"/>
+            <Line id="h1" timeScale="1ms" quantity="CG_TestCML/0/Soma_Kv2like/biophys/membraneProperties/Kv2like_all/Kv2like/h/h1/q" scale="1" color="#FF0000"/>
+            <Line id="h2" timeScale="1ms" quantity="CG_TestCML/0/Soma_Kv2like/biophys/membraneProperties/Kv2like_all/Kv2like/h/h2/q" scale="1" color="#00FF00"/>
+        </Display>
+        
+        
+        
+        <OutputFile id="v" fileName="Kv2like.v.dat">
+            <OutputColumn id="v" quantity="CG_TestCML/0/Soma_Kv2like/v"/>
+        </OutputFile>
+        
+        <OutputFile id="states" fileName="Kv2like.vars.dat">    
+            <OutputColumn id="m" quantity="CG_TestCML/0/Soma_Kv2like/biophys/membraneProperties/Kv2like_all/Kv2like/m/q"/>
+            <OutputColumn id="h1" quantity="CG_TestCML/0/Soma_Kv2like/biophys/membraneProperties/Kv2like_all/Kv2like/h/h1/q"/>
+            <OutputColumn id="h2" quantity="CG_TestCML/0/Soma_Kv2like/biophys/membraneProperties/Kv2like_all/Kv2like/h/h2/q"/>
+        
+        </OutputFile>
+        
+        
+    </Component>
+
+
+</Lems>

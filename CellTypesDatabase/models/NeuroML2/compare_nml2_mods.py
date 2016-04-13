@@ -11,6 +11,7 @@ chans = ['Nap']
 chans = ['Ih', 'Im']
 chans = ['Im','Im_v2']
 chans = ['Kd']
+chans = ['Kv2like']
 
 problematic = []
 

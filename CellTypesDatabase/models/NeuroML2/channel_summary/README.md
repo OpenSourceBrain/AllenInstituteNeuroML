@@ -155,6 +155,26 @@ Comment from original mod file:
 </tr>
     <tr>
 <td width="120px">
+            <sup><b>Kv2like</b><br/>
+            <a href="../Kv2like.channel.nml">Kv2like.channel.nml</a><br/>
+            <b>Ion: k</b><br/>
+            <i>g = gmax * m<sup>2</sup> </i><br/>
+            Kv2-like channel
+            
+Comment from original mod file: 
+: Kv2-like channel
+: Adapted from model implemented in Keren et al. 2005
+: Adjusted parameters to be similar to guangxitoxin-sensitive current in mouse CA1 pyramids from Liu and Bean 2014</sup>
+</td>
+<td>
+<a href="Kv2like.inf.png"><img alt="Kv2like steady state" src="Kv2like.inf.png" height="220"/></a>
+</td>
+<td>
+<a href="Kv2like.tau.png"><img alt="Kv2like time course" src="Kv2like.tau.png" height="220"/></a>
+</td>
+</tr>
+    <tr>
+<td width="120px">
             <sup><b>Im</b><br/>
             <a href="../Im.channel.nml">Im.channel.nml</a><br/>
             <b>Ion: k</b><br/>

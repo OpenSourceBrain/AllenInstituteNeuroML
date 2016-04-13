@@ -10,7 +10,7 @@ pynml-modchananalysis Nap -stepV 5 -temperature [26,34] -dt 0.1 -duration 25000
 pynml-modchananalysis K_P -stepV 5 -temperature [26,34]
 pynml-modchananalysis K_T -stepV 5 -temperature [26,34]
 pynml-modchananalysis Kd -stepV 5 -temperature [26,34]  -duration 50000 -dt 0.1
-#pynml-modchananalysis Kv2like -stepV 5 -temperature [26,34]
+pynml-modchananalysis Kv2like -stepV 5 -temperature [26,34] -dt 0.05 -duration 50000
 pynml-modchananalysis Kv3_1 -stepV 5 -temperature [26,34]
 
 
