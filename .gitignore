@@ -12,7 +12,6 @@
 /CellTypesDatabase/models/*.log
 /CellTypesDatabase/models/NEURON/*.dat
 /CellTypesDatabase/models/NEURON/old
-/CellTypesDatabase/models/NeuroML2/old
 /CellTypesDatabase/models/NeuroML2/*.dat
 /CellTypesDatabase/models/NeuroML2/*.hoc
 /CellTypesDatabase/models/NeuroML2/*.mod

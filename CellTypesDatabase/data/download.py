@@ -1,4 +1,7 @@
 # Based on https://github.com/stripathy/AIBS_cell_types/blob/master/Allen_ephys_playground.ipynb
+'''
+This script can be used to download data from the CellTypes Database
+'''
 
 from allensdk.api.queries.cell_types_api import CellTypesApi
 import os
