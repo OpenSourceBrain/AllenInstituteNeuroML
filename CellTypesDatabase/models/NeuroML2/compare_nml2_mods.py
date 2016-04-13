@@ -10,6 +10,7 @@ chans = ['Kv3_1', 'SK']
 chans = ['Nap']
 chans = ['Ih', 'Im']
 chans = ['Im','Im_v2']
+chans = ['Kd']
 
 problematic = []
 

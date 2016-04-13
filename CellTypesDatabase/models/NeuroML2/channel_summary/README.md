@@ -71,6 +71,24 @@ Comment from original mod file:
 </tr>
     <tr>
 <td width="120px">
+            <sup><b>Kd</b><br/>
+            <a href="../Kd.channel.nml">Kd.channel.nml</a><br/>
+            <b>Ion: k</b><br/>
+            <i>g = gmax * m * h </i><br/>
+            Kd current
+            
+Comment from original mod file: 
+Based on Kd model of Foust et al. (2011)</sup>
+</td>
+<td>
+<a href="Kd.inf.png"><img alt="Kd steady state" src="Kd.inf.png" height="220"/></a>
+</td>
+<td>
+<a href="Kd.tau.png"><img alt="Kd time course" src="Kd.tau.png" height="220"/></a>
+</td>
+</tr>
+    <tr>
+<td width="120px">
             <sup><b>K_P</b><br/>
             <a href="../K_P.channel.nml">K_P.channel.nml</a><br/>
             <b>Ion: k</b><br/>
