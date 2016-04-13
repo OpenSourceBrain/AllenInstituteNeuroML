@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  
+         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.githubusercontent.com/NeuroML/NeuroML2/master/Schemas/NeuroML2/NeuroML_v2beta2.xsd" 
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd"
          xmlns:nick="http://www.example.org/nick"
          id="TestNetwork">
 
@@ -28,7 +29,7 @@
 
     <network id="TestNetwork">
         
-        <population id="0" >
+        <population id="pop0" type="populationList" component="myComponent" size="1">
             
             <annotation>
                 <!-- Can we add our own chilren, from our own namespace? PG: Yes! -->
@@ -36,9 +37,10 @@
                 <nick:type>DipdeExternalCellPopulation</nick:type>
                 <nick:record_firing_rate>true</nick:record_firing_rate>
                 <nick:record_spikes>false</nick:record_spikes>
-                <property tag="number_of_neurons" value="5000"/>
-                <property tag="axes_to_plot_tuple" value="(1,1)"/> <!-- How do we do array valued properties? -->
             </annotation>
+
+            <property tag="number_of_neurons" value="5000"/>
+            <property tag="axes_to_plot_tuple" value="(1,1)"/> <!-- How do we do array valued properties? -->
 	
             <instance id="0">
                 <location x="0.0" z="0.0" y="0.0" />
@@ -46,7 +48,7 @@
             
         </population>
         
-        <population id="1">
+        <population id="pop1" type="populationList" component="myComponent" size="1">
             
             <annotation>
                 <!-- Can we add our own chilren, from our own namespace? -->
@@ -54,9 +56,10 @@
                 <nick:type>DipdeExternalCellPopulation</nick:type>
                 <nick:record_firing_rate>true</nick:record_firing_rate>
                 <nick:record_spikes>false</nick:record_spikes>
-                <property tag="number_of_neurons" value="5000"/>
-                <property tag="axes_to_plot_tuple" value="(1,1)"/> <!-- How do we do array valued properties? -->
             </annotation>
+
+            <property tag="number_of_neurons" value="5000"/>
+            <property tag="axes_to_plot_tuple" value="(1,1)"/> <!-- How do we do array valued properties? -->
 	
             <instance id="0">
                 <location x="0.0" z="0.0" y="0.0" />

@@ -18,15 +18,14 @@ nml_doc.networks.append(net)
 size0 = 5
 size1 = 5
 
-pop0 = neuroml.Population(id="Pop0", size = size0)
+pop0 = neuroml.Population(id="Pop0", size = size0, component="myComponent")
 net.populations.append(pop0)
 
-pop0.annotation = neuroml.Annotation()
 p = neuroml.Property(tag="axes_to_plot_tuple", value="(1,1)")
-pop0.annotation.anytypeobjs_.append(p)
+pop0.properties.append(p)
 
 
-pop1 = neuroml.Population(id="Pop1", size = size1)
+pop1 = neuroml.Population(id="Pop1", size = size1, component="myComponent")
 net.populations.append(pop1)
 
             
