@@ -24,10 +24,12 @@ print("Cell loaded from: %s"%morphology_path)
 stimulus_path = description.manifest.get_path('stimulus_path')
 
 run_params = description.data['runs'][0]
-sweeps = [23, 57, 60]
+sweeps = [60]
 
 junction_potential = description.data['fitting'][0]['junction_potential']
 mV = 1.0e-3
+
+h.load_file("../NEURON/cellCheck.hoc")
 
 for sweep in sweeps:
     utils.setup_iclamp(stimulus_path, sweep=sweep)
@@ -36,6 +38,7 @@ for sweep in sweeps:
     print("Running sweep: %i"%(sweep))
     h.finitialize()
     h.psection()
+    h("cellInfo()")
     h.run()
 
     print("Finished running sweep: %i, %i data points saved"%(sweep, len(vec['v'])))
