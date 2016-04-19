@@ -1,0 +1,13 @@
+system: Testing a single compartment cell
+
+experiments:
+  m:
+    expected:
+      spike times: [322.239]
+  h1:
+    expected:
+      spike times: [114.988]
+  h2:
+    expected:
+      spike times: [168.573]
+
