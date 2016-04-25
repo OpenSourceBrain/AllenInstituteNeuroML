@@ -1,0 +1,69 @@
+<Lems>
+
+    <!-- Initial ideas for expressing GLIF model in LEMS/NeuroML2 -->
+
+
+    <Target component="sim1" />
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml" />
+    <Include file="Networks.xml" />
+    <Include file="Simulation.xml" />
+
+
+
+    <ComponentType name="glifCell"
+        extends="baseIafCapCell"
+        description="GLIF...">
+
+        <Parameter name="leakConductance" dimension="conductance"/>
+        <Parameter name="leakReversal" dimension="voltage"/>
+
+        <Attachments name="synapses" type="basePointCurrent"/>
+
+        <Dynamics>
+
+            <StateVariable name="v" exposure="v" dimension="voltage"/>
+
+            <DerivedVariable name="iSyn" dimension="current" exposure="iSyn" select="synapses[*]/i" reduce="add" />
+            <DerivedVariable name="iMemb" dimension="current" exposure="iMemb" value="leakConductance * (leakReversal - v) + iSyn"/>
+
+            <TimeDerivative variable="v" value="iMemb / C"/>
+
+            <OnStart>
+                <StateAssignment variable="v" value="leakReversal"/>
+            </OnStart>
+
+            <OnCondition test="v .gt. thresh">
+                <StateAssignment variable="v" value="reset"/>
+                <EventOut port="spike"/>
+            </OnCondition>
+
+        </Dynamics>
+
+    </ComponentType>
+
+    <glifCell id="glif" leakReversal="0mV" thresh="0.016587512654284826 V"
+	     reset="0mV" C="4.946777501212259e-11 F" leakConductance="0.004uS"/>
+
+    <pulseGenerator id="pulseGen0" delay="100ms" duration="1000ms" amplitude="70 pA" />
+
+    <network id="net1">
+        <population id="pop1" component="glif" size="1" />
+        <explicitInput target="pop1[0]" input="pulseGen0" destination="synapses"/>
+    </network>
+
+    <!-- End of NeuroML2 content -->
+
+
+    <Simulation id="sim1" length="1200ms" step="0.05ms" target="net1">
+
+        <Display id="d1" title="Ex GLIF" timeScale="1ms" xmin="-100" xmax="1300" ymin="-80" ymax="50">
+            <Line id="v" quantity="pop1[0]/v" scale="1mV" color="#ee40FF" timeScale="1ms" />
+        </Display>
+    
+
+    </Simulation>
+
+
+</Lems>
