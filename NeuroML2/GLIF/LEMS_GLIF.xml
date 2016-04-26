@@ -61,7 +61,7 @@
     <glifCell id="glif_480629471" leakReversal="0mV" thresh=" 0.01982398 V" tau1="1ms" tau2="1ms" amp1="0A" amp2="0A"
 	     reset="0mV" C="4.946777501212259e-11 F" leakConductance="2.2833678368091756e-09 S"/>
     
-    <glifCell id="glif_480629475" leakReversal="0mV" thresh=" 0.01982398 V"  tau1="0.03333333333s" tau2="0.00333333333s"
+    <glifCell id="glif_480629475" leakReversal="0mV" thresh="0.016535833531715175 V"  tau1="0.03333333333s" tau2="0.00333333333s"
      amp1="-3.847001287818176e-11A" amp2="2.058989164357654e-10A"
 	     reset="0mV" C="4.946777501212259e-11 F" leakConductance="2.2833678368091756e-09 S"/>
 
