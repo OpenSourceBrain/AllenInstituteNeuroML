@@ -100,3 +100,9 @@ CellTypesDatabase/models/neuronal_model/modfiles/*.mod
 /CellTypesDatabase/models/NeuroML2/Network_473561660.net.nml
 /CellTypesDatabase/models/NeuroML2/Network_473561729.net.nml
 /CellTypesDatabase/models/NeuroML2/Network_473863035.net.nml
+/NeuroML2/GLIF/GLIF_473875489.mod
+/NeuroML2/GLIF/LEMS_Test_473875489.xml
+/NeuroML2/GLIF/LEMS_Test_473875489_nrn.py
+/NeuroML2/GLIF/Sim_Test_473875489.pop_473875489.v.dat
+/NeuroML2/GLIF/pg0.mod
+/NeuroML2/GLIF/time.dat
