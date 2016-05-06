@@ -1,0 +1,10 @@
+<Lems>
+
+  <glifCell  id="GLIF_473875489"
+        C="7.85512829824e-11 F"
+        leakReversal="0.0 V"
+        reset="0.0 V"
+        thresh="0.0281669888956 V"
+        leakConductance="3.97749363581e-09 S"/>
+
+</Lems>

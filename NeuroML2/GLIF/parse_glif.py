@@ -21,10 +21,11 @@ template_cell = '''<Lems>
 '''
 
 type = 'glifCell'
+cell_id = 'GLIF_%s'%glif_dir
     
 attributes = ""
 
-attributes +=' id="%s"'%glif_dir
+attributes +=' id="%s"'%cell_id
 attributes +='\n        C="%s F"'%neuron_config["C"]
 attributes +='\n        leakReversal="%s V"'%neuron_config["El"]
 attributes +='\n        reset="%s V"'%neuron_config["El"]
@@ -35,7 +36,7 @@ file_contents = template_cell%(type, attributes)
 
 print(file_contents)
 
-cell_file_name = '%s/%s.xml'%(glif_dir,glif_dir)
+cell_file_name = '%s/%s.xml'%(glif_dir,cell_id)
 cell_file = open(cell_file_name,'w')
 cell_file.write(file_contents)
 cell_file.close()
@@ -46,21 +47,22 @@ import opencortex.build as oc
 nml_doc, network = oc.generate_network("Test_%s"%glif_dir)
 
 pop = oc.add_single_cell_population(network,
-                                     glif_dir,
-                                     glif_dir)
+                                     'pop_%s'%glif_dir,
+                                     cell_id)
                                      
                                      
 pg = oc.add_pulse_generator(nml_doc,
                        id="pg0",
                        delay="100ms",
                        duration="1000ms",
-                       amplitude="50 pA")
+                       amplitude="150 pA")
 
                                    
 oc.add_inputs_to_population(network,
                             "Stim0",
                             pop,
-                            pg.id)
+                            pg.id,
+                            all_cells=True)
                             
                             
 
