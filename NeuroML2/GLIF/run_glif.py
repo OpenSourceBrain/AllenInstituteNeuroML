@@ -67,6 +67,13 @@ def run_one_cell(glif_dir, curr_pA, show_plot=True):
 
 if __name__ == '__main__':
     
+    if '-all' in sys.argv:
+        run_one_cell('473875489', 120, show_plot=False)
+        run_one_cell('480629471', 50, show_plot=False)
+        run_one_cell('480629475', 50, show_plot=False)
+        
+        exit()
+    
     glif_dir = sys.argv[1]
     curr_pA = float(sys.argv[2])
     show_plot = '-nogui' not in sys.argv

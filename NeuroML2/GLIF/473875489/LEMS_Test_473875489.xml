@@ -1,0 +1,33 @@
+<Lems>
+    
+    <!-- 
+
+        This LEMS file has been automatically generated using PyNeuroML v0.1.11 (libNeuroML v0.2.14)
+
+     -->
+    
+    <!-- Specify which component to run -->
+    <Target component="Sim_Test_473875489"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="GLIF_473875489.xml"/>
+    <Include file="../GLIFs.xml"/>
+    <Include file="Test_473875489.net.nml"/>
+   
+    <Simulation id="Sim_Test_473875489" length="1200ms" step="0.01ms" target="Test_473875489" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
+        
+        <Display id="DispPop__pop_473875489" title="Membrane potentials of cells in pop_473875489" timeScale="1ms" xmin="-120.0" xmax="1320.0" ymin="-90" ymax="50">
+            <Line id="pop_473875489[0]: v" quantity="pop_473875489/0/GLIF_473875489/v" scale="1mV" color="#6aa799" timeScale="1ms"/>
+        </Display>
+        
+        <OutputFile id="Volts_file__pop_473875489" fileName="Sim_Test_473875489.pop_473875489.v.dat">
+            <OutputColumn id="v_pop_473875489_0_GLIF_473875489_v" quantity="pop_473875489/0/GLIF_473875489/v"/> 
+        </OutputFile>
+        
+    </Simulation>
+
+</Lems>
