@@ -22,7 +22,15 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     </Lems>
     '''
 
-    type = 'glifCell'
+    type = '???'
+    print model_metadata['name']
+    if '(LIF)' in model_metadata['name']:
+        type = 'glifCell'
+    if '(LIF-ASC)' in model_metadata['name']:
+        type = 'glifCellAsc'
+    if '(LIF-R)' in model_metadata['name']:
+        type = 'glifRCell'
+        
     cell_id = 'GLIF_%s'%glif_dir
 
     attributes = ""
@@ -33,6 +41,12 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     attributes +='\n        reset="%s V"'%neuron_config["El"]
     attributes +='\n        thresh="%s V"'%( float(neuron_config["th_inf"]) * float(neuron_config["coeffs"]["th_inf"]))
     attributes +='\n        leakConductance="%s S"'%(1/float(neuron_config["R_input"]))
+    
+    if type == 'glifCellAsc':
+        attributes +='\n        tau1="%s s"'%neuron_config["asc_tau_array"][0]
+        attributes +='\n        tau2="%s s"'%neuron_config["asc_tau_array"][1]
+        attributes +='\n        amp1="%s A"'% ( float(neuron_config["asc_amp_array"][0]) * float(neuron_config["coeffs"]["asc_amp_array"][0]) )
+        attributes +='\n        amp2="%s A"'% ( float(neuron_config["asc_amp_array"][1]) * float(neuron_config["coeffs"]["asc_amp_array"][1]) )
 
     file_contents = template_cell%(type, attributes)
 
@@ -77,6 +91,8 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
                                 include_extra_files = [cell_file_name,'../GLIFs.xml'],
                                 duration =      1200, 
                                 dt =            0.01)
+                                
+    
 
     os.chdir('..')
                             

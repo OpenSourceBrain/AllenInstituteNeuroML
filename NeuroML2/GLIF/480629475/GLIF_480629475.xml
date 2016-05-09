@@ -1,0 +1,15 @@
+<Lems>
+
+      <glifCellAsc  id="GLIF_480629475"
+        C="4.94677750121e-11 F"
+        leakReversal="0.0 V"
+        reset="0.0 V"
+        thresh="0.0165358335317 V"
+        leakConductance="2.28336783681e-09 S"
+        tau1="0.0333333333333 s"
+        tau2="0.00333333333333 s"
+        amp1="-3.84700128782e-11 A"
+        amp2="2.05898916436e-10 A"/>
+
+    </Lems>
+    
