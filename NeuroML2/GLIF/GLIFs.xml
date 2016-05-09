@@ -1,7 +1,6 @@
 <Lems>
 
 
-
     <ComponentType name="glifCell"
         extends="baseIafCapCell"
         description="GLIF...">
@@ -44,6 +43,9 @@
         
         <Parameter name="bs" dimension="per_time"/>
         <Parameter  name="deltaThresh" dimension="voltage"/>
+        <Parameter  name="deltaV" dimension="voltage"/>
+        
+        <Parameter name="fv" dimension="none"/>
         
         <Exposure  name="threshTotal" dimension="voltage"/>
         
@@ -69,7 +71,7 @@
 
             <OnCondition test="v .gt. threshTotal">
                 
-                <StateAssignment variable="v" value="reset"/>
+                <StateAssignment variable="v" value="leakReversal + fv * (v - leakReversal) + deltaV"/>
                 <StateAssignment variable="threshS" value="threshS + deltaThresh"/>
                 <EventOut port="spike"/>
             </OnCondition>

@@ -1,5 +1,5 @@
 
-## Model: 473875489
+## Model: 480629475
 
 ## Original model
 
@@ -7,14 +7,14 @@
 
 Original traces:
 
-![Original](MembranePotential_120pA.png)
+![Original](MembranePotential_50pA.png)
 
-![Threshold](Threshold_120pA.png)
+![Threshold](Threshold_50pA.png)
 
 ## Conversion to NeuroML 2
 
-LEMS version: [GLIF_473875489.xml](GLIF_473875489.xml)
+LEMS version: [GLIF_480629475.xml](GLIF_480629475.xml)
 
 Comparison:
 
-![Comparison](Comparison_120pA.png)
+![Comparison](Comparison_50pA.png)

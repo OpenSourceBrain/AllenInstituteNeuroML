@@ -28,6 +28,10 @@
             <OutputColumn id="v_pop_480629471_0_GLIF_480629471_v" quantity="pop_480629471/0/GLIF_480629471/v"/> 
         </OutputFile>
         
+        <OutputFile id="thresh.dat" fileName="thresh.dat">
+            <OutputColumn id="pop_480629471_0_GLIF_480629471_thresh" quantity="pop_480629471/0/GLIF_480629471/thresh"/> 
+        </OutputFile>
+        
     </Simulation>
 
 </Lems>

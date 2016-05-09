@@ -4,14 +4,14 @@ import sys
 
 from pyneuroml import pynml
 
-def run_one_cell(glif_dir, curr_pA, show_plot=True):
+def run_one_cell(glif_dir, curr_pA, dt=5e-7, show_plot=True):
 
     # initialize the neuron
     neuron_config = json_utilities.read('%s/neuron_config.json'%glif_dir)
     neuron = GlifNeuron.from_dict(neuron_config)
 
     # important! set the neuron's dt value for your stimulus in seconds
-    neuron.dt = 5e-7
+    neuron.dt = dt
 
     # make a short square pulse. stimulus units should be in Amps.
     stimulus = [ 0.0 ] * int(0.1/neuron.dt) + [ curr_pA * 1e-12 ] * int(1/neuron.dt) + [ 0.0 ] * int(0.1/neuron.dt)
@@ -68,14 +68,14 @@ def run_one_cell(glif_dir, curr_pA, show_plot=True):
 if __name__ == '__main__':
     
     if '-all' in sys.argv:
-        run_one_cell('473875489', 120, show_plot=False)
-        run_one_cell('480629471', 50, show_plot=False)
-        run_one_cell('480629475', 50, show_plot=False)
+        run_one_cell('473875489', 120, dt=5e-7, show_plot=False)
+        run_one_cell('480629471', 50, dt=5e-7, show_plot=False)
+        run_one_cell('480629475', 50, dt=5e-7, show_plot=False)
         
         exit()
     
     glif_dir = sys.argv[1]
     curr_pA = float(sys.argv[2])
     show_plot = '-nogui' not in sys.argv
-    run_one_cell(glif_dir, curr_pA, show_plot=show_plot)
+    run_one_cell(glif_dir, curr_pA, dt=5e-6, show_plot=show_plot)
     
