@@ -106,3 +106,6 @@ CellTypesDatabase/models/neuronal_model/modfiles/*.mod
 /NeuroML2/GLIF/Sim_Test_473875489.pop_473875489.v.dat
 /NeuroML2/GLIF/pg0.mod
 /NeuroML2/GLIF/time.dat
+/NeuroML2/GLIF/480629471/Sim_Test_480629471.pop_480629471.v.dat
+/NeuroML2/GLIF/480629471/original.thresh.dat
+/NeuroML2/GLIF/480629471/original.v.dat
