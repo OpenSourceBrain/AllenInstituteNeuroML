@@ -72,6 +72,9 @@ if __name__ == '__main__':
         run_one_cell('480629471', 50, dt=5e-7, show_plot=False)
         run_one_cell('480629475', 50, dt=5e-7, show_plot=False)
         run_one_cell('480633674', 120, dt=5e-7, show_plot=False)
+        run_one_cell('486557295', 160, dt=5e-7, show_plot=False)
+        run_one_cell('472451425', 180, dt=5e-7, show_plot=False)
+        
         
         exit()
     

@@ -196,6 +196,9 @@ if __name__ == '__main__':
         generate_lems('473875489', 120, show_plot=False)
         generate_lems('480629471', 50, show_plot=False)
         generate_lems('480629475', 50, show_plot=False)
+        generate_lems('480633674', 120, show_plot=False)
+        generate_lems('486557295', 160, show_plot=False)
+        generate_lems('472451425', 180, show_plot=False)
         
         exit()
         
