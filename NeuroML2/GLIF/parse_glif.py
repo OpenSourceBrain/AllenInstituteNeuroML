@@ -191,6 +191,8 @@ Comparison:
     readme_file.close()
 
     os.chdir('..')
+    
+    return model_metadata, neuron_config, ephys_sweeps
                             
 if __name__ == '__main__':
     
@@ -218,17 +220,21 @@ Not yet stable!!
                         
         for model in models_stims.keys():
             
-            generate_lems(model, models_stims[model], show_plot=False)
+            model_metadata, neuron_config, ephys_sweeps = generate_lems(model, models_stims[model], show_plot=False)
             
             curr_str = str(models_stims[model])
             # @type curr_str str
             if curr_str.endswith('.0'):
                 curr_str = curr_str[:-2]
             readme += '''
-### Model: %s
+#### Model: %s
+
+%s
 
 ![Voltage](%s/Comparison_%spA.png)
-            ''' % (model,model,curr_str)
+
+[More details](%s/README.md)
+            ''' % (model,model_metadata['name'],model,curr_str,model)
 
         readme_file = open('README.md','w')
         readme_file.write(readme)
