@@ -17,4 +17,10 @@ LEMS version: [GLIF_486557295.xml](GLIF_486557295.xml)
 
 Comparison:
 
+**Membrane potential**
+
 ![Comparison](Comparison_160pA.png)
+
+**Threshold**
+
+![Comparison](Comparison_Threshold_160pA.png)

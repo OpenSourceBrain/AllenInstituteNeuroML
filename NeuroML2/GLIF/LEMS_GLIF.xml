@@ -40,6 +40,23 @@
             deltaThresh="0.00996374822775 V"
             fv="0.702263301567"
             deltaV="0.0014687975536 V"/>
+    
+      <glifRAscATCell  id="GLIF_472455459"
+            C="7.7806857476e-11 F"
+            leakReversal="0.0 V"
+            reset="0.0 V"
+            thresh="0.0216698452899 V"
+            leakConductance="4.6942496176e-09 S"
+            tau1="0.0333333333333 s"
+            tau2="0.00333333333333 s"
+            amp1="-5.32840737219e-11 A"
+            amp2="5.97838489802e-11 A"
+            bs="35.4365847213 per_s"
+            deltaThresh="0.00180161838228 V"
+            fv="0.983105247715"
+            deltaV="-0.015394347765 V"
+            a = "4.0434269749 per_s"
+            bv="82.4195365203 per_s"/>
 
     <pulseGenerator id="pulseGen0" delay="100ms" duration="1000ms" amplitude="50 pA" />
     <pulseGenerator id="pulseGen1" delay="100ms" duration="1000ms" amplitude="150 pA" />
@@ -50,10 +67,12 @@
         <population id="pop2" component="glif_480629475" size="1" />
         <population id="pop3" component="glif_473875489" size="1" />
         <population id="pop4" component="GLIF_472308324" size="1" />
+        <population id="pop5" component="GLIF_472455459" size="1" />
         <explicitInput target="pop1[0]" input="pulseGen0" destination="synapses"/>
         <explicitInput target="pop2[0]" input="pulseGen0" destination="synapses"/>
         <explicitInput target="pop3[0]" input="pulseGen2" destination="synapses"/>
         <explicitInput target="pop4[0]" input="pulseGen1" destination="synapses"/>
+        <explicitInput target="pop5[0]" input="pulseGen2" destination="synapses"/>
     </network>
 
     <!-- End of NeuroML2 content -->
@@ -61,7 +80,7 @@
 
     <Simulation id="sim1" length="1200ms" step="0.05ms" target="net1">
 
-        <Display id="d1" title="Ex GLIF" timeScale="1ms" xmin="-100" xmax="1300" ymin="-80" ymax="50">
+        <Display id="d1" title="Ex GLIF 1" timeScale="1ms" xmin="-100" xmax="1300" ymin="-80" ymax="50">
             <Line id="v" quantity="pop1[0]/v" scale="1mV" color="#ffffff" timeScale="1ms" />
         </Display>
         <Display id="d2" title="Ex GLIF 2" timeScale="1ms" xmin="-100" xmax="1300" ymin="-80" ymax="50">
@@ -83,6 +102,15 @@
         <Display id="d6" title="Ex GLIF 4 currents" timeScale="1ms" xmin="-100" xmax="1300" ymin="-0.07" ymax=".22">
             <Line id="asc1" quantity="pop4[0]/asc1" scale="1nA" color="#ffffff" timeScale="1ms" />
             <Line id="asc2" quantity="pop4[0]/asc2" scale="1nA" color="#33ffff" timeScale="1ms" />
+        </Display>
+        
+        <Display id="d7" title="Ex GLIF 5" timeScale="1ms" xmin="-100" xmax="1300" ymin="-80" ymax="50">
+            <Line id="v" quantity="pop5[0]/v" scale="1mV" color="#ffffff" timeScale="1ms" />
+            <Line id="threshTotal" quantity="pop5[0]/threshTotal" scale="1mV" color="#fff000" timeScale="1ms" />
+        </Display>
+        <Display id="d8" title="Ex GLIF 5 currents" timeScale="1ms" xmin="-100" xmax="1300" ymin="-0.07" ymax=".22">
+            <Line id="asc1" quantity="pop5[0]/asc1" scale="1nA" color="#ffffff" timeScale="1ms" />
+            <Line id="asc2" quantity="pop5[0]/asc2" scale="1nA" color="#33ffff" timeScale="1ms" />
         </Display>
     
 

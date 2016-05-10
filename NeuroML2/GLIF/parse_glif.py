@@ -48,7 +48,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     attributes +='\n            thresh="%s V"'%( float(neuron_config["th_inf"]) * float(neuron_config["coeffs"]["th_inf"]))
     attributes +='\n            leakConductance="%s S"'%(1/float(neuron_config["R_input"]))
     
-    if type == 'glifAscCell' or type == 'glifRAscCell':
+    if 'Asc' in type:
         attributes +='\n            tau1="%s s"'%neuron_config["asc_tau_array"][0]
         attributes +='\n            tau2="%s s"'%neuron_config["asc_tau_array"][1]
         attributes +='\n            amp1="%s A"'% ( float(neuron_config["asc_amp_array"][0]) * float(neuron_config["coeffs"]["asc_amp_array"][0]) )
@@ -59,6 +59,10 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
         attributes +='\n            deltaThresh="%s V"'%neuron_config["threshold_dynamics_method"]["params"]["a_spike"]
         attributes +='\n            fv="%s"'%neuron_config["voltage_reset_method"]["params"]["a"]
         attributes +='\n            deltaV="%s V"'%neuron_config["voltage_reset_method"]["params"]["b"]
+        
+    if 'glifRAscATCell' in type:
+        attributes +='\n            bv="%s per_s"'%neuron_config["threshold_dynamics_method"]["params"]["b_voltage"]
+        attributes +='\n            a="%s per_s"'%neuron_config["threshold_dynamics_method"]["params"]["a_voltage"]
         
 
     file_contents = template_cell%(type, attributes)
@@ -109,14 +113,15 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
                                 include_extra_files = [cell_file_name,'../GLIFs.xml'],
                                 duration =      1200, 
                                 dt =            0.01,
-                                gen_saves_for_quantities = {'thresh.dat':['pop_%s/0/GLIF_%s/%s'%(glif_dir,glif_dir,thresh)]})
+                                gen_saves_for_quantities = {'thresh.dat':['pop_%s/0/GLIF_%s/%s'%(glif_dir,glif_dir,thresh)]},
+                                gen_plots_for_quantities = {'Threshold':['pop_%s/0/GLIF_%s/%s'%(glif_dir,glif_dir,thresh)]})
     
     results = pynml.run_lems_with_jneuroml(lems_file_name,
                                      nogui=True,
                                      load_saved_data=True)
 
     print("Ran simulation; results reloaded for: %s"%results.keys())
-
+    
     info = "Model %s; %spA stimulation"%(glif_dir,curr_pA)
 
     times = [results['t']]
@@ -125,7 +130,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
 
     original_model_v = 'original.v.dat'
     if os.path.isfile(original_model_v):
-        data, indeces = pynml.reload_standard_dat_file(original_model_v)
+        data, indices = pynml.reload_standard_dat_file(original_model_v)
         times.append(data['t'])
         vs.append(data[0])
         labels.append('Allen SDK')
@@ -182,14 +187,20 @@ LEMS version: [GLIF_%s.xml](GLIF_%s.xml)
 
 Comparison:
 
-![Comparison](Comparison_%spA.png)'''
+**Membrane potential**
+
+![Comparison](Comparison_%spA.png)
+
+**Threshold**
+
+![Comparison](Comparison_Threshold_%spA.png)'''
     
     readme_file = open('README.md','w')
     curr_str = str(curr_pA)
     # @type curr_str str
     if curr_str.endswith('.0'):
         curr_str = curr_str[:-2]
-    readme_file.write(readme%(glif_dir,curr_str,curr_str,glif_dir,glif_dir,curr_str))
+    readme_file.write(readme%(glif_dir,curr_str,curr_str,glif_dir,glif_dir,curr_str,curr_str))
     readme_file.close()
 
     os.chdir('..')
@@ -215,10 +226,11 @@ Not yet stable!!
                         '480633674': 120, 
                         '486557295': 160, 
                         '472451425': 180,  
-                        '472308324': 150}
+                        '472308324': 150,
+                        '472455459': 120}
                         
-        '''models_stims = {'473875489': 120,
-                        '480629471': 50}'''
+        #models_stims = {'473875489': 120,
+        #                '480629471': 50}
                         
         for model in models_stims.keys():
             
@@ -231,13 +243,13 @@ Not yet stable!!
             readme += '''
 #### Model: %s
 
-%s
+Model summary: %s
 
 [More details](%s/README.md)
 
 ![Voltage](%s/Comparison_%spA.png)
 
-            ''' % (model,model_metadata['name'],model,curr_str,model)
+            ''' % (model,model_metadata['name'],model,model,curr_str)
 
         readme_file = open('README.md','w')
         readme_file.write(readme)

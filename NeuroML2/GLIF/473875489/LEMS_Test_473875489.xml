@@ -24,6 +24,10 @@
             <Line id="pop_473875489[0]: v" quantity="pop_473875489/0/GLIF_473875489/v" scale="1mV" color="#6aa799" timeScale="1ms"/>
         </Display>
         
+        <Display id="Threshold" title="Plots of Threshold" timeScale="1ms" xmin="-120.0" xmax="1320.0" ymin="-90" ymax="50">
+            <Line id="pop_473875489_0_GLIF_473875489_threshTotal" quantity="pop_473875489/0/GLIF_473875489/threshTotal" scale="1" color="#029a72" timeScale="1ms"/>
+        </Display>
+        
         <OutputFile id="Volts_file__pop_473875489" fileName="Sim_Test_473875489.pop_473875489.v.dat">
             <OutputColumn id="v_pop_473875489_0_GLIF_473875489_v" quantity="pop_473875489/0/GLIF_473875489/v"/> 
         </OutputFile>
