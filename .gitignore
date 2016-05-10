@@ -113,7 +113,10 @@ CellTypesDatabase/models/neuronal_model/modfiles/*.mod
 /NeuroML2/GLIF/480629475/original.thresh.dat
 /NeuroML2/GLIF/480629475/original.v.dat
 /CellTypesDatabase/models/NeuroML2/CaDynamics.mod0
-/NeuroML2/GLIF/473875489/Sim_Test_473875489.pop_473875489.v.dat
-/NeuroML2/GLIF/473875489/original.thresh.dat
-/NeuroML2/GLIF/473875489/original.v.dat
+
+Sim_Test_*.pop_*.v.dat
+
+original.thresh.dat
+thresh.dat
+original.v.dat
 /NeuroML2/GLIF/info

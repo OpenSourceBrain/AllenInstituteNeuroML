@@ -28,7 +28,7 @@ def run_one_cell(glif_dir, curr_pA, dt=5e-7, show_plot=True):
 
     print spike_times
 
-    info = "Model %s; %spA stimulation; %i spikes"%(glif_dir,curr_pA,len(spike_times))
+    info = "Model %s; %spA stimulation; dt=%ss; %i spikes"%(glif_dir,curr_pA,dt,len(spike_times))
     print(info)
     
     v_file = open('%s/original.v.dat'%glif_dir,'w')
@@ -71,11 +71,16 @@ if __name__ == '__main__':
         run_one_cell('473875489', 120, dt=5e-7, show_plot=False)
         run_one_cell('480629471', 50, dt=5e-7, show_plot=False)
         run_one_cell('480629475', 50, dt=5e-7, show_plot=False)
+        run_one_cell('480633674', 120, dt=5e-7, show_plot=False)
         
         exit()
     
     glif_dir = sys.argv[1]
     curr_pA = float(sys.argv[2])
+    if len(sys.argv)==4:
+        dt=float(sys.argv[3])
+    else:
+        dt=5e-6
     show_plot = '-nogui' not in sys.argv
-    run_one_cell(glif_dir, curr_pA, dt=5e-6, show_plot=show_plot)
+    run_one_cell(glif_dir, curr_pA, dt=dt, show_plot=show_plot)
     

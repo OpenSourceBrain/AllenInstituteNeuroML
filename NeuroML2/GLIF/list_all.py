@@ -23,6 +23,9 @@ def write_to_file(directory, file_name, jstring):
     pretty = pp.pformat(jstring)
     pretty = pretty.replace('\'', '"')
     pretty = pretty.replace('u"', '"')
+    pretty = pretty.replace('None', 'null')
+    pretty = pretty.replace('False', 'false')
+    pretty = pretty.replace('True', 'true')
     f.write(pretty)
     f.close()
 
