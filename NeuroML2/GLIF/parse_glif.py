@@ -29,32 +29,34 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     if '(LIF)' in model_metadata['name']:
         type = 'glifCell'
     if '(LIF-ASC)' in model_metadata['name']:
-        type = 'glifCellAsc'
+        type = 'glifAscCell'
     if '(LIF-R)' in model_metadata['name']:
         type = 'glifRCell'
+    if '(LIF-R-ASC)' in model_metadata['name']:
+        type = 'glifRAscCell'
         
     cell_id = 'GLIF_%s'%glif_dir
 
     attributes = ""
 
     attributes +=' id="%s"'%cell_id
-    attributes +='\n        C="%s F"'%neuron_config["C"]
-    attributes +='\n        leakReversal="%s V"'%neuron_config["El"]
-    attributes +='\n        reset="%s V"'%neuron_config["El"]
-    attributes +='\n        thresh="%s V"'%( float(neuron_config["th_inf"]) * float(neuron_config["coeffs"]["th_inf"]))
-    attributes +='\n        leakConductance="%s S"'%(1/float(neuron_config["R_input"]))
+    attributes +='\n            C="%s F"'%neuron_config["C"]
+    attributes +='\n            leakReversal="%s V"'%neuron_config["El"]
+    attributes +='\n            reset="%s V"'%neuron_config["El"]
+    attributes +='\n            thresh="%s V"'%( float(neuron_config["th_inf"]) * float(neuron_config["coeffs"]["th_inf"]))
+    attributes +='\n            leakConductance="%s S"'%(1/float(neuron_config["R_input"]))
     
-    if type == 'glifCellAsc':
-        attributes +='\n        tau1="%s s"'%neuron_config["asc_tau_array"][0]
-        attributes +='\n        tau2="%s s"'%neuron_config["asc_tau_array"][1]
-        attributes +='\n        amp1="%s A"'% ( float(neuron_config["asc_amp_array"][0]) * float(neuron_config["coeffs"]["asc_amp_array"][0]) )
-        attributes +='\n        amp2="%s A"'% ( float(neuron_config["asc_amp_array"][1]) * float(neuron_config["coeffs"]["asc_amp_array"][1]) )
+    if type == 'glifAscCell' or type == 'glifRAscCell':
+        attributes +='\n            tau1="%s s"'%neuron_config["asc_tau_array"][0]
+        attributes +='\n            tau2="%s s"'%neuron_config["asc_tau_array"][1]
+        attributes +='\n            amp1="%s A"'% ( float(neuron_config["asc_amp_array"][0]) * float(neuron_config["coeffs"]["asc_amp_array"][0]) )
+        attributes +='\n            amp2="%s A"'% ( float(neuron_config["asc_amp_array"][1]) * float(neuron_config["coeffs"]["asc_amp_array"][1]) )
         
-    if type == 'glifRCell':
-        attributes +='\n        bs="%s per_s"'%neuron_config["threshold_dynamics_method"]["params"]["b_spike"]
-        attributes +='\n        deltaThresh="%s V"'%neuron_config["threshold_dynamics_method"]["params"]["a_spike"]
-        attributes +='\n        fv="%s"'%neuron_config["voltage_reset_method"]["params"]["a"]
-        attributes +='\n        deltaV="%s V"'%neuron_config["voltage_reset_method"]["params"]["b"]
+    if type == 'glifRCell' or type == 'glifRAscCell':
+        attributes +='\n            bs="%s per_s"'%neuron_config["threshold_dynamics_method"]["params"]["b_spike"]
+        attributes +='\n            deltaThresh="%s V"'%neuron_config["threshold_dynamics_method"]["params"]["a_spike"]
+        attributes +='\n            fv="%s"'%neuron_config["voltage_reset_method"]["params"]["a"]
+        attributes +='\n            deltaV="%s V"'%neuron_config["voltage_reset_method"]["params"]["b"]
         
 
     file_contents = template_cell%(type, attributes)
@@ -106,7 +108,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
                                 duration =      1200, 
                                 dt =            0.01,
                                 gen_saves_for_quantities = {'thresh.dat':['pop_%s/0/GLIF_%s/%s'%(glif_dir,glif_dir,thresh)]})
-
+    
     results = pynml.run_lems_with_jneuroml(lems_file_name,
                                      nogui=True,
                                      load_saved_data=True)
@@ -193,12 +195,44 @@ Comparison:
 if __name__ == '__main__':
     
     if '-all' in sys.argv:
-        generate_lems('473875489', 120, show_plot=False)
-        generate_lems('480629471', 50, show_plot=False)
-        generate_lems('480629475', 50, show_plot=False)
-        generate_lems('480633674', 120, show_plot=False)
-        generate_lems('486557295', 160, show_plot=False)
-        generate_lems('472451425', 180, show_plot=False)
+        readme = '''
+## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
+
+**Work in progress!**
+
+Not yet stable!!
+
+### Examples:
+
+        '''
+        models_stims = {'473875489': 120,
+                        '480629471': 50,   
+                        '480629475': 50,  
+                        '480633674': 120, 
+                        '486557295': 160, 
+                        '472451425': 180,  
+                        '472308324': 150}
+                        
+        '''models_stims = {'473875489': 120,
+                        '480629471': 50}'''
+                        
+        for model in models_stims.keys():
+            
+            generate_lems(model, models_stims[model], show_plot=False)
+            
+            curr_str = str(models_stims[model])
+            # @type curr_str str
+            if curr_str.endswith('.0'):
+                curr_str = curr_str[:-2]
+            readme += '''
+### Model: %s
+
+![Voltage](%s/Comparison_%spA.png)
+            ''' % (model,model,curr_str)
+
+        readme_file = open('README.md','w')
+        readme_file.write(readme)
+        readme_file.close()
         
         exit()
         

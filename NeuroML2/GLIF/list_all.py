@@ -31,23 +31,25 @@ def write_to_file(directory, file_name, jstring):
 
 random.seed(123)
 
-for model in random.sample(models,max):
-    
-    if max>0:
-        #pp.pprint(model)
-        
-        model_id = str(model['id'])
+models_to_use = random.sample(models,max)
+extras = [472308324]
 
-        print("\n=====================================")
-        print("Model %s: %s"%(model_id,model['name']))
-        
-        info = api.get_neuronal_model(model['id'])
-        
-        #pp.pprint(info)
-        
-        write_to_file(model_id, 'ephys_sweeps.json',info['ephys_sweeps'])
-        write_to_file(model_id, 'model_metadata.json',info['neuronal_model'])
-        
-        nueuron_config = api.get_neuron_config(output_file_name='%s/neuron_config.json'%model_id)
+for model in models:
+    if model['id'] in extras:
+        models_to_use.append(model)
+
+for model in models_to_use:
+
+    model_id = str(model['id'])
+
+    print("\n=====================================")
+    print("Model %s: %s"%(model_id,model['name']))
+    
+    info = api.get_neuronal_model(model['id'])
+
+    write_to_file(model_id, 'ephys_sweeps.json',info['ephys_sweeps'])
+    write_to_file(model_id, 'model_metadata.json',info['neuronal_model'])
+
+    api.get_neuron_config(output_file_name='%s/neuron_config.json'%model_id)
 
 print("Done with %i models"%len(models))

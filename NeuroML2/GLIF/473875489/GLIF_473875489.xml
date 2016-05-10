@@ -1,15 +1,15 @@
 <Lems>
 
       <glifRCell  id="GLIF_473875489"
-        C="7.85512829824e-11 F"
-        leakReversal="0.0 V"
-        reset="0.0 V"
-        thresh="0.0281669888956 V"
-        leakConductance="3.97749363581e-09 S"
-        bs="33.5348080132 per_s"
-        deltaThresh="0.00232461971967 V"
-        fv="0.202566172959"
-        deltaV="0.00417536405271 V"/>
+            C="7.85512829824e-11 F"
+            leakReversal="0.0 V"
+            reset="0.0 V"
+            thresh="0.0281669888956 V"
+            leakConductance="3.97749363581e-09 S"
+            bs="33.5348080132 per_s"
+            deltaThresh="0.00232461971967 V"
+            fv="0.202566172959"
+            deltaV="0.00417536405271 V"/>
 
     </Lems>
     
