@@ -26,11 +26,20 @@
          fv = "0.20256617295916096" deltaV="0.004175364052709396 V"/>
     
     
-    <glifRAscCell id="GLIF_472308324" leakReversal="0mV" thresh="0.016535833531715175 V"  tau1="0.03333333333s" tau2="0.00333333333s"
-         bs="33.53480801319328 per_s" deltaThresh="0.002324619719665667 V"
-         amp1="-3.847001287818176e-11A" amp2="2.058989164357654e-10A"
-	     reset="0mV" C="4.946777501212259e-11 F" leakConductance="2.2833678368091756e-09 S"
-         fv = "0.20256617295916096" deltaV="0.004175364052709396 V"/>
+    <glifRAscCell id="GLIF_472308324" 
+            C="9.44719858879e-11 F"
+            leakReversal="0.0 V"
+            reset="0.0 V"
+            thresh="0.04125733313 V"
+            leakConductance="3.4347412258e-09 S"
+            tau1="0.333333333333 s"
+            tau2="0.01 s"
+            amp1="-4.35022008595e-12 A"
+            amp2="-4.6646109736e-11 A"
+            bs="350.492848859 per_s"
+            deltaThresh="0.00996374822775 V"
+            fv="0.702263301567"
+            deltaV="0.0014687975536 V"/>
 
     <pulseGenerator id="pulseGen0" delay="100ms" duration="1000ms" amplitude="50 pA" />
     <pulseGenerator id="pulseGen1" delay="100ms" duration="1000ms" amplitude="150 pA" />

@@ -34,6 +34,8 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
         type = 'glifRCell'
     if '(LIF-R-ASC)' in model_metadata['name']:
         type = 'glifRAscCell'
+    if '(LIF-R-ASC-A)' in model_metadata['name']:
+        type = 'glifRAscATCell'
         
     cell_id = 'GLIF_%s'%glif_dir
 
@@ -52,7 +54,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
         attributes +='\n            amp1="%s A"'% ( float(neuron_config["asc_amp_array"][0]) * float(neuron_config["coeffs"]["asc_amp_array"][0]) )
         attributes +='\n            amp2="%s A"'% ( float(neuron_config["asc_amp_array"][1]) * float(neuron_config["coeffs"]["asc_amp_array"][1]) )
         
-    if type == 'glifRCell' or type == 'glifRAscCell':
+    if 'glifR' in type:
         attributes +='\n            bs="%s per_s"'%neuron_config["threshold_dynamics_method"]["params"]["b_spike"]
         attributes +='\n            deltaThresh="%s V"'%neuron_config["threshold_dynamics_method"]["params"]["a_spike"]
         attributes +='\n            fv="%s"'%neuron_config["voltage_reset_method"]["params"]["a"]
@@ -98,7 +100,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     
 
     thresh = 'thresh'
-    if type == 'glifRCell':
+    if 'glifR' in type:
         thresh = 'threshTotal'
 
     lems_file_name = oc.generate_lems_simulation(nml_doc, 
@@ -231,9 +233,10 @@ Not yet stable!!
 
 %s
 
+[More details](%s/README.md)
+
 ![Voltage](%s/Comparison_%spA.png)
 
-[More details](%s/README.md)
             ''' % (model,model_metadata['name'],model,curr_str,model)
 
         readme_file = open('README.md','w')
