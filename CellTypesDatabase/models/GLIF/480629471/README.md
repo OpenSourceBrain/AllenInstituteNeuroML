@@ -5,7 +5,7 @@
 
 1 Leaky Integrate and Fire (LIF)_Sst-IRES-Cre;Ai14(IVSCC)-165865.03.01.01
 
-[Electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958)
+[Allen Cell Types DB electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958)
 
 [Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
 

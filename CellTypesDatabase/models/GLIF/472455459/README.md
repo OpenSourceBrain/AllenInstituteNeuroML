@@ -5,7 +5,7 @@
 
 5 LIF-R-ASC + Threshold Adaptation (LIF-R-ASC-A)_Scnn1a-Tg3-Cre;Ai14(GSL)-172530.03.01.01
 
-[Electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/323834998)
+[Allen Cell Types DB electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/323834998)
 
 [Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
 

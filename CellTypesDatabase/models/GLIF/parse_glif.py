@@ -258,15 +258,15 @@ if __name__ == '__main__':
             if curr_str.endswith('.0'):
                 curr_str = curr_str[:-2]
             readme += '''
-#### Model: %s
+#### Model: %(id)s
 
-Model summary: %s
+Model summary: %(spec)s
 
-[Full details of conversion](%s/README.md)
+[Full details of conversion](%(id)s/README.md)
 
-![Voltage](%s/Comparison_%spA.png)
+<a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
 
-            ''' % (model,model_metadata['name'],model,model,curr_str)
+            ''' % {"id":model,"name":model_metadata['name'],"spec":model_metadata["specimen_id"],"curr":curr_str}
 
         readme_file = open('README.md','w')
         readme_file.write(readme)

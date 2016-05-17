@@ -5,7 +5,7 @@
 
 2 LIF + Reset Rules (LIF-R)_Sst-IRES-Cre;Ai14(IVSCC)-175894.03.02.01
 
-[Electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/328031983)
+[Allen Cell Types DB electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/328031983)
 
 [Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
 

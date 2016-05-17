@@ -5,7 +5,7 @@
 
 4 LIF-R + Afterspike Currents (LIF-R-ASC)_Rorb-IRES2-Cre-D;Ai14(IVSCC)-172651.05.01.01
 
-[Electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/324032509)
+[Allen Cell Types DB electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/324032509)
 
 [Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
 
