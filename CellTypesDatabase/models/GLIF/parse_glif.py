@@ -260,7 +260,9 @@ if __name__ == '__main__':
             readme += '''
 #### Model: %(id)s
 
-Model summary: %(spec)s
+Model summary: %(name)s
+
+[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
 
 [Full details of conversion](%(id)s/README.md)
 
