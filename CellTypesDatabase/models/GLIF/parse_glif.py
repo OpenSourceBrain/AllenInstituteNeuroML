@@ -171,21 +171,35 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     readme = '''
 ## Model: %s
 
-## Original model
+### Original model
 
-[Neuron config](neuron_config.json); [metadata](model_metadata.json); [electrophysiology](ephys_sweeps.json)
+%s
 
-Original traces:
+[Electrophysiology page for specimin](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%s)
+
+[Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
+
+#### Original traces:
+
+**Membrane potential**
 
 ![Original](MembranePotential_%spA.png)
 
+**Threshold**
+
 ![Threshold](Threshold_%spA.png)
 
-## Conversion to NeuroML 2
+### Conversion to NeuroML 2
 
-LEMS version: [GLIF_%s.xml](GLIF_%s.xml)
+LEMS version of this model: [GLIF_%s.xml](GLIF_%s.xml)
 
-Comparison:
+[Definitions of LEMS Component Types](../GLIFs.xml) for GLIFs.
+
+This model can be run locally by installing [jNeuroML](https://github.com/NeuroML/jNeuroML) and running:
+
+    jnml LEMS_Test_%s.xml
+
+#### Comparison:
 
 **Membrane potential**
 
@@ -200,7 +214,7 @@ Comparison:
     # @type curr_str str
     if curr_str.endswith('.0'):
         curr_str = curr_str[:-2]
-    readme_file.write(readme%(glif_dir,curr_str,curr_str,glif_dir,glif_dir,curr_str,curr_str))
+    readme_file.write(readme%(glif_dir,model_metadata['name'],model_metadata["specimen_id"],curr_str,curr_str,glif_dir,glif_dir,glif_dir,curr_str,curr_str))
     readme_file.close()
 
     os.chdir('..')
@@ -213,9 +227,8 @@ if __name__ == '__main__':
         readme = '''
 ## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
 
-**Work in progress!**
+**Note: work in progress!**
 
-Not yet stable!!
 
 ### Examples:
 
@@ -245,7 +258,7 @@ Not yet stable!!
 
 Model summary: %s
 
-[More details](%s/README.md)
+[Full details of conversion](%s/README.md)
 
 ![Voltage](%s/Comparison_%spA.png)
 

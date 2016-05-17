@@ -1,21 +1,35 @@
 
 ## Model: 472455459
 
-## Original model
+### Original model
 
-[Neuron config](neuron_config.json); [metadata](model_metadata.json); [electrophysiology](ephys_sweeps.json)
+5 LIF-R-ASC + Threshold Adaptation (LIF-R-ASC-A)_Scnn1a-Tg3-Cre;Ai14(GSL)-172530.03.01.01
 
-Original traces:
+[Electrophysiology page for specimin](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/323834998)
+
+[Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
+
+#### Original traces:
+
+**Membrane potential**
 
 ![Original](MembranePotential_120pA.png)
 
+**Threshold**
+
 ![Threshold](Threshold_120pA.png)
 
-## Conversion to NeuroML 2
+### Conversion to NeuroML 2
 
-LEMS version: [GLIF_472455459.xml](GLIF_472455459.xml)
+LEMS version of this model: [GLIF_472455459.xml](GLIF_472455459.xml)
 
-Comparison:
+[Definitions of LEMS Component Types](../GLIFs.xml) for GLIFs.
+
+This model can be run locally by installing [jNeuroML](https://github.com/NeuroML/jNeuroML) and running:
+
+    jnml LEMS_Test_472455459.xml
+
+#### Comparison:
 
 **Membrane potential**
 

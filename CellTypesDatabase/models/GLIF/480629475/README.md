@@ -1,21 +1,35 @@
 
 ## Model: 480629475
 
-## Original model
+### Original model
 
-[Neuron config](neuron_config.json); [metadata](model_metadata.json); [electrophysiology](ephys_sweeps.json)
+3 LIF + Afterspike Currents (LIF-ASC)_Sst-IRES-Cre;Ai14(IVSCC)-165865.03.01.01
 
-Original traces:
+[Electrophysiology page for specimin](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958)
+
+[Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
+
+#### Original traces:
+
+**Membrane potential**
 
 ![Original](MembranePotential_50pA.png)
 
+**Threshold**
+
 ![Threshold](Threshold_50pA.png)
 
-## Conversion to NeuroML 2
+### Conversion to NeuroML 2
 
-LEMS version: [GLIF_480629475.xml](GLIF_480629475.xml)
+LEMS version of this model: [GLIF_480629475.xml](GLIF_480629475.xml)
 
-Comparison:
+[Definitions of LEMS Component Types](../GLIFs.xml) for GLIFs.
+
+This model can be run locally by installing [jNeuroML](https://github.com/NeuroML/jNeuroML) and running:
+
+    jnml LEMS_Test_480629475.xml
+
+#### Comparison:
 
 **Membrane potential**
 
