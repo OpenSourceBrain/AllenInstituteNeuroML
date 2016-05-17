@@ -5,13 +5,15 @@
 
 1 Leaky Integrate and Fire (LIF)_Cux2-CreERT2;Ai14-205221.05.02.01
 
-[Electrophysiology page for specimin](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/486175203)
+[Electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/486175203)
 
 [Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
 
 #### Original traces:
 
 **Membrane potential**
+
+Current injection of 160 pA
 
 ![Original](MembranePotential_160pA.png)
 
@@ -32,6 +34,8 @@ This model can be run locally by installing [jNeuroML](https://github.com/NeuroM
 #### Comparison:
 
 **Membrane potential**
+
+Current injection of 160 pA
 
 ![Comparison](Comparison_160pA.png)
 

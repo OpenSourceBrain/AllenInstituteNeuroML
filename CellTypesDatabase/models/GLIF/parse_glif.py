@@ -169,13 +169,13 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
                         save_figure_to='Comparison_Threshold_%ipA.png'%(curr_pA))
                             
     readme = '''
-## Model: %s
+## Model: %(id)s
 
 ### Original model
 
-%s
+%(name)s
 
-[Electrophysiology page for specimin](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%s)
+[Allen Cell Types DB electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
 
 [Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
 
@@ -183,38 +183,42 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
 
 **Membrane potential**
 
-![Original](MembranePotential_%spA.png)
+Current injection of %(curr)s pA
+
+![Original](MembranePotential_%(curr)spA.png)
 
 **Threshold**
 
-![Threshold](Threshold_%spA.png)
+![Threshold](Threshold_%(curr)spA.png)
 
 ### Conversion to NeuroML 2
 
-LEMS version of this model: [GLIF_%s.xml](GLIF_%s.xml)
+LEMS version of this model: [GLIF_%(id)s.xml](GLIF_%(id)s.xml)
 
 [Definitions of LEMS Component Types](../GLIFs.xml) for GLIFs.
 
 This model can be run locally by installing [jNeuroML](https://github.com/NeuroML/jNeuroML) and running:
 
-    jnml LEMS_Test_%s.xml
+    jnml LEMS_Test_%(id)s.xml
 
 #### Comparison:
 
 **Membrane potential**
 
-![Comparison](Comparison_%spA.png)
+Current injection of %(curr)s pA
+
+![Comparison](Comparison_%(curr)spA.png)
 
 **Threshold**
 
-![Comparison](Comparison_Threshold_%spA.png)'''
+![Comparison](Comparison_Threshold_%(curr)spA.png)'''
     
     readme_file = open('README.md','w')
     curr_str = str(curr_pA)
     # @type curr_str str
     if curr_str.endswith('.0'):
         curr_str = curr_str[:-2]
-    readme_file.write(readme%(glif_dir,model_metadata['name'],model_metadata["specimen_id"],curr_str,curr_str,glif_dir,glif_dir,glif_dir,curr_str,curr_str))
+    readme_file.write(readme%{"id":glif_dir,"name":model_metadata['name'],"spec":model_metadata["specimen_id"],"curr":curr_str})
     readme_file.close()
 
     os.chdir('..')

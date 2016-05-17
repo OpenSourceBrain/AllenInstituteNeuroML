@@ -5,13 +5,15 @@
 
 3 LIF + Afterspike Currents (LIF-ASC)_Sst-IRES-Cre;Ai14(IVSCC)-165865.03.01.01
 
-[Electrophysiology page for specimin](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958)
+[Electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958)
 
 [Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
 
 #### Original traces:
 
 **Membrane potential**
+
+Current injection of 50 pA
 
 ![Original](MembranePotential_50pA.png)
 
@@ -32,6 +34,8 @@ This model can be run locally by installing [jNeuroML](https://github.com/NeuroM
 #### Comparison:
 
 **Membrane potential**
+
+Current injection of 50 pA
 
 ![Comparison](Comparison_50pA.png)
 

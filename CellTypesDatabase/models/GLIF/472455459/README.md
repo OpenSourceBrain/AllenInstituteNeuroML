@@ -5,13 +5,15 @@
 
 5 LIF-R-ASC + Threshold Adaptation (LIF-R-ASC-A)_Scnn1a-Tg3-Cre;Ai14(GSL)-172530.03.01.01
 
-[Electrophysiology page for specimin](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/323834998)
+[Electrophysiology page for specimen](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/323834998)
 
 [Neuron configuration](neuron_config.json); [model metadata](model_metadata.json); [electrophysiology summary](ephys_sweeps.json)
 
 #### Original traces:
 
 **Membrane potential**
+
+Current injection of 120 pA
 
 ![Original](MembranePotential_120pA.png)
 
@@ -32,6 +34,8 @@ This model can be run locally by installing [jNeuroML](https://github.com/NeuroM
 #### Comparison:
 
 **Membrane potential**
+
+Current injection of 120 pA
 
 ![Comparison](Comparison_120pA.png)
 
