@@ -18,7 +18,7 @@ analysed.sort()
 nogui = '-nogui' in sys.argv
 
 info = {}
-info['info'] = 'Extracted from Cell Types Database...'
+info['info'] = 'Cell models tuned to data extracted from Cell Types Database. Note: these are preliminary models designed to test the framework for generating NeuroML models from this data, not the final, optimised models.'
 
 
 HTML_TEMPLATE_FILE = "CellInfo_TEMPLATE.html" 
@@ -36,7 +36,7 @@ def make_md_file():
     
     html_dir = 'summary'
     new_html_file = os.path.join(html_dir,'CellInfo.html')
-    new_md_file = os.path.join(html_dir,'CellInfo.md')
+    new_md_file = os.path.join(html_dir,'README.md')
     
     hf = open(new_html_file, 'r')
     mf = open(new_md_file, 'w')

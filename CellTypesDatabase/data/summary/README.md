@@ -1,4 +1,4 @@
-<p style="font-family:arial">Extracted from Cell Types Database...</p>
+<p style="font-family:arial">Cell models tuned to data extracted from Cell Types Database. Note: these are preliminary models designed to test the framework for generating NeuroML models from this data, not the final, optimised models.</p>
 <table border="1">
 <tr>
 <td width="130px">
