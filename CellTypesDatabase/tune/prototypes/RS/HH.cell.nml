@@ -20,7 +20,7 @@
 
             <segment id="0" name="Soma">
                 <proximal x="0.0" y="0.0" z="0.0" diameter="50.0"/>
-                <distal x="50.0" y="0.0" z="0.0" diameter="50.0"/>
+                <distal x="0.0" y="0.0" z="0.0" diameter="50.0"/>
             </segment>
 
             <segmentGroup id="Soma" neuroLexId="sao864921383">    <!--

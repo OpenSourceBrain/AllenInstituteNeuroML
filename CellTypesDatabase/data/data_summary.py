@@ -32,6 +32,29 @@ def make_html_file(info):
     lf.close()
     print('Written HTML info to: %s' % new_html_file)
     
+def make_md_file():
+    
+    html_dir = 'summary'
+    new_html_file = os.path.join(html_dir,'CellInfo.html')
+    new_md_file = os.path.join(html_dir,'CellInfo.md')
+    
+    hf = open(new_html_file, 'r')
+    mf = open(new_md_file, 'w')
+    started = False
+    for line in hf:
+        l = line.strip()
+        if l == '</body>':
+            started = False
+        if started:
+            mf.write(l+'\n')
+        if l == '<body>':
+            started = True
+            
+    
+    mf.close()
+    hf.close()
+    print('Written Markdown info to: %s' % new_md_file)
+    
 def merge_with_template(model, templfile):
     if not os.path.isfile(templfile):
         templfile = os.path.join(os.path.dirname(sys.argv[0]), templfile)
@@ -128,8 +151,9 @@ for f in analysed:
                         show_plot_already=False,
                         save_figure_to = target_file%('traces', id))
 
-print info
+print(info)
 make_html_file(info)
+make_md_file()
 
 if not nogui:
     plt.show()

@@ -41,6 +41,7 @@ def analyse_cell(dataset_id, type, nogui = False):
                
     temp_dir = 'temp/'
     
+    print("Copying %s to %s"%(cell_file, temp_dir))
     shutil.copy(cell_file, temp_dir)
     
     net_file = generate_network_for_sweeps(type, dataset_id, '%s.cell.nml'%(reference), reference, temp_dir)

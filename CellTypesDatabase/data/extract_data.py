@@ -22,7 +22,7 @@ test = '-test' in sys.argv
 
 dataset_ids = DH.CURRENT_DATASETS
 if test:
-    dataset_ids = [471141261]
+    dataset_ids = [479704527]
 
 for dataset_id in dataset_ids:
 
@@ -35,7 +35,7 @@ for dataset_id in dataset_ids:
 
     sweep_numbers = data_set.get_experiment_sweep_numbers()
     if test:
-        sweep_numbers = [36,54,58]
+        sweep_numbers = [36,54]
         
     sweep_numbers.sort()
 

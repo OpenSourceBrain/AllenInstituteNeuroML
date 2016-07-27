@@ -5,12 +5,17 @@ This script can be used to download data from the CellTypes Database
 
 from allensdk.api.queries.cell_types_api import CellTypesApi
 import os
+import sys
 
 ct = CellTypesApi()
 
 from data_helper import CURRENT_DATASETS, DATASET_TARGET_SWEEPS
 
+test = '-test' in sys.argv
+
 dataset_ids = CURRENT_DATASETS
+if test:
+    dataset_ids = [479704527]
 
 sweep_numbers_for_data = DATASET_TARGET_SWEEPS
 
@@ -35,7 +40,7 @@ for dataset_id in dataset_ids:
 
     import matplotlib.pyplot as plt
     import numpy as np
-    plt.figure()
+    fig = plt.figure()
 
     sweep_numbers = sweep_numbers_for_data[dataset_id]
 
@@ -85,6 +90,7 @@ for dataset_id in dataset_ids:
 
     plt.ylabel('Membrane voltage (mV)')
     plt.xlabel('Time (s)')
+    fig.canvas.set_window_title("Dataset: %s"%dataset_id)
     plt.legend()
     
 plt.show()

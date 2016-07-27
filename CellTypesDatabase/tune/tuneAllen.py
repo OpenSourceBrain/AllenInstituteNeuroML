@@ -373,7 +373,7 @@ if __name__ == '__main__':
 
         scale1 = 0.1
         
-        dataset = 471141261
+        dataset = 479704527
         ref = 'network_%s_Izh'%(dataset)
 
         report = run_one_optimisation('AllenIzh',
@@ -405,7 +405,7 @@ if __name__ == '__main__':
         dataset = 471141261
         dataset = 464198958
         dataset = 325941643
-        dataset = 464326095
+        dataset = 479704527
         type = 'Izh'
         ref = 'network_%s_%s'%(dataset, type)
 
@@ -420,8 +420,8 @@ if __name__ == '__main__':
         
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
-        scale1 = 1
-        scale2 = 1
+        scale1 = .2
+        scale2 = .2
         mutation_rate = 0.9,
         num_elites = 5,
         seed = 1234,
@@ -526,7 +526,7 @@ if __name__ == '__main__':
         dataset = 471141261
         dataset = 464198958
         dataset = 325941643
-        dataset = 464326095
+        dataset = 479704527
         type = 'HH'
         ref = 'network_%s_%s'%(dataset, type)
 
@@ -543,8 +543,8 @@ if __name__ == '__main__':
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
 
-        scale1 = 1
-        scale2 = 1
+        scale1 = .1
+        scale2 = .2
         mutation_rate = 0.9,
         num_elites = 5,
         seed = 1234,
@@ -579,7 +579,8 @@ if __name__ == '__main__':
                                 show_plot_already = True,
                                 seed = seed,
                                 known_target_values = {},
-                                dry_run = False)
+                                dry_run = False,
+                                num_parallel_evaluations = 2)
                                 
         compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']))
         compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']))
