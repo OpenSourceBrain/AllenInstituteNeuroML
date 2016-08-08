@@ -26,7 +26,7 @@ def download():
                           '483109057', '478513415', '482583564', '488759006', '472912107', '485904766', '480630395', '480361288', '485720616', '477878554', 
                           '476637796', '479694856', '478049069', '476637747', '472450023', '478513441', '472299294']
 
-    neuronal_model_ids = [483108201]
+    neuronal_model_ids = [472450023, 483108201]
 
     print("---- Downloading %i cell models..."%len(neuronal_model_ids))
 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     test = '-test' in sys.argv
     
     if test:
-        
+        '''
         dataset_ids = []
         ct = CellTypesApi()
         
@@ -64,11 +64,14 @@ if __name__ == '__main__':
             
 
         print("Found %i datasets: %s"%(len(dataset_ids),dataset_ids))
-        
+        '''
         all_biophys_models = []
 
         
         count = 0
+        
+        dataset_ids = [471141261,464198958,325941643,479704527]
+        
         for dataset_id in dataset_ids:
         
             url = 'http://celltypes.brain-map.org/api/v2/data/Specimen/query.xml?criteria=model::Specimen,rma::criteria,%5Bid$eq' + \
@@ -84,7 +87,7 @@ if __name__ == '__main__':
 
             root = ET.fromstring(xml)
 
-            print("\n\n Got XML: %s for dataset %s (%i/%i)"%(root.tag, dataset_id,count,len(dataset_id)))
+            print("\n\n Got XML: %s for dataset %s (%i/%i)"%(root.tag, dataset_id,count,len(dataset_ids)))
             for model in root.findall('./specimens/specimen/neuronal-models/neuronal-model'):
                 for child in model:
                     print child.tag, child.attrib, child.text
@@ -98,3 +101,6 @@ if __name__ == '__main__':
                 
         print("Found %i biophysical models: %s"%(len(all_biophys_models),all_biophys_models))
         
+    else:
+                    
+        download()

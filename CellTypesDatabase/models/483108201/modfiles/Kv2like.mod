@@ -72,6 +72,9 @@ PROCEDURE rates() {
 		hInf =  1/(1 + exp((v + 58) / 11))
 		h1Tau = (360 + (1010 + 23.7 * (v + 54)) * exp(-((v + 75) / 48)^2)) / qt
 		h2Tau = (2350 + 1380 * exp(-0.011 * v) - 210 * exp(-0.03 * v)) / qt
+		if (h2Tau < 0) {
+			h2Tau = 1e-3
+		}
 	UNITSON
 }
 

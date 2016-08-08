@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" 
+        id="CaDynamics_all">
+    
+    <notes>A set of concentration models for various cells exported to NeuroML, with specific values for gamma and delay</notes>
+    
+    <!-- This file contains the definition of the ComponentType concentrationModelHayEtAl -->
+    <include href="CaDynamics.nml"/>
+    
+    <concentrationModel id="CaDynamics_472450023" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="210.698822062 ms" depth="0.1 um" gamma="0.0237329398092" ion="ca"/>
+
+    <concentrationModel id="CaDynamics_483108201" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="800.652559055 ms" depth="0.1 um" gamma="0.000532449236386" ion="ca"/>
+
+
+</neuroml>

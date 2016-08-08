@@ -24,7 +24,7 @@ print("Cell loaded from: %s"%morphology_path)
 stimulus_path = description.manifest.get_path('stimulus_path')
 
 run_params = description.data['runs'][0]
-sweeps = [60]
+sweeps = [55]
 
 junction_potential = description.data['fitting'][0]['junction_potential']
 mV = 1.0e-3
@@ -46,3 +46,4 @@ for sweep in sweeps:
     for i in range(len(vec['v'])):
         s_file.write('%s\t%s\n'%(vec['t'][i],vec['v'][i]))
     s_file.close()
+    

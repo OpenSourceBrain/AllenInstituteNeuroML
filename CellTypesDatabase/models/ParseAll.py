@@ -5,12 +5,10 @@ from allensdk.model.biophysical_perisomatic.runner import load_description
 
 from pyneuroml.neuron import export_to_neuroml2
 from pyneuroml.neuron.nrn_export_utils import clear_neuron
-
 from pyneuroml.lems import generate_lems_file_for_neuroml
+from pyneuroml import pynml
 
 import json
-
-from pyneuroml import pynml
 
 import os
 import os.path
@@ -34,6 +32,9 @@ net_doc.networks.append(net)
 clear_neuron()
     
 count = 0
+
+ca_dynamics = {}
+
 for model_id in cell_dirs:
     
     if os.path.isdir(model_id):
@@ -56,6 +57,11 @@ for model_id in cell_dirs:
     morphology_path = description.manifest.get_path('MORPHOLOGY')
     utils.generate_morphology(morphology_path.encode('ascii', 'ignore'))
     utils.load_cell_parameters()
+    
+    with open('manifest.json', "r") as json_file:
+        manifest_info = json.load(json_file)
+        
+    print("Loaded manifest: %s (fit: %s)"%(manifest_info['biophys'][0]["model_type"], manifest_info['biophys'][0]["model_file"][1]))
 
     print("Cell loaded from: %s"%morphology_path)
     
@@ -115,7 +121,7 @@ for model_id in cell_dirs:
                     print("Replacing group named %s with %s"%(sg.id,replace[prefix]))
                     sg.id = replace[prefix]
     
-    with open('%s_fit.json'%model_id, "r") as json_file:
+    with open(manifest_info['biophys'][0]["model_file"][1], "r") as json_file:
         cell_info = json.load(json_file)
         
     
@@ -163,6 +169,10 @@ for model_id in cell_dirs:
                                             erev=erev,
                                             ion = ion)
                 membrane_properties.channel_densities.append(cd)
+        else:
+            if not ca_dynamics.has_key(model_id):
+                ca_dynamics[model_id] = {}
+            ca_dynamics[model_id][str(chan['name'])] = chan['value']
                 
    
     inc_chans =[]
@@ -185,10 +195,39 @@ for model_id in cell_dirs:
                         ion='ca',  \
                         initial_concentration='0.0001 mM', \
                         initial_ext_concentration='2 mM', \
-                        concentration_model="CaDynamics", \
+                        concentration_model="CaDynamics_%s"%model_id, \
                         segment_groups="soma"))
+                        
+    
+                        
     nml_doc.includes.append(
-                    neuroml.IncludeType(href="%s.nml" % 'CaDynamics'))
+                    neuroml.IncludeType(href="%s.nml" % 'CaDynamics_all'))
+                       
+    xml = '''<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" 
+        id="CaDynamics_all">
+    
+    <notes>A set of concentration models for various cells exported to NeuroML, with specific values for gamma and delay</notes>
+    
+    <!-- This file contains the definition of the ComponentType concentrationModelHayEtAl -->
+    <include href="CaDynamics.nml"/>
+    
+'''     
+    # @type ca_dynamics dict
+    for key, values in ca_dynamics.iteritems():
+
+        xml += '    <concentrationModel id="CaDynamics_%s" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="%s ms" depth="0.1 um" gamma="%s" ion="ca"/>\n\n'%(key,values["decay_CaDynamics"],values["gamma_CaDynamics"])
+         
+    xml += '''
+</neuroml>'''
+         
+    ca_file = open(nml2_cell_dir+'CaDynamics_all.nml','w')
+    ca_file.write(xml)
+    ca_file.close()
+        
+         
                         
     intracellular_properties = neuroml.IntracellularProperties(resistivities=resistivities, species=species)
 
@@ -201,6 +240,7 @@ for model_id in cell_dirs:
     
     
     pynml.write_neuroml2_file(nml_doc, nml_cell_loc)
+    
     
     pynml.nml2_to_svg(nml_cell_loc)
     
@@ -222,7 +262,7 @@ for model_id in cell_dirs:
     new_net.populations[0].component = pop_comp
 
     stim_ref = "stim"
-    stim = neuroml.PulseGenerator(id=stim_ref, delay="200ms", duration="1000ms", amplitude="350pA")
+    stim = neuroml.PulseGenerator(id=stim_ref, delay="200ms", duration="1000ms", amplitude="270pA")
     new_net_doc.pulse_generators.append(stim)
     
     input_list = neuroml.InputList(id="%s_input"%stim_ref,
