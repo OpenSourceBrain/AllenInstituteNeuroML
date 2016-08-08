@@ -42,8 +42,8 @@ parameters_hh = ['cell:RS/channelDensity:LeakConductance_all/mS_per_cm2',
               'cell:RS/erev_id:IM_all/mV']
 
 
-max_constraints_hh = [0.1,   -70,  2, 40, 20, 1,    60, -70, -70]
-min_constraints_hh = [0.05, -90, 0.2, 20, 10, 1e-3, 50, -90, -90]
+max_constraints_hh = [0.2,   -60,  4,  80, 30, 5,    60, -70, -70]
+min_constraints_hh = [0.01, -100, 0.2, 10, 1, 1e-3, 50, -90, -90]
 
 
 #  typical (tuned) spiking cell
@@ -403,9 +403,9 @@ if __name__ == '__main__':
         print("Running 2 stage optimisation")
         simulator  = 'jNeuroML_NEURON'
         dataset = 471141261
-        dataset = 464198958
         dataset = 325941643
         dataset = 479704527
+        dataset = 464198958
         type = 'Izh'
         ref = 'network_%s_%s'%(dataset, type)
 
@@ -420,10 +420,10 @@ if __name__ == '__main__':
         
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
-        scale1 = .2
-        scale2 = .2
-        mutation_rate = 0.9,
-        num_elites = 5,
+        scale1 = 2
+        scale2 = 2
+        mutation_rate = 0.1,
+        num_elites = scale(scale2,8,2),
         seed = 1234,
 
         
@@ -457,16 +457,13 @@ if __name__ == '__main__':
                                 show_plot_already = True,
                                 seed = seed,
                                 known_target_values = {},
-                                dry_run = False)
+                                dry_run = False,
+                                num_parallel_evaluations = 10)
         
-                                
-        compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False)
-        '''
-        r2={}
-        r2['run_directory'] ='NT_AllenIzh2stage_STAGE2_Tue_Dec__1_17.26.38_2015'
-        r2['reference'] = 'AllenIzh2stage_STAGE2'  '''
-        
-        compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=True, dataset=dataset)
+                         
+        if not nogui:       
+            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False)
+            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=True, dataset=dataset)
         
         final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
         
@@ -524,30 +521,29 @@ if __name__ == '__main__':
         print("Running 2 stage hh optimisation")
         simulator  = 'jNeuroML_NEURON'
         dataset = 471141261
+        dataset = 479704527
         dataset = 464198958
         dataset = 325941643
-        dataset = 479704527
         type = 'HH'
         ref = 'network_%s_%s'%(dataset, type)
 
 
-        max_constraints_1 = [0.1,   -70,  2,   0, 0, 0, 55, -80, -80]
+        max_constraints_1 = [1,   -50,  5,   0, 0, 0, 55, -80, -80]
         min_constraints_1 = [0.001, -100, 0.2, 0, 0, 0, 55, -80, -80]
 
         # For a quick test...
         # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80, -80]
         # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80, -80]
 
-        max_constraints_2 = ['x',   'x',   'x',    100,  25,   4,    60, -70,  -70]
-        min_constraints_2 = ['x',   'x',   'x',    20,   1,    1e-6, 50, -100, -100]
+        max_constraints_2 = ['x',   'x',   'x',    100,  35,   5,    60, -70,  -70]
+        min_constraints_2 = ['x',   'x',   'x',    10,   1,    1e-6, 50, -100, -100]
 
-        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(471141261)
+        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
-        scale1 = .1
-        scale2 = .2
-        mutation_rate = 0.9,
-        num_elites = 5,
-        seed = 1234,
+        scale1 = 3
+        scale2 = 3
+        mutation_rate = 0.1,
+        seed = 1234678,
 
         r1, r2 = run_2stage_optimization('Allen2stage',
                                 neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
@@ -563,7 +559,7 @@ if __name__ == '__main__':
                                 target_data_1 = target_data_1,
                                 target_data_2 = target_data_2,
                                 sim_time = 1500,
-                                dt = 0.05,
+                                dt = 0.01,
                                 population_size_1 = scale(scale1,100,10),
                                 population_size_2 = scale(scale2,100,10),
                                 max_evaluations_1 = scale(scale1,500,20),
@@ -573,17 +569,18 @@ if __name__ == '__main__':
                                 num_offspring_1 = scale(scale1,20,5),
                                 num_offspring_2 = scale(scale2,20,5),
                                 mutation_rate = mutation_rate,
-                                num_elites = num_elites,
+                                num_elites = scale(scale2,5,2),
                                 simulator = simulator,
                                 nogui = nogui,
-                                show_plot_already = True,
+                                show_plot_already = False,
                                 seed = seed,
                                 known_target_values = {},
                                 dry_run = False,
-                                num_parallel_evaluations = 2)
-                                
-        compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']))
-        compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']))
+                                num_parallel_evaluations = 10)
+        
+        if not nogui:
+            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']),show_plot_already=False,dataset=dataset)
+            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']),dataset=dataset)
         
         
         final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)

@@ -20,6 +20,8 @@ def analyse_cell(dataset_id, type, nogui = False):
     
     images = 'summary/%s_%s.png'
     
+    print("====================================\n\n   Analysing cell: %s\n"%(cell_file))
+    
     generate_current_vs_frequency_curve(cell_file, 
                                         reference, 
                                         simulator = 'jNeuroML_NEURON',
