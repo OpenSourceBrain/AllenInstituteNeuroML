@@ -276,6 +276,170 @@ def compare(sim_data_file, show_plot_already=True, dataset=471141261):
                         show_plot_already=show_plot_already)
 
 
+def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False):
+    
+        print("Running 2 stage hh optimisation")
+        
+        type = 'HH'
+        ref = 'network_%s_%s'%(dataset, type)
+
+        max_constraints_1 = [1,   -50,  5,   0, 0, 0, 55, -80, -80]
+        min_constraints_1 = [0.001, -100, 0.2, 0, 0, 0, 55, -80, -80]
+
+        # For a quick test...
+        # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80, -80]
+        # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80, -80]
+
+        max_constraints_2 = ['x',   'x',   'x',    100,  35,   5,    60, -70,  -70]
+        min_constraints_2 = ['x',   'x',   'x',    10,   1,    1e-6, 50, -100, -100]
+
+        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
+
+        mutation_rate = 0.1
+
+        r1, r2 = run_2stage_optimization('Allen2stage',
+                                neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
+                                target =        ref,
+                                parameters = parameters_hh,
+                                max_constraints_1 = max_constraints_1,
+                                max_constraints_2 = max_constraints_2,
+                                min_constraints_1 = min_constraints_1,
+                                min_constraints_2 = min_constraints_2,
+                                delta_constraints = 0.01,
+                                weights_1 = weights_1,
+                                weights_2 = weights_2,
+                                target_data_1 = target_data_1,
+                                target_data_2 = target_data_2,
+                                sim_time = 1500,
+                                dt = 0.01,
+                                population_size_1 = scale(scale1,100,10),
+                                population_size_2 = scale(scale2,100,10),
+                                max_evaluations_1 = scale(scale1,500,20),
+                                max_evaluations_2 = scale(scale2,500,10),
+                                num_selected_1 = scale(scale1,30,5),
+                                num_selected_2 = scale(scale2,30,5),
+                                num_offspring_1 = scale(scale1,20,5),
+                                num_offspring_2 = scale(scale2,20,5),
+                                mutation_rate = mutation_rate,
+                                num_elites = scale(scale2,5,2),
+                                simulator = simulator,
+                                nogui = nogui,
+                                show_plot_already = False,
+                                seed = seed,
+                                known_target_values = {},
+                                dry_run = False,
+                                num_parallel_evaluations = 10)
+        
+        if not nogui:
+            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']),show_plot_already=False,dataset=dataset)
+            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']),dataset=dataset, show_plot_already=not nogui)
+        
+        
+        final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
+        
+        nml_doc = pynml.read_neuroml2_file(final_network)
+        
+        cell = nml_doc.cells[0]
+        
+        print("Extracted cell: %s from tuned model"%cell.id)
+        
+        new_id = '%s_%s'%(type, dataset)
+        new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
+        cell.id = new_id
+        
+        cell.notes = "Cell model tuned to Allen Institute Cell Types Database, dataset: "+ \
+                     "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
+        
+        new_cell_doc.cells.append(cell)
+        new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
+        
+        channel_files = ['IM.channel.nml', 'Kd.channel.nml', 'Leak.channel.nml', 'Na.channel.nml']
+        for ch in channel_files:
+            new_cell_doc.includes.append(neuroml.IncludeType(ch))
+            
+        pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
+
+
+
+def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False):
+    
+    type = 'Izh'
+    ref = 'network_%s_%s'%(dataset, type)
+
+    #                     a,   b,  c,  d,   C,    vr,  vt, vpeak, k
+    min_constraints_1 = [0.1, 1, -50, 300,  30,  -90, -30, 30,   0.01]
+    max_constraints_1 = [0.1, 1, -50, 300, 300,  -70, -30, 30,   1]
+
+
+    #                     a,     b,  c,  d,   C,    vr,  vt, vpeak, k
+    min_constraints_2 = [0.01, -5, -65, 10,  'x',  'x', -60, 0,   'x']
+    max_constraints_2 = [0.2,  20, -10, 400, 'x',  'x',  50, 70,  'x']
+
+    sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
+
+    mutation_rate = 0.1,
+    num_elites = scale(scale2,8,2),
+
+
+    r1, r2 = run_2stage_optimization('AllenIzh2stage',
+                            neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
+                            target = ref,
+                            parameters = parameters_iz,
+                            max_constraints_1 = max_constraints_1,
+                            max_constraints_2 = max_constraints_2,
+                            min_constraints_1 = min_constraints_1,
+                            min_constraints_2 = min_constraints_2,
+                            delta_constraints = 0.01,
+                            weights_1 = weights_1,
+                            weights_2 = weights_2,
+                            target_data_1 = target_data_1,
+                            target_data_2 = target_data_2,
+                            sim_time = 1500,
+                            dt = 0.05,
+                            population_size_1 = scale(scale1,100,10),
+                            population_size_2 = scale(scale2,100,10),
+                            max_evaluations_1 = scale(scale1,800,20),
+                            max_evaluations_2 = scale(scale2,800,10),
+                            num_selected_1 = scale(scale1,30,5),
+                            num_selected_2 = scale(scale2,30,5),
+                            num_offspring_1 = scale(scale1,20,5),
+                            num_offspring_2 = scale(scale2,20,5),
+                            mutation_rate = mutation_rate,
+                            num_elites = num_elites,
+                            simulator = simulator,
+                            nogui = nogui,
+                            show_plot_already = True,
+                            seed = seed,
+                            known_target_values = {},
+                            dry_run = False,
+                            num_parallel_evaluations = 10)
+
+
+    if not nogui:       
+        compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False)
+        compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=not nogui, dataset=dataset)
+
+    final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
+
+    nml_doc = pynml.read_neuroml2_file(final_network)
+
+    cell = nml_doc.izhikevich2007_cells[0]
+
+    print("Extracted cell: %s from tuned model"%cell.id)
+
+    new_id = '%s_%s'%(type, dataset)
+    new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
+    cell.id = new_id
+
+    cell.notes = "Cell model tuned to Allen Institute Cell Types Database, dataset: "+ \
+                 "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
+
+    new_cell_doc.izhikevich2007_cells.append(cell)
+    new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
+
+    pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
+
+
 
 if __name__ == '__main__':
 
@@ -406,84 +570,11 @@ if __name__ == '__main__':
         dataset = 325941643
         dataset = 479704527
         dataset = 464198958
-        type = 'Izh'
-        ref = 'network_%s_%s'%(dataset, type)
-
-        #                     a,   b,  c,  d,   C,    vr,  vt, vpeak, k
-        min_constraints_1 = [0.1, 1, -50, 300,  30,  -90, -30, 30,   0.01]
-        max_constraints_1 = [0.1, 1, -50, 300, 300,  -70, -30, 30,   1]
-
-
-        #                     a,     b,  c,  d,   C,    vr,  vt, vpeak, k
-        min_constraints_2 = [0.01, -5, -65, 10,  'x',  'x', -60, 0,   'x']
-        max_constraints_2 = [0.2,  20, -10, 400, 'x',  'x',  50, 70,  'x']
+        scale1 = 7
+        scale2 = 7
+        seed = 123
         
-        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
-
-        scale1 = 2
-        scale2 = 2
-        mutation_rate = 0.1,
-        num_elites = scale(scale2,8,2),
-        seed = 1234,
-
-        
-        r1, r2 = run_2stage_optimization('AllenIzh2stage',
-                                neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
-                                target = ref,
-                                parameters = parameters_iz,
-                                max_constraints_1 = max_constraints_1,
-                                max_constraints_2 = max_constraints_2,
-                                min_constraints_1 = min_constraints_1,
-                                min_constraints_2 = min_constraints_2,
-                                delta_constraints = 0.01,
-                                weights_1 = weights_1,
-                                weights_2 = weights_2,
-                                target_data_1 = target_data_1,
-                                target_data_2 = target_data_2,
-                                sim_time = 1500,
-                                dt = 0.05,
-                                population_size_1 = scale(scale1,100,10),
-                                population_size_2 = scale(scale2,100,10),
-                                max_evaluations_1 = scale(scale1,800,20),
-                                max_evaluations_2 = scale(scale2,800,10),
-                                num_selected_1 = scale(scale1,30,5),
-                                num_selected_2 = scale(scale2,30,5),
-                                num_offspring_1 = scale(scale1,20,5),
-                                num_offspring_2 = scale(scale2,20,5),
-                                mutation_rate = mutation_rate,
-                                num_elites = num_elites,
-                                simulator = simulator,
-                                nogui = nogui,
-                                show_plot_already = True,
-                                seed = seed,
-                                known_target_values = {},
-                                dry_run = False,
-                                num_parallel_evaluations = 10)
-        
-                         
-        if not nogui:       
-            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False)
-            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=True, dataset=dataset)
-        
-        final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
-        
-        nml_doc = pynml.read_neuroml2_file(final_network)
-        
-        cell = nml_doc.izhikevich2007_cells[0]
-        
-        print("Extracted cell: %s from tuned model"%cell.id)
-        
-        new_id = '%s_%s'%(type, dataset)
-        new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
-        cell.id = new_id
-        
-        cell.notes = "Cell model tuned to Allen Institute Cell Types Database, dataset: "+ \
-                     "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
-        
-        new_cell_doc.izhikevich2007_cells.append(cell)
-        new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
-        
-        pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
+        run_2_stage_izh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
         
 
 
@@ -522,90 +613,33 @@ if __name__ == '__main__':
         simulator  = 'jNeuroML_NEURON'
         dataset = 471141261
         dataset = 479704527
-        dataset = 464198958
         dataset = 325941643
-        type = 'HH'
-        ref = 'network_%s_%s'%(dataset, type)
+        dataset = 464198958
+        
+        scale1 = 7
+        scale2 = 7
+        seed = 123
+        
+        run_2_stage_hh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
+        
+    elif '-all' in sys.argv:
+        
 
+        simulator  = 'jNeuroML_NEURON'
+        
+        scale1 = 7
+        scale2 = 7
+        seed = 123
+        
+        sys.path.append("../data")
+        import data_helper as DH
 
-        max_constraints_1 = [1,   -50,  5,   0, 0, 0, 55, -80, -80]
-        min_constraints_1 = [0.001, -100, 0.2, 0, 0, 0, 55, -80, -80]
+        dataset_ids = DH.CURRENT_DATASETS
 
-        # For a quick test...
-        # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80, -80]
-        # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80, -80]
-
-        max_constraints_2 = ['x',   'x',   'x',    100,  35,   5,    60, -70,  -70]
-        min_constraints_2 = ['x',   'x',   'x',    10,   1,    1e-6, 50, -100, -100]
-
-        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
-
-        scale1 = 3
-        scale2 = 3
-        mutation_rate = 0.1,
-        seed = 1234678,
-
-        r1, r2 = run_2stage_optimization('Allen2stage',
-                                neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
-                                target =        ref,
-                                parameters = parameters_hh,
-                                max_constraints_1 = max_constraints_1,
-                                max_constraints_2 = max_constraints_2,
-                                min_constraints_1 = min_constraints_1,
-                                min_constraints_2 = min_constraints_2,
-                                delta_constraints = 0.01,
-                                weights_1 = weights_1,
-                                weights_2 = weights_2,
-                                target_data_1 = target_data_1,
-                                target_data_2 = target_data_2,
-                                sim_time = 1500,
-                                dt = 0.01,
-                                population_size_1 = scale(scale1,100,10),
-                                population_size_2 = scale(scale2,100,10),
-                                max_evaluations_1 = scale(scale1,500,20),
-                                max_evaluations_2 = scale(scale2,500,10),
-                                num_selected_1 = scale(scale1,30,5),
-                                num_selected_2 = scale(scale2,30,5),
-                                num_offspring_1 = scale(scale1,20,5),
-                                num_offspring_2 = scale(scale2,20,5),
-                                mutation_rate = mutation_rate,
-                                num_elites = scale(scale2,5,2),
-                                simulator = simulator,
-                                nogui = nogui,
-                                show_plot_already = False,
-                                seed = seed,
-                                known_target_values = {},
-                                dry_run = False,
-                                num_parallel_evaluations = 10)
-        
-        if not nogui:
-            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']),show_plot_already=False,dataset=dataset)
-            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']),dataset=dataset)
-        
-        
-        final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
-        
-        nml_doc = pynml.read_neuroml2_file(final_network)
-        
-        cell = nml_doc.cells[0]
-        
-        print("Extracted cell: %s from tuned model"%cell.id)
-        
-        new_id = '%s_%s'%(type, dataset)
-        new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
-        cell.id = new_id
-        
-        cell.notes = "Cell model tuned to Allen Institute Cell Types Database, dataset: "+ \
-                     "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
-        
-        new_cell_doc.cells.append(cell)
-        new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
-        
-        channel_files = ['IM.channel.nml', 'Kd.channel.nml', 'Leak.channel.nml', 'Na.channel.nml']
-        for ch in channel_files:
-            new_cell_doc.includes.append(neuroml.IncludeType(ch))
+        for dataset_id in dataset_ids:
+            run_2_stage_hh(dataset_id, simulator, scale1, scale2,seed, nogui=True)
             
-        pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
+            run_2_stage_izh(dataset_id, simulator, scale1, scale2,seed, nogui=True)
 
 
     else:
