@@ -108,14 +108,14 @@ if __name__ == '__main__':
 
     for dataset_id in dataset_ids:
 
+        type = 'HH'
+
+        analyse_cell(dataset_id, type, nogui)
+
         type = 'Izh'
 
         analyse_cell(dataset_id, type, nogui)
 
-
-        type = 'HH'
-
-        analyse_cell(dataset_id, type, nogui)
     
     if not nogui:
         import matplotlib.pyplot as plt

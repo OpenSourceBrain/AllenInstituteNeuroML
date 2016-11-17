@@ -1,12 +1,12 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="network_464198958_HH">
     <include href="HH.cell.nml"></include>
-    <pulseGenerator id="input_20" delay="270ms" duration="1000ms" amplitude="-110.0 pA"/>
-    <pulseGenerator id="input_24" delay="270ms" duration="1000ms" amplitude="-29.999998 pA"/>
-    <pulseGenerator id="input_36" delay="270ms" duration="1000ms" amplitude="20.0 pA"/>
-    <pulseGenerator id="input_28" delay="270ms" duration="1000ms" amplitude="50.0 pA"/>
-    <pulseGenerator id="input_30" delay="270ms" duration="1000ms" amplitude="90.0 pA"/>
-    <pulseGenerator id="input_32" delay="270ms" duration="1000ms" amplitude="130.0 pA"/>
-    <pulseGenerator id="input_34" delay="270ms" duration="1000ms" amplitude="170.0 pA"/>
+    <pulseGenerator id="input_20" delay="270ms" duration="1000ms" amplitude="-110.000002163 pA"/>
+    <pulseGenerator id="input_24" delay="270ms" duration="1000ms" amplitude="-29.9999990128 pA"/>
+    <pulseGenerator id="input_36" delay="270ms" duration="1000ms" amplitude="19.9999999201 pA"/>
+    <pulseGenerator id="input_28" delay="270ms" duration="1000ms" amplitude="50.0000006676 pA"/>
+    <pulseGenerator id="input_30" delay="270ms" duration="1000ms" amplitude="90.0000005077 pA"/>
+    <pulseGenerator id="input_32" delay="270ms" duration="1000ms" amplitude="129.999996878 pA"/>
+    <pulseGenerator id="input_34" delay="270ms" duration="1000ms" amplitude="170.000000188 pA"/>
     <network id="network_464198958_HH" type="networkWithTemperature" temperature="34 degC">
         <population id="Pop0" component="RS" size="7" type="populationList">
             <instance id="0">

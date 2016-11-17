@@ -199,7 +199,8 @@ def run_one_optimisation(ref,
                      target =           'network_RS',
                      weights =          weights,
                      target_data =      target_data,
-                     dt =               0.025):
+                     dt =               0.025,
+                     num_parallel_evaluations = 1):
 
     ref = '%s__s%s_p%s_m%s_s%s_o%s_m%s_e%s'%(ref,
                      seed,
@@ -228,7 +229,8 @@ def run_one_optimisation(ref,
                      mutation_rate =    mutation_rate,
                      num_elites =       num_elites,
                      simulator =        simulator,
-                     nogui =            nogui)
+                     nogui =            nogui,
+                     num_parallel_evaluations = num_parallel_evaluations)
 
 
 
@@ -560,6 +562,37 @@ if __name__ == '__main__':
         compare('%s/%s.Pop0.v.dat'%(report['run_directory'], report['reference']), dataset=dataset)
 
 
+    ####  Testing scaling...
+    elif '-test' in sys.argv:
+
+        simulator  = 'jNeuroML'
+
+        scale1 = .2
+        
+        dataset = 464198958
+        ref = 'network_%s_Izh'%(dataset)
+
+        report = run_one_optimisation('AllenIzh',
+                            123,
+                            parameters =       parameters_iz,
+                            max_constraints =  max_constraints_iz,
+                            min_constraints =  min_constraints_iz,
+                            population_size =  scale(scale1,100),
+                            max_evaluations =  scale(scale1,500),
+                            num_selected =     scale(scale1,30),
+                            num_offspring =    scale(scale1,30),
+                            mutation_rate =    0.1,
+                            num_elites =       2,
+                            simulator =        simulator,
+                            nogui =            nogui,
+                            dt =               0.05,
+                            neuroml_file =     'prototypes/RS/%s.net.nml'%ref,
+                            target =           ref,
+                            num_parallel_evaluations = 10)
+
+        compare('%s/%s.Pop0.v.dat'%(report['run_directory'], report['reference']), dataset=dataset)
+
+
     ####  Run a 2 stage optimisation for Izhikevich cell model
 
     elif '-izh2stage' in sys.argv:
@@ -627,19 +660,19 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 7
-        scale2 = 7
+        scale1 = 1
+        scale2 = 1
         seed = 123
         
         sys.path.append("../data")
         import data_helper as DH
 
         dataset_ids = DH.CURRENT_DATASETS
+        dataset_ids = [486111903]
 
         for dataset_id in dataset_ids:
-            run_2_stage_hh(dataset_id, simulator, scale1, scale2,seed, nogui=True)
-            
-            run_2_stage_izh(dataset_id, simulator, scale1, scale2,seed, nogui=True)
+            run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
+            run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
 
 
     else:
