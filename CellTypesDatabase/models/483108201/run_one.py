@@ -1,7 +1,7 @@
 #Based on example code at: http://alleninstitute.github.io/AllenSDK/biophysical_perisomatic_script.html
     
-from allensdk.model.biophysical_perisomatic.utils import Utils
-from allensdk.model.biophysical_perisomatic.runner import load_description
+from allensdk.model.biophysical.utils import Utils
+from allensdk.model.biophysical.runner import load_description
 
 import sys
 import json
