@@ -4,6 +4,7 @@ import matplotlib.pyplot as pylab
 import numpy as np
 
 from allensdk.api.queries.cell_types_api import CellTypesApi
+from allensdk import __version__ as allensdk_ver
 import time
 import sys
 
@@ -44,6 +45,7 @@ for dataset_id in dataset_ids:
     info[DH.COMMENT] = 'Data analysed on %s'%(time.ctime())
     
     info[DH.PYELECTRO_VERSION] = pyel_ver
+    info[DH.ALLENSDK_VERSION] = allensdk_ver
     info[DH.SWEEPS] = {}
 
     for sweep_number in sweep_numbers:

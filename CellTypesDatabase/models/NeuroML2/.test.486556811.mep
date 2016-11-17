@@ -1,0 +1,6 @@
+system: Testing a detailed cell model
+
+experiments:
+  Current clamp:
+    expected:
+      spike times: [1051.375, 1102.725, 1194.155, 1302.3, 1406.77, 1507.855, 1606.28, 1702.5900000000001, 1797.1999999999998, 1890.43, 1982.54]

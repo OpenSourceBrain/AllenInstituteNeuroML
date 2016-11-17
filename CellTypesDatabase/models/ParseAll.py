@@ -9,11 +9,15 @@ from pyneuroml.lems import generate_lems_file_for_neuroml
 from pyneuroml import pynml
 
 import json
+import sys
 
 import os
 import os.path
 
 import neuroml
+
+sys.path.append('../data')
+from data_helper import get_test_current
 
 cell_dirs = []
 
@@ -27,7 +31,6 @@ net_doc = neuroml.NeuroMLDocument(id=net_ref)
 
 net = neuroml.Network(id=net_ref)
 net_doc.networks.append(net)
-
 
 clear_neuron()
     
@@ -262,7 +265,10 @@ for model_id in cell_dirs:
     new_net.populations[0].component = pop_comp
 
     stim_ref = "stim"
-    stim = neuroml.PulseGenerator(id=stim_ref, delay="200ms", duration="1000ms", amplitude="270pA")
+    stim = neuroml.PulseGenerator(id=stim_ref, 
+                                  delay="1020ms", 
+                                  duration="1000ms", 
+                                  amplitude="%spA"%get_test_current(model_id))
     new_net_doc.pulse_generators.append(stim)
     
     input_list = neuroml.InputList(id="%s_input"%stim_ref,
@@ -281,8 +287,8 @@ for model_id in cell_dirs:
     generate_lems_file_for_neuroml(model_id,
                                    new_net_loc,
                                    "network",
-                                   1500,
-                                   0.025,
+                                   2500,
+                                   0.005, # used in Allen Neuron runs
                                    "LEMS_%s.xml"%model_id,
                                    nml2_cell_dir,
                                    copy_neuroml = False,

@@ -10,7 +10,7 @@ Export of a cell model (472450023) obtained from the Allen Institute Cell Types 
 
 </notes>
     <include href="Cell_472450023.cell.nml"></include>
-    <pulseGenerator id="stim" delay="200ms" duration="1000ms" amplitude="270pA"/>
+    <pulseGenerator id="stim" delay="1020ms" duration="1000ms" amplitude="270pA"/>
     <network id="network" type="networkWithTemperature" temperature="34 degC">
         <population id="Pop_Cell_472450023" component="Cell_472450023" size="1" type="populationList">
             <instance id="0">

@@ -2,7 +2,7 @@
     
     <!-- 
 
-        This LEMS file has been automatically generated using PyNeuroML v0.2.1 (libNeuroML v0.2.20)
+        This LEMS file has been automatically generated using PyNeuroML v0.2.2 (libNeuroML v0.2.23)
 
      -->
     
@@ -30,9 +30,9 @@
     <Include file="CaDynamics_all.nml"/>
     <Include file="CaDynamics.nml"/>
    
-    <Simulation id="472450023" length="1500ms" step="0.025ms" target="network" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
+    <Simulation id="472450023" length="2500ms" step="0.005ms" target="network" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
         
-        <Display id="DispPop__Pop_Cell_472450023" title="Membrane potentials of cells in Pop_Cell_472450023" timeScale="1ms" xmin="-150.0" xmax="1650.0" ymin="-90" ymax="50">
+        <Display id="DispPop__Pop_Cell_472450023" title="Membrane potentials of cells in Pop_Cell_472450023" timeScale="1ms" xmin="-250.0" xmax="2750.0" ymin="-90" ymax="50">
             <Line id="Pop_Cell_472450023[0]: v" quantity="Pop_Cell_472450023/0/Cell_472450023/v" scale="1mV" color="#f7697f" timeScale="1ms"/>
         </Display>
         
