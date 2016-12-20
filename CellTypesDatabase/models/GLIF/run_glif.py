@@ -1,3 +1,16 @@
+usage = '''
+
+This script can be used to run a simulation of the GLIF cell model using the Allen SDK 
+
+To run a simulation with model ID 473875489 with 120pA input run:
+
+    python run_glif.py 473875489 120
+    
+To run all the models used in this repo type:
+
+    python run_glif.py -all
+
+'''
 import allensdk.core.json_utilities as json_utilities
 from allensdk.model.glif.glif_neuron import GlifNeuron
 import sys
@@ -25,8 +38,6 @@ def run_one_cell(glif_dir, curr_pA, dt=5e-7, show_plot=True):
     voltage = output['voltage']
     threshold = output['threshold']
     spike_times = output['interpolated_spike_times']
-
-    print spike_times
 
     info = "Model %s; %spA stimulation; dt=%ss; %i spikes"%(glif_dir,curr_pA,dt,len(spike_times))
     print(info)
@@ -79,13 +90,17 @@ if __name__ == '__main__':
         
         
         exit()
+        
+    if len(sys.argv)==3:
+
+        glif_dir = sys.argv[1]
+        curr_pA = float(sys.argv[2])
+        if len(sys.argv)==4:
+            dt=float(sys.argv[3])
+        else:
+            dt=5e-6
+        show_plot = '-nogui' not in sys.argv
+        run_one_cell(glif_dir, curr_pA, dt=dt, show_plot=show_plot)
     
-    glif_dir = sys.argv[1]
-    curr_pA = float(sys.argv[2])
-    if len(sys.argv)==4:
-        dt=float(sys.argv[3])
     else:
-        dt=5e-6
-    show_plot = '-nogui' not in sys.argv
-    run_one_cell(glif_dir, curr_pA, dt=dt, show_plot=show_plot)
-    
+        print(usage)
