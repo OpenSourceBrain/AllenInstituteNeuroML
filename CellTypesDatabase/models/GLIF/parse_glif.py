@@ -1,3 +1,13 @@
+usage='''
+
+This file can be used to generate LEMS components for each of a number of GLIF models 
+
+Usage:
+
+    python parse_glif.py -all
+    
+'''
+
 import sys
 import os
 import json
@@ -25,7 +35,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     '''
 
     type = '???'
-    print model_metadata['name']
+    print(model_metadata['name'])
     if '(LIF)' in model_metadata['name']:
         type = 'glifCell'
     if '(LIF-ASC)' in model_metadata['name']:
@@ -110,7 +120,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     lems_file_name = oc.generate_lems_simulation(nml_doc, 
                                 network, 
                                 nml_file_name, 
-                                include_extra_files = [cell_file_name,'../GLIFs.xml'],
+                                include_extra_lems_files = [cell_file_name,'../GLIFs.xml'],
                                 duration =      1200, 
                                 dt =            0.01,
                                 gen_saves_for_quantities = {'thresh.dat':['pop_%s/0/GLIF_%s/%s'%(glif_dir,glif_dir,thresh)]},
@@ -276,8 +286,12 @@ Model summary: %(name)s
         
         exit()
         
+    elif len(sys.argv)==3:
+
+        glif_dir = sys.argv[1]
+        curr_pA = float(sys.argv[2])
+        show_plot = '-nogui' not in sys.argv
+        generate_lems(glif_dir, curr_pA, show_plot=show_plot)
     
-    glif_dir = sys.argv[1]
-    curr_pA = float(sys.argv[2])
-    show_plot = '-nogui' not in sys.argv
-    generate_lems(glif_dir, curr_pA, show_plot=show_plot)
+    else:
+        print(usage)

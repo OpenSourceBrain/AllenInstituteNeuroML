@@ -2,7 +2,7 @@
     
     <!-- 
 
-        This LEMS file has been automatically generated using PyNeuroML v0.1.11 (libNeuroML v0.2.14)
+        This LEMS file has been automatically generated using PyNeuroML v0.2.2 (libNeuroML v0.2.23)
 
      -->
     
@@ -32,7 +32,7 @@
             <OutputColumn id="v_pop_472451425_0_GLIF_472451425_v" quantity="pop_472451425/0/GLIF_472451425/v"/> 
         </OutputFile>
         
-        <OutputFile id="thresh.dat" fileName="thresh.dat">
+        <OutputFile id="thresh_dat" fileName="thresh.dat">
             <OutputColumn id="pop_472451425_0_GLIF_472451425_thresh" quantity="pop_472451425/0/GLIF_472451425/thresh"/> 
         </OutputFile>
         
