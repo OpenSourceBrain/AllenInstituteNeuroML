@@ -1,0 +1,15 @@
+{
+    "aibs_specimen_id": "479704527", 
+    "aibs_specimen_name": "Rbp4-Cre_KL100;Ai14-196623.04.01.01", 
+    "subject:species": "Mus musculus", 
+    "URL": "http://celltypes.brain-map.org/mouse/experiment/electrophysiology/479704527", 
+    "subject:description": "Mus musculus In Vitro", 
+    "subject:sex": "F", 
+    "aibs_cre_line": "Rbp4-Cre_KL100", 
+    "subject:age": "P48", 
+    "intracellular_ephys:Electrode 1:location": "Primary visual area, layer 4", 
+    "aibs_dendrite_type": "spiny", 
+    "session_id": "479704525", 
+    "subject:genotype": "Ai14; Rbp4-Cre_KL100", 
+    "exp_id": 479704527
+}

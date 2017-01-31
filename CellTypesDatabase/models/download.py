@@ -1,7 +1,12 @@
 from allensdk.api.queries.biophysical_api import BiophysicalApi
 
-from allensdk.api.queries.cell_types_api import CellTypesApi
+#from allensdk.api.queries.cell_types_api import CellTypesApi
+
 import sys
+import os
+import json
+
+import tables
 
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
@@ -27,7 +32,7 @@ def download():
                           '476637796', '479694856', '478049069', '476637747', '472450023', '478513441', '472299294']
 
     neuronal_model_ids = [472450023, 483108201, 486556811]
-
+    
     print("---- Downloading %i cell models..."%len(neuronal_model_ids))
 
     for neuronal_model_id in neuronal_model_ids:
@@ -35,8 +40,48 @@ def download():
         try:
 
             bp = BiophysicalApi('http://api.brain-map.org')
-            bp.cache_stimulus = True # change to False to not download the large stimulus NWB file
-            bp.cache_data(neuronal_model_id, working_directory='%i'%neuronal_model_id)
+            bp.cache_stimulus = False # change to False to not download the large stimulus NWB file
+            working_directory='%i'%neuronal_model_id
+            bp.cache_data(neuronal_model_id, working_directory=working_directory)
+            print("---- Saved model into %s, included NWB file: %s"%(working_directory,bp.cache_stimulus))
+            
+            with open(working_directory+'/manifest.json', "r") as json_file:
+                manifest_info = json.load(json_file)
+                
+            metadata={}
+            exp_id = int(manifest_info["biophys"][0]["model_file"][1][:9])
+            metadata['exp_id'] = exp_id
+            
+            metadata['URL'] = 'http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%s'%exp_id
+            
+            for m in manifest_info['manifest']:
+                if m['key']=="output_path":
+                    nwb_file = working_directory+'/'+m['spec']
+                    
+            if os.path.isfile(nwb_file):
+                print("---- Extracting metadate from NWB file: %s"%(nwb_file))
+                h5file=tables.open_file(nwb_file,mode='r')
+                metadata['aibs_dendrite_type'] = str(h5file.root.general.aibs_dendrite_type.read())
+                metadata['aibs_cre_line'] = str(h5file.root.general.aibs_cre_line.read())
+                metadata['aibs_specimen_id'] = str(h5file.root.general.aibs_specimen_id.read())
+                metadata['aibs_specimen_name'] = str(h5file.root.general.aibs_specimen_name.read())
+                metadata['intracellular_ephys:Electrode 1:location'] = str(h5file.root.general.intracellular_ephys._v_children['Electrode 1'].location.read())
+                metadata['session_id'] = str(h5file.root.general.session_id.read())
+                metadata['subject:age'] = str(h5file.root.general.subject.age.read())
+                metadata['subject:description'] = str(h5file.root.general.subject.description.read())
+                metadata['subject:genotype'] = str(h5file.root.general.subject.genotype.read())
+                metadata['subject:sex'] = str(h5file.root.general.subject.sex.read())
+                metadata['subject:species'] = str(h5file.root.general.subject.species.read())
+            else:
+                print("---- Can't find NWB file: %s!"%(nwb_file))
+                
+            print('    Metadata:')
+            pp.pprint(metadata)
+            with open(working_directory+'/metadata.json', 'w') as f:
+                json.dump(metadata, f, indent=4)
+            
+            
+                
         except IndexError:
             print("Problem!")
 
