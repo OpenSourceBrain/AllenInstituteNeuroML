@@ -26,8 +26,8 @@ install:
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
     
     # Install Allen SDK
-    - pip install pandas
-    - pip install allensdk
+    #- pip install pandas
+    #- pip install allensdk
 
 
 script:

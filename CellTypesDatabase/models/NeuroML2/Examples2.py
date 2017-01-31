@@ -20,36 +20,52 @@ def get_oriented_cell(cell_file_name):
     new_ref = "ROTATED_"+cell_file_name.split('.')[0]
 
     doc = loaders.NeuroMLLoader.load(cell_file_name)
-    print("Loaded morphology file from: "+cell_file_name)
 
     ox = doc.cells[0].morphology.segments[0].proximal.x
     oy = doc.cells[0].morphology.segments[0].proximal.y
+    oz = doc.cells[0].morphology.segments[0].proximal.z
+    print("Loaded morphology file from: %s at (%s,%s,%s)"%(cell_file_name,ox,oy,oz))
 
     doc.cells[0].id = new_ref
 
     allx = 0
     ally = 0
+    segs_used = 0
+    maxl = -1
+    farx =0
+    fary =0
     for segment in doc.cells[0].morphology.segments:
-        allx += float(segment.distal.x) - ox
-        ally += float(segment.distal.y) - oy
+        dx = float(segment.distal.x) - ox
+        dy = float(segment.distal.y) - oy
+        l = math.sqrt(dx*dx+dy*dy)
+        if l>maxl:
+            maxl = l
+            farx = dx
+            fary = dy
+        if l>50:
+            allx += dx**3
+            ally += dy**3
+            segs_used+=1
 
 
-    theta = math.atan(-1*allx/ally)
-    print("Orient: (%s, %s), %s degrees"%(allx, ally, math.degrees(theta)))
+    theta = math.atan2(fary,farx)
+    #theta = math.atan2(ally,allx)
+    #theta=0
+    print("- Orient: (%s, %s), %s, %s, (%s,%s), %s degrees"%(allx/segs_used, ally/segs_used,allx/ally,segs_used, farx, fary, math.degrees(theta)))
 
-
+    
     for segment in doc.cells[0].morphology.segments:
 
         if segment.proximal:
             segment.proximal.x = segment.proximal.x - ox
             segment.proximal.y = segment.proximal.y - oy
 
-            segment.proximal.x, segment.proximal.y = rotate_z(segment.proximal.x, segment.proximal.y, -1*theta +math.pi)
+            segment.proximal.x, segment.proximal.y = rotate_z(segment.proximal.x, segment.proximal.y, -1*theta +math.pi/2)
 
         segment.distal.x = segment.distal.x - ox
         segment.distal.y = segment.distal.y - oy
 
-        segment.distal.x, segment.distal.y = rotate_z(segment.distal.x, segment.distal.y, -1* theta+math.pi)
+        segment.distal.x, segment.distal.y = rotate_z(segment.distal.x, segment.distal.y, -1* theta+math.pi/2)
 
 
     new_cell_file = new_ref+'.cell.nml'
@@ -113,4 +129,5 @@ writers.NeuroMLWriter.write(net_doc, net_file)
 
 print("Written network with %i cells in network to: %s"%(count,net_file))
 
+pynml.nml2_to_png(net_file, max_memory="2G")
 pynml.nml2_to_svg(net_file, max_memory="2G")
