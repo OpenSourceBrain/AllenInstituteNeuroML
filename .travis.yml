@@ -6,6 +6,7 @@ env:
     - OMV_ENGINE=jNeuroML
     - OMV_ENGINE=jNeuroML_NEURON
     - OMV_ENGINE=NEURON
+    - OMV_ENGINE=PyNEURON
     - OMV_ENGINE=jNeuroML_validate
 
 install:
