@@ -63,6 +63,8 @@ for model_id in cell_dirs:
     
     with open('manifest.json', "r") as json_file:
         manifest_info = json.load(json_file)
+    with open('metadata.json', "r") as json_file:
+        metadata_info = json.load(json_file)
         
     print("Loaded manifest: %s (fit: %s)"%(manifest_info['biophys'][0]["model_type"], manifest_info['biophys'][0]["model_file"][1]))
 
@@ -99,11 +101,16 @@ for model_id in cell_dirs:
     
     notes = ''
     notes+="\n\nExport of a cell model (%s) obtained from the Allen Institute Cell Types Database into NeuroML2"%model_id + \
+            "\n\nElectrophysiology on which this model is based: %s"%metadata_info['URL'] + \
             "\n\n******************************************************\n*  This export to NeuroML2 has not yet been fully validated!!"+ \
-            "\n*  Use with caution!!\n******************************************************\n\n"
+            "\n*  Use with caution!!\n******************************************************\n\n        "
 
 
     cell.notes = notes
+    for k in metadata_info.keys():
+        if k.startswith("AIBS:"):
+            p = neuroml.Property(tag=k, value=metadata_info[k])
+            cell.properties.append(p)
         
     print(' > Altering groups')
     
@@ -256,6 +263,11 @@ for model_id in cell_dirs:
     new_net_doc = pynml.read_neuroml2_file(nml_net_loc)
     new_net = new_net_doc.networks[0]
     new_net_doc.notes = notes
+    
+    for k in metadata_info.keys():
+        if k.startswith("AIBS:"):
+            p = neuroml.Property(tag=k, value=metadata_info[k])
+            new_net_doc.properties.append(p)
     
     new_net_doc.includes[0].href = nml_cell_file
     

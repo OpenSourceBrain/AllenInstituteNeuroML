@@ -3,12 +3,25 @@
 
 Export of a cell model (486556811) obtained from the Allen Institute Cell Types Database into NeuroML2
 
+Electrophysiology on which this model is based: http://celltypes.brain-map.org/mouse/experiment/electrophysiology/486111903
+
 ******************************************************
 *  This export to NeuroML2 has not yet been fully validated!!
 *  Use with caution!!
 ******************************************************
 
-</notes>
+        </notes>
+    <property tag="AIBS:subject:description" value="Mus musculus In Vitro"/>
+    <property tag="AIBS:aibs_specimen_id" value="486111903"/>
+    <property tag="AIBS:intracellular_ephys:Electrode 1:location" value="Primary visual area, layer 5"/>
+    <property tag="AIBS:subject:genotype" value="Ai14; Rbp4-Cre_KL100"/>
+    <property tag="AIBS:subject:species" value="Mus musculus"/>
+    <property tag="AIBS:session_id" value="486111901"/>
+    <property tag="AIBS:subject:sex" value="F"/>
+    <property tag="AIBS:aibs_dendrite_type" value="spiny"/>
+    <property tag="AIBS:aibs_cre_line" value="Rbp4-Cre_KL100"/>
+    <property tag="AIBS:subject:age" value="unknown"/>
+    <property tag="AIBS:aibs_specimen_name" value="Rbp4-Cre_KL100;Ai14-205727.03.02.01"/>
     <include href="Cell_486556811.cell.nml"></include>
     <pulseGenerator id="stim" delay="1020ms" duration="1000ms" amplitude="270pA"/>
     <network id="network" type="networkWithTemperature" temperature="34 degC">
