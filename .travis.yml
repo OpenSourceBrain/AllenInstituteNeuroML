@@ -1,3 +1,14 @@
+
+sudo: false  
+
+addons:
+  apt:
+    packages:
+    - python-numpy 
+    - python-scipy 
+    - python-lxml
+    - python-h5py
+
 language: python
 python: 2.7
 
@@ -13,6 +24,10 @@ install:
     
     # Install OMV
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+    
+    # Install Allen SDK
+    - pip install pandas
+    - pip install allensdk
 
 
 script:
