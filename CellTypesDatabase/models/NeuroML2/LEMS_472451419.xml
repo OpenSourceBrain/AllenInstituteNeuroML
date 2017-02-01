@@ -2,7 +2,7 @@
     
     <!-- 
 
-        This LEMS file has been automatically generated using PyNeuroML v0.1.7 (libNeuroML v0.2.11)
+        This LEMS file has been automatically generated using PyNeuroML v0.2.6 (libNeuroML v0.2.26)
 
      -->
     
@@ -27,12 +27,13 @@
     <Include file="pas.channel.nml"/>
     <Include file="Ca_HVA.channel.nml"/>
     <Include file="Ca_LVA.channel.nml"/>
+    <Include file="CaDynamics_all.nml"/>
     <Include file="CaDynamics.nml"/>
    
-    <Simulation id="472451419" length="1500ms" step="0.025ms" target="network">
+    <Simulation id="472451419" length="2500ms" step="0.005ms" target="network" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
         
-        <Display id="DispPop__Pop_Cell_472451419" title="Voltages of DispPop__Pop_Cell_472451419" timeScale="1ms" xmin="-150.0" xmax="1650.0" ymin="-90" ymax="50">
-            <Line id="v Pop_Cell_472451419_0_Cell_472451419_v" quantity="Pop_Cell_472451419/0/Cell_472451419/v" scale="1mV" color="#f7697f" timeScale="1ms"/>
+        <Display id="DispPop__Pop_Cell_472451419" title="Membrane potentials of cells in Pop_Cell_472451419" timeScale="1ms" xmin="-250.0" xmax="2750.0" ymin="-90" ymax="50">
+            <Line id="Pop_Cell_472451419[0]: v" quantity="Pop_Cell_472451419/0/Cell_472451419/v" scale="1mV" color="#f7697f" timeScale="1ms"/>
         </Display>
         
         <OutputFile id="Volts_file__Pop_Cell_472451419" fileName="472451419.Pop_Cell_472451419.v.dat">

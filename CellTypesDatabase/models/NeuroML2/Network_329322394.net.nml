@@ -1,0 +1,37 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="NeuroML2_file_exported_from_NEURON">
+    <notes>
+
+Export of a cell model (329322394) obtained from the Allen Institute Cell Types Database into NeuroML2
+
+Electrophysiology on which this model is based: http://celltypes.brain-map.org/mouse/experiment/electrophysiology/318733871
+
+******************************************************
+*  This export to NeuroML2 has not yet been fully validated!!
+*  Use with caution!!
+******************************************************
+
+        </notes>
+    <property tag="AIBS:subject:description" value="Mus musculus In Vitro"/>
+    <property tag="AIBS:aibs_specimen_id" value="318733871"/>
+    <property tag="AIBS:intracellular_ephys:Electrode 1:location" value="Primary visual area, layer 4"/>
+    <property tag="AIBS:subject:genotype" value="Ai14; Nr5a1-Cre"/>
+    <property tag="AIBS:subject:species" value="Mus musculus"/>
+    <property tag="AIBS:session_id" value="318733869"/>
+    <property tag="AIBS:subject:sex" value="F"/>
+    <property tag="AIBS:aibs_dendrite_type" value="spiny"/>
+    <property tag="AIBS:aibs_cre_line" value="Nr5a1-Cre"/>
+    <property tag="AIBS:subject:age" value="P60"/>
+    <property tag="AIBS:aibs_specimen_name" value="Nr5a1-Cre;Ai14-169248.04.02.01"/>
+    <include href="Cell_329322394.cell.nml"></include>
+    <pulseGenerator id="stim" delay="1020ms" duration="1000ms" amplitude="270pA"/>
+    <network id="network" type="networkWithTemperature" temperature="34 degC">
+        <population id="Pop_Cell_329322394" component="Cell_329322394" size="1" type="populationList">
+            <instance id="0">
+                <location x="0." y="0." z="0."/>
+            </instance>
+        </population>
+        <inputList id="stim_input" population="Pop_Cell_329322394" component="stim">
+            <input id="0" target="../Pop_Cell_329322394/0/Cell_329322394" destination="synapses"/>
+        </inputList>
+    </network>
+</neuroml>

@@ -1,189 +1,185 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="SomeCells">
     <include href="ROTATED_Cell_472450023.cell.nml"></include>
-    <include href="ROTATED_Cell_472421285.cell.nml"></include>
-    <include href="ROTATED_Cell_473863578.cell.nml"></include>
-    <include href="ROTATED_Cell_329321704.cell.nml"></include>
-    <include href="ROTATED_Cell_472300877.cell.nml"></include>
+    <include href="ROTATED_Cell_478047816.cell.nml"></include>
     <include href="ROTATED_Cell_472306544.cell.nml"></include>
-    <include href="ROTATED_Cell_472434498.cell.nml"></include>
-    <include href="ROTATED_Cell_473863035.cell.nml"></include>
+    <include href="ROTATED_Cell_478513187.cell.nml"></include>
+    <include href="ROTATED_Cell_480631402.cell.nml"></include>
     <include href="ROTATED_Cell_486556811.cell.nml"></include>
-    <include href="ROTATED_Cell_472424854.cell.nml"></include>
-    <include href="ROTATED_Cell_472299294.cell.nml"></include>
-    <include href="ROTATED_Cell_473465456.cell.nml"></include>
+    <include href="ROTATED_Cell_479427369.cell.nml"></include>
+    <include href="ROTATED_Cell_486557284.cell.nml"></include>
     <include href="ROTATED_Cell_472451419.cell.nml"></include>
-    <include href="ROTATED_Cell_473871429.cell.nml"></include>
-    <include href="ROTATED_Cell_473862845.cell.nml"></include>
+    <include href="ROTATED_Cell_477876583.cell.nml"></include>
     <include href="ROTATED_Cell_483108201.cell.nml"></include>
-    <include href="ROTATED_Cell_472915634.cell.nml"></include>
-    <include href="ROTATED_Cell_473863510.cell.nml"></include>
-    <include href="ROTATED_Cell_473871592.cell.nml"></include>
-    <include href="ROTATED_Cell_473862496.cell.nml"></include>
+    <include href="ROTATED_Cell_479234506.cell.nml"></include>
+    <include href="ROTATED_Cell_472352327.cell.nml"></include>
+    <include href="ROTATED_Cell_480051220.cell.nml"></include>
     <include href="ROTATED_Cell_329322394.cell.nml"></include>
-    <include href="ROTATED_Cell_473871773.cell.nml"></include>
-    <include href="ROTATED_Cell_472912107.cell.nml"></include>
-    <include href="ROTATED_Cell_472442377.cell.nml"></include>
-    <include href="ROTATED_Cell_473834758.cell.nml"></include>
-    <include href="ROTATED_Cell_472363762.cell.nml"></include>
+    <include href="ROTATED_Cell_478045347.cell.nml"></include>
+    <include href="ROTATED_Cell_479427516.cell.nml"></include>
+    <include href="ROTATED_Cell_486509232.cell.nml"></include>
+    <include href="ROTATED_Cell_482657381.cell.nml"></include>
+    <include href="ROTATED_Cell_479694721.cell.nml"></include>
     <include href="ROTATED_Cell_473835796.cell.nml"></include>
-    <include href="ROTATED_Cell_473561660.cell.nml"></include>
-    <include href="ROTATED_Cell_471087975.cell.nml"></include>
-    <include href="ROTATED_Cell_472427533.cell.nml"></include>
-    <include href="ROTATED_Cell_472306460.cell.nml"></include>
+    <include href="ROTATED_Cell_478513445.cell.nml"></include>
+    <include href="ROTATED_Cell_486511108.cell.nml"></include>
+    <include href="ROTATED_Cell_488461970.cell.nml"></include>
+    <include href="ROTATED_Cell_472430904.cell.nml"></include>
+    <include href="ROTATED_Cell_480632594.cell.nml"></include>
     <network id="SomeCells">
         <population id="Pop_ROTATED_Cell_472450023" component="ROTATED_Cell_472450023" type="populationList">
+            <property tag="color" value="0 1 0"/>
+            <instance id="0">
+                <location x="1400." y="-500." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_ROTATED_Cell_478047816" component="ROTATED_Cell_478047816" type="populationList">
+            <property tag="color" value="1 0 0"/>
             <instance id="0">
                 <location x="0." y="0." z="0."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472421285" component="ROTATED_Cell_472421285" type="populationList">
+        <population id="Pop_ROTATED_Cell_472306544" component="ROTATED_Cell_472306544" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="400." y="0." z="0."/>
+                <location x="200." y="-200." z="0."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_473863578" component="ROTATED_Cell_473863578" type="populationList">
-            <instance id="0">
-                <location x="800." y="0." z="0."/>
-            </instance>
-        </population>
-        <population id="Pop_ROTATED_Cell_329321704" component="ROTATED_Cell_329321704" type="populationList">
-            <instance id="0">
-                <location x="1200." y="0." z="0."/>
-            </instance>
-        </population>
-        <population id="Pop_ROTATED_Cell_472300877" component="ROTATED_Cell_472300877" type="populationList">
+        <population id="Pop_ROTATED_Cell_478513187" component="ROTATED_Cell_478513187" type="populationList">
+            <property tag="color" value="1 0 0"/>
             <instance id="0">
                 <location x="1600." y="0." z="0."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472306544" component="ROTATED_Cell_472306544" type="populationList">
+        <population id="Pop_ROTATED_Cell_480631402" component="ROTATED_Cell_480631402" type="populationList">
+            <property tag="color" value="1 1 0"/>
             <instance id="0">
-                <location x="0." y="0." z="400."/>
-            </instance>
-        </population>
-        <population id="Pop_ROTATED_Cell_472434498" component="ROTATED_Cell_472434498" type="populationList">
-            <instance id="0">
-                <location x="400." y="0." z="400."/>
-            </instance>
-        </population>
-        <population id="Pop_ROTATED_Cell_473863035" component="ROTATED_Cell_473863035" type="populationList">
-            <instance id="0">
-                <location x="800." y="0." z="400."/>
+                <location x="400." y="-700." z="0."/>
             </instance>
         </population>
         <population id="Pop_ROTATED_Cell_486556811" component="ROTATED_Cell_486556811" type="populationList">
+            <property tag="color" value="0 1 0"/>
             <instance id="0">
-                <location x="1200." y="0." z="400."/>
+                <location x="600." y="-500." z="0."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472424854" component="ROTATED_Cell_472424854" type="populationList">
+        <population id="Pop_ROTATED_Cell_479427369" component="ROTATED_Cell_479427369" type="populationList">
+            <property tag="color" value="1 0 0"/>
             <instance id="0">
-                <location x="1600." y="0." z="400."/>
+                <location x="800." y="0." z="0."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472299294" component="ROTATED_Cell_472299294" type="populationList">
+        <population id="Pop_ROTATED_Cell_486557284" component="ROTATED_Cell_486557284" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="0." y="0." z="800."/>
-            </instance>
-        </population>
-        <population id="Pop_ROTATED_Cell_473465456" component="ROTATED_Cell_473465456" type="populationList">
-            <instance id="0">
-                <location x="400." y="0." z="800."/>
+                <location x="0." y="-200." z="200."/>
             </instance>
         </population>
         <population id="Pop_ROTATED_Cell_472451419" component="ROTATED_Cell_472451419" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="800." y="0." z="800."/>
+                <location x="200." y="-200." z="200."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_473871429" component="ROTATED_Cell_473871429" type="populationList">
+        <population id="Pop_ROTATED_Cell_477876583" component="ROTATED_Cell_477876583" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="1200." y="0." z="800."/>
-            </instance>
-        </population>
-        <population id="Pop_ROTATED_Cell_473862845" component="ROTATED_Cell_473862845" type="populationList">
-            <instance id="0">
-                <location x="1600." y="0." z="800."/>
+                <location x="400." y="-200." z="200."/>
             </instance>
         </population>
         <population id="Pop_ROTATED_Cell_483108201" component="ROTATED_Cell_483108201" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="0." y="0." z="1200."/>
+                <location x="600." y="-200." z="200."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472915634" component="ROTATED_Cell_472915634" type="populationList">
+        <population id="Pop_ROTATED_Cell_479234506" component="ROTATED_Cell_479234506" type="populationList">
+            <property tag="color" value="0 1 0"/>
             <instance id="0">
-                <location x="400." y="0." z="1200."/>
+                <location x="1800." y="-500." z="0."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_473863510" component="ROTATED_Cell_473863510" type="populationList">
+        <population id="Pop_ROTATED_Cell_472352327" component="ROTATED_Cell_472352327" type="populationList">
+            <property tag="color" value="1 0 0"/>
             <instance id="0">
-                <location x="800." y="0." z="1200."/>
+                <location x="2000." y="0." z="0."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_473871592" component="ROTATED_Cell_473871592" type="populationList">
+        <population id="Pop_ROTATED_Cell_480051220" component="ROTATED_Cell_480051220" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="1200." y="0." z="1200."/>
-            </instance>
-        </population>
-        <population id="Pop_ROTATED_Cell_473862496" component="ROTATED_Cell_473862496" type="populationList">
-            <instance id="0">
-                <location x="1600." y="0." z="1200."/>
+                <location x="800." y="-200." z="200."/>
             </instance>
         </population>
         <population id="Pop_ROTATED_Cell_329322394" component="ROTATED_Cell_329322394" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="0." y="0." z="1600."/>
+                <location x="0." y="-200." z="400."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_473871773" component="ROTATED_Cell_473871773" type="populationList">
+        <population id="Pop_ROTATED_Cell_478045347" component="ROTATED_Cell_478045347" type="populationList">
+            <property tag="color" value="1 1 0"/>
             <instance id="0">
-                <location x="400." y="0." z="1600."/>
+                <location x="200." y="-700." z="400."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472912107" component="ROTATED_Cell_472912107" type="populationList">
+        <population id="Pop_ROTATED_Cell_479427516" component="ROTATED_Cell_479427516" type="populationList">
+            <property tag="color" value="0 1 0"/>
             <instance id="0">
-                <location x="800." y="0." z="1600."/>
+                <location x="400." y="-500." z="400."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472442377" component="ROTATED_Cell_472442377" type="populationList">
+        <population id="Pop_ROTATED_Cell_486509232" component="ROTATED_Cell_486509232" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="1200." y="0." z="1600."/>
+                <location x="600." y="-200." z="400."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_473834758" component="ROTATED_Cell_473834758" type="populationList">
+        <population id="Pop_ROTATED_Cell_482657381" component="ROTATED_Cell_482657381" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="1600." y="0." z="1600."/>
+                <location x="800." y="-200." z="400."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472363762" component="ROTATED_Cell_472363762" type="populationList">
+        <population id="Pop_ROTATED_Cell_479694721" component="ROTATED_Cell_479694721" type="populationList">
+            <property tag="color" value="0 1 0"/>
             <instance id="0">
-                <location x="0." y="0." z="2000."/>
+                <location x="0." y="-500." z="600."/>
             </instance>
         </population>
         <population id="Pop_ROTATED_Cell_473835796" component="ROTATED_Cell_473835796" type="populationList">
+            <property tag="color" value="0 1 0"/>
             <instance id="0">
-                <location x="400." y="0." z="2000."/>
+                <location x="2200." y="-500." z="0."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_473561660" component="ROTATED_Cell_473561660" type="populationList">
+        <population id="Pop_ROTATED_Cell_478513445" component="ROTATED_Cell_478513445" type="populationList">
+            <property tag="color" value="0 1 0"/>
             <instance id="0">
-                <location x="800." y="0." z="2000."/>
+                <location x="200." y="-500." z="600."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_471087975" component="ROTATED_Cell_471087975" type="populationList">
+        <population id="Pop_ROTATED_Cell_486511108" component="ROTATED_Cell_486511108" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="1200." y="0." z="2000."/>
+                <location x="400." y="-200." z="600."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472427533" component="ROTATED_Cell_472427533" type="populationList">
+        <population id="Pop_ROTATED_Cell_488461970" component="ROTATED_Cell_488461970" type="populationList">
+            <property tag="color" value="0 0 1"/>
             <instance id="0">
-                <location x="1600." y="0." z="2000."/>
+                <location x="600." y="-200." z="600."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472306460" component="ROTATED_Cell_472306460" type="populationList">
+        <population id="Pop_ROTATED_Cell_472430904" component="ROTATED_Cell_472430904" type="populationList">
+            <property tag="color" value="1 1 0"/>
             <instance id="0">
-                <location x="0." y="0." z="2400."/>
+                <location x="800." y="-700." z="600."/>
+            </instance>
+        </population>
+        <population id="Pop_ROTATED_Cell_480632594" component="ROTATED_Cell_480632594" type="populationList">
+            <property tag="color" value="1 1 0"/>
+            <instance id="0">
+                <location x="0." y="-700." z="800."/>
             </instance>
         </population>
     </network>
