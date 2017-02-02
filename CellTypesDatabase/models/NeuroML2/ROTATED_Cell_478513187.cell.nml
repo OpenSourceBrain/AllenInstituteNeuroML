@@ -9251,8 +9251,17 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="OneSecGrp_SectionRef_8121">
+            <segmentGroup id="OneSecGrp_SectionRef_13473">
                 <include segmentGroup="soma_0"/>
+            </segmentGroup>
+            <segmentGroup id="soma_group">
+                <include segmentGroup="soma"/>
+            </segmentGroup>
+            <segmentGroup id="axon_group">
+                <include segmentGroup="axon"/>
+            </segmentGroup>
+            <segmentGroup id="dendrite_group">
+                <include segmentGroup="dend"/>
             </segmentGroup>
         </morphology>
         <biophysicalProperties id="biophys">

@@ -130,6 +130,10 @@ for model_id in cell_dirs:
                 if all_match:
                     print("Replacing group named %s with %s"%(sg.id,replace[prefix]))
                     sg.id = replace[prefix]
+
+    cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="soma_group", includes=[neuroml.Include("soma")]))
+    cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="axon_group", includes=[neuroml.Include("axon")]))
+    cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="dendrite_group", includes=[neuroml.Include("dend")]))
     
     with open(manifest_info['biophys'][0]["model_file"][1], "r") as json_file:
         cell_info = json.load(json_file)
