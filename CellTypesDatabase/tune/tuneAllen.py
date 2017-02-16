@@ -603,9 +603,10 @@ if __name__ == '__main__':
         dataset = 325941643
         dataset = 479704527
         dataset = 464198958
-        scale1 = 7
-        scale2 = 7
-        seed = 123
+        dataset = 485058595
+        scale1 = 1
+        scale2 = 1
+        seed = 12345
         
         run_2_stage_izh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
         
@@ -648,10 +649,11 @@ if __name__ == '__main__':
         dataset = 479704527
         dataset = 325941643
         dataset = 464198958
+        dataset = 485058595
         
-        scale1 = 7
-        scale2 = 7
-        seed = 123
+        scale1 = 1
+        scale2 = 1
+        seed = 1234
         
         run_2_stage_hh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
         

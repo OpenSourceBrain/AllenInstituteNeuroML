@@ -83,7 +83,7 @@ for dataset_id in dataset_ids:
                                                      time_pts, 
                                                      extra_targets = ['%s:value_280'%sweep_number,      
                                                                       '%s:average_1000_1200'%sweep_number],
-                                                     end_analysis=1300, 
+                                                     end_analysis=1500, 
                                                      plot=plot, 
                                                      show_plot_already=False,
                                                      verbose=True)
