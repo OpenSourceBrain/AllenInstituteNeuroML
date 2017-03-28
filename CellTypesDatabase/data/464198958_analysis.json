@@ -1,5 +1,5 @@
 {   "allensdk_version": "0.12.4",
-    "comment": "Data analysed on Wed Feb 15 18:55:01 2017",
+    "comment": "Data analysed on Tue Mar 28 18:44:43 2017",
     "data_set_id": 464198958,
     "pyelectro_version": "0.1.8",
     "sweeps": {   "20": {   "comment": "Sweep: 20 in 464198958; 0.0ms -> 3269.995ms; -1.1e-10A -> 0.0A; -105.187502351mV -> -63.1562514117mV",

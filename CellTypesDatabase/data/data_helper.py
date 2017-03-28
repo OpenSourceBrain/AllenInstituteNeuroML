@@ -5,7 +5,9 @@ MODEL_IDS = {}
 TEST_SWEEP = {}
 TEST_CURRENTS = {}
 
-    ############ Layer 5
+
+
+    #################################### Layer 5 ####################################
 
 #        No longer has biophys detailed cell model..?
 ###       Layer 5, spiny http://celltypes.brain-map.org/mouse/experiment/electrophysiology/471141261
@@ -18,6 +20,11 @@ MODEL_IDS[486111903] = 486556811
 TEST_SWEEP[486111903] = 54
 TEST_CURRENTS[486556811] = 290
 
+DATASET_TARGET_SWEEPS[480169178] = [24,26,31,33,38,40,42]
+DATASET_TARGET_SWEEPS[480351780] = [24,33,34,47,42,44,46]
+DATASET_TARGET_SWEEPS[480353286] = [32,35,40,42,46,49,51]
+DATASET_TARGET_SWEEPS[468120757] = [43,46,51,54,62,63,65]
+
 
 #  Layer 5, aspiny http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958
 DATASET_TARGET_SWEEPS[464198958] = [20,24,36,28,30,32,34]
@@ -25,11 +32,11 @@ DATASET_TARGET_SWEEPS[464198958] = [20,24,36,28,30,32,34]
 MODEL_IDS[464198958] = 472450023
 
 
-######### No longer has biophys detailed cell model..?
+## No longer has biophys detailed cell model..?
 #  Layer 5, spiny http://celltypes.brain-map.org/mouse/experiment/electrophysiology/325941643
 ###DATASET_TARGET_SWEEPS[325941643] = [34,35,37,39,42,44,48] 
 
-    ############ Layer 4
+    #################################### Layer 4 ####################################
 
 #  Layer 4, spiny http://celltypes.brain-map.org/mouse/experiment/electrophysiology/479704527
 DATASET_TARGET_SWEEPS[479704527] = [36,40,44,45,60,52,55] 
