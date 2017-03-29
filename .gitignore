@@ -242,3 +242,5 @@ original.v.dat
 /CellTypesDatabase/models/NeuroML2/LEMS_487245869.xml
 /CellTypesDatabase/models/NeuroML2/LEMS_488462820.xml
 /CellTypesDatabase/tune/tuneAll.sh
+/CellTypesDatabase/tune/reports
+/CellTypesDatabase/tune/prototypes/HH2/*.dat

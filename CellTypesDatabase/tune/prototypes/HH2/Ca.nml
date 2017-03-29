@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="CaPoolModel">
+    
+    <decayingPoolConcentrationModelPosp id="CaPoolModel" restingConc="2.4e-4 mM" decayConstant="5 ms" ion="ca" depth="1 um">
+        <notes>A custom made concentration model to use with Pospischil et al 2008</notes>
+    </decayingPoolConcentrationModelPosp>
+    
+    <ComponentType name="decayingPoolConcentrationModelPosp"
+        extends="concentrationModel"
+        description="Custom mechanism for Pospischil et al 2008">
+        
+        <Child name="notes" type="notes"/>
+        <Parameter name="restingConc" dimension="concentration"/>
+        <Parameter name="decayConstant" dimension="time"/>
+        <Parameter name="depth" dimension="length"/>
+        
+        <Constant name="FARADAY" dimension="charge_per_mole" value="96485.3 C_per_mol"/>
+        
+        <Requirement name="iCa" dimension="current"/>
+        <Requirement name="surfaceArea" dimension="area"/>
+        
+
+        <Text name="ion"/>
+        
+        <Dynamics>
+            
+            <StateVariable name="concentration" exposure="concentration" dimension="concentration"/>
+            <StateVariable name="extConcentration" exposure="extConcentration" dimension="concentration"/>
+            
+            <TimeDerivative variable="concentration" value=" (iCa/surfaceArea) / (2 * FARADAY * depth) + (restingConc - concentration) / decayConstant"/>
+            
+            <OnStart>
+                <StateAssignment variable="concentration" value="restingConc"/>
+                <StateAssignment variable="extConcentration" value="initialExtConcentration"/>
+            </OnStart>
+            
+        </Dynamics>
+        
+    </ComponentType>
+</neuroml>
