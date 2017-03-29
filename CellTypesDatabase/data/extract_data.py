@@ -23,24 +23,34 @@ test = '-test' in sys.argv
 
 dataset_ids = DH.CURRENT_DATASETS
 if test:
-    dataset_ids = [479704527]
+    dataset_ids = [464198958]
 
 for dataset_id in dataset_ids:
 
     raw_ephys_file_name = '%d_raw_data.nwb' % dataset_id
 
-
+    info = {}
+ 
+    import h5py
+    import numpy as np
+    h5f = h5py.File(raw_ephys_file_name, "r")
+    metas = ['aibs_cre_line','aibs_dendrite_type','intracellular_ephys/Electrode 1/location']
+    for m in metas:
+        d = h5f.get('/general/%s'%m)
+        print("%s = \t%s"%(m,d.value))
+        info[m.split('/')[-1]]=str(d.value)
+    h5f.close()
+    
     from allensdk.core.nwb_data_set import NwbDataSet
     data_set = NwbDataSet(raw_ephys_file_name)
 
 
     sweep_numbers = data_set.get_experiment_sweep_numbers()
     if test:
-        sweep_numbers = [36,54]
+        sweep_numbers = [33,45]
         
     sweep_numbers.sort()
 
-    info = {}
     info[DH.DATASET] = dataset_id
     info[DH.COMMENT] = 'Data analysed on %s'%(time.ctime())
     

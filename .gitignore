@@ -244,3 +244,8 @@ original.v.dat
 /CellTypesDatabase/tune/tuneAll.sh
 /CellTypesDatabase/tune/reports
 /CellTypesDatabase/tune/prototypes/HH2/*.dat
+/CellTypesDatabase/tune/prototypes/HH2/*.mod
+/CellTypesDatabase/tune/prototypes/HH2/*.hoc
+/CellTypesDatabase/tune/prototypes/HH2/LEMS_Test_*.xml
+/CellTypesDatabase/tune/prototypes/HH2/*_nrn.py
+/CellTypesDatabase/tune/prototypes/HH2/simulator.props

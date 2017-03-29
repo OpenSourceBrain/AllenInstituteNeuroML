@@ -11,6 +11,8 @@ from pyneuroml.lems import generate_lems_file_for_neuroml
 
 from generate_nets import generate_network_for_sweeps
 
+sys.path.append("../data")
+from data_summary import get_if_iv_for_dataset
 
 def analyse_cell(dataset_id, type, nogui = False):
     
@@ -18,11 +20,19 @@ def analyse_cell(dataset_id, type, nogui = False):
     reference = '%s_%s'%(type,dataset_id)
     cell_file = '%s.cell.nml'%(reference)
     
+    print("====================================\n\n   Analysing cell: %s, dataset %s\n"%(cell_file,dataset_id))
+    
+    nml_doc = pynml.read_neuroml2_file(cell_file)
+    notes = nml_doc.cells[0].notes if len(nml_doc.cells)>0 else nml_doc.izhikevich2007_cells[0].notes
+    meta = eval(notes[notes.index('{'):])
+    info = "Fitness: %s (max evals: %s, pop: %s)"%(meta['fitness'],meta['max_evaluations'],meta['population_size'])
+    print info
+    
     images = 'summary/%s_%s.png'
     
-    print("====================================\n\n   Analysing cell: %s\n"%(cell_file))
+    data, v_sub, curents_sub, v, curents_spike = get_if_iv_for_dataset('../../data/%s_analysis.json'%dataset_id)
     
-    generate_current_vs_frequency_curve(cell_file, 
+    traces_ax, if_ax, iv_ax = generate_current_vs_frequency_curve(cell_file, 
                                         reference, 
                                         simulator = 'jNeuroML_NEURON',
                                         start_amp_nA =         -0.1, 
@@ -39,7 +49,15 @@ def analyse_cell(dataset_id, type, nogui = False):
                                         ylim_iv =              [-120, -40],
                                         save_if_figure_to=images%(reference, 'if'), 
                                         save_iv_figure_to=images%(reference, 'iv'),
-                                        show_plot_already = False)
+                                        show_plot_already = False,
+                                        return_axes = True)
+    
+                                
+    iv_ax.plot(curents_sub, v_sub,color='#ff2222',marker='o', linestyle='',zorder=1)   
+    if_ax.plot(curents_spike, v,color='#ff2222',marker='o', linestyle='',zorder=1)
+    
+    iv_ax.get_figure().savefig(images%(reference, 'iv'),bbox_inches='tight')
+    if_ax.get_figure().savefig(images%(reference, 'if'),bbox_inches='tight')
                
     temp_dir = 'temp/'
     
@@ -87,12 +105,13 @@ def analyse_cell(dataset_id, type, nogui = False):
         
     pynml.generate_plot(x,
                 y, 
-                "Cell: %s"%dataset_id, 
+                info, 
                 xaxis = "Time (ms)", 
                 yaxis = "Membrane potential (mV)",
                 show_plot_already=False,
                 ylim = [-120, 60],
-                save_figure_to = images%(reference, 'traces'))
+                save_figure_to = images%(reference, 'traces'),
+                title_above_plot=True)
     
 
 if __name__ == '__main__':
@@ -105,6 +124,7 @@ if __name__ == '__main__':
     import data_helper as DH
 
     dataset_ids = DH.CURRENT_DATASETS
+    #dataset_ids = [486111903]
 
     for dataset_id in dataset_ids:
 

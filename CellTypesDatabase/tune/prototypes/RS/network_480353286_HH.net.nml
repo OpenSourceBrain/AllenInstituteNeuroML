@@ -1,0 +1,56 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="network_480353286_HH">
+    <include href="HH.cell.nml"></include>
+    <pulseGenerator id="input_32" delay="270ms" duration="1000ms" amplitude="-110.0 pA"/>
+    <pulseGenerator id="input_35" delay="270ms" duration="1000ms" amplitude="-50.0 pA"/>
+    <pulseGenerator id="input_40" delay="270ms" duration="1000ms" amplitude="50.0 pA"/>
+    <pulseGenerator id="input_42" delay="270ms" duration="1000ms" amplitude="90.0 pA"/>
+    <pulseGenerator id="input_46" delay="270ms" duration="1000ms" amplitude="170.0 pA"/>
+    <pulseGenerator id="input_49" delay="270ms" duration="1000ms" amplitude="230.0 pA"/>
+    <pulseGenerator id="input_51" delay="270ms" duration="1000ms" amplitude="270.0 pA"/>
+    <network id="network_480353286_HH" type="networkWithTemperature" temperature="34 degC">
+        <population id="Pop0" component="RS" size="7" type="populationList">
+            <instance id="0">
+                <location x="0." y="0." z="0."/>
+            </instance>
+            <instance id="1">
+                <location x="100." y="0." z="0."/>
+            </instance>
+            <instance id="2">
+                <location x="200." y="0." z="0."/>
+            </instance>
+            <instance id="3">
+                <location x="300." y="0." z="0."/>
+            </instance>
+            <instance id="4">
+                <location x="400." y="0." z="0."/>
+            </instance>
+            <instance id="5">
+                <location x="500." y="0." z="0."/>
+            </instance>
+            <instance id="6">
+                <location x="600." y="0." z="0."/>
+            </instance>
+        </population>
+        <inputList id="input_32" population="Pop0" component="input_32">
+            <input id="0" target="../Pop0/0/RS" destination="synapses"/>
+        </inputList>
+        <inputList id="input_35" population="Pop0" component="input_35">
+            <input id="0" target="../Pop0/1/RS" destination="synapses"/>
+        </inputList>
+        <inputList id="input_40" population="Pop0" component="input_40">
+            <input id="0" target="../Pop0/2/RS" destination="synapses"/>
+        </inputList>
+        <inputList id="input_42" population="Pop0" component="input_42">
+            <input id="0" target="../Pop0/3/RS" destination="synapses"/>
+        </inputList>
+        <inputList id="input_46" population="Pop0" component="input_46">
+            <input id="0" target="../Pop0/4/RS" destination="synapses"/>
+        </inputList>
+        <inputList id="input_49" population="Pop0" component="input_49">
+            <input id="0" target="../Pop0/5/RS" destination="synapses"/>
+        </inputList>
+        <inputList id="input_51" population="Pop0" component="input_51">
+            <input id="0" target="../Pop0/6/RS" destination="synapses"/>
+        </inputList>
+    </network>
+</neuroml>
