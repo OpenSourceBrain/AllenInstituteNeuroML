@@ -26,8 +26,8 @@ HTML_TEMPLATE_FILE = "CellInfo_TEMPLATE.html"
                   
 info['datasets'] = []      
 
-def make_html_file(info):
-    merged = merge_with_template(info, HTML_TEMPLATE_FILE)
+def make_html_file(info, template=HTML_TEMPLATE_FILE):
+    merged = merge_with_template(info, template)
     html_dir = 'summary'
     new_html_file = os.path.join(html_dir,'CellInfo.html')
     lf = open(new_html_file, 'w')

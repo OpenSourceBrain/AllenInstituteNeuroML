@@ -1,0 +1,36 @@
+<html>
+    <title>Channel density information</title>
+    <head>
+    <style>
+    table {
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+    </style>
+    </head>
+    <body>
+        <p style="font-family:arial">${info}</p>
+#foreach ($dataset in $datasets)##
+        <table border="1">
+            <tr> 
+                <td width="130px">
+                    <p style="font-size:80%;font-family:arial"><b>${dataset.id}</b></p>    
+                    <p style="font-size:80%;font-family:arial"><a href="../HH_${dataset.id}.cell.nml">Tuned model</a></p>
+                    <p style="font-size:80%;font-family:arial">${dataset.location}</p>
+                    <p style="font-size:80%;font-family:arial">${dataset.aibs_dendrite_type}</p>
+                    <p style="font-size:80%;font-family:arial">${dataset.aibs_cre_line}</p>
+                
+                </td>
+                <td>
+                <a href="HH_${dataset.id}_traces.png"><img alt="${dataset.id} traces" src="HH_${dataset.id}_traces.png" height="200"/></a>
+                </td>
+                <td>
+                <object data="../HH_${dataset.id}.cell.nml_channeldens.svg" type="image/svg+xml" valign="centre">
+                </td>
+            </tr>
+            
+        </table> <br/>
+#end##   
+    </body>
+
+</html>
