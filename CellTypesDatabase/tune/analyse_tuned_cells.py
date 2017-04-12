@@ -19,7 +19,7 @@ sys.path.append("../data")
 from data_summary import get_if_iv_for_dataset, make_html_file
 
 info = {'info':'Channel densities'}
-info['datasets'] = []
+info['datasets'] = {}
 
 def analyse_cell(dataset_id, type, info, nogui = False, densities=False):
     
@@ -44,12 +44,18 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False):
         if type=='HH':
 
             dataset = {}
-            info['datasets'].append(dataset)
+            
+            layer = str(data['location'].split(',')[-1].strip().replace(' ',''))
+            ref = '%s_%s_%s'%(dataset_id,layer,int(meta_nml['seed']))
+            
             dataset['id'] = dataset_id
+            dataset['reference'] = ref
             metas = ['aibs_cre_line','aibs_dendrite_type','location']
             for m in metas:
-                dataset[m] = data[m]
-            for m in meta_nml:
+                dataset[m] = str(data[m])
+                
+            metas2 = ['fitness','population_size','seed']
+            for m in metas2:
                 dataset[m] = meta_nml[m]
             
             cell = nml_doc.cells[0]
@@ -57,8 +63,13 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False):
             sgv_files, all_info = generate_channel_density_plots(cell_file, text_densities=True, passives_erevs=True)
             sgv_file =sgv_files[0]
             for c in all_info:
-                dataset[c] = all_info[c]
+                if c == cell.id:
+                    cc = 'tuned_cell_info'
+                else:
+                    cc = c
+                dataset[cc] = all_info[c]
         
+            info['datasets'][ref] = dataset
     else:
 
         traces_ax, if_ax, iv_ax = generate_current_vs_frequency_curve(cell_file, 
@@ -172,6 +183,10 @@ if __name__ == '__main__':
     if densities:
         pp.pprint(info)
         make_html_file(info,template='../Densities_TEMPLATE.html')
+        info_file = open('tuned_cell_info.txt','w')
+        info_file.write(pp.pformat(info))
+        info_file.close()
+        
 
     
     if not nogui:
