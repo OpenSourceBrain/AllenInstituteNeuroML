@@ -136,7 +136,7 @@ def get_2stage_target_values(dataset_id):
     steady3 = ref3+steady_average
 
 
-    weights_1 = {steady0: 1,
+    weights_1 = {steady0: 10,
                  average_last_1percent0: 1,
                  ref0_280: 1,
                  steady1: 1,
@@ -234,8 +234,9 @@ def run_one_optimisation(ref,
 
 
 
-def scale(scale, number, min=1):
-    return max(min, int(scale*number))
+def scale(scale, number, min_=1, max_=sys.maxint):
+    num = max(min_, int(scale*number))
+    return min(max_, num)
 
 
 
@@ -270,7 +271,7 @@ def compare(sim_data_file, show_plot_already=True, dataset=471141261):
 
     pynml.generate_plot(x,
                         y, 
-                        "Comparing tuned cell to: %s"%dat_file_name, 
+                        "Comparing tuned cell (in %s) to data: %s"%(sim_data_file, dataset), 
                         xaxis = 'Input current (nA)', 
                         yaxis = 'Membrane potential (mV)', 
                         colors = colors, 
@@ -278,7 +279,7 @@ def compare(sim_data_file, show_plot_already=True, dataset=471141261):
                         show_plot_already=show_plot_already)
 
 
-def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False):
+def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False,mutation_rate = 0.9):
     
         print("Running 2 stage hh optimisation")
         
@@ -297,7 +298,6 @@ def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,s
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
-        mutation_rate = 0.1
 
         r1, r2 = run_2stage_optimization('Allen2stage',
                                 neuroml_file = 'prototypes/RS/%s.net.nml'%ref,
@@ -320,8 +320,8 @@ def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,s
                                 max_evaluations_2 = scale(scale2,500,10),
                                 num_selected_1 = scale(scale1,30,5),
                                 num_selected_2 = scale(scale2,30,5),
-                                num_offspring_1 = scale(scale1,20,5),
-                                num_offspring_2 = scale(scale2,20,5),
+                                num_offspring_1 = scale(scale1,30,5),
+                                num_offspring_2 = scale(scale2,30,5),
                                 mutation_rate = mutation_rate,
                                 num_elites = scale(scale2,5,2),
                                 simulator = simulator,
@@ -330,11 +330,12 @@ def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,s
                                 seed = seed,
                                 known_target_values = {},
                                 dry_run = False,
-                                num_parallel_evaluations = 10)
+                                num_parallel_evaluations = 12,
+                                extra_report_info = {'dataset':dataset,"Prototype":"HH"})
         
         if not nogui:
-            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']),show_plot_already=False,dataset=dataset)
-            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']),dataset=dataset, show_plot_already=not nogui)
+            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False,    dataset=dataset)
+            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=not nogui,dataset=dataset)
         
         
         final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
@@ -380,7 +381,7 @@ def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
     sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
     mutation_rate = 0.1,
-    num_elites = scale(scale2,8,2),
+    num_elites = scale(scale2,8,2,10),
 
 
     r1, r2 = run_2stage_optimization('AllenIzh2stage',
@@ -414,11 +415,12 @@ def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
                             seed = seed,
                             known_target_values = {},
                             dry_run = False,
-                            num_parallel_evaluations = 10)
+                            num_parallel_evaluations = 12,
+                            extra_report_info = {'dataset':dataset,"Prototype":"Izhikevich"})
 
 
     if not nogui:       
-        compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False)
+        compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False,     dataset=dataset)
         compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=not nogui, dataset=dataset)
 
     final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
@@ -604,9 +606,23 @@ if __name__ == '__main__':
         dataset = 479704527
         dataset = 464198958
         dataset = 485058595
-        scale1 = 1
-        scale2 = 1
+        dataset = 480169178
+        dataset = 480351780
+        dataset = 468120757
+        dataset = 480353286
+        
+        scale1 = .5
+        scale2 = .5
         seed = 12345
+        
+        
+        if len(sys.argv)>2:
+            print("Parsing args: %s"%sys.argv)
+            dataset = int(sys.argv[3])
+            simulator = sys.argv[4]
+            scale1 = float(sys.argv[5])
+            scale2 = float(sys.argv[6])
+            seed = float(sys.argv[7])
         
         run_2_stage_izh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
         
@@ -650,32 +666,46 @@ if __name__ == '__main__':
         dataset = 325941643
         dataset = 464198958
         dataset = 485058595
+        dataset = 486111903
         
         scale1 = 1
-        scale2 = 1
-        seed = 1234
+        scale2 = 1.5
+        seed = 12345
+        if len(sys.argv)>2:
+            print("Parsing args: %s"%sys.argv)
+            dataset = int(sys.argv[3])
+            simulator = sys.argv[4]
+            scale1 = float(sys.argv[5])
+            scale2 = float(sys.argv[6])
+            seed = float(sys.argv[7])
         
-        run_2_stage_hh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
+        run_2_stage_hh(dataset, simulator, scale1, scale2,seed, nogui=nogui,mutation_rate = 0.9)
         
     elif '-all' in sys.argv:
         
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 1
-        scale2 = 1
-        seed = 123
+        scale1 = 2
+        scale2 = 4
+        seed = 123456
         
         sys.path.append("../data")
         import data_helper as DH
 
         dataset_ids = DH.CURRENT_DATASETS
-        dataset_ids = [486111903]
+        #dataset_ids = [485058595]
+        
+        f = open('tuneAll.sh','w')
 
         for dataset_id in dataset_ids:
-            run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
-            run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
-
+            f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            ###f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
+            #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
+            f.write('swapoff -a\n')
+            f.write('swapon -a\n\n')
+        f.close()
 
     else:
 
