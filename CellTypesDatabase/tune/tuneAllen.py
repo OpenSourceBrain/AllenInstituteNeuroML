@@ -16,6 +16,7 @@ import sys
 from collections import OrderedDict
 
 import json
+import os
 
 
 import random
@@ -28,6 +29,8 @@ from pyneuroml import pynml
 
 sys.path.append("../data")
 import data_helper as DH
+sys.path.append("../data/bulk_analysis")
+import bulk_data_helper as BDH
 
 #####    Pospischil et al 2008
               
@@ -111,14 +114,24 @@ target_data = {average_maximum: 33.320915,
 
 ####     Target data
 
-target_sweep_numbers = DH.DATASET_TARGET_SWEEPS
 
 def get_2stage_target_values(dataset_id):
 
-    sweep_numbers = target_sweep_numbers[dataset_id]
     
-    with open("../data/%s_analysis.json"%dataset_id, "r") as json_file:
-        metadata = json.load(json_file)
+    if os.path.isdir("../data/%s_analysis.json"%dataset_id):
+        
+        target_sweep_numbers = DH.DATASET_TARGET_SWEEPS
+        sweep_numbers = target_sweep_numbers[dataset_id]
+        
+        with open("../data/%s_analysis.json"%dataset_id, "r") as json_file:
+            metadata = json.load(json_file)
+    else:
+        
+        target_sweep_numbers = BDH.DATASET_TARGET_SWEEPS
+        sweep_numbers = target_sweep_numbers[dataset_id]
+        
+        with open("../data/bulk_analysis/%s_analysis.json"%dataset_id, "r") as json_file:
+            metadata = json.load(json_file)
 
     ref0 = 'Pop0/0/RS/v:'
     ref1 = 'Pop0/1/RS/v:'
@@ -705,6 +718,35 @@ if __name__ == '__main__':
             #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             f.write('swapoff -a\n')
             f.write('swapon -a\n\n')
+        f.close()
+        
+    elif '-bulk' in sys.argv:
+        
+
+        simulator  = 'jNeuroML_NEURON'
+        
+        scale1 = .2
+        scale2 = .2
+        seed = 123456
+        
+        sys.path.append("../data")
+        import data_helper as DH
+        sys.path.append("../data/bulk_analysis")
+        import bulk_data_helper as BDH
+
+        dataset_ids = BDH.CURRENT_DATASETS[:6]
+        #dataset_ids = [485058595]
+        
+        f = open('tuneBulk.sh','w')
+
+        for dataset_id in dataset_ids:
+            if not dataset_id in DH.CURRENT_DATASETS:
+                f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+                ###f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+                #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
+                #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
+                f.write('swapoff -a\n')
+                f.write('swapon -a\n\n')
         f.close()
 
     else:
