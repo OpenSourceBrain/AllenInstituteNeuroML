@@ -1,5 +1,5 @@
 
-## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
+## Conversion of Allen Cell Types Database GLIF models to NeuroML 2/LEMS
 
 **Note: work in progress!**
 

@@ -19,12 +19,12 @@ of the [original biophysical models in NEURON](https://github.com/OpenSourceBrai
 (e.g. [483108201](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/CellTypesDatabase/models/483108201)) which have been generated 
 by the Allen Institute from their own data, as well as [NeuroML 2 versions of these models](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/CellTypesDatabase/models/NeuroML2).
 
-Work in progress!
+*Work in progress!*
 
 #### Retuned cell models
 
 [This directory](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/CellTypesDatabase/tune) contains preliminary work to tune new
 NeuroML2 models against the Allen CellTypes Database data for other types of NeuroML model (e.g. Izhikevich spiking models).
 
-Work in progress!
+*Work in progress!*
 

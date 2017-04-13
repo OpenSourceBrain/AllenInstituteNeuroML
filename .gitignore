@@ -251,3 +251,4 @@ original.v.dat
 /CellTypesDatabase/tune/prototypes/HH2/simulator.props
 /CellTypesDatabase/data/bulk_analysis/*_raw_data.nwb
 /CellTypesDatabase/data/bulk_analysis/*.dat
+/CellTypesDatabase/tune/tuneBulk.sh
