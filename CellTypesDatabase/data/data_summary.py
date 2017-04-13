@@ -9,22 +9,10 @@ import matplotlib.pyplot as plt
 from pyneuroml import pynml
 import airspeed
 
-analysed = []
-
-analysed = [ f for f in os.listdir('.') if (f.endswith('58_analysis.json')) ]
-analysed = [ f for f in os.listdir('.') if (f.endswith('_analysis.json')) ]
-
-analysed.sort()
-
 nogui = '-nogui' in sys.argv
 
-info = {}
-info['info'] = 'Cell models tuned to data extracted from Cell Types Database. Note: these are preliminary models designed to test the framework for generating NeuroML models from this data, not the final, optimised models.'
-
-
 HTML_TEMPLATE_FILE = "CellInfo_TEMPLATE.html" 
-                  
-info['datasets'] = []      
+                      
 
 def make_html_file(info, template=HTML_TEMPLATE_FILE):
     merged = merge_with_template(info, template)
@@ -105,10 +93,24 @@ def get_if_iv_for_dataset(dataset_analysis_file):
     return data, v_sub, curents_sub, v, curents_spike
 
 
+    
+def analyse_extracted_data():
+    
+    analysed = []
 
-if __name__ == '__main__':
+    analysed = [ f for f in os.listdir('.') if (f.endswith('_analysis.json')) ]
+    #analysed = [ f for f in os.listdir('.') if (f.endswith('_analysis.json')) ]
+
+    analysed.sort()
+
+    info = {}
+    info['info'] = 'Cell models tuned to data extracted from Cell Types Database. Note: these are preliminary models designed to test the framework for generating NeuroML models from this data, not the final, optimised models.'
+
+    info['datasets'] = [] 
 
     for f in analysed:
+        
+        print("*************************\n Looking at: %s"%f)
 
         dataset = {}
         info['datasets'].append(dataset)
@@ -206,3 +208,9 @@ if __name__ == '__main__':
 
     if not nogui:
         plt.show()
+        
+        
+
+if __name__ == '__main__':
+    
+    analyse_extracted_data()

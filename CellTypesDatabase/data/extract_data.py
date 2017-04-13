@@ -21,13 +21,8 @@ ct = CellTypesApi()
 plot = False# not '-nogui' in sys.argv
 test = '-test' in sys.argv
 
-dataset_ids = DH.CURRENT_DATASETS
-if test:
-    dataset_ids = [464198958]
 
-for dataset_id in dataset_ids:
-
-    raw_ephys_file_name = '%d_raw_data.nwb' % dataset_id
+def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
 
     info = {}
  
@@ -110,8 +105,22 @@ for dataset_id in dataset_ids:
     
     print('Written info to %s'%analysis_file_name)
     
-if plot:
-    pylab.show()
+    
+
+if __name__ == '__main__':
+
+    dataset_ids = DH.CURRENT_DATASETS
+    if test:
+        dataset_ids = [464198958]
+
+    for dataset_id in dataset_ids:
+
+        raw_ephys_file_name = '%d_raw_data.nwb' % dataset_id
+
+        extract_info_from_nwb_file(dataset_id, raw_ephys_file_name)
+
+    if plot:
+        pylab.show()
     
     
     

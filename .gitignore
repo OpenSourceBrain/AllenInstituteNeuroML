@@ -249,3 +249,5 @@ original.v.dat
 /CellTypesDatabase/tune/prototypes/HH2/LEMS_Test_*.xml
 /CellTypesDatabase/tune/prototypes/HH2/*_nrn.py
 /CellTypesDatabase/tune/prototypes/HH2/simulator.props
+/CellTypesDatabase/data/bulk_analysis/*_raw_data.nwb
+/CellTypesDatabase/data/bulk_analysis/*.dat
