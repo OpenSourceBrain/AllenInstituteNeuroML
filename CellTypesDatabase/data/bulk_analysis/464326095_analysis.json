@@ -1,7 +1,7 @@
 {   "aibs_cre_line": "Pvalb-IRES-Cre",
     "aibs_dendrite_type": "aspiny",
     "allensdk_version": "0.12.4",
-    "comment": "Data analysed on Thu Apr 13 14:19:12 2017",
+    "comment": "Data analysed on Thu Apr 13 15:48:23 2017",
     "data_set_id": 464326095,
     "location": "Primary visual area, layer 6a",
     "pyelectro_version": "0.1.8",

@@ -1,7 +1,7 @@
 {   "aibs_cre_line": "Sst-IRES-Cre",
     "aibs_dendrite_type": "aspiny",
     "allensdk_version": "0.12.4",
-    "comment": "Data analysed on Thu Apr 13 14:16:49 2017",
+    "comment": "Data analysed on Thu Apr 13 15:45:30 2017",
     "data_set_id": 464198958,
     "location": "Lateral visual area, layer 5",
     "pyelectro_version": "0.1.8",

@@ -1,0 +1,68 @@
+<html>
+    <title>Cell information</title>
+    <head>
+    <style>
+    table {
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+    </style>
+    </head>
+    <body>
+        <p style="font-family:arial">${info}</p>
+#foreach ($dataset in $datasets)##
+        <table border="1">
+            <tr> 
+                <td width="130px">
+                    <p style="font-size:80%;font-family:arial"><b>${dataset.id}</b></p>
+                    <p style="font-size:80%;font-family:arial">${dataset.location}</p>
+                    <p style="font-size:80%;font-family:arial">${dataset.aibs_dendrite_type}</p>
+                    <p style="font-size:80%;font-family:arial">${dataset.aibs_cre_line}</p>
+                    <p style="font-size:80%;font-family:arial"><a href="http://celltypes.brain-map.org/mouse/experiment/electrophysiology/${dataset.id}">Source data</a></p>
+                </td>
+                <td>
+                <a href="traces_${dataset.id}.png"><img alt="${dataset.id} example traces" src="traces_${dataset.id}.png" height="200"/></a>
+                </td>
+                <td>
+                <a href="spikes_${dataset.id}.png"><img alt="${dataset.id} firing rates" src="spikes_${dataset.id}.png" height="200"/></a>
+                </td>
+                <td>
+                <a href="subthreshold_${dataset.id}.png"><img alt="${dataset.id} subthreshold voltage vs current" src="subthreshold_${dataset.id}.png" height="200"/></a>
+                </td>
+            </tr>
+            <tr>
+                <td width="130px">
+                    <p style="font-size:80%;font-family:arial"><b>Izhikevich cell model tuned to dataset ${dataset.id}</b></p>
+                    <p style="font-size:80%;font-family:arial"><a href="https://github.com/OpenSourceBrain/AllenInstituteNeuroML/blob/master/CellTypesDatabase/tune/tuned_cells/Izh_${dataset.id}.cell.nml">Tuned model</a></p>
+                </td>
+                <td>
+                <a href="../../../tune/tuned_cells/summary/Izh_${dataset.id}_traces.png"><img alt="${dataset.id} traces" src="../../../tune/tuned_cells/summary/Izh_${dataset.id}_traces.png" height="200"/></a>
+                </td>
+                <td>
+                <a href="../../../tune/tuned_cells/summary/Izh_${dataset.id}_if.png"><img alt="${dataset.id} firing rates" src="../../../tune/tuned_cells/summary/Izh_${dataset.id}_if.png" height="200"/></a>
+                </td>
+                <td>
+                <a href="../../../tune/tuned_cells/summary/Izh_${dataset.id}_iv.png"><img alt="${dataset.id} subthreshold voltage vs current" src="../../../tune/tuned_cells/summary/Izh_${dataset.id}_iv.png" height="200"/></a>
+                </td>
+            </tr>
+            <tr>
+                <td width="130px">
+                    <p style="font-size:80%;font-family:arial"><b>HH cell model tuned to dataset ${dataset.id}</b></p>
+                    <p style="font-size:80%;font-family:arial"><a href="https://github.com/OpenSourceBrain/AllenInstituteNeuroML/blob/master/CellTypesDatabase/tune/tuned_cells/HH_${dataset.id}.cell.nml">Tuned model</a></p>
+                </td>
+                <td>
+                <a href="../../../tune/tuned_cells/summary/HH_${dataset.id}_traces.png"><img alt="${dataset.id} traces" src="../../../tune/tuned_cells/summary/HH_${dataset.id}_traces.png" height="200"/></a>
+                </td>
+                <td>
+                <a href="../../../tune/tuned_cells/summary/HH_${dataset.id}_if.png"><img alt="${dataset.id} firing rates" src="../../../tune/tuned_cells/summary/HH_${dataset.id}_if.png" height="200"/></a>
+                </td>
+                <td>
+                <a href="../../../tune/tuned_cells/summary/HH_${dataset.id}_iv.png"><img alt="${dataset.id} subthreshold voltage vs current" src="../../../tune/tuned_cells/summary/HH_${dataset.id}_iv.png" height="200"/></a>
+                </td>
+            </tr>
+        </table> <br/>
+        <br/>
+#end##   
+    </body>
+
+</html>

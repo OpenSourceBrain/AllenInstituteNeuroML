@@ -9,11 +9,13 @@ from pyneuroml import pynml
 
 sys.path.append("../data")
 import data_helper as DH
+sys.path.append("../data/bulk_analysis")
+import bulk_data_helper as BDH
 
 
 def generate_network_for_sweeps(cell_type, dataset_id, cell_file_name, cell_id, target_dir, data_dir="../../data"):
 
-    target_sweep_numbers = DH.DATASET_TARGET_SWEEPS[dataset_id]
+    target_sweep_numbers = BDH.DATASET_TARGET_SWEEPS[dataset_id]
 
     net_id = "network_%s_%s"%(dataset_id, cell_type)
     net = neuroml.Network(id=net_id, type="networkWithTemperature", temperature=DH.SIMULATION_TEMPERATURE)
@@ -84,6 +86,6 @@ if __name__ == '__main__':
 
     for cell_type in cell_types:
 
-        for dataset_id in DH.CURRENT_DATASETS:
+        for dataset_id in BDH.CURRENT_DATASETS:
             
-            generate_network_for_sweeps(cell_type, dataset_id, '%s.cell.nml'%cell_type, cell_id, 'prototypes/RS', '../data')
+            generate_network_for_sweeps(cell_type, dataset_id, '%s.cell.nml'%cell_type, cell_id, 'prototypes/RS', '../data/bulk_analysis')

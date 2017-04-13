@@ -1,7 +1,7 @@
 {   "aibs_cre_line": "Scnn1a-Tg3-Cre",
     "aibs_dendrite_type": "aspiny",
     "allensdk_version": "0.12.4",
-    "comment": "Data analysed on Thu Apr 13 14:23:07 2017",
+    "comment": "Data analysed on Thu Apr 13 15:53:01 2017",
     "data_set_id": 323834998,
     "location": "Primary visual area, layer 6a",
     "pyelectro_version": "0.1.8",

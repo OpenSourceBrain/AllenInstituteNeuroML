@@ -1,7 +1,7 @@
 {   "aibs_cre_line": "Rbp4-Cre_KL100",
     "aibs_dendrite_type": "spiny",
     "allensdk_version": "0.12.4",
-    "comment": "Data analysed on Thu Apr 13 14:15:45 2017",
+    "comment": "Data analysed on Thu Apr 13 15:43:59 2017",
     "data_set_id": 486111903,
     "location": "Primary visual area, layer 5",
     "pyelectro_version": "0.1.8",

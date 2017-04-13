@@ -114,74 +114,82 @@ for dataset_id in dataset_ids:
     print("Spiking sweeps: %s"%spikings)
     
     chosen_sweeps = []
-    if len(subthreshs)<4:
-        print("Cannot pick 4 subthreshold values")
-    elif len(spikings)<4:
-        print("Cannot pick 4 spiking values")
-    else:
-        i1 = -1 
-        i2 = -1
-        if len(subthreshs)==4 :
-            i1=1
-            i2=2
-        elif len(subthreshs)==5 or len(subthreshs)==6:
-            i1=1
-            i2=3
-        else:
-            q = int(math.ceil(len(subthreshs)/4.))
-            i1 = q
-            i2 = len(subthreshs)-q
-        print("Picking subthresh indices 0, %s, %s, %s"%(i1,i2,len(subthreshs)-1))
-        chosen_sweeps.append(subthreshs.keys()[0])
-        chosen_sweeps.append(subthreshs.keys()[i1])
-        chosen_sweeps.append(subthreshs.keys()[i2])
-        chosen_sweeps.append(subthreshs.keys()[-1])
-        
-        i1 = int(math.ceil(len(spikings)/2.))
-        print("Picking spiking indices 0, %s, %s"%(i1,len(spikings)-1))
-        
-        chosen_sweeps.append(spikings.keys()[1]) #!!!!!!!
-        chosen_sweeps.append(spikings.keys()[i1])
-        chosen_sweeps.append(spikings.keys()[-1])
     
-        print("Chosen sweeps: %s"%chosen_sweeps)
-        print("Retrieved sweep traces: %s"%chosen.keys())
+    if dataset_id in DH.DATASET_TARGET_SWEEPS:
+        chosen_sweeps = DH.DATASET_TARGET_SWEEPS[dataset_id]
         
-        file_bd.write("\nDATASET_TARGET_SWEEPS[%s] = %s\n"%(dataset_id,chosen_sweeps))
+        print("Reusing chosen sweeps: %s"%chosen_sweeps)
+    else:
+        if len(subthreshs)<4:
+            print("Cannot pick 4 subthreshold values")
+            exit()
+        elif len(spikings)<4:
+            print("Cannot pick 4 spiking values")
+            exit()
+        else:
+            i1 = -1 
+            i2 = -1
+            if len(subthreshs)==4 :
+                i1=1
+                i2=2
+            elif len(subthreshs)==5 or len(subthreshs)==6:
+                i1=1
+                i2=3
+            else:
+                q = int(math.ceil(len(subthreshs)/4.))
+                i1 = q
+                i2 = len(subthreshs)-q
+            print("Picking subthresh indices 0, %s, %s, %s"%(i1,i2,len(subthreshs)-1))
+            chosen_sweeps.append(subthreshs.keys()[0])
+            chosen_sweeps.append(subthreshs.keys()[i1])
+            chosen_sweeps.append(subthreshs.keys()[i2])
+            chosen_sweeps.append(subthreshs.keys()[-1])
+
+            i1 = int(math.ceil(len(spikings)/2.))
+            print("Picking spiking indices 0, %s, %s"%(i1,len(spikings)-1))
+
+            chosen_sweeps.append(spikings.keys()[1]) #!!!!!!!
+            chosen_sweeps.append(spikings.keys()[i1])
+            chosen_sweeps.append(spikings.keys()[-1])
+
+            print("Chosen sweeps: %s"%chosen_sweeps)
+            print("Retrieved sweep traces: %s"%chosen.keys())
+
+    file_bd.write("\nDATASET_TARGET_SWEEPS[%s] = %s\n"%(dataset_id,chosen_sweeps))
 
 
-        volts_file = open('%s.dat'%dataset_id, 'w')
-        max = 1500 # s
+    volts_file = open('%s.dat'%dataset_id, 'w')
+    max = 1500 # s
 
-        imax =-1
-        for i in range(len(chosen['t'])):
-            t = chosen['t'][i]
-            if t <= max:
-                line = '%s '%t
-                for s in chosen_sweeps:
-                    line += '%s '% (float(chosen[s][i])/1000)
-                volts_file.write(line+'\n')
-                imax=i
-        volts_file.close()
-        
-        fig = plt.figure()
-        
-        for s in chosen_sweeps:
-            # plot the stimulus and the voltage response for the random trial
-            plt.subplot(2,1,1)
-            tt = chosen['t'][:imax]
-            vv = chosen[s][:imax]
-            print("Plotting t: %s->%s #%s vs %s->%s #%s"%(tt[0],tt[-1],len(tt),vv[0],vv[-1],len(vv)))
-            plt.plot(tt,vv)
-            plt.ylabel('Stimulus (A)')
-            plt.subplot(2,1,2)
-            ss = stimuli[s][:imax]
-            plt.plot(tt,ss, label = 'S %s, %s pA'%(sweep_number, spikings[s] if s in spikings else subthreshs[s]))
+    imax =-1
+    for i in range(len(chosen['t'])):
+        t = chosen['t'][i]
+        if t <= max:
+            line = '%s '%t
+            for s in chosen_sweeps:
+                line += '%s '% (float(chosen[s][i])/1000)
+            volts_file.write(line+'\n')
+            imax=i
+    volts_file.close()
 
-        plt.ylabel('Membrane voltage (mV)')
-        plt.xlabel('Time (s)')
-        fig.canvas.set_window_title("Dataset: %s"%dataset_id)
-        plt.legend()
+    fig = plt.figure()
+
+    for s in chosen_sweeps:
+        # plot the stimulus and the voltage response for the random trial
+        plt.subplot(2,1,1)
+        tt = chosen['t'][:imax]
+        vv = chosen[s][:imax]
+        print("Plotting t: %s->%s #%s vs %s->%s #%s"%(tt[0],tt[-1],len(tt),vv[0],vv[-1],len(vv)))
+        plt.plot(tt,vv)
+        plt.ylabel('Stimulus (A)')
+        plt.subplot(2,1,2)
+        ss = stimuli[s][:imax]
+        plt.plot(tt,ss, label = 'S %s, %s pA'%(sweep_number, spikings[s] if s in spikings else subthreshs[s]))
+
+    plt.ylabel('Membrane voltage (mV)')
+    plt.xlabel('Time (s)')
+    fig.canvas.set_window_title("Dataset: %s"%dataset_id)
+    plt.legend()
         
         
 file_bd.write("\nCURRENT_DATASETS = DATASET_TARGET_SWEEPS.keys()\n")

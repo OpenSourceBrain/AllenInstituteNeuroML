@@ -21,7 +21,7 @@ from data_summary import get_if_iv_for_dataset, make_html_file
 info = {'info':'Channel densities'}
 info['datasets'] = {}
 
-def analyse_cell(dataset_id, type, info, nogui = False, densities=False):
+def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysis_dir='../../data/'):
     
     reference = '%s_%s'%(type,dataset_id)
     cell_file = '%s.cell.nml'%(reference)
@@ -37,7 +37,7 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False):
     images = 'summary/%s_%s.png'
     
 
-    data, v_sub, curents_sub, v, curents_spike = get_if_iv_for_dataset('../../data/%s_analysis.json'%dataset_id)
+    data, v_sub, curents_sub, v, curents_spike = get_if_iv_for_dataset('%s%s_analysis.json'%(analysis_dir,dataset_id))
     
     if densities:
         # Assume images below already generated...
@@ -104,7 +104,7 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False):
         print("Copying %s to %s"%(cell_file, temp_dir))
         shutil.copy(cell_file, temp_dir)
 
-        net_file = generate_network_for_sweeps(type, dataset_id, '%s.cell.nml'%(reference), reference, temp_dir)
+        net_file = generate_network_for_sweeps(type, dataset_id, '%s.cell.nml'%(reference), reference, temp_dir, data_dir=analysis_dir)
 
         lems_file_name = 'LEMS_Test_%s_%s.xml'%(type,dataset_id)
 
@@ -164,8 +164,11 @@ if __name__ == '__main__':
     
     sys.path.append("../data")
     import data_helper as DH
+    sys.path.append("../data/bulk_analysis")
+    import bulk_data_helper as BDH
 
     dataset_ids = DH.CURRENT_DATASETS
+    dataset_ids = BDH.CURRENT_DATASETS[:1]
     #dataset_ids = [464198958]
     #dataset_ids = [480169178]
     #dataset_ids = dataset_ids[:3]
@@ -174,11 +177,11 @@ if __name__ == '__main__':
 
         type = 'HH'
 
-        analyse_cell(dataset_id, type, info, nogui,densities=densities)
+        analyse_cell(dataset_id, type, info, nogui,densities=densities, analysis_dir='../../data/bulk_analysis/')
 
-        type = 'Izh'
+        ##type = 'Izh'
 
-        analyse_cell(dataset_id, type, info, nogui,densities=densities)
+        ##analyse_cell(dataset_id, type, info, nogui,densities=densities)
         
     if densities:
         pp.pprint(info)

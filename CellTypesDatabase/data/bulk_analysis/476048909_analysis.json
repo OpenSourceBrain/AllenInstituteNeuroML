@@ -1,7 +1,7 @@
 {   "aibs_cre_line": "Rorb-IRES2-Cre",
     "aibs_dendrite_type": "spiny",
     "allensdk_version": "0.12.4",
-    "comment": "Data analysed on Thu Apr 13 14:18:51 2017",
+    "comment": "Data analysed on Thu Apr 13 15:48:00 2017",
     "data_set_id": 476048909,
     "location": "Anterolateral visual area, layer 5",
     "pyelectro_version": "0.1.8",
