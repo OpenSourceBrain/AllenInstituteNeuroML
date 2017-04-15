@@ -1,0 +1,176 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="HH_323834998">
+    <include href="IM.channel.nml"></include>
+    <include href="Kd.channel.nml"></include>
+    <include href="Leak.channel.nml"></include>
+    <include href="Na.channel.nml"></include>
+    <cell id="HH_323834998">
+        <notes>Cell model tuned to Allen Institute Cell Types Database, dataset: 323834998
+
+Tuning procedure metadata:
+
+{   'Prototype': 'HH',
+    'analysis_start_time': 0,
+    'analysis_var': {   'baseline': 0,
+                        'dvdt_threshold': 0,
+                        'peak_delta': 0,
+                        'peak_threshold': 0},
+    'best_cand_analysis': {   'Pop0/0/RS/v:average_1000_1200': -91.93751999997315,
+                              'Pop0/0/RS/v:average_last_1percent': -68.23099694000001,
+                              'Pop0/0/RS/v:value_280': -85.21881,
+                              'Pop0/1/RS/v:average_1000_1200': -78.68157210692598,
+                              'Pop0/2/RS/v:average_1000_1200': -57.22966931453433,
+                              'Pop0/3/RS/v:average_1000_1200': -54.77841984950738,
+                              'Pop0/5/RS/v:mean_spike_frequency': 27.984204471254007,
+                              'Pop0/6/RS/v:average_maximum': 47.659198620689644,
+                              'Pop0/6/RS/v:average_minimum': -72.601661228070171,
+                              'Pop0/6/RS/v:mean_spike_frequency': 57.800537443593768},
+    'best_cand_analysis_full': {   'Pop0/0/RS/v:average_last_1percent': -68.23099694000001,
+                                   'Pop0/0/RS/v:max_peak_no': 0,
+                                   'Pop0/0/RS/v:maximum': -67.84861000000001,
+                                   'Pop0/0/RS/v:min_peak_no': 0,
+                                   'Pop0/0/RS/v:minimum': -91.93751999999999,
+                                   'Pop0/1/RS/v:average_last_1percent': -68.29323931333332,
+                                   'Pop0/1/RS/v:max_peak_no': 0,
+                                   'Pop0/1/RS/v:maximum': -67.99318,
+                                   'Pop0/1/RS/v:min_peak_no': 0,
+                                   'Pop0/1/RS/v:minimum': -80.0,
+                                   'Pop0/2/RS/v:average_last_1percent': -68.78795778000003,
+                                   'Pop0/2/RS/v:max_peak_no': 0,
+                                   'Pop0/2/RS/v:maximum': -54.279920000000004,
+                                   'Pop0/2/RS/v:min_peak_no': 0,
+                                   'Pop0/2/RS/v:minimum': -80.0,
+                                   'Pop0/3/RS/v:average_last_1percent': -68.91181940000001,
+                                   'Pop0/3/RS/v:average_maximum': 48.003240000000005,
+                                   'Pop0/3/RS/v:first_spike_time': 309.18,
+                                   'Pop0/3/RS/v:max_peak_no': 1,
+                                   'Pop0/3/RS/v:maximum': 48.003240000000005,
+                                   'Pop0/3/RS/v:min_peak_no': 0,
+                                   'Pop0/3/RS/v:minimum': -80.0,
+                                   'Pop0/4/RS/v:average_last_1percent': -69.04241458666657,
+                                   'Pop0/4/RS/v:average_maximum': 48.197089999999996,
+                                   'Pop0/4/RS/v:average_minimum': -73.844759999999994,
+                                   'Pop0/4/RS/v:first_spike_time': 287.5,
+                                   'Pop0/4/RS/v:max_peak_no': 2,
+                                   'Pop0/4/RS/v:maximum': 48.388189999999994,
+                                   'Pop0/4/RS/v:min_peak_no': 1,
+                                   'Pop0/4/RS/v:minimum': -80.0,
+                                   'Pop0/5/RS/v:average_last_1percent': -69.82693946000006,
+                                   'Pop0/5/RS/v:average_maximum': 47.745019642857137,
+                                   'Pop0/5/RS/v:average_minimum': -73.124067777777782,
+                                   'Pop0/5/RS/v:first_spike_time': 277.2,
+                                   'Pop0/5/RS/v:interspike_time_covar': 0.37831195580736632,
+                                   'Pop0/5/RS/v:max_peak_no': 28,
+                                   'Pop0/5/RS/v:maximum': 49.29149,
+                                   'Pop0/5/RS/v:mean_spike_frequency': 27.984204471254007,
+                                   'Pop0/5/RS/v:min_peak_no': 27,
+                                   'Pop0/5/RS/v:minimum': -80.0,
+                                   'Pop0/5/RS/v:peak_decay_exponent': -0.030424724373522425,
+                                   'Pop0/5/RS/v:peak_linear_gradient': -0.0010406465303158345,
+                                   'Pop0/5/RS/v:spike_broadening': 1.0250066725685538,
+                                   'Pop0/5/RS/v:spike_frequency_adaptation': -0.015045578362614919,
+                                   'Pop0/5/RS/v:spike_width_adaptation': -0.0074715218015197647,
+                                   'Pop0/5/RS/v:trough_decay_exponent': -0.0021594233339591192,
+                                   'Pop0/5/RS/v:trough_phase_adaptation': -0.019478964608704734,
+                                   'Pop0/6/RS/v:average_last_1percent': -70.25662909333332,
+                                   'Pop0/6/RS/v:average_maximum': 47.659198620689644,
+                                   'Pop0/6/RS/v:average_minimum': -72.601661228070171,
+                                   'Pop0/6/RS/v:first_spike_time': 275.24,
+                                   'Pop0/6/RS/v:interspike_time_covar': 0.21996699745979656,
+                                   'Pop0/6/RS/v:max_peak_no': 58,
+                                   'Pop0/6/RS/v:maximum': 49.759530000000005,
+                                   'Pop0/6/RS/v:mean_spike_frequency': 57.800537443593768,
+                                   'Pop0/6/RS/v:min_peak_no': 57,
+                                   'Pop0/6/RS/v:minimum': -80.0,
+                                   'Pop0/6/RS/v:peak_decay_exponent': -0.069859958397242683,
+                                   'Pop0/6/RS/v:peak_linear_gradient': -0.00096325455218445721,
+                                   'Pop0/6/RS/v:spike_broadening': 1.0326862630318145,
+                                   'Pop0/6/RS/v:spike_frequency_adaptation': -0.012459734045964793,
+                                   'Pop0/6/RS/v:spike_width_adaptation': -0.0062001011594377889,
+                                   'Pop0/6/RS/v:trough_decay_exponent': 0.0025203853371265229,
+                                   'Pop0/6/RS/v:trough_phase_adaptation': -0.0080962784024404544},
+    'comment': 'Ran 1000 evaluations (pop: 200) in 1251.902778 seconds (20.865046 mins total; 1.251903s per eval)\n\n',
+    'dataset': 323834998,
+    'dt': 0.01,
+    'fitness': 0.009179770314450275,
+    'fittest vars': {   'cell:RS/channelDensity:IM_all/mS_per_cm2': 0.1492101761917262,
+                        'cell:RS/channelDensity:Kd_all/mS_per_cm2': 11.57096939218005,
+                        'cell:RS/channelDensity:LeakConductance_all/mS_per_cm2': 0.05718954048121716,
+                        'cell:RS/channelDensity:Na_all/mS_per_cm2': 18.74793927996832,
+                        'cell:RS/erev_id:IM_all/mV': -78.1005401570896,
+                        'cell:RS/erev_id:Kd_all/mV': -82.157527393712,
+                        'cell:RS/erev_id:LeakConductance_all/mV': -67.56880772341165,
+                        'cell:RS/erev_id:Na_all/mV': 57.87676015203038,
+                        'cell:RS/specificCapacitance:all/uF_per_cm2': 0.45277717668674516},
+    'max_evaluations': 1000,
+    'mutation_rate': 0.9,
+    'num_elites': 10,
+    'num_offspring': 60,
+    'num_selected': 60,
+    'parameters': [   'cell:RS/channelDensity:LeakConductance_all/mS_per_cm2',
+                      'cell:RS/erev_id:LeakConductance_all/mV',
+                      'cell:RS/specificCapacitance:all/uF_per_cm2',
+                      'cell:RS/channelDensity:Na_all/mS_per_cm2',
+                      'cell:RS/channelDensity:Kd_all/mS_per_cm2',
+                      'cell:RS/channelDensity:IM_all/mS_per_cm2',
+                      'cell:RS/erev_id:Na_all/mV',
+                      'cell:RS/erev_id:Kd_all/mV',
+                      'cell:RS/erev_id:IM_all/mV'],
+    'population_size': 200,
+    'reference': 'Allen2stage_STAGE2',
+    'run_directory': 'NT_Allen2stage_STAGE2_Fri_Apr_14_17.41.32_2017',
+    'seed': 1234567.0,
+    'sim_time': 1500,
+    'simulator': 'jNeuroML_NEURON',
+    'target_data': {   'Pop0/0/RS/v:average_1000_1200': -90.10317722873688,
+                       'Pop0/0/RS/v:average_last_1percent': -71.2939610824585,
+                       'Pop0/0/RS/v:value_280': -83.84375,
+                       'Pop0/1/RS/v:average_1000_1200': -81.3032150751114,
+                       'Pop0/2/RS/v:average_1000_1200': -58.31498756160736,
+                       'Pop0/3/RS/v:average_1000_1200': -51.438997131347655,
+                       'Pop0/5/RS/v:mean_spike_frequency': 35.47264693761508,
+                       'Pop0/6/RS/v:average_maximum': 31.620371,
+                       'Pop0/6/RS/v:average_minimum': -56.456367,
+                       'Pop0/6/RS/v:mean_spike_frequency': 53.77789728421618},
+    'time': 1251.9027779102325,
+    'weights': {   'Pop0/0/RS/v:average_1000_1200': 5.0,
+                   'Pop0/0/RS/v:average_last_1percent': 0.5,
+                   'Pop0/0/RS/v:value_280': 0.5,
+                   'Pop0/1/RS/v:average_1000_1200': 0.5,
+                   'Pop0/2/RS/v:average_1000_1200': 0.5,
+                   'Pop0/3/RS/v:average_1000_1200': 0.5,
+                   'Pop0/5/RS/v:mean_spike_frequency': 1,
+                   'Pop0/6/RS/v:average_maximum': 1,
+                   'Pop0/6/RS/v:average_minimum': 1,
+                   'Pop0/6/RS/v:mean_spike_frequency': 1}}
+</notes>
+        <morphology id="morphology_RS">
+            <segment id="0" name="Soma">
+                <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="50.0"/>
+                <distal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="50.0"/>
+            </segment>
+            <segmentGroup neuroLexId="sao864921383" id="Soma">
+                <member segment="0"/>
+            </segmentGroup>
+            <segmentGroup id="all">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="GO:0043025" id="soma_group">
+                <include segmentGroup="Soma"/>
+            </segmentGroup>
+        </morphology>
+        <biophysicalProperties id="biophys">
+            <membraneProperties>
+                <channelDensity id="LeakConductance_all" ionChannel="LeakConductance" condDensity="0.0571895404812 mS_per_cm2" erev="-67.5688077234 mV" ion="non_specific"/>
+                <channelDensity id="Na_all" ionChannel="Na" condDensity="18.74793928 mS_per_cm2" erev="57.876760152 mV" ion="na"/>
+                <channelDensity id="Kd_all" ionChannel="Kd" condDensity="11.5709693922 mS_per_cm2" erev="-82.1575273937 mV" ion="k"/>
+                <channelDensity id="IM_all" ionChannel="IM" condDensity="0.149210176192 mS_per_cm2" erev="-78.1005401571 mV" ion="k"/>
+                <spikeThresh value="0 mV"/>
+                <specificCapacitance value="0.452777176687 uF_per_cm2"/>
+                <initMembPotential value="-80.0 mV"/>
+            </membraneProperties>
+            <intracellularProperties>
+                <resistivity value="100 ohm_cm"/>
+            </intracellularProperties>
+        </biophysicalProperties>
+    </cell>
+</neuroml>
