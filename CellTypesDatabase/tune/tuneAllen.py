@@ -725,16 +725,16 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = .2
-        scale2 = .2
-        seed = 123456
+        scale1 = 2
+        scale2 = 2
+        seed = 1234567
         
         sys.path.append("../data")
         import data_helper as DH
         sys.path.append("../data/bulk_analysis")
         import bulk_data_helper as BDH
 
-        dataset_ids = BDH.CURRENT_DATASETS[:6]
+        dataset_ids = BDH.CURRENT_DATASETS
         #dataset_ids = [485058595]
         
         f = open('tuneBulk.sh','w')

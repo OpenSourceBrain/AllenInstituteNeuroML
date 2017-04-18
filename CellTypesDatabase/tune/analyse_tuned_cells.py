@@ -45,8 +45,11 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
 
             dataset = {}
             
+            seed = meta_nml['seed']
+            if isinstance(seed, tuple):
+                seed = seed[0]
             layer = str(data['location'].split(',')[-1].strip().replace(' ',''))
-            ref = '%s_%s_%s'%(dataset_id,layer,int(meta_nml['seed']))
+            ref = '%s_%s_%s'%(dataset_id,layer,int(seed))
             
             dataset['id'] = dataset_id
             dataset['reference'] = ref
@@ -168,7 +171,7 @@ if __name__ == '__main__':
     import bulk_data_helper as BDH
 
     dataset_ids = DH.CURRENT_DATASETS
-    dataset_ids = BDH.CURRENT_DATASETS[:1]
+    dataset_ids = BDH.CURRENT_DATASETS
     #dataset_ids = [464198958]
     #dataset_ids = [480169178]
     #dataset_ids = dataset_ids[:3]

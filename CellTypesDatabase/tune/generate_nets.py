@@ -83,6 +83,7 @@ if __name__ == '__main__':
     cell_id = "RS"
 
     cell_types = ['Izh', 'HH']
+    cell_types = ['HH']
 
     for cell_type in cell_types:
 
