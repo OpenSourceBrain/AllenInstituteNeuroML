@@ -53,6 +53,7 @@ for dataset_id in dataset_ids:
     print("All sweeps for %s: %s"%(dataset_id, sweep_numbers))
     subthreshs = {}
     spikings = {}
+    spike_count = {}
     
     chosen = {}
     stimuli = {}
@@ -100,7 +101,7 @@ for dataset_id in dataset_ids:
                                                      plot=False, 
                                                      show_plot_already=False,
                                                      verbose=False)
-                                                     
+            spike_count[sweep_number] = analysis['%s:max_peak_no'%sweep_number]             
             subthresh = analysis['%s:max_peak_no'%sweep_number] == 0
             if subthresh:
                 subthreshs[sweep_number] = amp
@@ -115,6 +116,7 @@ for dataset_id in dataset_ids:
     
     chosen_sweeps = []
     
+    add_this = True
     if dataset_id in DH.DATASET_TARGET_SWEEPS:
         chosen_sweeps = DH.DATASET_TARGET_SWEEPS[dataset_id]
         
@@ -122,10 +124,10 @@ for dataset_id in dataset_ids:
     else:
         if len(subthreshs)<4:
             print("Cannot pick 4 subthreshold values")
-            exit()
+            add_this = False
         elif len(spikings)<4:
             print("Cannot pick 4 spiking values")
-            exit()
+            add_this = False
         else:
             i1 = -1 
             i2 = -1
@@ -148,14 +150,21 @@ for dataset_id in dataset_ids:
             i1 = int(math.ceil(len(spikings)/2.))
             print("Picking spiking indices 0, %s, %s"%(i1,len(spikings)-1))
 
-            chosen_sweeps.append(spikings.keys()[1]) #!!!!!!!
+            i0 = 1
+            i2 = -1
+            min_spike_count = 3
+            chosen_sweeps.append(spikings.keys()[i0]) #!!!!!!!
+            if spike_count[spikings.keys()[i0]] < min_spike_count: add_this = False
             chosen_sweeps.append(spikings.keys()[i1])
-            chosen_sweeps.append(spikings.keys()[-1])
+            if spike_count[spikings.keys()[i1]] < min_spike_count: add_this = False
+            chosen_sweeps.append(spikings.keys()[i2])
+            if spike_count[spikings.keys()[i1]] < min_spike_count: add_this = False
 
             print("Chosen sweeps: %s"%chosen_sweeps)
             print("Retrieved sweep traces: %s"%chosen.keys())
 
-    file_bd.write("\nDATASET_TARGET_SWEEPS[%s] = %s\n"%(dataset_id,chosen_sweeps))
+    if add_this:
+        file_bd.write("\nDATASET_TARGET_SWEEPS[%s] = %s\n"%(dataset_id,chosen_sweeps))
 
 
     volts_file = open('%s.dat'%dataset_id, 'w')
