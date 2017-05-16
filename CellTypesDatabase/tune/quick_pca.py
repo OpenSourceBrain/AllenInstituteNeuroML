@@ -10,7 +10,7 @@ data = []
 markers=[]
 colours=[]
 
-fitness_cutoff = 0.002
+fitness_cutoff = 0.01
 
 for ref in info['datasets']:
     tuned_cell_info = info['datasets'][ref]['tuned_cell_info']
@@ -114,7 +114,7 @@ plt.legend(loc='upper left')
 ax.set_xlabel("x-axis label") 
 ax.set_ylabel("y-axis label")
 ax.set_zlabel("z-axis label")
-ax.set_title("Plotting %s cells"%(len(data)))
+ax.set_title("Plotting %s cells; fitness<=%s"%(len(data),fitness_cutoff))
 plt.show() # show the plot
 
 

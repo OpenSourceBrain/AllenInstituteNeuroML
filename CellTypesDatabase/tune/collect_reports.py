@@ -27,9 +27,27 @@ for rep in os.listdir('reports'):
         s = open(f, 'r').read()
         reports[rep] = eval(s)
 print("\n*********************************\n")
+
+p =[]
+f = []
+
 for r in reports:
     rep = reports[r]
     ptype = rep['Prototype'] if rep['Prototype']!='Izhikevich' else 'Izh'
     print("%s:\t%s %s\t %s(p%s)\t%s"%(r,ptype,rep['dataset'],rep['max_evaluations'],rep['population_size'],rep['fitness']))
+    p.append(rep['population_size'])
+    f.append(rep['fitness'])
+    
+print p
+print f
+from pyneuroml import pynml
+pynml.generate_plot([p],                        # Add 2 sets of x values
+                         [f],                   # Add 2 sets of y values
+                         "Some traces",                  # Title
+                         linewidths = [0],             # Thicknesses of each trace
+                         markers = 'x',
+                         logx = True,
+                         logy = True,
+                         show_plot_already=True)    
 
       

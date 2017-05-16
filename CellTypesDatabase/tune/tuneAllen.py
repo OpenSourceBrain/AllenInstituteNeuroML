@@ -725,9 +725,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 2
-        scale2 = 2
-        seed = 1234567
+        scale1 = 4
+        scale2 = 4
+        seed = 12222
         
         sys.path.append("../data")
         import data_helper as DH
@@ -740,13 +740,13 @@ if __name__ == '__main__':
         f = open('tuneBulk.sh','w')
 
         for dataset_id in dataset_ids:
-            if not dataset_id in DH.CURRENT_DATASETS:
-                f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
-                ###f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
-                #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
-                #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
-                f.write('swapoff -a\n')
-                f.write('swapon -a\n\n')
+            #if not dataset_id in DH.CURRENT_DATASETS:
+            f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            ###f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
+            #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
+            f.write('swapoff -a\n')
+            f.write('swapon -a\n\n')
         f.close()
 
     else:
