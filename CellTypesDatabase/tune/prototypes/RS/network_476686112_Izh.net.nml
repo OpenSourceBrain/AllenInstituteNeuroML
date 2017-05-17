@@ -1,13 +1,13 @@
-<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="network_464326095_Izh">
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="network_476686112_Izh">
     <include href="Izh.cell.nml"></include>
-    <pulseGenerator id="input_14" delay="270ms" duration="1000ms" amplitude="-110.000002163 pA"/>
-    <pulseGenerator id="input_21" delay="270ms" duration="1000ms" amplitude="29.9999990128 pA"/>
-    <pulseGenerator id="input_25" delay="270ms" duration="1000ms" amplitude="110.000002163 pA"/>
-    <pulseGenerator id="input_26" delay="270ms" duration="1000ms" amplitude="129.999996878 pA"/>
-    <pulseGenerator id="input_28" delay="270ms" duration="1000ms" amplitude="170.000000188 pA"/>
-    <pulseGenerator id="input_32" delay="270ms" duration="1000ms" amplitude="249.99999293 pA"/>
-    <pulseGenerator id="input_34" delay="270ms" duration="1000ms" amplitude="289.999996239 pA"/>
-    <network id="network_464326095_Izh" type="networkWithTemperature" temperature="34 degC">
+    <pulseGenerator id="input_23" delay="270ms" duration="1000ms" amplitude="-70.0 pA"/>
+    <pulseGenerator id="input_24" delay="270ms" duration="1000ms" amplitude="-50.0 pA"/>
+    <pulseGenerator id="input_25" delay="270ms" duration="1000ms" amplitude="-30.000002 pA"/>
+    <pulseGenerator id="input_26" delay="270ms" duration="1000ms" amplitude="-10.0 pA"/>
+    <pulseGenerator id="input_37" delay="270ms" duration="1000ms" amplitude="70.0 pA"/>
+    <pulseGenerator id="input_31" delay="270ms" duration="1000ms" amplitude="90.0 pA"/>
+    <pulseGenerator id="input_36" delay="270ms" duration="1000ms" amplitude="190.0 pA"/>
+    <network id="network_476686112_Izh" type="networkWithTemperature" temperature="34 degC">
         <population id="Pop0" component="RS" size="7" type="populationList">
             <instance id="0">
                 <location x="0." y="0." z="0."/>
@@ -31,10 +31,10 @@
                 <location x="600." y="0." z="0."/>
             </instance>
         </population>
-        <inputList id="input_14" population="Pop0" component="input_14">
+        <inputList id="input_23" population="Pop0" component="input_23">
             <input id="0" target="../Pop0/0/RS" destination="synapses"/>
         </inputList>
-        <inputList id="input_21" population="Pop0" component="input_21">
+        <inputList id="input_24" population="Pop0" component="input_24">
             <input id="0" target="../Pop0/1/RS" destination="synapses"/>
         </inputList>
         <inputList id="input_25" population="Pop0" component="input_25">
@@ -43,13 +43,13 @@
         <inputList id="input_26" population="Pop0" component="input_26">
             <input id="0" target="../Pop0/3/RS" destination="synapses"/>
         </inputList>
-        <inputList id="input_28" population="Pop0" component="input_28">
+        <inputList id="input_37" population="Pop0" component="input_37">
             <input id="0" target="../Pop0/4/RS" destination="synapses"/>
         </inputList>
-        <inputList id="input_32" population="Pop0" component="input_32">
+        <inputList id="input_31" population="Pop0" component="input_31">
             <input id="0" target="../Pop0/5/RS" destination="synapses"/>
         </inputList>
-        <inputList id="input_34" population="Pop0" component="input_34">
+        <inputList id="input_36" population="Pop0" component="input_36">
             <input id="0" target="../Pop0/6/RS" destination="synapses"/>
         </inputList>
     </network>

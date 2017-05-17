@@ -1,13 +1,13 @@
-<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="network_471141261_Izh">
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="network_479010903_Izh">
     <include href="Izh.cell.nml"></include>
-    <pulseGenerator id="input_34" delay="270ms" duration="1000ms" amplitude="-110.000002163 pA"/>
-    <pulseGenerator id="input_39" delay="270ms" duration="1000ms" amplitude="-9.99999996004 pA"/>
-    <pulseGenerator id="input_48" delay="270ms" duration="1000ms" amplitude="170.000000188 pA"/>
-    <pulseGenerator id="input_50" delay="270ms" duration="1000ms" amplitude="209.99998962 pA"/>
-    <pulseGenerator id="input_60" delay="270ms" duration="1000ms" amplitude="209.99998962 pA"/>
-    <pulseGenerator id="input_53" delay="270ms" duration="1000ms" amplitude="269.999994584 pA"/>
-    <pulseGenerator id="input_58" delay="270ms" duration="1000ms" amplitude="370.000002858 pA"/>
-    <network id="network_471141261_Izh" type="networkWithTemperature" temperature="34 degC">
+    <pulseGenerator id="input_40" delay="270ms" duration="1000ms" amplitude="-250.0 pA"/>
+    <pulseGenerator id="input_47" delay="270ms" duration="1000ms" amplitude="-110.0 pA"/>
+    <pulseGenerator id="input_57" delay="270ms" duration="1000ms" amplitude="90.0 pA"/>
+    <pulseGenerator id="input_70" delay="270ms" duration="1000ms" amplitude="150.0 pA"/>
+    <pulseGenerator id="input_60" delay="270ms" duration="1000ms" amplitude="150.0 pA"/>
+    <pulseGenerator id="input_61" delay="270ms" duration="1000ms" amplitude="170.0 pA"/>
+    <pulseGenerator id="input_65" delay="270ms" duration="1000ms" amplitude="250.0 pA"/>
+    <network id="network_479010903_Izh" type="networkWithTemperature" temperature="34 degC">
         <population id="Pop0" component="RS" size="7" type="populationList">
             <instance id="0">
                 <location x="0." y="0." z="0."/>
@@ -31,25 +31,25 @@
                 <location x="600." y="0." z="0."/>
             </instance>
         </population>
-        <inputList id="input_34" population="Pop0" component="input_34">
+        <inputList id="input_40" population="Pop0" component="input_40">
             <input id="0" target="../Pop0/0/RS" destination="synapses"/>
         </inputList>
-        <inputList id="input_39" population="Pop0" component="input_39">
+        <inputList id="input_47" population="Pop0" component="input_47">
             <input id="0" target="../Pop0/1/RS" destination="synapses"/>
         </inputList>
-        <inputList id="input_48" population="Pop0" component="input_48">
+        <inputList id="input_57" population="Pop0" component="input_57">
             <input id="0" target="../Pop0/2/RS" destination="synapses"/>
         </inputList>
-        <inputList id="input_50" population="Pop0" component="input_50">
+        <inputList id="input_70" population="Pop0" component="input_70">
             <input id="0" target="../Pop0/3/RS" destination="synapses"/>
         </inputList>
         <inputList id="input_60" population="Pop0" component="input_60">
             <input id="0" target="../Pop0/4/RS" destination="synapses"/>
         </inputList>
-        <inputList id="input_53" population="Pop0" component="input_53">
+        <inputList id="input_61" population="Pop0" component="input_61">
             <input id="0" target="../Pop0/5/RS" destination="synapses"/>
         </inputList>
-        <inputList id="input_58" population="Pop0" component="input_58">
+        <inputList id="input_65" population="Pop0" component="input_65">
             <input id="0" target="../Pop0/6/RS" destination="synapses"/>
         </inputList>
     </network>
