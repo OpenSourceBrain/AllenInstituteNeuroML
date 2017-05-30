@@ -30,22 +30,28 @@ print("\n*********************************\n")
 
 p =[]
 f = []
+m = []
+c = []
 
 for r in reports:
     rep = reports[r]
     ptype = rep['Prototype'] if rep['Prototype']!='Izhikevich' else 'Izh'
     print("%s:\t%s %s\t %s(p%s)\t%s"%(r,ptype,rep['dataset'],rep['max_evaluations'],rep['population_size'],rep['fitness']))
-    p.append(rep['population_size'])
-    f.append(rep['fitness'])
+    p.append([rep['population_size']])
+    f.append([rep['fitness']])
+    m.append('.' if rep['Prototype']=='Izhikevich' else 'x')
+    c.append('k' if rep['Prototype']=='Izhikevich' else 'r')
     
 print p
 print f
+print m
+print c
 from pyneuroml import pynml
-pynml.generate_plot([p],                        # Add 2 sets of x values
-                         [f],                   # Add 2 sets of y values
+pynml.generate_plot(p,                        # Add 2 sets of x values
+                         f,                   # Add 2 sets of y values
                          "Some traces",                  # Title
-                         linewidths = [0],             # Thicknesses of each trace
-                         markers = 'x',
+                         markers = m,
+                         colors = c,
                          logx = True,
                          logy = True,
                          show_plot_already=True)    

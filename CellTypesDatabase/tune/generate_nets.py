@@ -84,6 +84,7 @@ if __name__ == '__main__':
 
     cell_types = ['Izh', 'HH']
     cell_types = ['HH']
+    cell_types = ['Izh']
 
     for cell_type in cell_types:
 

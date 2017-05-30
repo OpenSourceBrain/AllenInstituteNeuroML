@@ -377,7 +377,7 @@ def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,s
 
 
 
-def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False):
+def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False,mutation_rate = 0.9):
     
     type = 'Izh'
     ref = 'network_%s_%s'%(dataset, type)
@@ -393,8 +393,7 @@ def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
 
     sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
-    mutation_rate = 0.1,
-    num_elites = scale(scale2,8,2,10),
+    num_elites = scale(scale2,8,2,10)
 
 
     r1, r2 = run_2stage_optimization('AllenIzh2stage',
@@ -727,7 +726,7 @@ if __name__ == '__main__':
         
         scale1 = 4
         scale2 = 4
-        seed = 12222
+        seed = 13333
         
         sys.path.append("../data")
         import data_helper as DH
@@ -741,8 +740,8 @@ if __name__ == '__main__':
 
         for dataset_id in dataset_ids:
             #if not dataset_id in DH.CURRENT_DATASETS:
-            f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
-            ###f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            ###f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             f.write('swapoff -a\n')
