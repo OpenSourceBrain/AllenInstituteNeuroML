@@ -1,9 +1,20 @@
 import numpy
 
+type = 'HH'
+type = 'Izh'
+
 info_str = open('tuned_cells/tuned_cell_info.txt','r').read()
-info = eval(info_str)
 
 columns = ['IM','Kd','pas','Na','ek','ena','epas','Cm']
+
+if type == 'Izh':
+    info_str = open('tuned_cells/tuned_cell_info_izh.txt','r').read()
+
+    columns = ['C','a','b','c','d','k','vpeak','vr','vt']
+    
+
+info = eval(info_str)
+
 row_names = []
 data = []
 

@@ -10,6 +10,7 @@ from pyneuroml.analysis import generate_current_vs_frequency_curve
 from pyneuroml.lems import generate_lems_file_for_neuroml
 
 from pyneuroml.analysis.ChannelDensityPlot import generate_channel_density_plots
+from pyneuroml.pynml import get_value_in_si
 
 from generate_nets import generate_network_for_sweeps
 
@@ -40,26 +41,27 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
     data, v_sub, curents_sub, v, curents_spike = get_if_iv_for_dataset('%s%s_analysis.json'%(analysis_dir,dataset_id))
     
     if densities:
+
+        dataset = {}
+        seed = meta_nml['seed']
+        if isinstance(seed, tuple):
+            seed = seed[0]
+        layer = str(data['location'].split(',')[-1].strip().replace(' ',''))
+        ref = '%s_%s_%s'%(dataset_id,layer,int(seed))
+
+        dataset['id'] = dataset_id
+        dataset['reference'] = ref
+        metas = ['aibs_cre_line','aibs_dendrite_type','location']
+        for m in metas:
+            dataset[m] = str(data[m])
+
+        metas2 = ['fitness','population_size','seed']
+        for m in metas2:
+            dataset[m] = meta_nml[m]
+            
         # Assume images below already generated...
         if type=='HH':
-
-            dataset = {}
             
-            seed = meta_nml['seed']
-            if isinstance(seed, tuple):
-                seed = seed[0]
-            layer = str(data['location'].split(',')[-1].strip().replace(' ',''))
-            ref = '%s_%s_%s'%(dataset_id,layer,int(seed))
-            
-            dataset['id'] = dataset_id
-            dataset['reference'] = ref
-            metas = ['aibs_cre_line','aibs_dendrite_type','location']
-            for m in metas:
-                dataset[m] = str(data[m])
-                
-            metas2 = ['fitness','population_size','seed']
-            for m in metas2:
-                dataset[m] = meta_nml[m]
             
             cell = nml_doc.cells[0]
             
@@ -73,6 +75,28 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
                 dataset[cc] = all_info[c]
         
             info['datasets'][ref] = dataset
+            
+        elif type=='Izh':
+            
+            dataset['tuned_cell_info'] = {}
+            izh_cell = nml_doc.izhikevich2007_cells[0]
+                        
+            for p in ['C','a','b','c','d','k','vpeak','vr','vt']:
+            
+                dataset['tuned_cell_info'][p] = get_value_in_si(getattr(izh_cell, p))
+            
+            '''
+            sgv_files, all_info = generate_channel_density_plots(cell_file, text_densities=True, passives_erevs=True)
+            sgv_file =sgv_files[0]
+            for c in all_info:
+                if c == cell.id:
+                    cc = 'tuned_cell_info'
+                else:
+                    cc = c
+                dataset[cc] = all_info[c]'''
+        
+        info['datasets'][ref] = dataset
+        
     else:
 
         traces_ax, if_ax, iv_ax = generate_current_vs_frequency_curve(cell_file, 
@@ -178,18 +202,19 @@ if __name__ == '__main__':
 
     for dataset_id in dataset_ids:
 
-        type = 'HH'
+        #type = 'HH'
+        type = 'Izh'
 
         analyse_cell(dataset_id, type, info, nogui,densities=densities, analysis_dir='../../data/bulk_analysis/')
 
-        ##type = 'Izh'
 
         ##analyse_cell(dataset_id, type, info, nogui,densities=densities)
         
     if densities:
         pp.pprint(info)
-        make_html_file(info,template='../Densities_TEMPLATE.html')
-        info_file = open('tuned_cell_info.txt','w')
+        if type == 'HH':
+            make_html_file(info,template='../Densities_TEMPLATE.html')
+        info_file = open('tuned_cell_info%s.txt'%('_izh' if type == 'Izh' else ''),'w')
         info_file.write(pp.pformat(info))
         info_file.close()
         
