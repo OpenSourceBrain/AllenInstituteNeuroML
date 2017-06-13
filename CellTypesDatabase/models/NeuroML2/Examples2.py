@@ -91,7 +91,7 @@ colours = {}
 colours['2/3'] = '1 0 0'
 colours['4'] = '0 0 1'
 colours['5'] = '0 1 0'
-colours['6a'] = '1 1 0'
+colours['6a'] = '1 0 1'
 
 import glob
 
@@ -138,6 +138,7 @@ for cell_file in all_cell_files:
             p = Property(tag='color', value=colours[layer])
             pop.properties.append(p)
             pop.annotation = Annotation()
+            p.original_tagname_ = 'property'
             pop.annotation.anytypeobjs_.append(p)
             pop.notes=info
 

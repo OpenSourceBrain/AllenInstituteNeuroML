@@ -134,9 +134,9 @@
   AIBS:subject:age = P62
   AIBS:aibs_specimen_name = Ntsr1-Cre;Ai14-171080.04.02.01
 </notes>
-            <property tag="color" value="1 1 0"/>
+            <property tag="color" value="1 0 1"/>
             <annotation>
-                <property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="400." y="-700." z="0."/>
@@ -470,9 +470,9 @@
   AIBS:subject:age = P60
   AIBS:aibs_specimen_name = Htr3a-Cre_NO152;Ai14-185556.06.01.01
 </notes>
-            <property tag="color" value="1 1 0"/>
+            <property tag="color" value="1 0 1"/>
             <annotation>
-                <property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="0." y="-700." z="600."/>
@@ -512,9 +512,9 @@
   AIBS:subject:age = P56
   AIBS:aibs_specimen_name = Ntsr1-Cre;Ai14-180761.02.01.01
 </notes>
-            <property tag="color" value="1 1 0"/>
+            <property tag="color" value="1 0 1"/>
             <annotation>
-                <property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="400." y="-700." z="600."/>
@@ -743,9 +743,9 @@
   AIBS:subject:age = P58
   AIBS:aibs_specimen_name = Ntsr1-Cre;Ai14-181184.05.01.01
 </notes>
-            <property tag="color" value="1 1 0"/>
+            <property tag="color" value="1 0 1"/>
             <annotation>
-                <property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="400." y="-700." z="1000."/>
@@ -764,9 +764,9 @@
   AIBS:subject:age = P58
   AIBS:aibs_specimen_name = Ntsr1-Cre;Ai14-181184.05.02.01
 </notes>
-            <property tag="color" value="1 1 0"/>
+            <property tag="color" value="1 0 1"/>
             <annotation>
-                <property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="600." y="-700." z="1000."/>
@@ -785,9 +785,9 @@
   AIBS:subject:age = P58
   AIBS:aibs_specimen_name = Ntsr1-Cre;Ai14-181184.02.02.01
 </notes>
-            <property tag="color" value="1 1 0"/>
+            <property tag="color" value="1 0 1"/>
             <annotation>
-                <property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="800." y="-700." z="1000."/>
