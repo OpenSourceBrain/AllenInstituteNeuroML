@@ -52,7 +52,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="1400." y="-500." z="0."/>
@@ -73,7 +73,7 @@
 </notes>
             <property tag="color" value="1 0 0"/>
             <annotation>
-                <Property tag="color" value="1 0 0"/>
+                <property tag="color" value="1 0 0"/>
             </annotation>
             <instance id="0">
                 <location x="0." y="0." z="0."/>
@@ -94,7 +94,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="200." y="-200." z="0."/>
@@ -115,7 +115,7 @@
 </notes>
             <property tag="color" value="1 0 0"/>
             <annotation>
-                <Property tag="color" value="1 0 0"/>
+                <property tag="color" value="1 0 0"/>
             </annotation>
             <instance id="0">
                 <location x="1600." y="0." z="0."/>
@@ -136,7 +136,7 @@
 </notes>
             <property tag="color" value="1 1 0"/>
             <annotation>
-                <Property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="400." y="-700." z="0."/>
@@ -157,7 +157,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="600." y="-500." z="0."/>
@@ -178,7 +178,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="1800." y="-500." z="0."/>
@@ -199,7 +199,7 @@
 </notes>
             <property tag="color" value="1 0 0"/>
             <annotation>
-                <Property tag="color" value="1 0 0"/>
+                <property tag="color" value="1 0 0"/>
             </annotation>
             <instance id="0">
                 <location x="800." y="0." z="0."/>
@@ -220,7 +220,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="0." y="-200." z="200."/>
@@ -241,7 +241,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="200." y="-200." z="200."/>
@@ -262,7 +262,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="400." y="-200." z="200."/>
@@ -283,7 +283,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="600." y="-200." z="200."/>
@@ -304,7 +304,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="800." y="-500." z="200."/>
@@ -325,7 +325,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="2000." y="-500." z="0."/>
@@ -346,7 +346,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="0." y="-500." z="400."/>
@@ -367,7 +367,7 @@
 </notes>
             <property tag="color" value="1 0 0"/>
             <annotation>
-                <Property tag="color" value="1 0 0"/>
+                <property tag="color" value="1 0 0"/>
             </annotation>
             <instance id="0">
                 <location x="2200." y="0." z="0."/>
@@ -388,7 +388,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="200." y="-200." z="400."/>
@@ -409,7 +409,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="400." y="-200." z="400."/>
@@ -430,7 +430,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="600." y="-200." z="400."/>
@@ -451,7 +451,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="800." y="-200." z="400."/>
@@ -472,7 +472,7 @@
 </notes>
             <property tag="color" value="1 1 0"/>
             <annotation>
-                <Property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="0." y="-700." z="600."/>
@@ -493,7 +493,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="200." y="-500." z="600."/>
@@ -514,7 +514,7 @@
 </notes>
             <property tag="color" value="1 1 0"/>
             <annotation>
-                <Property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="400." y="-700." z="600."/>
@@ -535,7 +535,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="600." y="-200." z="600."/>
@@ -556,7 +556,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="800." y="-500." z="600."/>
@@ -577,7 +577,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="0." y="-200." z="800."/>
@@ -598,7 +598,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="200." y="-200." z="800."/>
@@ -619,7 +619,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="400." y="-500." z="800."/>
@@ -640,7 +640,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="1400." y="-500." z="200."/>
@@ -661,7 +661,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="600." y="-200." z="800."/>
@@ -682,7 +682,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="800." y="-500." z="800."/>
@@ -703,7 +703,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="0." y="-200." z="1000."/>
@@ -724,7 +724,7 @@
 </notes>
             <property tag="color" value="0 0 1"/>
             <annotation>
-                <Property tag="color" value="0 0 1"/>
+                <property tag="color" value="0 0 1"/>
             </annotation>
             <instance id="0">
                 <location x="200." y="-200." z="1000."/>
@@ -745,7 +745,7 @@
 </notes>
             <property tag="color" value="1 1 0"/>
             <annotation>
-                <Property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="400." y="-700." z="1000."/>
@@ -766,7 +766,7 @@
 </notes>
             <property tag="color" value="1 1 0"/>
             <annotation>
-                <Property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="600." y="-700." z="1000."/>
@@ -787,7 +787,7 @@
 </notes>
             <property tag="color" value="1 1 0"/>
             <annotation>
-                <Property tag="color" value="1 1 0"/>
+                <property tag="color" value="1 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="800." y="-700." z="1000."/>
@@ -808,7 +808,7 @@
 </notes>
             <property tag="color" value="0 1 0"/>
             <annotation>
-                <Property tag="color" value="0 1 0"/>
+                <property tag="color" value="0 1 0"/>
             </annotation>
             <instance id="0">
                 <location x="0." y="-500." z="1200."/>
