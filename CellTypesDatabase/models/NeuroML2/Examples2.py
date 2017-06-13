@@ -69,7 +69,7 @@ def get_oriented_cell(cell_file_name):
     
     return new_ref, new_cell_file
 
-net_ref = "SomeCells"
+net_ref = "SomeCells2"
 net_doc = NeuroMLDocument(id=net_ref)
 
 net = Network(id=net_ref)
@@ -100,56 +100,66 @@ all_cell_files  = glob.glob('Cell*cell.nml')
 count_a = 0
 count_s = 0
 
+max_to_include = 1000
+
 for cell_file in all_cell_files:
     
-    print("----- Adding: %s"%cell_file)
-    cell_doc = loaders.NeuroMLLoader.load(cell_file)
-    cell = cell_doc.cells[0]
-    include_this = False
-    
-    for p in cell.properties:
-        print("  %s = %s"%(p.tag,p.value))
-        if p.tag == 'AIBS:intracellular_ephys:Electrode 1:location':
-            include_this = True
-            layer = p.value.split(" ")[-1]
-        if p.tag == 'AIBS:aibs_dendrite_type':
-            dend_type = p.value
-    
-    for cd in cell.biophysical_properties.membrane_properties.channel_densities:
-        if cd.ion_channel=="Kv2like":
-            include_this = False
-    
-    if not include_this:
-        print("       Skipping, no metadata...")
-    if include_this:
-        new_ref, new_cell_file = get_oriented_cell(cell_file)
+    if max_to_include>0:
+        print("----- Adding: %s"%cell_file)
+        cell_doc = loaders.NeuroMLLoader.load(cell_file)
+        cell = cell_doc.cells[0]
+        include_this = False
 
-        net_doc.includes.append(IncludeType(new_cell_file))
+        info = ""
+        for p in cell.properties:
+            info += "  %s = %s\n"%(p.tag,p.value)
+            print(info)
+            if p.tag == 'AIBS:intracellular_ephys:Electrode 1:location':
+                include_this = True
+                layer = p.value.split(" ")[-1]
+            if p.tag == 'AIBS:aibs_dendrite_type':
+                dend_type = p.value
 
-        pop = Population(id="Pop_%s"%new_ref, component=new_ref, type="populationList")
+        for cd in cell.biophysical_properties.membrane_properties.channel_densities:
+            if cd.ion_channel=="Kv2like":
+                include_this = False
 
-        net.populations.append(pop)
-        
-        p = Property(tag='color', value=colours[layer])
-        pop.properties.append(p)
+        if not include_this:
+            print("       Skipping, no metadata...")
+        if include_this:
+            new_ref, new_cell_file = get_oriented_cell(cell_file)
 
-        inst = Instance(id=0)
-        pop.instances.append(inst)
+            net_doc.includes.append(IncludeType(new_cell_file))
 
-        separation = 200
-        offset = separation*(per_row+2)
-        if dend_type=='spiny':
-            X= separation * (count_s%per_row)
-            Z= separation * (count_s/per_row)
-            count_s+=1
-        else:
-            X= offset + (separation * (count_a%per_row))
-            Z=  (separation * (count_a/per_row))
-            count_a+=1
+            pop = Population(id="Pop_%s"%new_ref, component=new_ref, type="populationList")
 
-        Y = Y_layer[layer]
+            net.populations.append(pop)
 
-        inst.location = Location(x=X, y=Y, z=Z)
+            p = Property(tag='color', value=colours[layer])
+            pop.properties.append(p)
+            pop.annotation = Annotation()
+            pop.annotation.anytypeobjs_.append(p)
+            pop.notes=info
+
+            inst = Instance(id=0)
+            pop.instances.append(inst)
+
+            separation = 200
+            offset = separation*(per_row+2)
+            if dend_type=='spiny':
+                X= separation * (count_s%per_row)
+                Z= separation * (count_s/per_row)
+                count_s+=1
+            else:
+                X= offset + (separation * (count_a%per_row))
+                Z=  (separation * (count_a/per_row))
+                count_a+=1
+
+            Y = Y_layer[layer]
+
+            inst.location = Location(x=X, y=Y, z=Z)
+            
+    max_to_include-=1
 
 
 net_file = '%s.net.nml'%(net_ref)
