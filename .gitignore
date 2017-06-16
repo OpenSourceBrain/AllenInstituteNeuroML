@@ -252,3 +252,5 @@ original.v.dat
 /CellTypesDatabase/data/bulk_analysis/*_raw_data.nwb
 /CellTypesDatabase/data/bulk_analysis/*.dat
 /CellTypesDatabase/tune/tuneBulk.sh
+/CellTypesDatabase/tune/CaDynamics.nml
+/CellTypesDatabase/tune/prototypes/AllenHH/Soma_Test.hoc

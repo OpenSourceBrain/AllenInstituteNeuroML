@@ -5,6 +5,8 @@ from neuroml import *
 import math
 import random
 
+import opencortex.utils.color as occ
+
 
 def rotate_z(x, y, theta):
 
@@ -88,10 +90,14 @@ Y_layer['5'] = -500
 Y_layer['6a'] = -700
 
 colours = {}
-colours['2/3'] = '1 0 0'
-colours['4'] = '0 0 1'
-colours['5'] = '0 1 0'
-colours['6a'] = '1 0 1'
+colours['2/3spiny'] = occ.L23_PRINCIPAL_CELL
+colours['2/3aspiny'] = occ.L23_INTERNEURON
+colours['4spiny'] = occ.L4_PRINCIPAL_CELL
+colours['4aspiny'] = occ.L4_INTERNEURON
+colours['5spiny'] = occ.L5_PRINCIPAL_CELL
+colours['5aspiny'] = occ.L5_INTERNEURON
+colours['6aspiny'] = occ.L6_PRINCIPAL_CELL
+colours['6aaspiny'] = occ.L6_INTERNEURON
 
 import glob
 
@@ -135,7 +141,7 @@ for cell_file in all_cell_files:
 
             net.populations.append(pop)
 
-            p = Property(tag='color', value=colours[layer])
+            p = Property(tag='color', value=colours[layer+dend_type.split()[-1]])
             pop.properties.append(p)
             pop.annotation = Annotation()
             p.original_tagname_ = 'property'

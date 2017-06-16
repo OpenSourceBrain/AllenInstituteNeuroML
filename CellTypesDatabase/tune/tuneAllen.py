@@ -522,6 +522,24 @@ if __name__ == '__main__':
 
         t, v = cont.run_individual(sim_vars, show=(not nogui))
 
+    ####  Run simulation with one AllenHH cell
+    elif '-allenone' in sys.argv:
+
+        simulator  = 'jNeuroML'
+        simulator  = 'jNeuroML_NEURON'
+
+        cont = NeuroMLController('AllenHHTest', 
+                                 'prototypes/AllenHH/AllenHH.net.nml',
+                                 'network_AllenHH',
+                                 1500, 
+                                 0.05, 
+                                 simulator)
+
+
+        sim_vars = OrderedDict()
+
+        t, v = cont.run_individual(sim_vars, show=(not nogui))
+
 
     ####  Run simulation with multiple Izhikevich cells
     elif '-izhmone' in sys.argv:
@@ -724,9 +742,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 4
-        scale2 = 4
-        seed = 13333
+        scale1 = 5
+        scale2 = 5
+        seed = 144445
         
         sys.path.append("../data")
         import data_helper as DH
