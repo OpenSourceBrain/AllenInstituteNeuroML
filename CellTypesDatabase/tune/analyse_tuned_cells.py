@@ -25,7 +25,7 @@ info['datasets'] = {}
 def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysis_dir='../../data/'):
     
     reference = '%s_%s'%(type,dataset_id)
-    cell_file = '%s.cell.nml'%(reference)
+    cell_file = '%s/%s.cell.nml'%(type,reference)
     
     print("====================================\n\n   Analysing cell: %s, dataset %s\n"%(cell_file,dataset_id))
     
@@ -191,11 +191,11 @@ if __name__ == '__main__':
     
     sys.path.append("../data")
     import data_helper as DH
-    sys.path.append("../data/bulk_analysis")
-    import bulk_data_helper as BDH
+    ##sys.path.append("../data/bulk_analysis")
+    ##import bulk_data_helper as BDH
 
     dataset_ids = DH.CURRENT_DATASETS
-    dataset_ids = BDH.CURRENT_DATASETS
+    ##dataset_ids = BDH.CURRENT_DATASETS
     #dataset_ids = [464198958]
     #dataset_ids = [480169178]
     #dataset_ids = dataset_ids[:3]
@@ -204,17 +204,19 @@ if __name__ == '__main__':
 
         #type = 'HH'
         type = 'Izh'
+        type = 'AllenHH'
 
-        analyse_cell(dataset_id, type, info, nogui,densities=densities, analysis_dir='../../data/bulk_analysis/')
+        ##analyse_cell(dataset_id, type, info, nogui,densities=densities, analysis_dir='../../data/bulk_analysis/')
 
 
-        ##analyse_cell(dataset_id, type, info, nogui,densities=densities)
+        analyse_cell(dataset_id, type, info, nogui,densities=densities)
         
+    
     if densities:
         pp.pprint(info)
         if type == 'HH':
             make_html_file(info,template='../Densities_TEMPLATE.html')
-        info_file = open('tuned_cell_info%s.txt'%('_izh' if type == 'Izh' else ''),'w')
+        info_file = open('tuned_cell_info%s.txt'%('_izh' if type == 'Izh' else ('_ahh' if type == 'AllenHH' else '')),'w')
         info_file.write(pp.pformat(info))
         info_file.close()
         

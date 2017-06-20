@@ -25,6 +25,7 @@ def generate_network_for_sweeps(cell_type, dataset_id, cell_file_name, cell_id, 
     net_doc.networks.append(net)
 
     net_doc.includes.append(neuroml.IncludeType(cell_file_name))
+    net_doc.includes.append(neuroml.IncludeType("CaDynamics.nml"))
 
 
     number_cells = len(target_sweep_numbers)
@@ -85,9 +86,10 @@ if __name__ == '__main__':
     cell_types = ['Izh', 'HH']
     cell_types = ['HH']
     cell_types = ['Izh']
+    cell_types = ['AllenHH']
 
     for cell_type in cell_types:
 
-        for dataset_id in BDH.CURRENT_DATASETS:
+        for dataset_id in DH.CURRENT_DATASETS:
             
-            generate_network_for_sweeps(cell_type, dataset_id, '%s.cell.nml'%cell_type, cell_id, 'prototypes/RS', '../data/bulk_analysis')
+            generate_network_for_sweeps(cell_type, dataset_id, '%s.cell.nml'%cell_type, cell_id, 'prototypes/AllenHH', '../data')

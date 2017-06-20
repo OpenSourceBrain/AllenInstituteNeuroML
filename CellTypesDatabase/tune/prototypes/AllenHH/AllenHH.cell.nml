@@ -23,7 +23,7 @@
 
     <include href="pas.channel.nml"/>
 
-    <cell id="AllenHH">
+    <cell id="RS">
 
         <notes>A single segment/compartment cell</notes>
 
@@ -60,36 +60,37 @@
 
             <membraneProperties>
                 
-                <channelDensity condDensity="0.000153169 S_per_cm2" id="pas_all" ionChannel="pas" ion="non_specific" erev="-99.7317 mV"/>
+                <channelDensity condDensity="0.0003 S_per_cm2" id="pas_all" ionChannel="pas" ion="non_specific" erev="-62 mV"/>
                 
-                <channelDensity condDensity="0.831809 S_per_cm2" id="NaTs_all" ionChannel="NaTs" ion="na" erev="53 mV"/>
+                <channelDensity condDensity="0.84 S_per_cm2" id="NaTs_all" ionChannel="NaTs" ion="na" erev="53 mV"/>
+                <channelDensity condDensity="0.1 S_per_cm2" id="K_P_all" ionChannel="K_P" ion="k" erev="-107 mV"/>
+                
+                <channelDensity condDensity="0.000 S_per_cm2" id="Nap_all" ionChannel="Nap" ion="na" erev="53 mV"/>
+                
+                <channelDensity condDensity="0 S_per_cm2" id="Kv3_1_all" ionChannel="Kv3_1" ion="k" erev="-107 mV"/>
                 
                 <!--<channelDensity condDensity="0.1 S_per_cm2" id="NaV_all" ionChannel="NaV" ion="na" erev="53 mV"/>-->
                 
-                <channelDensity condDensity="0.000115828 S_per_cm2" id="Nap_all" ionChannel="Nap" ion="na" erev="53 mV"/>
                 
-                <channelDensity condDensity="0.0198868 S_per_cm2" id="K_P_all" ionChannel="K_P" ion="k" erev="-107 mV"/>
+                <channelDensity condDensity="0 S_per_cm2" id="K_T_all" ionChannel="K_T" ion="k" erev="-107 mV"/>
                 
-                <channelDensity condDensity="6.5088e-05 S_per_cm2" id="K_T_all" ionChannel="K_T" ion="k" erev="-107 mV"/>
                 
-                <channelDensity condDensity="0.0281648 S_per_cm2" id="Kv3_1_all" ionChannel="Kv3_1" ion="k" erev="-107 mV"/>
+                <channelDensity condDensity="0.00 S_per_cm2" id="SK_all" ionChannel="SK" ion="k" erev="-107 mV"/>
                 
-                <channelDensity condDensity="0.0000797996 S_per_cm2" id="SK_all" ionChannel="SK" ion="k" erev="-107 mV"/>
+                <channelDensity condDensity="0.0 S_per_cm2" id="Im_all" ionChannel="Im" ion="k" erev="-107 mV"/>
                 
-                <channelDensity condDensity="0.0079231 S_per_cm2" id="Im_all" ionChannel="Im" ion="k" erev="-107 mV"/>
+                <channelDensity condDensity="0 S_per_cm2" id="Ih_all" ionChannel="Ih" ion="hcn" erev="-45 mV"/>
                 
-                <channelDensity condDensity="8.61267e-06 S_per_cm2" id="Ih_all" ionChannel="Ih" ion="hcn" erev="-45 mV"/>
+                <channelDensityNernst condDensity="0.000 S_per_cm2" id="Ca_LVA_all" ionChannel="Ca_LVA" ion="ca"/>
                 
-                <channelDensityNernst condDensity="0.000783165 S_per_cm2" id="Ca_LVA_all" ionChannel="Ca_LVA" ion="ca"/>
-                
-                <channelDensityNernst condDensity="2.69146e-05 S_per_cm2" id="Ca_HVA_all" ionChannel="Ca_HVA" ion="ca"/>
+                <channelDensityNernst condDensity="0 S_per_cm2" id="Ca_HVA_all" ionChannel="Ca_HVA" ion="ca"/>
 
 
                 <spikeThresh value="0 mV"/>
 
-                <specificCapacitance value="1.0 uF_per_cm2"/>
+                <specificCapacitance value="1.6 uF_per_cm2"/>
 
-                <initMembPotential value="-90.0 mV"/>
+                <initMembPotential value="-78.0 mV"/>
 
             </membraneProperties>
 

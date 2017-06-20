@@ -49,6 +49,21 @@ max_constraints_hh = [0.2,   -60,  4,  80, 30, 5,    60, -70, -70]
 min_constraints_hh = [0.01, -100, 0.2, 10, 1, 1e-3, 50, -90, -90]
 
 
+#####    Allen set of channels
+              
+parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
+                  'cell:RS/erev_id:pas_all/mV',
+                  'cell:RS/specificCapacitance:all/uF_per_cm2',
+                  'cell:RS/channelDensity:NaTs_all/S_per_cm2',
+                  'cell:RS/channelDensity:Nap_all/S_per_cm2',
+                  'cell:RS/channelDensity:K_P_all/S_per_cm2',
+                  'cell:RS/channelDensity:Kv3_1_all/S_per_cm2']
+
+# Need to be updated...
+max_constraints_ahh = [1e-3, 1,  0.1 ]
+min_constraints_ahh = [1e-5, .1, 0.01]
+
+
 #  typical (tuned) spiking cell
 example_vars_hh = {'cell:RS/channelDensity:IM_all/mS_per_cm2': 0.18764779330203835,
                 'cell:RS/channelDensity:Kd_all/mS_per_cm2': 16.95202053476659,
@@ -93,7 +108,7 @@ example_vars_iz = {'izhikevich2007Cell:RS/C/pF': 121.89939137782264,
 
 ####  Test target data
 
-ref = 'Pop0/0/RS/v:'
+ref = 'Pop0/6/RS/v:'
 average_maximum = ref+'average_maximum'
 average_minimum = ref+'average_minimum'
 mean_spike_frequency = ref+'mean_spike_frequency'
@@ -105,10 +120,10 @@ weights = {average_maximum: 1,
            mean_spike_frequency: 5,
            average_last_1percent: 1}
 
-target_data = {average_maximum: 33.320915,
-               average_minimum: -44.285,
-               mean_spike_frequency: 26.6826,
-               average_last_1percent: -80}
+target_data = {average_maximum: 39.264008,
+               average_minimum: -46.123882,
+               mean_spike_frequency: 26.042480494182108,
+               average_last_1percent: -70}
 
 
 
@@ -367,9 +382,105 @@ def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,s
                      "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
         
         new_cell_doc.cells.append(cell)
-        new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
+        new_cell_file = 'tuned_cells/%s/%s.cell.nml'%(type,new_id)
         
         channel_files = ['IM.channel.nml', 'Kd.channel.nml', 'Leak.channel.nml', 'Na.channel.nml']
+        for ch in channel_files:
+            new_cell_doc.includes.append(neuroml.IncludeType(ch))
+            
+        pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
+
+
+def run_2_stage_allenhh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False,mutation_rate = 0.9):
+    
+        print("Running 2 stage hh optimisation")
+        
+        type = 'AllenHH'
+        ref = 'network_%s_%s'%(dataset, type)
+        
+        '''
+        
+parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
+                  'cell:RS/erev_id:pas_all/mV',
+                  'cell:RS/specificCapacitance:all/uF_per_cm2',
+                  'cell:RS/channelDensity:NaTs_all/S_per_cm2',
+                  'cell:RS/channelDensity:Nap_all/S_per_cm2',
+                  'cell:RS/channelDensity:K_P_all/S_per_cm2',
+                  'cell:RS/channelDensity:Kv3_1_all/S_per_cm2']
+
+        '''
+
+        max_constraints_1 = [1e-2, -60,  5,  0, 0, 0, 0]
+        min_constraints_1 = [1e-5, -80, 0.2, 0, 0, 0, 0]
+
+        # For a quick test...
+        # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80, -80]
+        # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80, -80]
+
+        max_constraints_2 = ['x',   'x',   'x',  2, .05,  1,    1]
+        min_constraints_2 = ['x',   'x',   'x', .1, .001, .01, .01]
+
+        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
+
+
+        r1, r2 = run_2stage_optimization('Allen2stage',
+                                neuroml_file = 'prototypes/AllenHH/%s.net.nml'%ref,
+                                target =        ref,
+                                parameters = parameters_ahh,
+                                max_constraints_1 = max_constraints_1,
+                                max_constraints_2 = max_constraints_2,
+                                min_constraints_1 = min_constraints_1,
+                                min_constraints_2 = min_constraints_2,
+                                delta_constraints = 0.03,
+                                weights_1 = weights_1,
+                                weights_2 = weights_2,
+                                target_data_1 = target_data_1,
+                                target_data_2 = target_data_2,
+                                sim_time = 1500,
+                                dt = 0.025,
+                                population_size_1 = scale(scale1,100,10),
+                                population_size_2 = scale(scale2,100,10),
+                                max_evaluations_1 = scale(scale1,500,20),
+                                max_evaluations_2 = scale(scale2,500,10),
+                                num_selected_1 = scale(scale1,30,5),
+                                num_selected_2 = scale(scale2,30,5),
+                                num_offspring_1 = scale(scale1,30,5),
+                                num_offspring_2 = scale(scale2,30,5),
+                                mutation_rate = mutation_rate,
+                                num_elites = scale(scale2,5,2),
+                                simulator = simulator,
+                                nogui = nogui,
+                                show_plot_already = False,
+                                seed = seed,
+                                known_target_values = {},
+                                dry_run = False,
+                                num_parallel_evaluations = 14,
+                                extra_report_info = {'dataset':dataset,"Prototype":"AllenHH"})
+        
+        if not nogui:
+            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False,    dataset=dataset)
+            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=not nogui,dataset=dataset)
+        
+        
+        final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
+        
+        nml_doc = pynml.read_neuroml2_file(final_network)
+        
+        cell = nml_doc.cells[0]
+        
+        print("Extracted cell: %s from tuned model"%cell.id)
+        
+        new_id = '%s_%s'%(type, dataset)
+        new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
+        cell.id = new_id
+        
+        cell.notes = "Cell model tuned to Allen Institute Cell Types Database, dataset: "+ \
+                     "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
+        
+        new_cell_doc.cells.append(cell)
+        new_cell_file = 'tuned_cells/%s/%s.cell.nml'%(type,new_id)
+        
+        channel_files = ['NaTs.channel.nml', 'K_P.channel.nml', 'Nap.channel.nml', 'Kv3_1.channel.nml', 'K_T.channel.nml', 'SK.channel.nml', 'Im.channel.nml', 'Ih.channel.nml', 'Ca_LVA.channel.nml', 'Ca_HVA.channel.nml', 'pas.channel.nml', 'CaDynamics.nml']   
         for ch in channel_files:
             new_cell_doc.includes.append(neuroml.IncludeType(ch))
             
@@ -451,7 +562,7 @@ def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
                  "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
 
     new_cell_doc.izhikevich2007_cells.append(cell)
-    new_cell_file = 'tuned_cells/%s.cell.nml'%new_id
+    new_cell_file = 'tuned_cells/%s/%s.cell.nml'%(type,new_id)
 
     pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
 
@@ -594,6 +705,38 @@ if __name__ == '__main__':
         compare('%s/%s.Pop0.v.dat'%(report['run_directory'], report['reference']), dataset=dataset)
 
 
+    ####  Run a 'quick' optimisation for Izhikevich cell model
+    elif '-allenquick' in sys.argv:
+
+        simulator  = 'jNeuroML_NEURON'
+
+        scale1 = 2
+        
+        dataset = 479704527
+        dataset = 480351780
+        ref = 'network_%s_AllenHH'%(dataset)
+
+        report = run_one_optimisation('AllenHH',
+                            123456,
+                            parameters =       parameters_ahh,
+                            max_constraints =  max_constraints_ahh,
+                            min_constraints =  min_constraints_ahh,
+                            population_size =  scale(scale1,100),
+                            max_evaluations =  scale(scale1,500),
+                            num_selected =     scale(scale1,30),
+                            num_offspring =    scale(scale1,30),
+                            mutation_rate =    0.1,
+                            num_elites =       2,
+                            simulator =        simulator,
+                            nogui =            nogui,
+                            dt =               0.025,
+                            neuroml_file =     'prototypes/AllenHH/%s.net.nml'%ref,
+                            target =           ref,
+                            num_parallel_evaluations = 10)
+
+        compare('%s/%s.Pop0.v.dat'%(report['run_directory'], report['reference']), dataset=dataset)
+
+
     ####  Testing scaling...
     elif '-test' in sys.argv:
 
@@ -655,6 +798,38 @@ if __name__ == '__main__':
             seed = float(sys.argv[7])
         
         run_2_stage_izh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
+
+    ####  Run a 2 stage optimisation for AllenHH cell model
+
+    elif '-allenhh2stage' in sys.argv:
+
+        print("Running 2 stage optimisation")
+        simulator  = 'jNeuroML_NEURON'
+        dataset = 471141261
+        dataset = 325941643
+        dataset = 479704527
+        dataset = 464198958
+        dataset = 485058595
+        dataset = 480169178
+        dataset = 480351780
+        dataset = 468120757
+        dataset = 480353286
+        #dataset = 480351780
+        
+        scale1 = 1
+        scale2 = 2
+        seed = 123
+        
+        
+        if len(sys.argv)>2:
+            print("Parsing args: %s"%sys.argv)
+            dataset = int(sys.argv[3])
+            simulator = sys.argv[4]
+            scale1 = float(sys.argv[5])
+            scale2 = float(sys.argv[6])
+            seed = float(sys.argv[7])
+        
+        run_2_stage_allenhh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
         
 
 
@@ -718,7 +893,7 @@ if __name__ == '__main__':
         
         scale1 = 2
         scale2 = 4
-        seed = 123456
+        seed = 1234567
         
         sys.path.append("../data")
         import data_helper as DH
@@ -729,7 +904,8 @@ if __name__ == '__main__':
         f = open('tuneAll.sh','w')
 
         for dataset_id in dataset_ids:
-            f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            ###f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            f.write('python tuneAllen.py -allenhh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             ###f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)

@@ -254,3 +254,4 @@ original.v.dat
 /CellTypesDatabase/tune/tuneBulk.sh
 /CellTypesDatabase/tune/CaDynamics.nml
 /CellTypesDatabase/tune/prototypes/AllenHH/Soma_Test.hoc
+/CellTypesDatabase/tune/tuned_cells/AllenHH/*.hoc
