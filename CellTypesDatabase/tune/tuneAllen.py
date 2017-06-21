@@ -57,7 +57,11 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
                   'cell:RS/channelDensity:NaTs_all/S_per_cm2',
                   'cell:RS/channelDensity:Nap_all/S_per_cm2',
                   'cell:RS/channelDensity:K_P_all/S_per_cm2',
-                  'cell:RS/channelDensity:Kv3_1_all/S_per_cm2']
+                  'cell:RS/channelDensity:K_T_all/S_per_cm2',
+                  'cell:RS/channelDensity:Kv3_1_all/S_per_cm2',
+                  'cell:RS/channelDensity:Im_all/S_per_cm2',
+                  'cell:RS/erev_id:NaTs_all/mV+cell:RS/erev_id:Nap_all/mV',
+                  'cell:RS/erev_id:K_P_all/mV+cell:RS/erev_id:K_T_all/mV+cell:RS/erev_id:Kv3_1_all/mV+cell:RS/erev_id:Im_all/mV']
 
 # Need to be updated...
 max_constraints_ahh = [1e-3, 1,  0.1 ]
@@ -164,7 +168,7 @@ def get_2stage_target_values(dataset_id):
     steady3 = ref3+steady_average
 
 
-    weights_1 = {steady0: 10,
+    weights_1 = {steady0: 2,
                  average_last_1percent0: 1,
                  ref0_280: 1,
                  steady1: 1,
@@ -190,22 +194,25 @@ def get_2stage_target_values(dataset_id):
     average_minimum6 = ref6+'average_minimum'
     mean_spike_frequency6 = ref6+'mean_spike_frequency'
     mean_spike_frequency5 = ref5+'mean_spike_frequency'
+    max_peak_no3 = ref3+'max_peak_no' # should be zero
 
-    weights_2 = {average_maximum6: 1,
-               average_minimum6: 1,
-               mean_spike_frequency6: 1,
-               mean_spike_frequency5: 1}
-
-    for w in weights_1.keys():
-        weights_2[w] = weights_1[w]*0.5
 
     target_data_2 = {average_maximum6:      metadata['sweeps'][sw6]["pyelectro_iclamp_analysis"][sw6+":average_maximum"],
                      average_minimum6:      metadata['sweeps'][sw6]["pyelectro_iclamp_analysis"][sw6+":average_minimum"],
                      mean_spike_frequency6: metadata['sweeps'][sw6]["pyelectro_iclamp_analysis"][sw6+":mean_spike_frequency"],
-                     mean_spike_frequency5: metadata['sweeps'][sw5]["pyelectro_iclamp_analysis"][sw5+":mean_spike_frequency"]} 
+                     mean_spike_frequency5: metadata['sweeps'][sw5]["pyelectro_iclamp_analysis"][sw5+":mean_spike_frequency"],
+                     max_peak_no3:          metadata['sweeps'][sw3]["pyelectro_iclamp_analysis"][sw3+":max_peak_no"]} 
 
+    weights_2 = {}
+    
+    for td in target_data_2.keys():
+        weights_2[td] = 1
+        
+        
     for td in target_data_1.keys():
         target_data_2[td] = target_data_1[td]
+        weights_2[td] = 1
+        
 
     return sweep_numbers, weights_1, target_data_1, weights_2, target_data_2
     
@@ -406,19 +413,23 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
                   'cell:RS/channelDensity:NaTs_all/S_per_cm2',
                   'cell:RS/channelDensity:Nap_all/S_per_cm2',
                   'cell:RS/channelDensity:K_P_all/S_per_cm2',
-                  'cell:RS/channelDensity:Kv3_1_all/S_per_cm2']
+                  'cell:RS/channelDensity:K_T_all/S_per_cm2',
+                  'cell:RS/channelDensity:Kv3_1_all/S_per_cm2',
+                  'cell:RS/channelDensity:Im_all/S_per_cm2',
+                  'cell:RS/erev_id:NaTs_all/mV+cell:RS/erev_id:Nap_all/mV',
+                  'cell:RS/erev_id:K_P_all/mV+cell:RS/erev_id:K_T_all/mV+cell:RS/erev_id:Kv3_1_all/mV+cell:RS/erev_id:Im_all/mV']
 
         '''
 
-        max_constraints_1 = [1e-2, -60,  5,  0, 0, 0, 0]
-        min_constraints_1 = [1e-5, -80, 0.2, 0, 0, 0, 0]
+        max_constraints_1 = [1e-3, -60,  5,   0, 0, 0, 0, 0, 0, 50, -100]
+        min_constraints_1 = [1e-6, -100, 0.1, 0, 0, 0, 0, 0, 0, 50, -100]
 
         # For a quick test...
         # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80, -80]
         # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80, -80]
 
-        max_constraints_2 = ['x',   'x',   'x',  2, .05,  1,    1]
-        min_constraints_2 = ['x',   'x',   'x', .1, .001, .01, .01]
+        max_constraints_2 = ['x',   'x',   'x',  2,   .02,      1,    1,     1,     .5,     60,  -70]
+        min_constraints_2 = ['x',   'x',   'x', .005, .000001, .0001, .0001, .0001, .00001, 45, -110]
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
@@ -431,7 +442,7 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
                                 max_constraints_2 = max_constraints_2,
                                 min_constraints_1 = min_constraints_1,
                                 min_constraints_2 = min_constraints_2,
-                                delta_constraints = 0.03,
+                                delta_constraints = 0.05,
                                 weights_1 = weights_1,
                                 weights_2 = weights_2,
                                 target_data_1 = target_data_1,
@@ -454,7 +465,7 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
                                 seed = seed,
                                 known_target_values = {},
                                 dry_run = False,
-                                num_parallel_evaluations = 14,
+                                num_parallel_evaluations = 12,
                                 extra_report_info = {'dataset':dataset,"Prototype":"AllenHH"})
         
         if not nogui:
@@ -802,7 +813,7 @@ if __name__ == '__main__':
     ####  Run a 2 stage optimisation for AllenHH cell model
 
     elif '-allenhh2stage' in sys.argv:
-
+        
         print("Running 2 stage optimisation")
         simulator  = 'jNeuroML_NEURON'
         dataset = 471141261
@@ -812,15 +823,15 @@ if __name__ == '__main__':
         dataset = 485058595
         dataset = 480169178
         dataset = 480351780
-        dataset = 468120757
         dataset = 480353286
-        #dataset = 480351780
+        dataset = 468120757
+        #dataset = 480351780 
         
         scale1 = 1
         scale2 = 2
-        seed = 123
-        
-        
+        seed = 1234567890
+    
+         
         if len(sys.argv)>2:
             print("Parsing args: %s"%sys.argv)
             dataset = int(sys.argv[3])
@@ -891,9 +902,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 2
-        scale2 = 4
-        seed = 1234567
+        scale1 = 3
+        scale2 = 6
+        seed = 12345678
         
         sys.path.append("../data")
         import data_helper as DH
