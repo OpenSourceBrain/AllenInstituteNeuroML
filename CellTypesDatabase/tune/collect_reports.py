@@ -39,13 +39,14 @@ for r in reports:
     print("%s:\t%s %s\t %s(p%s)\t%s"%(r,ptype,rep['dataset'],rep['max_evaluations'],rep['population_size'],rep['fitness']))
     p.append([rep['population_size']])
     f.append([rep['fitness']])
-    m.append('.' if rep['Prototype']=='Izhikevich' else 'x')
-    c.append('k' if rep['Prototype']=='Izhikevich' else 'r')
+    m.append('.' if rep['Prototype']=='Izhikevich' else ('o' if rep['Prototype']=='AllenHH' else 'x'))
+    c.append('k' if rep['Prototype']=='Izhikevich' else ('b' if rep['Prototype']=='AllenHH' else 'r'))
     
 print p
 print f
 print m
 print c
+
 from pyneuroml import pynml
 pynml.generate_plot(p,                        # Add 2 sets of x values
                          f,                   # Add 2 sets of y values

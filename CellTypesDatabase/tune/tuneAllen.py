@@ -421,15 +421,19 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
 
         '''
 
-        max_constraints_1 = [1e-3, -60,  5,   0, 0, 0, 0, 0, 0, 50, -100]
+        max_constraints_1 = [1e-3, -60,  20,   0, 0, 0, 0, 0, 0, 50, -100]
         min_constraints_1 = [1e-6, -100, 0.1, 0, 0, 0, 0, 0, 0, 50, -100]
 
         # For a quick test...
         # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80, -80]
         # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80, -80]
 
-        max_constraints_2 = ['x',   'x',   'x',  2,   .02,      1,    1,     1,     .5,     60,  -70]
-        min_constraints_2 = ['x',   'x',   'x', .005, .000001, .0001, .0001, .0001, .00001, 45, -110]
+        max_constraints_2 = ['x',   'x',   'x',  2,   .02,      2,    2,     2,     .5,     60,  -70]
+        min_constraints_2 = ['x',   'x',   'x', .005, .0000001, .0001, .0001, .0001, .00001, 45, -110]
+        
+        
+        max_constraints_2 = [1e-3, -60,  20,  2,   .02,      2,    2,     2,     .5,     60,  -70]
+        min_constraints_2 = [1e-6, -100, 0.1, .005, .0000001, .0001, .0001, .0001, .00001, 45, -110]
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
@@ -827,9 +831,9 @@ if __name__ == '__main__':
         dataset = 468120757
         #dataset = 480351780 
         
-        scale1 = 1
+        scale1 = 0.05
         scale2 = 2
-        seed = 1234567890
+        seed = 12345
     
          
         if len(sys.argv)>2:
@@ -902,9 +906,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 3
-        scale2 = 6
-        seed = 12345678
+        scale1 = 2
+        scale2 = 2
+        seed = 12323
         
         sys.path.append("../data")
         import data_helper as DH
