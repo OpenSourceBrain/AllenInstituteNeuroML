@@ -81,9 +81,9 @@
                 
                 <channelDensity condDensity="0 S_per_cm2" id="Ih_all" ionChannel="Ih" ion="hcn" erev="-45 mV"/>
                 
-                <channelDensityNernst condDensity="0.000 S_per_cm2" id="Ca_LVA_all" ionChannel="Ca_LVA" ion="ca"/>
+                <channelDensityNernst condDensity="0.002 S_per_cm2" id="Ca_LVA_all" ionChannel="Ca_LVA" ion="ca"/>
                 
-                <channelDensityNernst condDensity="0 S_per_cm2" id="Ca_HVA_all" ionChannel="Ca_HVA" ion="ca"/>
+                <channelDensityNernst condDensity="2e-04 S_per_cm2" id="Ca_HVA_all" ionChannel="Ca_HVA" ion="ca"/>
 
 
                 <spikeThresh value="0 mV"/>

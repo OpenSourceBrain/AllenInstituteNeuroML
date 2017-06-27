@@ -54,12 +54,19 @@ min_constraints_hh = [0.01, -100, 0.2, 10, 1, 1e-3, 50, -90, -90]
 parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
                   'cell:RS/erev_id:pas_all/mV',
                   'cell:RS/specificCapacitance:all/uF_per_cm2',
+                  
                   'cell:RS/channelDensity:NaTs_all/S_per_cm2',
                   'cell:RS/channelDensity:Nap_all/S_per_cm2',
+                  
                   'cell:RS/channelDensity:K_P_all/S_per_cm2',
                   'cell:RS/channelDensity:K_T_all/S_per_cm2',
                   'cell:RS/channelDensity:Kv3_1_all/S_per_cm2',
                   'cell:RS/channelDensity:Im_all/S_per_cm2',
+                  'cell:RS/channelDensity:Ih_all/S_per_cm2',
+                  
+                  'cell:RS/channelDensityNernst:Ca_LVA_all/S_per_cm2',
+                  'cell:RS/channelDensityNernst:Ca_HVA_all/S_per_cm2',
+                  
                   'cell:RS/erev_id:NaTs_all/mV+cell:RS/erev_id:Nap_all/mV',
                   'cell:RS/erev_id:K_P_all/mV+cell:RS/erev_id:K_T_all/mV+cell:RS/erev_id:Kv3_1_all/mV+cell:RS/erev_id:Im_all/mV']
 
@@ -410,30 +417,35 @@ def run_2_stage_allenhh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale
 parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
                   'cell:RS/erev_id:pas_all/mV',
                   'cell:RS/specificCapacitance:all/uF_per_cm2',
+                  
                   'cell:RS/channelDensity:NaTs_all/S_per_cm2',
                   'cell:RS/channelDensity:Nap_all/S_per_cm2',
+                  
                   'cell:RS/channelDensity:K_P_all/S_per_cm2',
                   'cell:RS/channelDensity:K_T_all/S_per_cm2',
                   'cell:RS/channelDensity:Kv3_1_all/S_per_cm2',
                   'cell:RS/channelDensity:Im_all/S_per_cm2',
+                  'cell:RS/channelDensity:Ih_all/S_per_cm2',
+                  
+                  'cell:RS/channelDensityNernst:Ca_LVA_all/S_per_cm2',
+                  'cell:RS/channelDensityNernst:Ca_HVA_all/S_per_cm2',
+                  
                   'cell:RS/erev_id:NaTs_all/mV+cell:RS/erev_id:Nap_all/mV',
                   'cell:RS/erev_id:K_P_all/mV+cell:RS/erev_id:K_T_all/mV+cell:RS/erev_id:Kv3_1_all/mV+cell:RS/erev_id:Im_all/mV']
 
         '''
 
-        max_constraints_1 = [1e-3, -60,  20,   0, 0, 0, 0, 0, 0, 50, -100]
-        min_constraints_1 = [1e-6, -100, 0.1, 0, 0, 0, 0, 0, 0, 50, -100]
+        max_constraints_1 = [1e-3, -60,  20,   0, 0,        0, 0, 0, 0, 0,        0, 0,          50, -100]
+        min_constraints_1 = [1e-6, -100, 0.1,  0, 0,        0, 0, 0, 0, 0,        0, 0,          50, -100]
 
-        # For a quick test...
-        # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80, -80]
-        # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80, -80]
-
-        max_constraints_2 = ['x',   'x',   'x',  2,   .02,      2,    2,     2,     .5,     60,  -70]
-        min_constraints_2 = ['x',   'x',   'x', .005, .0000001, .0001, .0001, .0001, .00001, 45, -110]
+        max_constraints_2 = ['x', 'x', 'x',    5,   .001,    1, 1, 1, .1, 0.01,   0.01, 0.001,   60,  -70]
+        min_constraints_2 = ['x', 'x', 'x',   .005,  0,      0, 0, 0, 0,  0,      0,    0,       45, -110]
         
-        
-        max_constraints_2 = [1e-3, -60,  20,  2,   .02,      2,    2,     2,     .5,     60,  -70]
-        min_constraints_2 = [1e-6, -100, 0.1, .005, .0000001, .0001, .0001, .0001, .00001, 45, -110]
+        use_2_step = False
+        if not use_2_step:
+            for i in [0,1,2]:
+                max_constraints_2[i] = max_constraints_1[i]
+                min_constraints_2[i] = min_constraints_1[i]
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
@@ -469,7 +481,7 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
                                 seed = seed,
                                 known_target_values = {},
                                 dry_run = False,
-                                num_parallel_evaluations = 12,
+                                num_parallel_evaluations = 16,
                                 extra_report_info = {'dataset':dataset,"Prototype":"AllenHH"})
         
         if not nogui:
@@ -832,8 +844,8 @@ if __name__ == '__main__':
         #dataset = 480351780 
         
         scale1 = 0.05
-        scale2 = 2
-        seed = 12345
+        scale2 = 20
+        seed = 123455
     
          
         if len(sys.argv)>2:
@@ -906,9 +918,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 2
-        scale2 = 2
-        seed = 12323
+        scale1 = 0.05
+        scale2 = 8
+        seed = 1232344
         
         sys.path.append("../data")
         import data_helper as DH
