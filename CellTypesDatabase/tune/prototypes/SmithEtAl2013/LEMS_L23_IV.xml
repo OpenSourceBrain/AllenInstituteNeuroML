@@ -1,0 +1,55 @@
+<Lems>
+    
+    <!-- 
+
+        This LEMS file has been automatically generated using PyNeuroML v0.2.10 (libNeuroML v0.2.29)
+
+     -->
+    
+    <!-- Specify which component to run -->
+    <Target component="Sim_L23_IV"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="L23_Retuned.cell.nml"/>
+    <Include file="ca.channel.nml"/>
+    <Include file="it.channel.nml"/>
+    <Include file="kca.channel.nml"/>
+    <Include file="km.channel.nml"/>
+    <Include file="kv.channel.nml"/>
+    <Include file="na.channel.nml"/>
+    <Include file="pas.channel.nml"/>
+    <Include file="L23_IV.net.nml"/>
+   
+    <Simulation id="Sim_L23_IV" length="400ms" step="0.025ms" target="L23_IV" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
+        
+        <Display id="DispPop__L23_pop" title="Membrane potentials of cells in L23_pop" timeScale="1ms" xmin="-40.0" xmax="440.0" ymin="-90" ymax="50">
+            <Line id="L23_pop[0]: v" quantity="L23_pop/0/L23_Retuned/v" scale="1mV" color="#6aa799" timeScale="1ms"/>
+            <Line id="L23_pop[1]: v" quantity="L23_pop/1/L23_Retuned/v" scale="1mV" color="#029a72" timeScale="1ms"/>
+            <Line id="L23_pop[2]: v" quantity="L23_pop/2/L23_Retuned/v" scale="1mV" color="#d340bb" timeScale="1ms"/>
+            <Line id="L23_pop[3]: v" quantity="L23_pop/3/L23_Retuned/v" scale="1mV" color="#4c73a9" timeScale="1ms"/>
+            <Line id="L23_pop[4]: v" quantity="L23_pop/4/L23_Retuned/v" scale="1mV" color="#5e503a" timeScale="1ms"/>
+            <Line id="L23_pop[5]: v" quantity="L23_pop/5/L23_Retuned/v" scale="1mV" color="#3193ca" timeScale="1ms"/>
+            <Line id="L23_pop[6]: v" quantity="L23_pop/6/L23_Retuned/v" scale="1mV" color="#90e5e9" timeScale="1ms"/>
+            <Line id="L23_pop[7]: v" quantity="L23_pop/7/L23_Retuned/v" scale="1mV" color="#29645f" timeScale="1ms"/>
+            <Line id="L23_pop[8]: v" quantity="L23_pop/8/L23_Retuned/v" scale="1mV" color="#1fcff4" timeScale="1ms"/>
+        </Display>
+        
+        <OutputFile id="Volts_file__L23_pop" fileName="Sim_L23_IV.L23_pop.v.dat">
+            <OutputColumn id="v_L23_pop_0_L23_Retuned_v" quantity="L23_pop/0/L23_Retuned/v"/> 
+            <OutputColumn id="v_L23_pop_1_L23_Retuned_v" quantity="L23_pop/1/L23_Retuned/v"/> 
+            <OutputColumn id="v_L23_pop_2_L23_Retuned_v" quantity="L23_pop/2/L23_Retuned/v"/> 
+            <OutputColumn id="v_L23_pop_3_L23_Retuned_v" quantity="L23_pop/3/L23_Retuned/v"/> 
+            <OutputColumn id="v_L23_pop_4_L23_Retuned_v" quantity="L23_pop/4/L23_Retuned/v"/> 
+            <OutputColumn id="v_L23_pop_5_L23_Retuned_v" quantity="L23_pop/5/L23_Retuned/v"/> 
+            <OutputColumn id="v_L23_pop_6_L23_Retuned_v" quantity="L23_pop/6/L23_Retuned/v"/> 
+            <OutputColumn id="v_L23_pop_7_L23_Retuned_v" quantity="L23_pop/7/L23_Retuned/v"/> 
+            <OutputColumn id="v_L23_pop_8_L23_Retuned_v" quantity="L23_pop/8/L23_Retuned/v"/> 
+        </OutputFile>
+        
+    </Simulation>
+
+</Lems>

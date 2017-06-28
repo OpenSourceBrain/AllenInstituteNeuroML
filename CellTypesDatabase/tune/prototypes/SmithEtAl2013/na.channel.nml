@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="it">
+
+    <notes>NeuroML file containing a single Channel description</notes>
+
+    <ionChannel id="na" conductance="10 pS" type="ionChannelHH" species="na">
+
+        <notes>Sodium channel, Hodgkin-Huxley style kinetics.
+
+WARNING: Global parameter "vshift" from modfile has not been implemented.
+
+Comments from original mod file:
+
+26 Ago 2002 Modification of original channel to allow variable time
+step and to correct an initialization error.
+    Done by Michael Hines(michael.hines@yale.e) and Ruggero
+Scorcioni(rscorcio@gmu.edu) at EU Advance Course in Computational
+Neuroscience. Obidos, Portugal
+11 Jan 2007
+    Glitch in trap where (v/th) was where (v-th)/q is. (thanks Ronald
+van Elburg!)
+
+na.mod
+
+Sodium channel, Hodgkin-Huxley style kinetics.
+
+Kinetics were fit to data from Huguenard et al. (1988) and Hamill et
+al. (1991)
+
+qi is not well constrained by the data, since there are no points
+between -80 and -55.  So this was fixed at 5 while the thi1,thi2,Rg,Rd
+were optimized using a simplex least square proc
+
+voltage dependencies are shifted approximately from the best
+fit to give higher threshold
+
+Author: Zach Mainen, Salk Institute, 1994, zach@salk.edu
+</notes>
+
+        <annotation>
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                <rdf:Description rdf:about="na">
+
+                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>na3h5 Sodium channel, Hodgkin-Huxley style kinetics. Data from Huguenard et al. (1988) and Hamill et
+al. (1991)</rdf:li>
+                            <rdf:li>Developmental changes in Na+ conductances in rat neocortical neurons: appearance of a slowly inactivating component. Huguenard JR1, Hamill OP, Prince DA. J Neurophysiol. 1988 Mar;59(3):778-95.</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/2452862"/>
+                            <rdf:li>Patch-Clamp Studies of Voltage-Gated Currents in Identified Neurons of the Rat Cerebral Cortex. O. P. Hamill⇑, J. R. Huguenard and D. A. Prince. Cereb. Cortex (1991) 1 (1): 48-61.</rdf:li>
+                            <rdf:li rdf:resource="http://www.ncbi.nlm.nih.gov/pubmed/1668364"/>
+                        </rdf:Bag>
+                    </bqmodel:isDescribedBy>
+
+                    <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                        <rdf:Bag>
+                            <rdf:li>Sodium channels</rdf:li>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/neurondb/channelGene2.aspx#table2"/>
+                        </rdf:Bag>
+                    </bqbiol:isVersionOf>
+                </rdf:Description>
+            </rdf:RDF>
+        </annotation>
+	
+	    <q10ConductanceScaling q10Factor="2.3" experimentalTemp="23degC"/>
+
+        <gate id="m" type="gateHHrates" instances="3">
+       	    <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
+            <forwardRate type="HHExpLinearRate" rate="1.638per_ms" scale="9mV" midpoint="-25mV"/>
+            <reverseRate type="HHExpLinearRate" rate="1.116per_ms" scale="-9mV" midpoint="-25mV"/>
+        </gate>
+
+        <gate id="h" type="gateHHratesInf" instances="1">
+       	    <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
+            <forwardRate type="HHExpLinearRate" rate="0.12per_ms" scale="5mV" midpoint="-40mV"/>
+            <reverseRate type="HHExpLinearRate" rate="0.0455per_ms" scale="-5mV" midpoint="-65mV"/>
+            <steadyState type="Na_h_inf" />
+        </gate>
+
+    </ionChannel>
+
+
+    <ComponentType name="Na_h_inf" extends="baseVoltageDepVariable">
+        <Constant name="thinf" dimension="voltage" value="-55mV"/>
+        <Constant name="qinf" dimension="voltage" value="6.2 mV"/>
+
+        <Dynamics>
+          <DerivedVariable name="x" exposure="x" dimension="none" value="1/(1+exp((v-thinf)/qinf))"/>
+        </Dynamics>
+
+    </ComponentType>
+
+
+</neuroml>

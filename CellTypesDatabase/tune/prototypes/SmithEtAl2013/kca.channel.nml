@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.githubusercontent.com/NeuroML/NeuroML2/master/Schemas/NeuroML2/NeuroML_v2beta3.xsd"
+         id="kca">
+
+    <notes>WARNING: in the orginial mod file the conductance was multiplied by e-4, remember to scale your Gmax</notes>
+
+    <ionChannel id="kca" conductance="10pS" type="ionChannelHH" species="k">
+
+        <notes>Comment from original mod file: Calcium-dependent potassium channel,
+                    Based on Pennefather (1990) -- sympathetic ganglion cells,
+                    taken from Reuveni et al (1993) -- neocortical cells
+                    Author: Zach Mainen, Salk Institute, 1995, zach@salk.edu
+        </notes>
+
+	<q10ConductanceScaling q10Factor="2.3" experimentalTemp="23degC"/>
+
+        <gate id="n" type="gateHHrates" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23 degC"/>
+            <forwardRate type="kca_n_alpha_rate"/>
+            <reverseRate type="kca_n_beta_rate"/>
+        </gate>
+
+    </ionChannel>
+
+    <ComponentType name="kca_n_alpha_rate" extends="baseVoltageConcDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Constant name="CONC_SCALE" dimension="concentration" value="1 mM"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="ca_conc" dimension="none" value="caConc / CONC_SCALE"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.01 * ca_conc) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="kca_n_beta_rate" extends="baseVoltageConcDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Constant name="CONC_SCALE" dimension="concentration" value="1 mM"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="ca_conc" dimension="none" value="caConc / CONC_SCALE"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="0.02 / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+
+</neuroml>
