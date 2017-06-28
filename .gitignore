@@ -256,3 +256,12 @@ original.v.dat
 /CellTypesDatabase/tune/prototypes/AllenHH/Soma_Test.hoc
 /CellTypesDatabase/tune/tuned_cells/AllenHH/*.hoc
 /CellTypesDatabase/tune/prototypes/AllenHH/AllenHHTest.Pop0.v.dat
+/CellTypesDatabase/tune/L23_IV.net.nml
+/CellTypesDatabase/tune/LEMS_SmithTest.xml
+/CellTypesDatabase/tune/ca.channel.nml
+/CellTypesDatabase/tune/it.channel.nml
+/CellTypesDatabase/tune/kca.channel.nml
+/CellTypesDatabase/tune/km.channel.nml
+/CellTypesDatabase/tune/kv.channel.nml
+/CellTypesDatabase/tune/na.channel.nml
+/CellTypesDatabase/tune/pas.channel.nml

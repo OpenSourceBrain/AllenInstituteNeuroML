@@ -677,6 +677,24 @@ if __name__ == '__main__':
         sim_vars = OrderedDict()
 
         t, v = cont.run_individual(sim_vars, show=(not nogui))
+        
+    ####  Run simulation with one AllenHH cell
+    elif '-smithone' in sys.argv:
+
+        simulator  = 'jNeuroML'
+        simulator  = 'jNeuroML_NEURON'
+
+        cont = NeuroMLController('SmithTest', 
+                                 'prototypes/SmithEtAl2013/L23_IV.net.nml',
+                                 'L23_IV',
+                                 400, 
+                                 0.05, 
+                                 simulator)
+
+
+        sim_vars = OrderedDict()
+
+        t, v = cont.run_individual(sim_vars, show=(not nogui))
 
 
     ####  Run simulation with multiple Izhikevich cells
