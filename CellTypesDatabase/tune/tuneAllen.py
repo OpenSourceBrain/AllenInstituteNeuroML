@@ -442,6 +442,7 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
         min_constraints_2 = ['x', 'x', 'x',   .005,  0,      0, 0, 0, 0,  0,      0,    0,       45, -110]
         
         use_2_step = False
+        use_2_step = True
         if not use_2_step:
             for i in [0,1,2]:
                 max_constraints_2[i] = max_constraints_1[i]
@@ -458,7 +459,7 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
                                 max_constraints_2 = max_constraints_2,
                                 min_constraints_1 = min_constraints_1,
                                 min_constraints_2 = min_constraints_2,
-                                delta_constraints = 0.05,
+                                delta_constraints = 0.1,
                                 weights_1 = weights_1,
                                 weights_2 = weights_2,
                                 target_data_1 = target_data_1,
@@ -508,6 +509,147 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
         new_cell_file = 'tuned_cells/%s/%s.cell.nml'%(type,new_id)
         
         channel_files = ['NaTs.channel.nml', 'K_P.channel.nml', 'Nap.channel.nml', 'Kv3_1.channel.nml', 'K_T.channel.nml', 'SK.channel.nml', 'Im.channel.nml', 'Ih.channel.nml', 'Ca_LVA.channel.nml', 'Ca_HVA.channel.nml', 'pas.channel.nml', 'CaDynamics.nml']   
+        for ch in channel_files:
+            new_cell_doc.includes.append(neuroml.IncludeType(ch))
+            
+        pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
+
+
+
+def run_2_stage_smith(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False,mutation_rate = 0.9):
+    
+        
+        type = 'L23_Retuned'
+        
+        ref = 'network_%s_%s'%(dataset, type)
+        
+        print("Running 2 stage optimisation: " + 'prototypes/SmithEtAl2013/%s.net.nml'%ref)
+        
+        parameters_smith = ['cell:RS/channelDensity:pas_all/S_per_cm2',
+                          'cell:RS/erev_id:pas_all/mV',
+                          'cell:RS/specificCapacitance:all/uF_per_cm2',
+                          
+                          'cell:RS/channelDensity:na_soma/S_per_cm2+cell:RS/channelDensity:na_axon/S_per_cm2',
+                          
+                          'cell:RS/channelDensity:kv_soma/S_per_cm2+cell:RS/channelDensity:kv_axon/S_per_cm2']
+                          
+
+        max_constraints_1 = [5e-4, -70,  3,   0, 0]
+        min_constraints_1 = [8e-5, -90, 0.3,  0, 0]
+
+        max_constraints_2 = ['x', 'x', 'x',    2  , 0.2]
+        min_constraints_2 = ['x', 'x', 'x',   .05, 0.005]
+        
+        
+        '''
+        
+        <channelDensity ionChannel="pas" id="pas_all"  condDensity = "0.000142857 S_per_cm2" ion="non_specific" erev="-75 mV" />
+        <channelDensity ionChannel="kca" id="kca_dends"  condDensity = "3.0e-4 S_per_cm2" ion="k" segmentGroup="dendrite_group" erev="-90 mV" />
+        <channelDensity ionChannel="kca" id="kca_soma"  condDensity = "3.0e-4 S_per_cm2" ion="k" segmentGroup="soma_group" erev="-90 mV" />
+        <channelDensity ionChannel="km" id="km_dends"  condDensity = "1e-4 S_per_cm2" ion="k" segmentGroup="dendrite_group" erev="-90 mV" />
+        <channelDensity ionChannel="km" id="km_soma"  condDensity = "2.2e-4 S_per_cm2" ion="k" segmentGroup="soma_group" erev="-90 mV" />
+        <channelDensity ionChannel="kv" id="kv_dends"  condDensity = "0.0003 S_per_cm2" ion="k" segmentGroup="dendrite_group" erev="-90 mV" />
+        <channelDensity ionChannel="kv" id="kv_soma"  condDensity = "0.01 S_per_cm2" ion="k" segmentGroup="soma_group" erev="-90 mV" />
+        <channelDensity ionChannel="kv" id="kv_axon"  condDensity = "0.01 S_per_cm2" ion="k" segmentGroup="axon_group" erev="-90 mV" />
+        <channelDensity ionChannel="na" id="na_dends"  condDensity = "0.008 S_per_cm2" ion="na" segmentGroup="dendrite_group"  erev="60 mV" />
+        <channelDensity ionChannel="na" id="na_soma"  condDensity = "0.5 S_per_cm2" ion="na" segmentGroup="soma_group" erev="60 mV" />
+        <channelDensity ionChannel="na" id="na_axon"  condDensity = "0.5 S_per_cm2" ion="na" segmentGroup="axon_group" erev="60 mV" />
+        <channelDensity ionChannel="it" id="it_dends" condDensity = "0.00015 S_per_cm2" ion="ca" segmentGroup="dendrite_group" erev="140.67523 mV" />       
+        <channelDensity ionChannel="it" id="it_soma"  condDensity = "0.0003 S_per_cm2" ion="ca" segmentGroup="soma_group" erev="140.67523 mV" /> 
+        <channelDensity ionChannel="ca" id="ca_dends" condDensity = "5e-5 S_per_cm2" ion="ca" segmentGroup="dendrite_group"  erev="140.67523 mV"/>
+        <channelDensity ionChannel="ca" id="ca_soma" condDensity = "5e-5 S_per_cm2" ion="ca" segmentGroup="soma_group" erev="140.67523 mV"/>
+        
+        parameters_smith = ['cell:RS/channelDensity:pas_all/S_per_cm2',
+                          'cell:RS/erev_id:pas_all/mV',
+                          'cell:RS/specificCapacitance:all/uF_per_cm2',
+
+                          'cell:RS/channelDensity:NaTs_all/S_per_cm2',
+                          'cell:RS/channelDensity:Nap_all/S_per_cm2',
+
+                          'cell:RS/channelDensity:K_P_all/S_per_cm2',
+                          'cell:RS/channelDensity:K_T_all/S_per_cm2',
+                          'cell:RS/channelDensity:Kv3_1_all/S_per_cm2',
+                          'cell:RS/channelDensity:Im_all/S_per_cm2',
+                          'cell:RS/channelDensity:Ih_all/S_per_cm2',
+
+                          'cell:RS/channelDensityNernst:Ca_LVA_all/S_per_cm2',
+                          'cell:RS/channelDensityNernst:Ca_HVA_all/S_per_cm2',
+
+                          'cell:RS/erev_id:NaTs_all/mV+cell:RS/erev_id:Nap_all/mV',
+                          'cell:RS/erev_id:K_P_all/mV+cell:RS/erev_id:K_T_all/mV+cell:RS/erev_id:Kv3_1_all/mV+cell:RS/erev_id:Im_all/mV']'''
+
+        
+        dt = 0.05
+        
+        use_2_step = False
+        use_2_step = False
+        if not use_2_step:
+            for i in [0,1,2]:
+                max_constraints_2[i] = max_constraints_1[i]
+                min_constraints_2[i] = min_constraints_1[i]
+
+        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
+
+
+        r1, r2 = run_2stage_optimization('Smith2stage',
+                                neuroml_file = 'prototypes/SmithEtAl2013/%s.net.nml'%ref,
+                                target =        ref,
+                                parameters = parameters_smith,
+                                max_constraints_1 = max_constraints_1,
+                                max_constraints_2 = max_constraints_2,
+                                min_constraints_1 = min_constraints_1,
+                                min_constraints_2 = min_constraints_2,
+                                delta_constraints = 0.1,
+                                weights_1 = weights_1,
+                                weights_2 = weights_2,
+                                target_data_1 = target_data_1,
+                                target_data_2 = target_data_2,
+                                sim_time = 1500,
+                                dt = dt,
+                                population_size_1 = scale(scale1,100,10),
+                                population_size_2 = scale(scale2,100,10),
+                                max_evaluations_1 = scale(scale1,500,20),
+                                max_evaluations_2 = scale(scale2,500,10),
+                                num_selected_1 = scale(scale1,30,5),
+                                num_selected_2 = scale(scale2,30,5),
+                                num_offspring_1 = scale(scale1,30,5),
+                                num_offspring_2 = scale(scale2,30,5),
+                                mutation_rate = mutation_rate,
+                                num_elites = scale(scale2,5,2),
+                                simulator = simulator,
+                                nogui = nogui,
+                                show_plot_already = False,
+                                seed = seed,
+                                known_target_values = {},
+                                dry_run = False,
+                                num_parallel_evaluations = 18,
+                                extra_report_info = {'dataset':dataset,"Prototype":"SmithEtAl2013"})
+        
+        if not nogui:
+            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False,    dataset=dataset)
+            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=not nogui,dataset=dataset)
+        
+        
+        final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
+        
+        nml_doc = pynml.read_neuroml2_file(final_network)
+        
+        cell = nml_doc.cells[0]
+        
+        print("Extracted cell: %s from tuned model"%cell.id)
+        
+        new_id = '%s_%s'%(type, dataset)
+        new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
+        cell.id = new_id
+        
+        cell.notes = "Cell model tuned to Allen Institute Cell Types Database, dataset: "+ \
+                     "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
+        
+        new_cell_doc.cells.append(cell)
+        new_cell_file = 'tuned_cells/%s/%s.cell.nml'%(type,new_id)
+        
+        
+        channel_files = ['pas.channel.nml',"ca.channel.nml","it.channel.nml","kca.channel.nml","km.channel.nml","kv.channel.nml","na.channel.nml"]   
         for ch in channel_files:
             new_cell_doc.includes.append(neuroml.IncludeType(ch))
             
@@ -677,7 +819,7 @@ if __name__ == '__main__':
         sim_vars = OrderedDict()
 
         t, v = cont.run_individual(sim_vars, show=(not nogui))
-        
+
     ####  Run simulation with one AllenHH cell
     elif '-smithone' in sys.argv:
 
@@ -852,18 +994,18 @@ if __name__ == '__main__':
         simulator  = 'jNeuroML_NEURON'
         dataset = 471141261
         dataset = 325941643
-        dataset = 479704527
         dataset = 464198958
         dataset = 485058595
         dataset = 480169178
         dataset = 480351780
         dataset = 480353286
         dataset = 468120757
+        dataset = 479704527
         #dataset = 480351780 
         
-        scale1 = 0.05
-        scale2 = 20
-        seed = 123455
+        scale1 = .1
+        scale2 = .1
+        seed = 1234554484
     
          
         if len(sys.argv)>2:
@@ -875,6 +1017,39 @@ if __name__ == '__main__':
             seed = float(sys.argv[7])
         
         run_2_stage_allenhh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
+        
+        
+    ####  Run a 2 stage optimisation for Smith 2013 cell model
+
+    elif '-smith2stage' in sys.argv:
+        
+        print("Running 2 stage optimisation")
+        simulator  = 'jNeuroML_NEURON'
+        dataset = 471141261
+        dataset = 325941643
+        dataset = 464198958
+        dataset = 485058595
+        dataset = 480169178
+        dataset = 480351780
+        dataset = 480353286
+        dataset = 468120757
+        dataset = 479704527
+        #dataset = 480351780 
+        
+        scale1 = .1
+        scale2 = .1
+        seed = 1234554
+    
+         
+        if len(sys.argv)>2:
+            print("Parsing args: %s"%sys.argv)
+            dataset = int(sys.argv[3])
+            simulator = sys.argv[4]
+            scale1 = float(sys.argv[5])
+            scale2 = float(sys.argv[6])
+            seed = float(sys.argv[7])
+        
+        run_2_stage_smith(dataset, simulator, scale1, scale2,seed, nogui=nogui)
         
 
 
@@ -936,9 +1111,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 0.05
-        scale2 = 8
-        seed = 1232344
+        scale1 = 4
+        scale2 = 10
+        seed = 12323446
         
         sys.path.append("../data")
         import data_helper as DH

@@ -265,3 +265,11 @@ original.v.dat
 /CellTypesDatabase/tune/kv.channel.nml
 /CellTypesDatabase/tune/na.channel.nml
 /CellTypesDatabase/tune/pas.channel.nml
+/CellTypesDatabase/tune/prototypes/SmithEtAl2013/*.hoc
+/CellTypesDatabase/tune/prototypes/SmithEtAl2013/*.mod
+/CellTypesDatabase/tune/prototypes/AllenHH/*.mod
+/CellTypesDatabase/tune/prototypes/AllenHH/*.hoc
+/CellTypesDatabase/tune/prototypes/AllenHH/*.dat
+/CellTypesDatabase/tune/prototypes/SmithEtAl2013/*.dat
+/CellTypesDatabase/tune/prototypes/SmithEtAl2013/*_nrn.py
+/CellTypesDatabase/tune/prototypes/AllenHH/*_nrn.py

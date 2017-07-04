@@ -27,11 +27,11 @@
     <Simulation id="Sim_L23_One" length="400ms" step="0.025ms" target="L23_One" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
         
         <Display id="DispPop__L23_pop" title="Membrane potentials of cells in L23_pop" timeScale="1ms" xmin="-40.0" xmax="440.0" ymin="-90" ymax="50">
-            <Line id="L23_pop[0]: v" quantity="L23_pop/0/L23_Retuned/v" scale="1mV" color="#6aa799" timeScale="1ms"/>
+            <Line id="L23_pop[0]: v" quantity="L23_pop/0/RS/v" scale="1mV" color="#6aa799" timeScale="1ms"/>
         </Display>
         
         <OutputFile id="Volts_file__L23_pop" fileName="Sim_L23_One.L23_pop.v.dat">
-            <OutputColumn id="v_L23_pop_0_L23_Retuned_v" quantity="L23_pop/0/L23_Retuned/v"/> 
+            <OutputColumn id="v_L23_pop_0_L23_Retuned_v" quantity="L23_pop/0/RS/v"/> 
         </OutputFile>
         
     </Simulation>
