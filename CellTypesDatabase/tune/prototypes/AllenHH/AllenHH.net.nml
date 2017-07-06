@@ -8,7 +8,7 @@
     <include href="AllenHH.cell.nml"/>
     <include href="CaDynamics.nml"/>
 
-    <pulseGenerator id="Input_4" delay="270.0ms" duration="1000ms" amplitude="100.0 pA"/>
+    <pulseGenerator id="Input_4" delay="270.0ms" duration="1000ms" amplitude="270.0 pA"/>
 
     
     <network id="network_AllenHH" type="networkWithTemperature" temperature="34 degC">

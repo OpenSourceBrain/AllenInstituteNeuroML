@@ -134,6 +134,138 @@
 <table border="1">
 <tr>
 <td width="130px">
+<p style="font-size:80%;font-family:arial"><b>476686112</b></p>
+<p style="font-size:80%;font-family:arial">Primary visual area, layer 2/3</p>
+<p style="font-size:80%;font-family:arial">aspiny</p>
+<p style="font-size:80%;font-family:arial">Sst-IRES-Cre</p>
+<p style="font-size:80%;font-family:arial"><a href="http://celltypes.brain-map.org/mouse/experiment/electrophysiology/476686112">Source data</a></p>
+</td>
+<td>
+<a href="traces_476686112.png"><img alt="476686112 example traces" src="traces_476686112.png" height="200"/></a>
+</td>
+<td>
+<a href="spikes_476686112.png"><img alt="476686112 firing rates" src="spikes_476686112.png" height="200"/></a>
+</td>
+<td>
+<a href="subthreshold_476686112.png"><img alt="476686112 subthreshold voltage vs current" src="subthreshold_476686112.png" height="200"/></a>
+</td>
+</tr>
+<tr>
+<td width="130px">
+<p style="font-size:80%;font-family:arial"><b>Izhikevich cell model tuned to dataset 476686112</b></p>
+<p style="font-size:80%;font-family:arial"><a href="https://github.com/OpenSourceBrain/AllenInstituteNeuroML/blob/master/CellTypesDatabase/tune/tuned_cells/Izh/Izh_476686112.cell.nml">Tuned model</a></p>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/Izh_476686112_traces.png"><img alt="476686112 traces" src="../../tune/tuned_cells/summary/Izh_476686112_traces.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/Izh_476686112_if.png"><img alt="476686112 firing rates" src="../../tune/tuned_cells/summary/Izh_476686112_if.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/Izh_476686112_iv.png"><img alt="476686112 subthreshold voltage vs current" src="../../tune/tuned_cells/summary/Izh_476686112_iv.png" height="200"/></a>
+</td>
+</tr>
+<tr>
+<td width="130px">
+<p style="font-size:80%;font-family:arial"><b>HH cell model tuned to dataset 476686112</b></p>
+<p style="font-size:80%;font-family:arial"><a href="https://github.com/OpenSourceBrain/AllenInstituteNeuroML/blob/master/CellTypesDatabase/tune/tuned_cells/HH/HH_476686112.cell.nml">Tuned model</a></p>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/HH_476686112_traces.png"><img alt="476686112 traces" src="../../tune/tuned_cells/summary/HH_476686112_traces.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/HH_476686112_if.png"><img alt="476686112 firing rates" src="../../tune/tuned_cells/summary/HH_476686112_if.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/HH_476686112_iv.png"><img alt="476686112 subthreshold voltage vs current" src="../../tune/tuned_cells/summary/HH_476686112_iv.png" height="200"/></a>
+</td>
+</tr>
+<tr>
+<td width="130px">
+<p style="font-size:80%;font-family:arial"><b>Allen HH cell model tuned to dataset 476686112</b></p>
+<p style="font-size:80%;font-family:arial"><a href="https://github.com/OpenSourceBrain/AllenInstituteNeuroML/blob/master/CellTypesDatabase/tune/tuned_cells/AllenHH/AllenHH_476686112.cell.nml">Tuned model</a></p>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/AllenHH_476686112_traces.png"><img alt="476686112 traces" src="../../tune/tuned_cells/summary/AllenHH_476686112_traces.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/AllenHH_476686112_if.png"><img alt="476686112 firing rates" src="../../tune/tuned_cells/summary/AllenHH_476686112_if.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/AllenHH_476686112_iv.png"><img alt="476686112 subthreshold voltage vs current" src="../../tune/tuned_cells/summary/AllenHH_476686112_iv.png" height="200"/></a>
+</td>
+</tr>
+</table> <br/>
+<br/>
+<table border="1">
+<tr>
+<td width="130px">
+<p style="font-size:80%;font-family:arial"><b>477127614</b></p>
+<p style="font-size:80%;font-family:arial">Primary visual area, layer 2/3</p>
+<p style="font-size:80%;font-family:arial">spiny</p>
+<p style="font-size:80%;font-family:arial">Slc17a6-IRES-Cre</p>
+<p style="font-size:80%;font-family:arial"><a href="http://celltypes.brain-map.org/mouse/experiment/electrophysiology/477127614">Source data</a></p>
+</td>
+<td>
+<a href="traces_477127614.png"><img alt="477127614 example traces" src="traces_477127614.png" height="200"/></a>
+</td>
+<td>
+<a href="spikes_477127614.png"><img alt="477127614 firing rates" src="spikes_477127614.png" height="200"/></a>
+</td>
+<td>
+<a href="subthreshold_477127614.png"><img alt="477127614 subthreshold voltage vs current" src="subthreshold_477127614.png" height="200"/></a>
+</td>
+</tr>
+<tr>
+<td width="130px">
+<p style="font-size:80%;font-family:arial"><b>Izhikevich cell model tuned to dataset 477127614</b></p>
+<p style="font-size:80%;font-family:arial"><a href="https://github.com/OpenSourceBrain/AllenInstituteNeuroML/blob/master/CellTypesDatabase/tune/tuned_cells/Izh/Izh_477127614.cell.nml">Tuned model</a></p>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/Izh_477127614_traces.png"><img alt="477127614 traces" src="../../tune/tuned_cells/summary/Izh_477127614_traces.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/Izh_477127614_if.png"><img alt="477127614 firing rates" src="../../tune/tuned_cells/summary/Izh_477127614_if.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/Izh_477127614_iv.png"><img alt="477127614 subthreshold voltage vs current" src="../../tune/tuned_cells/summary/Izh_477127614_iv.png" height="200"/></a>
+</td>
+</tr>
+<tr>
+<td width="130px">
+<p style="font-size:80%;font-family:arial"><b>HH cell model tuned to dataset 477127614</b></p>
+<p style="font-size:80%;font-family:arial"><a href="https://github.com/OpenSourceBrain/AllenInstituteNeuroML/blob/master/CellTypesDatabase/tune/tuned_cells/HH/HH_477127614.cell.nml">Tuned model</a></p>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/HH_477127614_traces.png"><img alt="477127614 traces" src="../../tune/tuned_cells/summary/HH_477127614_traces.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/HH_477127614_if.png"><img alt="477127614 firing rates" src="../../tune/tuned_cells/summary/HH_477127614_if.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/HH_477127614_iv.png"><img alt="477127614 subthreshold voltage vs current" src="../../tune/tuned_cells/summary/HH_477127614_iv.png" height="200"/></a>
+</td>
+</tr>
+<tr>
+<td width="130px">
+<p style="font-size:80%;font-family:arial"><b>Allen HH cell model tuned to dataset 477127614</b></p>
+<p style="font-size:80%;font-family:arial"><a href="https://github.com/OpenSourceBrain/AllenInstituteNeuroML/blob/master/CellTypesDatabase/tune/tuned_cells/AllenHH/AllenHH_477127614.cell.nml">Tuned model</a></p>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/AllenHH_477127614_traces.png"><img alt="477127614 traces" src="../../tune/tuned_cells/summary/AllenHH_477127614_traces.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/AllenHH_477127614_if.png"><img alt="477127614 firing rates" src="../../tune/tuned_cells/summary/AllenHH_477127614_if.png" height="200"/></a>
+</td>
+<td>
+<a href="../../tune/tuned_cells/summary/AllenHH_477127614_iv.png"><img alt="477127614 subthreshold voltage vs current" src="../../tune/tuned_cells/summary/AllenHH_477127614_iv.png" height="200"/></a>
+</td>
+</tr>
+</table> <br/>
+<br/>
+<table border="1">
+<tr>
+<td width="130px">
 <p style="font-size:80%;font-family:arial"><b>479704527</b></p>
 <p style="font-size:80%;font-family:arial">Primary visual area, layer 4</p>
 <p style="font-size:80%;font-family:arial">spiny</p>

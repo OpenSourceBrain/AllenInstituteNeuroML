@@ -305,6 +305,7 @@ def compare(sim_data_file, show_plot_already=True, dataset=471141261):
     r = lambda: random.randint(0,255)
 
     for ii in indeces:
+        print("Adding %s from %s"%(ii,sim_data_file))
         x.append(data['t'])
         y.append(data[ii])
         c = '#%02X%02X%02X' % (r(),r(),r())
@@ -443,10 +444,14 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
         
         use_2_step = False
         use_2_step = True
+        
         if not use_2_step:
+            delta_constraints = 1
             for i in [0,1,2]:
                 max_constraints_2[i] = max_constraints_1[i]
                 min_constraints_2[i] = min_constraints_1[i]
+        else:
+            delta_constraints = 0.05
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
@@ -459,7 +464,7 @@ parameters_ahh = ['cell:RS/channelDensity:pas_all/S_per_cm2',
                                 max_constraints_2 = max_constraints_2,
                                 min_constraints_1 = min_constraints_1,
                                 min_constraints_2 = min_constraints_2,
-                                delta_constraints = 0.1,
+                                delta_constraints = delta_constraints,
                                 weights_1 = weights_1,
                                 weights_2 = weights_2,
                                 target_data_1 = target_data_1,
@@ -535,7 +540,7 @@ def run_2_stage_smith(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=
                           
 
         max_constraints_1 = [5e-4, -70,  3,   0, 0]
-        min_constraints_1 = [8e-5, -90, 0.3,  0, 0]
+        min_constraints_1 = [5e-5, -100, 0.3,  0, 0]
 
         max_constraints_2 = ['x', 'x', 'x',    2  , 0.2]
         min_constraints_2 = ['x', 'x', 'x',   .05, 0.005]
@@ -1002,10 +1007,12 @@ if __name__ == '__main__':
         dataset = 468120757
         dataset = 479704527
         #dataset = 480351780 
+        dataset = 477127614  # L23 spiny
+        #dataset = 476686112  # l23 aspiny
         
-        scale1 = .1
-        scale2 = .1
-        seed = 1234554484
+        scale1 = 1
+        scale2 = 1
+        seed = 1234
     
          
         if len(sys.argv)>2:
@@ -1034,11 +1041,13 @@ if __name__ == '__main__':
         dataset = 480353286
         dataset = 468120757
         dataset = 479704527
+        dataset = 479704527
+        dataset = 477127614
         #dataset = 480351780 
         
-        scale1 = .1
-        scale2 = .1
-        seed = 1234554
+        scale1 = 1
+        scale2 = 1
+        seed = 123
     
          
         if len(sys.argv)>2:

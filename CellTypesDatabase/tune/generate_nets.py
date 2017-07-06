@@ -82,16 +82,18 @@ def generate_network_for_sweeps(cell_type, dataset_id, cell_file_name, cell_id, 
 if __name__ == '__main__':
     
     cell_id = "RS"
-    cell_id = "L23_Retuned"
+    #cell_id = "L23_Retuned"
 
     cell_types = ['Izh', 'HH']
     cell_types = ['HH']
     cell_types = ['Izh']
     cell_types = ['AllenHH']
-    cell_types = ['L23_Retuned']
+    #cell_types = ['L23_Retuned']
+    loc = 'prototypes/SmithEtAl2013'
+    loc = 'prototypes/AllenHH'
 
     for cell_type in cell_types:
 
         for dataset_id in DH.CURRENT_DATASETS:
             
-            generate_network_for_sweeps(cell_type, dataset_id, '%s.cell.nml'%cell_type, cell_id, 'prototypes/SmithEtAl2013', '../data')
+            generate_network_for_sweeps(cell_type, dataset_id, '%s.cell.nml'%cell_type, cell_id, loc, '../data')
