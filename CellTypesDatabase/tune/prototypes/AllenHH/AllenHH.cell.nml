@@ -58,47 +58,26 @@
 
         
         <biophysicalProperties id="biophys">
-            
             <membraneProperties>
-                
                 <channelDensity id="pas_all" ionChannel="pas" condDensity="0.001 S_per_cm2" erev="-76.1079754595 mV" ion="non_specific"/>
-                
                 <channelDensity id="NaTs_all" ionChannel="NaTs" condDensity="1.48399573055 S_per_cm2" erev="55.4903639125 mV" ion="na"/>
-                
                 <channelDensity id="K_P_all" ionChannel="K_P" condDensity="0.300523926979 S_per_cm2" erev="-71.2230383681 mV" ion="k"/>
-                
                 <channelDensity id="Nap_all" ionChannel="Nap" condDensity="0.001 S_per_cm2" erev="55.4903639125 mV" ion="na"/>
-                
                 <channelDensity id="Kv3_1_all" ionChannel="Kv3_1" condDensity="0 S_per_cm2" erev="-71.2230383681 mV" ion="k"/>
-                
                 <channelDensity id="K_T_all" ionChannel="K_T" condDensity="0 S_per_cm2" erev="-71.2230383681 mV" ion="k"/>
-                
                 <channelDensity id="SK_all" ionChannel="SK" condDensity="0.00 S_per_cm2" erev="-107 mV" ion="k"/>
-                
                 <channelDensity id="Im_all" ionChannel="Im" condDensity="0 S_per_cm2" erev="-71.2230383681 mV" ion="k"/>
-                
                 <channelDensity id="Ih_all" ionChannel="Ih" condDensity="0 S_per_cm2" erev="-45 mV" ion="hcn"/>
-                
                 <channelDensityNernst id="Ca_LVA_all" ionChannel="Ca_LVA" condDensity="0 S_per_cm2" ion="ca"/>
-                
                 <channelDensityNernst id="Ca_HVA_all" ionChannel="Ca_HVA" condDensity="0.000124696492833 S_per_cm2" ion="ca"/>
-                
                 <spikeThresh value="0 mV"/>
-                
                 <specificCapacitance value="17.3129077185 uF_per_cm2"/>
-                
                 <initMembPotential value="-78.0 mV"/>
-                
             </membraneProperties>
-            
             <intracellularProperties>
-                
                 <species id="ca" concentrationModel="CaDynamics" ion="ca" initialConcentration="1e-4 mM" initialExtConcentration="2 mM"/>
-                
                 <resistivity value="0.1 kohm_cm"/>
-                
             </intracellularProperties>
-            
         </biophysicalProperties>
 
     </cell>
