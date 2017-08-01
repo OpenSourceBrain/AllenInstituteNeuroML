@@ -25,7 +25,8 @@ def generate_network_for_sweeps(cell_type, dataset_id, cell_file_name, cell_id, 
     net_doc.networks.append(net)
 
     net_doc.includes.append(neuroml.IncludeType(cell_file_name))
-    net_doc.includes.append(neuroml.IncludeType("CaDynamics.nml"))
+    if type=='AllenHH':
+        net_doc.includes.append(neuroml.IncludeType("CaDynamics.nml"))
 
 
     number_cells = len(target_sweep_numbers)

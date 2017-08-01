@@ -12,12 +12,13 @@ import airspeed
 nogui = '-nogui' in sys.argv
 
 HTML_TEMPLATE_FILE = "CellInfo_TEMPLATE.html" 
+HTML_TEMPLATE_FILE_FIG = "Fig_TEMPLATE.html" 
                       
 
-def make_html_file(info, template=HTML_TEMPLATE_FILE):
+def make_html_file(info, template=HTML_TEMPLATE_FILE, target='CellInfo.html'):
     merged = merge_with_template(info, template)
     html_dir = 'summary'
-    new_html_file = os.path.join(html_dir,'CellInfo.html')
+    new_html_file = os.path.join(html_dir,target)
     lf = open(new_html_file, 'w')
     lf.write(merged)
     lf.close()
@@ -201,9 +202,26 @@ def analyse_extracted_data():
                             ylim = [-120, 60],
                             show_plot_already=False,
                             save_figure_to = target_file%('traces', id))
+                            
+        pynml.generate_plot(x,
+                            y, 
+                            "Example traces from: %s"%id, 
+                            ylim = [-120, 60],
+                            show_plot_already=False)
+                            
+        plt.axis('off')
+        
+        fig_file = target_file%('traces_FIG', id)
+        plt.savefig(fig_file, bbox_inches='tight', pad_inches=0)
+        from PIL import Image
+        img = Image.open(fig_file)
+
+        img2 = img.crop((60, 40, 660, 480))
+        img2.save(fig_file)
 
     print(info)
-    make_html_file(info)
+    make_html_file(info) 
+    make_html_file(info, template=HTML_TEMPLATE_FILE_FIG, target='Figure.html')
     make_md_file()
 
     if not nogui:

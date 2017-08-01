@@ -10,7 +10,7 @@ from pyneuroml.analysis import generate_current_vs_frequency_curve
 from pyneuroml.lems import generate_lems_file_for_neuroml
 
 from pyneuroml.analysis.ChannelDensityPlot import generate_channel_density_plots
-from pyneuroml.pynml import get_value_in_si
+from pyneuroml.pynml import get_value_in_si, reload_standard_dat_file
 
 from generate_nets import generate_network_for_sweeps
 
@@ -36,6 +36,7 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
     print summary
     
     images = 'summary/%s_%s.png'
+    if_iv_data_files = 'summary/%s_%s.dat'
     
 
     data, v_sub, curents_sub, v, curents_spike = get_if_iv_for_dataset('%s%s_analysis.json'%(analysis_dir,dataset_id))
@@ -114,8 +115,10 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
                                             ylim_if =              [-10, 120],
                                             xlim_iv =              [-200, 400],
                                             ylim_iv =              [-120, -40],
-                                            save_if_figure_to=images%(reference, 'if'), 
-                                            save_iv_figure_to=images%(reference, 'iv'),
+                                            save_if_figure_to =    images%(reference, 'if'), 
+                                            save_iv_figure_to =    images%(reference, 'iv'),
+                                            save_if_data_to =      if_iv_data_files%(reference, 'if'), 
+                                            save_iv_data_to =      if_iv_data_files%(reference, 'iv'), 
                                             show_plot_already = False,
                                             return_axes = True)
 
@@ -125,6 +128,86 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
 
         iv_ax.get_figure().savefig(images%(reference, 'iv'),bbox_inches='tight')
         if_ax.get_figure().savefig(images%(reference, 'if'),bbox_inches='tight')
+        
+        
+        offset = 100 # mV 
+        
+        ifv_x = []
+        ifv_y = []
+        markers = []
+        lines = []
+        colors = []
+        
+        cols = {'Izh':'r','HH':'g','AllenHH':'b'}
+        
+        for ii in ['if','iv']:
+            for tt in ['Izh','HH','AllenHH']:
+                rr = '%s_%s'%(tt,dataset_id)
+                f = if_iv_data_files%(rr, ii)
+                if os.path.isfile(f):
+                    print("--- Opening: %s"%f)
+                    data, indeces = reload_standard_dat_file(f)
+                    
+                    ifv_x.append(data['t'])
+                    if ii=='if':
+                        ifv_y.append(data[0])
+                    else:
+                        ifv_y.append([vv+offset for vv in data[0]])
+                        
+                    
+                    markers.append('')
+                    colors.append(cols[tt])
+                    lines.append('-')
+                    
+        ifv_x.append(curents_sub)
+        vvsub = [vv+offset for vv in v_sub]
+        
+        ifv_y.append(vvsub)
+        
+        sub_color = '#888888'
+        markers.append('D')
+        colors.append(sub_color)
+        lines.append('')
+        
+        ifv_x.append(curents_spike)
+        ifv_y.append(v)
+        
+        markers.append('o')
+        colors.append('k')
+        lines.append('')
+        
+        import matplotlib
+        import matplotlib.pyplot as plt
+
+        print ifv_x
+        print ifv_y
+        ylim = [-10, 80]
+        font_size = 18
+        ax1 = pynml.generate_plot(ifv_x,
+                    ifv_y, 
+                    summary, 
+                    markers=markers,
+                    colors=colors,
+                    linestyles=lines,
+                    show_plot_already=False,
+                    xlim = [-100, 400],
+                    font_size = font_size,
+                    ylim = ylim,
+                    title_above_plot=False)
+                    
+        plt.xlabel('Input current (pA)', fontsize = font_size)
+        plt.ylabel('Firing frequency (Hz)', fontsize = font_size)
+        
+        ax2 = ax1.twinx()
+        plt.ylim([ylim[0]-offset,ylim[1]-offset])
+        plt.ylabel("Steady membrane potential (mV)", color=sub_color, fontsize = font_size)
+        ax2.tick_params(axis='y', colors=sub_color)
+        
+        
+        #plt.axis('off')
+        
+        plt.savefig(images%(reference, 'if_iv'+"_FIG"),bbox_inches='tight')
+        
 
         temp_dir = 'temp/'
 
@@ -173,13 +256,31 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
         pynml.generate_plot(x,
                     y, 
                     summary, 
-                    xaxis = "Time (ms)", 
-                    yaxis = "Membrane potential (mV)",
                     show_plot_already=False,
                     ylim = [-120, 60],
                     save_figure_to = images%(reference, 'traces'),
                     title_above_plot=True)
-    
+                 
+        ax = pynml.generate_plot(x,
+                    y, 
+                    summary, 
+                    show_plot_already=False,
+                    ylim = [-120, 60],
+                    title_above_plot=False)
+                    
+        ax.set_xlabel(None)
+        ax.set_ylabel(None)
+        plt.axis('off')
+        
+        fig_file = images%(reference, 'traces'+"_FIG")
+        plt.savefig(fig_file, bbox_inches='tight', pad_inches=0)
+        from PIL import Image
+        img = Image.open(fig_file)
+
+        img2 = img.crop((60, 40, 660, 480))
+        img2.save(fig_file)
+
+        
 
 if __name__ == '__main__':
 
@@ -196,15 +297,16 @@ if __name__ == '__main__':
 
     dataset_ids = DH.CURRENT_DATASETS
     ##dataset_ids = BDH.CURRENT_DATASETS
-    #dataset_ids = [464198958]
     #dataset_ids = [480169178]
     #dataset_ids = dataset_ids[:3]
+    #dataset_ids = [468120757]
+    #dataset_ids = [464198958]
 
     for dataset_id in dataset_ids:
 
-        #type = 'HH'
+        type = 'HH'
         type = 'Izh'
-        type = 'AllenHH'
+        #type = 'AllenHH'
 
         ##analyse_cell(dataset_id, type, info, nogui,densities=densities, analysis_dir='../../data/bulk_analysis/')
 

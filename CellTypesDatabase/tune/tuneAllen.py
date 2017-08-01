@@ -81,7 +81,7 @@ parameters_iz = ['izhikevich2007Cell:RS/a/per_ms',
 # Example parameter ranges for above
 #                     a,     b,  c,  d,   C,    vr,  vt, vpeak, k
 min_constraints_iz = [0.01, -5, -65, 10,  30,  -90, -60, 0,    0.1]
-max_constraints_iz = [0.2,  20, -10, 400, 300, -70,  50, 70,   1]
+max_constraints_iz = [0.4,  20, -10, 400, 300, -70,  50, 70,   1]
 
 #  typical (tuned) spiking cell
 example_vars_iz = {'izhikevich2007Cell:RS/C/pF': 121.89939137782264,
@@ -213,14 +213,16 @@ def get_2stage_target_values(dataset_id):
         
     for t in weights_2.keys():
         
+        passive_weights = 10
+        
         if '1000_1200' in t:
-            weights_2[t] = 100
+            weights_2[t] = passive_weights
             
         if 'average_100_200' in t:
-            weights_2[t] = 100
+            weights_2[t] = passive_weights
             
         if 'value_280' in t:
-            weights_2[t] = 100
+            weights_2[t] = passive_weights
             
             
         
@@ -681,6 +683,18 @@ def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
     sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
     num_elites = scale(scale2,8,2,10)
+    
+
+    use_2_step = False
+    #use_2_step = True
+
+    if not use_2_step:
+        delta_constraints = 1
+        for i in [4,5,8]:
+            max_constraints_2[i] = max_constraints_1[i]
+            min_constraints_2[i] = min_constraints_1[i]
+    else:
+        delta_constraints = 0.05
 
 
     r1, r2 = run_2stage_optimization('AllenIzh2stage',
@@ -691,7 +705,7 @@ def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
                             max_constraints_2 = max_constraints_2,
                             min_constraints_1 = min_constraints_1,
                             min_constraints_2 = min_constraints_2,
-                            delta_constraints = 0.01,
+                            delta_constraints = delta_constraints,
                             weights_1 = weights_1,
                             weights_2 = weights_2,
                             target_data_1 = target_data_1,
@@ -710,11 +724,11 @@ def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
                             num_elites = num_elites,
                             simulator = simulator,
                             nogui = nogui,
-                            show_plot_already = True,
+                            show_plot_already = False,
                             seed = seed,
                             known_target_values = {},
                             dry_run = False,
-                            num_parallel_evaluations = 12,
+                            num_parallel_evaluations = 18,
                             extra_report_info = {'dataset':dataset,"Prototype":"Izhikevich"})
 
 
@@ -971,17 +985,19 @@ if __name__ == '__main__':
         dataset = 471141261
         dataset = 325941643
         dataset = 479704527
-        dataset = 464198958
         dataset = 485058595
         dataset = 480169178
         dataset = 480351780
-        dataset = 468120757
         dataset = 480353286
+        dataset = 464198958
+        dataset = 468120757
+        dataset = 476686112  # l23 aspiny
+        dataset = 477127614  # L23 spiny
         
-        scale1 = .5
-        scale2 = .5
-        seed = 12345
-        
+        scale1 = .1
+        scale2 = 2
+        seed = 123456
+        mutation_rate = .1
         
         if len(sys.argv)>2:
             print("Parsing args: %s"%sys.argv)
@@ -991,7 +1007,7 @@ if __name__ == '__main__':
             scale2 = float(sys.argv[6])
             seed = float(sys.argv[7])
         
-        run_2_stage_izh(dataset, simulator, scale1, scale2,seed, nogui=nogui)
+        run_2_stage_izh(dataset, simulator, scale1, scale2,seed, nogui=nogui, mutation_rate=mutation_rate)
 
     ####  Run a 2 stage optimisation for AllenHH cell model
 
@@ -1123,9 +1139,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = .2
-        scale2 = 4
-        seed = 123234466
+        scale1 = .1
+        scale2 = 8
+        seed = 123
         
         sys.path.append("../data")
         import data_helper as DH
@@ -1137,8 +1153,8 @@ if __name__ == '__main__':
 
         for dataset_id in dataset_ids:
             ###f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
-            f.write('python tuneAllen.py -allenhh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
-            ###f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            #f.write('python tuneAllen.py -allenhh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             f.write('swapoff -a\n')
