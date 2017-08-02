@@ -109,115 +109,129 @@ def analyse_extracted_data():
 
     info['datasets'] = [] 
 
+    to_include = None
+    #to_include = ['468120757','477127614','479704527', '480351780', '480353286','485058595']
+    #to_include = ['468120757']
+    #to_include = ['477127614']
+    
+    
     for f in analysed:
         
-        print("*************************\n Looking at: %s"%f)
+        if to_include == None or f.split('_')[0] in to_include:
 
-        dataset = {}
-        info['datasets'].append(dataset)
-        '''
-        with open(f, "r") as json_file:
-            data = json.load(json_file)
+            print("*************************\n Looking at: %s"%f)
 
-        id = data['data_set_id']
-        sweeps = data['sweeps']
+            dataset = {}
+            info['datasets'].append(dataset)
 
-        print("Looking at data analysis in %s (dataset: %s)"%(f,id))
+            '''
+            with open(f, "r") as json_file:
+                data = json.load(json_file)
 
-        dataset['id'] = id
+            id = data['data_set_id']
+            sweeps = data['sweeps']
 
-        currents_v_sub = {}
-        currents_rate_spike = {}
+            print("Looking at data analysis in %s (dataset: %s)"%(f,id))
 
-        for s in sweeps.keys():
-            current = float(sweeps[s]["sweep_metadata"]["aibs_stimulus_amplitude_pa"])
-            print("Sweep %s (%s pA)"%(s, current))
+            dataset['id'] = id
 
-            freq_key = '%s:mean_spike_frequency'%(s)
-            steady_state_key = '%s:average_1000_1200'%(s)
+            currents_v_sub = {}
+            currents_rate_spike = {}
 
-            if sweeps[s]["pyelectro_iclamp_analysis"].has_key(freq_key):
-                currents_rate_spike[current] = sweeps[s]["pyelectro_iclamp_analysis"][freq_key]
-            else:
-                currents_rate_spike[current] = 0
-                currents_v_sub[current] = sweeps[s]["pyelectro_iclamp_analysis"][steady_state_key]
+            for s in sweeps.keys():
+                current = float(sweeps[s]["sweep_metadata"]["aibs_stimulus_amplitude_pa"])
+                print("Sweep %s (%s pA)"%(s, current))
 
-        curents_sub = currents_v_sub.keys()
-        curents_sub.sort()
-        v = [currents_v_sub[c] for c in curents_sub]
-        '''
-        data, v_sub, curents_sub, v, curents_spike = get_if_iv_for_dataset(f)
+                freq_key = '%s:mean_spike_frequency'%(s)
+                steady_state_key = '%s:average_1000_1200'%(s)
 
-        id = data['data_set_id']
-        dataset['id'] = data['data_set_id']
-        metas = ['aibs_cre_line','aibs_dendrite_type','location']
-        for m in metas:
-            dataset[m] = data[m]
+                if sweeps[s]["pyelectro_iclamp_analysis"].has_key(freq_key):
+                    currents_rate_spike[current] = sweeps[s]["pyelectro_iclamp_analysis"][freq_key]
+                else:
+                    currents_rate_spike[current] = 0
+                    currents_v_sub[current] = sweeps[s]["pyelectro_iclamp_analysis"][steady_state_key]
 
-        target_file = 'summary/%s_%s.png'
+            curents_sub = currents_v_sub.keys()
+            curents_sub.sort()
+            v = [currents_v_sub[c] for c in curents_sub]
+            '''
+            data, v_sub, curents_sub, v, curents_spike = get_if_iv_for_dataset(f)
 
-        pynml.generate_plot([curents_sub],
-                            [v_sub], 
-                            "Subthreshold responses: %s"%id, 
-                            colors = ['k'], 
-                            linestyles=['-'],
-                            markers=['o'],
-                            xaxis = "Current (pA)", 
-                            yaxis = "Steady state (mV)", 
-                            xlim = [-200, 400],
-                            ylim = [-120, -40],
-                            grid = True,
-                            show_plot_already=False,
-                            save_figure_to = target_file%('subthreshold', id))
-        #plt.plot(curents_sub, , color='k', linestyle='-', marker='o')
+            id = data['data_set_id']
+            dataset['id'] = data['data_set_id']
+            metas = ['aibs_cre_line','aibs_dendrite_type','location']
+            for m in metas:
+                dataset[m] = data[m]
+
+            target_file = 'summary/%s_%s.png'
+
+            pynml.generate_plot([curents_sub],
+                                [v_sub], 
+                                "Subthreshold responses: %s"%id, 
+                                colors = ['k'], 
+                                linestyles=['-'],
+                                markers=['o'],
+                                xaxis = "Current (pA)", 
+                                yaxis = "Steady state (mV)", 
+                                xlim = [-200, 400],
+                                ylim = [-120, -40],
+                                grid = True,
+                                show_plot_already=False,
+                                save_figure_to = target_file%('subthreshold', id))
+            #plt.plot(curents_sub, , color='k', linestyle='-', marker='o')
 
 
-        pynml.generate_plot([curents_spike],
-                            [v], 
-                            "Spiking frequencies: %s"%id, 
-                            colors = ['k'], 
-                            linestyles=['-'],
-                            markers=['o'],
-                            xaxis = "Current (pA)", 
-                            yaxis = "Firing frequency (Hz)", 
-                            xlim = [-200, 400],
-                            ylim = [-10, 120],
-                            grid = True,
-                            show_plot_already=False,
-                            save_figure_to = target_file%('spikes', id))
+            pynml.generate_plot([curents_spike],
+                                [v], 
+                                "Spiking frequencies: %s"%id, 
+                                colors = ['k'], 
+                                linestyles=['-'],
+                                markers=['o'],
+                                xaxis = "Current (pA)", 
+                                yaxis = "Firing frequency (Hz)", 
+                                xlim = [-200, 400],
+                                ylim = [-10, 120],
+                                grid = True,
+                                show_plot_already=False,
+                                save_figure_to = target_file%('spikes', id))
 
-        data, indices = pynml.reload_standard_dat_file('%s.dat'%id)
-        x = []
-        y = []
-        tt = [t*1000 for t in data['t']]
-        for i in indices:
-            x.append(tt)
-            y.append([v*1000 for v in data[i]])
+            data, indices = pynml.reload_standard_dat_file('%s.dat'%id)
+            x = []
+            y = []
+            tt = [t*1000 for t in data['t']]
+            for i in indices:
+                x.append(tt)
+                y.append([v*1000 for v in data[i]])
 
-        pynml.generate_plot(x,
-                            y, 
-                            "Example traces from: %s"%id, 
-                            xaxis = "Time (ms)", 
-                            yaxis = "Membrane potential (mV)", 
-                            ylim = [-120, 60],
-                            show_plot_already=False,
-                            save_figure_to = target_file%('traces', id))
-                            
-        pynml.generate_plot(x,
-                            y, 
-                            "Example traces from: %s"%id, 
-                            ylim = [-120, 60],
-                            show_plot_already=False)
-                            
-        plt.axis('off')
-        
-        fig_file = target_file%('traces_FIG', id)
-        plt.savefig(fig_file, bbox_inches='tight', pad_inches=0)
-        from PIL import Image
-        img = Image.open(fig_file)
+            pynml.generate_plot(x,
+                                y, 
+                                "Example traces from: %s"%id, 
+                                xaxis = "Time (ms)", 
+                                yaxis = "Membrane potential (mV)", 
+                                ylim = [-120, 60],
+                                show_plot_already=False,
+                                save_figure_to = target_file%('traces', id))
 
-        img2 = img.crop((60, 40, 660, 480))
-        img2.save(fig_file)
+            ax = pynml.generate_plot(x,
+                                y, 
+                                "Example traces from: %s"%id, 
+                                ylim = [-120, 60],
+                                grid = False,
+                                show_plot_already=False)
+                                
+            scale = 1 if not '477127614' in f else 1000
+            
+            ax.plot([1300*scale,1300*scale,1500*scale],[40,20,20],color='k',linewidth=5,marker='',solid_capstyle="butt",solid_joinstyle='miter')
+
+            plt.axis('off')
+
+            fig_file = target_file%('traces_FIG', id)
+            plt.savefig(fig_file, bbox_inches='tight', pad_inches=0)
+            from PIL import Image
+            img = Image.open(fig_file)
+
+            img2 = img.crop((60, 40, 660, 480))
+            img2.save(fig_file)
 
     print(info)
     make_html_file(info) 

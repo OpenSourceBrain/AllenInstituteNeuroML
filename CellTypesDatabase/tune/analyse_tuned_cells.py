@@ -39,7 +39,7 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
     if_iv_data_files = 'summary/%s_%s.dat'
     
 
-    data, v_sub, curents_sub, v, curents_spike = get_if_iv_for_dataset('%s%s_analysis.json'%(analysis_dir,dataset_id))
+    data, v_sub, curents_sub, freqs, curents_spike = get_if_iv_for_dataset('%s%s_analysis.json'%(analysis_dir,dataset_id))
     
     if densities:
 
@@ -123,8 +123,8 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
                                             return_axes = True)
 
 
-        iv_ax.plot(curents_sub, v_sub,color='#ff2222',marker='o', linestyle='',zorder=1)   
-        if_ax.plot(curents_spike, v,color='#ff2222',marker='o', linestyle='',zorder=1)
+        iv_ax.plot(curents_sub, v_sub,   color='#ff2222',marker='o', linestyle='',zorder=1)   
+        if_ax.plot(curents_spike, freqs ,color='#ff2222',marker='o', linestyle='',zorder=1)
 
         iv_ax.get_figure().savefig(images%(reference, 'iv'),bbox_inches='tight')
         if_ax.get_figure().savefig(images%(reference, 'if'),bbox_inches='tight')
@@ -149,10 +149,11 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
                     data, indeces = reload_standard_dat_file(f)
                     
                     ifv_x.append(data['t'])
+                    
                     if ii=='if':
-                        ifv_y.append(data[0])
+                        ifv_y.append([ff-offset for ff in data[0]])
                     else:
-                        ifv_y.append([vv+offset for vv in data[0]])
+                        ifv_y.append([vv for vv in data[0]])
                         
                     
                     markers.append('')
@@ -160,20 +161,20 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
                     lines.append('-')
                     
         ifv_x.append(curents_sub)
-        vvsub = [vv+offset for vv in v_sub]
+        vvsub = [vv for vv in v_sub]
         
         ifv_y.append(vvsub)
         
         sub_color = '#888888'
         markers.append('D')
-        colors.append(sub_color)
+        colors.append('k')
         lines.append('')
         
         ifv_x.append(curents_spike)
-        ifv_y.append(v)
+        ifv_y.append([ff-offset for ff in freqs])
         
         markers.append('o')
-        colors.append('k')
+        colors.append(sub_color)
         lines.append('')
         
         import matplotlib
@@ -181,7 +182,7 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
 
         print ifv_x
         print ifv_y
-        ylim = [-10, 80]
+        ylim = [-105, -20]
         font_size = 18
         ax1 = pynml.generate_plot(ifv_x,
                     ifv_y, 
@@ -196,11 +197,11 @@ def analyse_cell(dataset_id, type, info, nogui = False, densities=False, analysi
                     title_above_plot=False)
                     
         plt.xlabel('Input current (pA)', fontsize = font_size)
-        plt.ylabel('Firing frequency (Hz)', fontsize = font_size)
+        plt.ylabel("Steady membrane potential (mV)", fontsize = font_size)
         
         ax2 = ax1.twinx()
-        plt.ylim([ylim[0]-offset,ylim[1]-offset])
-        plt.ylabel("Steady membrane potential (mV)", color=sub_color, fontsize = font_size)
+        plt.ylim([ylim[0]+offset,ylim[1]+offset])
+        plt.ylabel('Firing frequency (Hz)', color=sub_color, fontsize = font_size)
         ax2.tick_params(axis='y', colors=sub_color)
         
         
@@ -301,11 +302,12 @@ if __name__ == '__main__':
     #dataset_ids = dataset_ids[:3]
     #dataset_ids = [468120757]
     #dataset_ids = [464198958]
+    #dataset_ids = [476686112]
 
     for dataset_id in dataset_ids:
 
         type = 'HH'
-        type = 'Izh'
+        #type = 'Izh'
         #type = 'AllenHH'
 
         ##analyse_cell(dataset_id, type, info, nogui,densities=densities, analysis_dir='../../data/bulk_analysis/')

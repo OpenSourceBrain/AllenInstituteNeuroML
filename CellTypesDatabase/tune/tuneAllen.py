@@ -356,7 +356,7 @@ def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,s
                                 max_constraints_2 = max_constraints_2,
                                 min_constraints_1 = min_constraints_1,
                                 min_constraints_2 = min_constraints_2,
-                                delta_constraints = 0.01,
+                                delta_constraints = 0.05,
                                 weights_1 = weights_1,
                                 weights_2 = weights_2,
                                 target_data_1 = target_data_1,
@@ -379,7 +379,7 @@ def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,s
                                 seed = seed,
                                 known_target_values = {},
                                 dry_run = False,
-                                num_parallel_evaluations = 12,
+                                num_parallel_evaluations = 16,
                                 extra_report_info = {'dataset':dataset,"Prototype":"HH"})
         
         if not nogui:
@@ -714,10 +714,10 @@ def run_2_stage_izh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
                             dt = 0.05,
                             population_size_1 = scale(scale1,100,10),
                             population_size_2 = scale(scale2,100,10),
-                            max_evaluations_1 = scale(scale1,800,20),
-                            max_evaluations_2 = scale(scale2,800,10),
-                            num_selected_1 = scale(scale1,30,5),
-                            num_selected_2 = scale(scale2,30,5),
+                            max_evaluations_1 = scale(scale1,1200,20),
+                            max_evaluations_2 = scale(scale2,1200,10),
+                            num_selected_1 = scale(scale1,50,5),
+                            num_selected_2 = scale(scale2,50,5),
                             num_offspring_1 = scale(scale1,20,5),
                             num_offspring_2 = scale(scale2,20,5),
                             mutation_rate = mutation_rate,
@@ -991,12 +991,12 @@ if __name__ == '__main__':
         dataset = 480353286
         dataset = 464198958
         dataset = 468120757
-        dataset = 476686112  # l23 aspiny
         dataset = 477127614  # L23 spiny
+        dataset = 476686112  # l23 aspiny
         
         scale1 = .1
-        scale2 = 2
-        seed = 123456
+        scale2 = 8
+        seed = 123456789
         mutation_rate = .1
         
         if len(sys.argv)>2:
@@ -1120,10 +1120,13 @@ if __name__ == '__main__':
         dataset = 464198958
         dataset = 485058595
         dataset = 486111903
+        dataset = 464198958
         
-        scale1 = 1
-        scale2 = 1.5
+        scale1 = .2
+        scale2 = .2
         seed = 12345
+        mutation_rate = .1
+        
         if len(sys.argv)>2:
             print("Parsing args: %s"%sys.argv)
             dataset = int(sys.argv[3])
@@ -1132,15 +1135,15 @@ if __name__ == '__main__':
             scale2 = float(sys.argv[6])
             seed = float(sys.argv[7])
         
-        run_2_stage_hh(dataset, simulator, scale1, scale2,seed, nogui=nogui,mutation_rate = 0.9)
+        run_2_stage_hh(dataset, simulator, scale1, scale2,seed, nogui=nogui,mutation_rate = mutation_rate)
         
     elif '-all' in sys.argv:
         
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = .1
-        scale2 = 8
+        scale1 = 2
+        scale2 = 5
         seed = 123
         
         sys.path.append("../data")
@@ -1152,9 +1155,9 @@ if __name__ == '__main__':
         f = open('tuneAll.sh','w')
 
         for dataset_id in dataset_ids:
-            ###f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #f.write('python tuneAllen.py -allenhh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
-            f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            #f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             f.write('swapoff -a\n')
