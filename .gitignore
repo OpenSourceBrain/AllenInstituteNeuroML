@@ -273,3 +273,17 @@ original.v.dat
 /CellTypesDatabase/tune/prototypes/SmithEtAl2013/*.dat
 /CellTypesDatabase/tune/prototypes/SmithEtAl2013/*_nrn.py
 /CellTypesDatabase/tune/prototypes/AllenHH/*_nrn.py
+/CellTypesDatabase/data/summary/Figure.html
+/CellTypesDatabase/data/summary/traces_FIG_*.png
+/CellTypesDatabase/tune/tuned_cells/summary/HH_*_traces_FIG.png
+/CellTypesDatabase/tune/tuned_cells/summary/Izh_*_traces_FIG.png
+/CellTypesDatabase/tune/tuned_cells/summary/AllenHH_*_if.dat
+/CellTypesDatabase/tune/tuned_cells/summary/AllenHH_*_if_iv_FIG.png
+/CellTypesDatabase/tune/tuned_cells/summary/HH_*_if.dat
+/CellTypesDatabase/tune/tuned_cells/summary/HH_*_if_iv_FIG.png
+/CellTypesDatabase/tune/tuned_cells/summary/Izh_*_if.dat
+/CellTypesDatabase/tune/tuned_cells/summary/Izh_*_if_iv_FIG.png
+/CellTypesDatabase/tune/tuned_cells/summary/HH_*_iv.dat
+/CellTypesDatabase/tune/tuned_cells/summary/Izh_*_iv.dat
+/CellTypesDatabase/tune/tuned_cells/summary/AllenHH_*_iv.dat
+/CellTypesDatabase/tune/tuned_cells/summary/AllenHH_*_traces_FIG.png
