@@ -303,12 +303,13 @@ if __name__ == '__main__':
     #dataset_ids = [468120757]
     #dataset_ids = [464198958]
     #dataset_ids = [476686112]
+    #dataset_ids = [486111903]
 
     for dataset_id in dataset_ids:
 
         type = 'HH'
         #type = 'Izh'
-        #type = 'AllenHH'
+        type = 'AllenHH'
 
         ##analyse_cell(dataset_id, type, info, nogui,densities=densities, analysis_dir='../../data/bulk_analysis/')
 

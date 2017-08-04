@@ -479,12 +479,12 @@ def run_2_stage_allenhh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale
                                 population_size_2 = scale(scale2,100,10),
                                 max_evaluations_1 = scale(scale1,1000,20),
                                 max_evaluations_2 = scale(scale2,1000,10),
-                                num_selected_1 = scale(scale1,20,5,30),
-                                num_selected_2 = scale(scale2,20,5,30),
+                                num_selected_1 = scale(scale1,30,5,30),
+                                num_selected_2 = scale(scale2,30,5,30),
                                 num_offspring_1 = scale(scale1,30,5),
                                 num_offspring_2 = scale(scale2,30,5),
                                 mutation_rate = mutation_rate,
-                                num_elites = scale(scale2,5,2),
+                                num_elites = scale(scale2,5,2,8),
                                 simulator = simulator,
                                 nogui = nogui,
                                 show_plot_already = False,
@@ -1029,7 +1029,7 @@ if __name__ == '__main__':
         #dataset = 479704527
         
         scale1 = .2
-        scale2 = 1
+        scale2 = 5
         seed = 12345678
         mutation_rate = 0.15
     
@@ -1142,9 +1142,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 2
+        scale1 = .2
         scale2 = 5
-        seed = 123
+        seed = 1234
         
         sys.path.append("../data")
         import data_helper as DH
@@ -1155,8 +1155,8 @@ if __name__ == '__main__':
         f = open('tuneAll.sh','w')
 
         for dataset_id in dataset_ids:
-            f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
-            #f.write('python tuneAllen.py -allenhh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            #f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            f.write('python tuneAllen.py -allenhh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
