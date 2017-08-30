@@ -48,27 +48,16 @@
         <biophysicalProperties id="biophys">
 
             <membraneProperties>
-                
-                <channelDensity condDensity="0.1 mS_per_cm2" id="LeakConductance_all" ionChannel="LeakConductance" erev="-80.0 mV" ion="non_specific"/>
-                
-                <channelDensity condDensity="50.0 mS_per_cm2" id="Na_all" ionChannel="Na" ion="na" erev="50.0 mV"/>
-                
-                <channelDensity condDensity="5.0 mS_per_cm2" id="Kd_all" ionChannel="Kd" ion="k" erev="-100.0 mV"/>
-                
-                <channelDensity condDensity="0.07 mS_per_cm2" id="IM_all" ionChannel="IM" ion="k" erev="-100.0 mV"/>
-
+                <channelDensity id="LeakConductance_all" ionChannel="LeakConductance" condDensity="0.0355011158369 mS_per_cm2" erev="-75.3072429342 mV" ion="non_specific"/>
+                <channelDensity id="Kd_all" ionChannel="Kd" condDensity="11.1801817337 mS_per_cm2" erev="-92.3576337261 mV" ion="k"/>
+                <channelDensity id="IM_all" ionChannel="IM" condDensity="0.0408143758982 mS_per_cm2" erev="-70.0220342463 mV" ion="k"/>
+                <channelDensityVShift id="Na_all" ionChannel="Na" condDensity="88.7430313547 mS_per_cm2" erev="51.1587993021 mV" ion="na" vShift="0mV"/>
                 <spikeThresh value="0 mV"/>
-
-                <specificCapacitance value="1.0 uF_per_cm2"/>
-
-                <initMembPotential value="-80.0 mV"/>
-
+                <specificCapacitance value="1.98245850145 uF_per_cm2"/>
+                <initMembPotential value="-73.0 mV"/>
             </membraneProperties>
-
             <intracellularProperties>
-
                 <resistivity value="100 ohm_cm"/>
-
             </intracellularProperties>
 
         </biophysicalProperties>
