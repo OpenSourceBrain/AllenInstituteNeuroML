@@ -41,12 +41,12 @@ parameters_hh = ['cell:RS/channelDensity:LeakConductance_all/mS_per_cm2',
               'cell:RS/channelDensity:Kd_all/mS_per_cm2',
               'cell:RS/channelDensity:IM_all/mS_per_cm2',
               'cell:RS/erev_id:Na_all/mV',
-              'cell:RS/erev_id:Kd_all/mV',
-              'cell:RS/erev_id:IM_all/mV']
+              'cell:RS/erev_id:Kd_all/mV+cell:RS/erev_id:IM_all/mV',
+              'cell:RS/vShift_channelDensity:Na_all/mV']
 
 
-max_constraints_hh = [0.2,   -60,  4,  80, 30, 5,    60, -70, -70]
-min_constraints_hh = [0.01, -100, 0.2, 10, 1, 1e-3, 50, -90, -90]
+max_constraints_hh = [0.2,   -60,  4,  80, 30, 5,    60, -70, 10]
+min_constraints_hh = [0.01, -100, 0.2, 10, 1, 1e-3, 50, -90, -10]
 
 
 
@@ -328,22 +328,22 @@ def compare(sim_data_file, show_plot_already=True, dataset=471141261):
                         show_plot_already=show_plot_already)
 
 
-def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False,mutation_rate = 0.9):
+def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False,mutation_rate = 0.9, tail=1):
     
         print("Running 2 stage hh optimisation")
         
         type = 'HH'
         ref = 'network_%s_%s'%(dataset, type)
 
-        max_constraints_1 = [1,   -50,  5,   0, 0, 0, 55, -80, -80]
-        min_constraints_1 = [0.001, -100, 0.2, 0, 0, 0, 55, -80, -80]
+        max_constraints_1 = [1,     -50,  5,   0, 0, 0, 55, -80, 0]
+        min_constraints_1 = [0.001, -100, 0.2, 0, 0, 0, 55, -80, 0]
 
         # For a quick test...
-        # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80, -80]
-        # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80, -80]
+        # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80]
+        # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80]
 
-        max_constraints_2 = ['x',   'x',   'x',    100,  35,   5,    60, -70,  -70]
-        min_constraints_2 = ['x',   'x',   'x',    10,   1,    1e-6, 50, -100, -100]
+        max_constraints_2 = ['x',   'x',   'x',    100,  35,   5,    60, -70,  10]
+        min_constraints_2 = ['x',   'x',   'x',    10,   1,    1e-6, 50, -100, -10]
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
@@ -366,7 +366,7 @@ def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,s
                                 population_size_1 = scale(scale1,100,10),
                                 population_size_2 = scale(scale2,100,10),
                                 max_evaluations_1 = scale(scale1,1000,20),
-                                max_evaluations_2 = scale(scale2,1000,10),
+                                max_evaluations_2 = scale(scale2,1000,10)*tail,
                                 num_selected_1 = scale(scale1,30,5),
                                 num_selected_2 = scale(scale2,30,5),
                                 num_offspring_1 = scale(scale1,30,5),
@@ -443,11 +443,11 @@ def run_2_stage_allenhh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale
         max_constraints_1 = [1e-3, -60,  20,   0,  0,       0, 0, 0, 0, 0,       0, 0,          50, -100]
         min_constraints_1 = [1e-6, -100, 0.1,  0,  0,       0, 0, 0, 0, 0,       0, 0,          50, -100]
 
-        max_constraints_2 = ['x', 'x', 'x',    5,  .00001,  1, .3, 1, .1,  0.01,   0.05, 0.005,   60,  -80]
-        min_constraints_2 = ['x', 'x', 'x',   .005, 0,      0, 0,  0,  0,  0,      0,    0,       45, -110]
+        max_constraints_2 = ['x', 'x', 'x',    5,  .00001,  1, .3, 1, .1,  0.01,   0.05, 0.005,   60,  -70]
+        min_constraints_2 = ['x', 'x', 'x',   .005, 0,      0, 0,  0,  0,  0,      0,    0,       45, -100]
         
         use_2_step = False
-        #use_2_step = True
+        use_2_step = True
         
         if not use_2_step:
             delta_constraints = 1
@@ -455,7 +455,7 @@ def run_2_stage_allenhh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale
                 max_constraints_2[i] = max_constraints_1[i]
                 min_constraints_2[i] = min_constraints_1[i]
         else:
-            delta_constraints = 0.01
+            delta_constraints = 0.1
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
@@ -484,7 +484,7 @@ def run_2_stage_allenhh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale
                                 num_offspring_1 = scale(scale1,30,5),
                                 num_offspring_2 = scale(scale2,30,5),
                                 mutation_rate = mutation_rate,
-                                num_elites = scale(scale2,5,2,8),
+                                num_elites = 1,
                                 simulator = simulator,
                                 nogui = nogui,
                                 show_plot_already = False,
@@ -1028,10 +1028,10 @@ if __name__ == '__main__':
         dataset = 476686112  # l23 aspiny
         #dataset = 479704527
         
-        scale1 = .2
-        scale2 = 5
-        seed = 12345678
-        mutation_rate = 0.15
+        scale1 = .3
+        scale2 = .8
+        seed = 1222244
+        mutation_rate = [0.5, 0.15]
     
          
         if len(sys.argv)>2:
@@ -1064,8 +1064,8 @@ if __name__ == '__main__':
         dataset = 477127614
         #dataset = 480351780 
         
-        scale1 = 1
-        scale2 = 1
+        scale1 = 2
+        scale2 = 3
         seed = 123
     
          
@@ -1121,11 +1121,14 @@ if __name__ == '__main__':
         dataset = 485058595
         dataset = 486111903
         dataset = 464198958
+        dataset = 476686112  # l23 aspiny
+        dataset = 477127614  # L23 spiny
         
-        scale1 = .2
-        scale2 = .2
-        seed = 12345
-        mutation_rate = .1
+        scale1 = 6
+        scale2 = 10
+        tail = 3
+        seed = 1111
+        mutation_rate = [0.5, 0.15]
         
         if len(sys.argv)>2:
             print("Parsing args: %s"%sys.argv)
@@ -1142,9 +1145,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = .2
-        scale2 = 5
-        seed = 1234
+        scale1 = 5
+        scale2 = 15
+        seed = 1234566677
         
         sys.path.append("../data")
         import data_helper as DH
@@ -1155,8 +1158,8 @@ if __name__ == '__main__':
         f = open('tuneAll.sh','w')
 
         for dataset_id in dataset_ids:
-            #f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
-            f.write('python tuneAllen.py -allenhh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            #f.write('python tuneAllen.py -allenhh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)

@@ -309,7 +309,7 @@ if __name__ == '__main__':
 
         type = 'HH'
         #type = 'Izh'
-        type = 'AllenHH'
+        #type = 'AllenHH'
 
         ##analyse_cell(dataset_id, type, info, nogui,densities=densities, analysis_dir='../../data/bulk_analysis/')
 
