@@ -50,9 +50,9 @@
   AIBS:subject:age = P53
   AIBS:aibs_specimen_name = Sst-IRES-Cre;Ai14-165865.03.01.01
 </notes>
-            <property tag="color" value="0.8 1 0.8"/>
+            <property tag="color" value="0 0.4 0"/>
             <annotation>
-                <property tag="color" value="0.8 1 0.8"/>
+                <property tag="color" value="0 0.4 0"/>
             </annotation>
             <instance id="0">
                 <location x="1600." y="-500." z="0."/>
@@ -113,9 +113,9 @@
   AIBS:subject:age = P54
   AIBS:aibs_specimen_name = Htr3a-Cre_NO152;Ai14-178904.04.01.01
 </notes>
-            <property tag="color" value="1 0.4 0.4"/>
+            <property tag="color" value="0.6 0 0"/>
             <annotation>
-                <property tag="color" value="1 0.4 0.4"/>
+                <property tag="color" value="0.6 0 0"/>
             </annotation>
             <instance id="0">
                 <location x="1600." y="0." z="0."/>
@@ -176,9 +176,9 @@
   AIBS:subject:age = P52
   AIBS:aibs_specimen_name = Sst-IRES-Cre;Ai14-179870.04.01.01
 </notes>
-            <property tag="color" value="0.8 1 0.8"/>
+            <property tag="color" value="0 0.4 0"/>
             <annotation>
-                <property tag="color" value="0.8 1 0.8"/>
+                <property tag="color" value="0 0.4 0"/>
             </annotation>
             <instance id="0">
                 <location x="1800." y="-500." z="0."/>
@@ -323,9 +323,9 @@
   AIBS:subject:age = unknown
   AIBS:aibs_specimen_name = Htr3a-Cre_NO152;Ai14-192821.05.01.01
 </notes>
-            <property tag="color" value="0.8 1 0.8"/>
+            <property tag="color" value="0 0.4 0"/>
             <annotation>
-                <property tag="color" value="0.8 1 0.8"/>
+                <property tag="color" value="0 0.4 0"/>
             </annotation>
             <instance id="0">
                 <location x="2000." y="-500." z="0."/>
@@ -365,9 +365,9 @@
   AIBS:subject:age = P48
   AIBS:aibs_specimen_name = Htr3a-Cre_NO152;Ai14-175482.03.02.01
 </notes>
-            <property tag="color" value="1 0.4 0.4"/>
+            <property tag="color" value="0.6 0 0"/>
             <annotation>
-                <property tag="color" value="1 0.4 0.4"/>
+                <property tag="color" value="0.6 0 0"/>
             </annotation>
             <instance id="0">
                 <location x="1900." y="0." z="0."/>

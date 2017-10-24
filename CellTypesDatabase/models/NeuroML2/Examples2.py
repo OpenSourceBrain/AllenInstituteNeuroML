@@ -91,13 +91,13 @@ Y_layer['6a'] = -700
 
 colours = {}
 colours['2/3spiny'] = occ.L23_PRINCIPAL_CELL
-colours['2/3aspiny'] = occ.L23_INTERNEURON
+colours['2/3aspiny'] = occ.L23_PRINCIPAL_CELL
 colours['4spiny'] = occ.L4_PRINCIPAL_CELL
-colours['4aspiny'] = occ.L4_INTERNEURON
+colours['4aspiny'] = occ.L4_PRINCIPAL_CELL
 colours['5spiny'] = occ.L5_PRINCIPAL_CELL
-colours['5aspiny'] = occ.L5_INTERNEURON
+colours['5aspiny'] = occ.L5_PRINCIPAL_CELL
 colours['6aspiny'] = occ.L6_PRINCIPAL_CELL
-colours['6aaspiny'] = occ.L6_INTERNEURON
+colours['6aaspiny'] = occ.L6_PRINCIPAL_CELL
 
 numbers = {}
 
