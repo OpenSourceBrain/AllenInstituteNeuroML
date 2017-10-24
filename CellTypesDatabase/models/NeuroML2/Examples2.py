@@ -99,6 +99,8 @@ colours['5aspiny'] = occ.L5_INTERNEURON
 colours['6aspiny'] = occ.L6_PRINCIPAL_CELL
 colours['6aaspiny'] = occ.L6_INTERNEURON
 
+numbers = {}
+
 import glob
 
 all_cell_files  = glob.glob('Cell*cell.nml')
@@ -107,6 +109,40 @@ count_a = 0
 count_s = 0
 
 max_to_include = 1000
+
+for cell_file in all_cell_files:
+    
+    if max_to_include>0:
+        print("----- Adding?: %s"%cell_file)
+        cell_doc = loaders.NeuroMLLoader.load(cell_file)
+        cell = cell_doc.cells[0]
+        include_this = False
+
+        info = ""
+        for p in cell.properties:
+            info += "  %s = %s\n"%(p.tag,p.value)
+            
+            if p.tag == 'AIBS:intracellular_ephys:Electrode 1:location':
+                include_this = True
+                layer = p.value.split(" ")[-1]
+            if p.tag == 'AIBS:aibs_dendrite_type':
+                dend_type = p.value
+
+        for cd in cell.biophysical_properties.membrane_properties.channel_densities:
+            if cd.ion_channel=="Kv2like":
+                include_this = False
+
+        if include_this:
+            ref = layer+dend_type.split()[-1]
+            if not ref in numbers: numbers[ref]=0
+            numbers[ref]+=1
+            print("  ----- Adding: %s, %s"%(cell_file,dend_type))
+        
+    max_to_include-=1
+    
+max_to_include = 1000
+        
+numbers_left = numbers.copy()
 
 for cell_file in all_cell_files:
     
@@ -141,7 +177,8 @@ for cell_file in all_cell_files:
 
             net.populations.append(pop)
 
-            p = Property(tag='color', value=colours[layer+dend_type.split()[-1]])
+            ref = layer+dend_type.split()[-1]
+            p = Property(tag='color', value=colours[ref])
             pop.properties.append(p)
             pop.annotation = Annotation()
             p.original_tagname_ = 'property'
@@ -151,16 +188,19 @@ for cell_file in all_cell_files:
             inst = Instance(id=0)
             pop.instances.append(inst)
 
-            separation = 200
-            offset = separation*(per_row+2)
+            separation = 300 * (4./numbers[ref])
+            offset = 1600
+            index = numbers[ref] - numbers_left[ref]
             if dend_type=='spiny':
-                X= separation * (count_s%per_row)
-                Z= separation * (count_s/per_row)
+                X= separation * index
+                Z= 0
                 count_s+=1
             else:
-                X= offset + (separation * (count_a%per_row))
-                Z=  (separation * (count_a/per_row))
+                X= offset + (separation * index /2)
+                Z= 0
                 count_a+=1
+                
+            numbers_left[ref]-=1
 
             Y = Y_layer[layer]
 
@@ -168,6 +208,7 @@ for cell_file in all_cell_files:
             
     max_to_include-=1
 
+print numbers
 
 net_file = '%s.net.nml'%(net_ref)
 writers.NeuroMLWriter.write(net_doc, net_file)
