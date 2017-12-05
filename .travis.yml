@@ -17,7 +17,7 @@ env:
     - OMV_ENGINE=jNeuroML
     - OMV_ENGINE=jNeuroML_NEURON
     - OMV_ENGINE=NEURON
-    - OMV_ENGINE=PyNEURON
+    #- OMV_ENGINE=PyNEURON
     - OMV_ENGINE=jNeuroML_validate
 
 install:
@@ -26,19 +26,20 @@ install:
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
     
     # Install Allen SDK
-    #- pip install pandas
-    - pip install allensdk
+    #- pip install allensdk
+    
+    # See comment in CellTypesDatabase/models/483108201/.test.483108201.nrn.omt_ 
     
     # Need to pre install NEURON so nrnivmodl can be run targeting mod files in a different directory
-    - omv install NEURON
-    - cd CellTypesDatabase/models/483108201
-    - /home/travis/neuron/nrn/x86_64/bin/nrnivmodl modfiles
-    - cd -
+    #- omv install NEURON
+    #- cd CellTypesDatabase/models/483108201
+    #- /home/travis/neuron/nrn/x86_64/bin/nrnivmodl modfiles
+    #- cd -
 
 
 script:
 
-    - omv all_ -V
+    - omv all -V
     
 
     
