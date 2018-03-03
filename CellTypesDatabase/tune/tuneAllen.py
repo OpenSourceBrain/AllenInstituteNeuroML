@@ -435,7 +435,7 @@ def run_2_stage_hh2(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
                       'cell:RS/vShift_channelDensity:Na_all/mV']
 
         max_constraints_1 = [1,     -50,  5,   100, 35, 0, 0, 60, -70,  100, 10]
-        min_constraints_1 = [0.001, -100, 0.2, 10,  1,  0, 0, 50, -100, 100, -10]
+        min_constraints_1 = [0.005, -100, 0.2, 10,  1,  0, 0, 50, -100, 100, -10]
 
         # For a quick test...
         # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80]
@@ -455,10 +455,10 @@ def run_2_stage_hh2(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
                                 max_constraints_2 = max_constraints_2,
                                 min_constraints_1 = min_constraints_1,
                                 min_constraints_2 = min_constraints_2,
-                                delta_constraints = 0.05,
-                                weights_1 = weights_1,
+                                delta_constraints = 0.1,
+                                weights_1 = weights_2,
                                 weights_2 = weights_2,
-                                target_data_1 = target_data_1,
+                                target_data_1 = target_data_2,
                                 target_data_2 = target_data_2,
                                 sim_time = 1500,
                                 dt = 0.01,
@@ -1165,8 +1165,8 @@ if __name__ == '__main__':
         #dataset = 476686112  # l23 aspiny
         #dataset = 479704527
         
-        scale1 = .1
-        scale2 = .1
+        scale1 = 1
+        scale2 = 1
         tail= 1
         seed = 123345
         mutation_rate = [0.5, 0.15]
