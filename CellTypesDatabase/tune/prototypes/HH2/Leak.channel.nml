@@ -5,22 +5,7 @@
 
     <ionChannel id="LeakConductance" conductance="0 pS" type="ionChannelPassive">
 
-        <notes>Passive conductance from Pospischil et al 2008</notes>
-        
-        <annotation>
-            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                <rdf:Description rdf:about="LeakConductance">
-                    
-                    <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-                        <rdf:Bag>
-                            <rdf:li>Minimal Hodgkin-Huxley type models for different classes of cortical and thalamic neurons</rdf:li>
-                            <rdf:li rdf:resource="19011929"/>
-                        </rdf:Bag>
-                    </bqmodel:isDescribedBy>
-
-                </rdf:Description>
-            </rdf:RDF>
-        </annotation>
+        <notes>ChannelML file containing a single Channel description</notes>
                             
     </ionChannel>
 

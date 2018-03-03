@@ -89,9 +89,11 @@ if __name__ == '__main__':
     cell_types = ['HH']
     cell_types = ['Izh']
     cell_types = ['AllenHH']
+    cell_types = ['HH2']
     #cell_types = ['L23_Retuned']
     loc = 'prototypes/SmithEtAl2013'
     loc = 'prototypes/AllenHH'
+    loc = 'prototypes/HH2'
 
     for cell_type in cell_types:
 

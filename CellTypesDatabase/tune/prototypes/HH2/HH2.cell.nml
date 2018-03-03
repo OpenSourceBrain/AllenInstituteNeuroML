@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" 
-         id="HH2">
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" 
+         id="RS">
 
     <include href="Kd.channel.nml"/>
 
-    <include href="I_M.channel.nml"/>
+    <include href="IM.channel.nml"/>
 
     <include href="Leak.channel.nml"/>
 
@@ -18,15 +18,15 @@
 
     <!--<include href="IT.channel.nml"/>-->
 
-    <cell id="HH2">
+    <cell id="RS">
 
         <notes>HH2 cell</notes>
 
         <morphology id="morphology_HH2">
 
             <segment id="0" name="Soma">
-                <proximal x="0.0" y="0.0" z="0.0" diameter="50.0"/>
-                <distal x="0.0" y="0.0" z="0.0" diameter="50.0"/>
+                <proximal x="0.0" y="0.0" z="0.0" diameter="30.0"/>
+                <distal x="0.0" y="0.0" z="0.0" diameter="30.0"/>
             </segment>
 
             <segmentGroup id="Soma" neuroLexId="sao864921383">    <!--
@@ -57,13 +57,13 @@
                 
                 <channelDensity condDensity="0.1 mS_per_cm2" id="LeakConductance_all" ionChannel="LeakConductance" erev="-70.0 mV" ion="non_specific"/>
                 
-                <channelDensity condDensity="30.0 mS_per_cm2" id="Na_all" ionChannel="Na" ion="na" erev="50.0 mV"/>
-                
                 <channelDensity condDensity="5.0 mS_per_cm2" id="Kd_all" ionChannel="Kd" ion="k" erev="-100.0 mV"/>
                 
-                <channelDensity condDensity="0.07 mS_per_cm2" id="IM_all" ionChannel="I_M" ion="k" erev="-100.0 mV"/>
+                <channelDensity condDensity="0.07 mS_per_cm2" id="IM_all" ionChannel="IM" ion="k" erev="-100.0 mV"/>
                 
-                <channelDensityNernst condDensity="0.3 mS_per_cm2" id="IL_all" ionChannel="IL" ion="ca" />
+                <channelDensity condDensity="0.000 mS_per_cm2" id="IL_all" ionChannel="IL" ion="ca" erev="100mV"/>
+                
+                <channelDensityVShift condDensity="30.0 mS_per_cm2" id="Na_all" ionChannel="Na" ion="na" erev="50.0 mV" vShift="0mV"/>
 
                 <spikeThresh value="0 mV"/>
 
@@ -75,7 +75,7 @@
 
             <intracellularProperties>
 
-                <species id="ca" ion="ca" concentrationModel="CaPoolModel" initialConcentration="2.4e-4 mM" initialExtConcentration="2.0 mM"/>
+                <!--<species id="ca" ion="ca" concentrationModel="CaPoolModel" initialConcentration="2.4e-4 mM" initialExtConcentration="2.0 mM"/>-->
             
                 <resistivity value="100 ohm_cm"/>
 

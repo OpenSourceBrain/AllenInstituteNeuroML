@@ -412,7 +412,108 @@ def run_2_stage_hh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,s
         pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
 
 
-def run_2_stage_allenhh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False,mutation_rate = 0.9):
+
+def run_2_stage_hh2(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 12346789, nogui=False,mutation_rate = 0.9, tail=1):
+    
+        print("Running 2 stage hh2 optimisation")
+        
+        type = 'HH2'
+        ref = 'network_%s_%s'%(dataset, type)
+        
+
+
+        parameters_hh2 = ['cell:RS/channelDensity:LeakConductance_all/mS_per_cm2',
+                      'cell:RS/erev_id:LeakConductance_all/mV',
+                      'cell:RS/specificCapacitance:all/uF_per_cm2',
+                      'cell:RS/channelDensity:Na_all/mS_per_cm2',
+                      'cell:RS/channelDensity:Kd_all/mS_per_cm2',
+                      'cell:RS/channelDensity:IM_all/mS_per_cm2',
+                      'cell:RS/channelDensity:IL_all/mS_per_cm2',
+                      'cell:RS/erev_id:Na_all/mV',
+                      'cell:RS/erev_id:Kd_all/mV+cell:RS/erev_id:IM_all/mV',
+                      'cell:RS/erev_id:IL_all/mV',
+                      'cell:RS/vShift_channelDensity:Na_all/mV']
+
+        max_constraints_1 = [1,     -50,  5,   100, 35, 0, 0, 60, -70,  100, 10]
+        min_constraints_1 = [0.001, -100, 0.2, 10,  1,  0, 0, 50, -100, 100, -10]
+
+        # For a quick test...
+        # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80]
+        # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80]
+
+        max_constraints_2 = ['x', 'x', 'x', 'x', 'x', 5,    1,    'x', 'x', 50, 'x']
+        min_constraints_2 = ['x', 'x', 'x', 'x', 'x', 1e-6, 1e-6, 'x', 'x', 60, 'x']
+
+        sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
+
+
+        r1, r2 = run_2stage_optimization('HH2_2stage',
+                                neuroml_file = 'prototypes/HH2/%s.net.nml'%ref,
+                                target =        ref,
+                                parameters = parameters_hh2,
+                                max_constraints_1 = max_constraints_1,
+                                max_constraints_2 = max_constraints_2,
+                                min_constraints_1 = min_constraints_1,
+                                min_constraints_2 = min_constraints_2,
+                                delta_constraints = 0.05,
+                                weights_1 = weights_1,
+                                weights_2 = weights_2,
+                                target_data_1 = target_data_1,
+                                target_data_2 = target_data_2,
+                                sim_time = 1500,
+                                dt = 0.01,
+                                population_size_1 = scale(scale1,100,10),
+                                population_size_2 = scale(scale2,100,10),
+                                max_evaluations_1 = scale(scale1,1000,20),
+                                max_evaluations_2 = scale(scale2,1000,10)*tail,
+                                num_selected_1 = scale(scale1,30,5),
+                                num_selected_2 = scale(scale2,30,5),
+                                num_offspring_1 = scale(scale1,30,5),
+                                num_offspring_2 = scale(scale2,30,5),
+                                mutation_rate = mutation_rate,
+                                num_elites = scale(scale2,3,1, 5),
+                                simulator = simulator,
+                                nogui = nogui,
+                                show_plot_already = False,
+                                seed = seed,
+                                known_target_values = {},
+                                dry_run = False,
+                                num_parallel_evaluations = 16,
+                                extra_report_info = {'dataset':dataset,"Prototype":"HH2"})
+        
+        if not nogui:
+            compare('%s/%s.Pop0.v.dat'%(r1['run_directory'], r1['reference']), show_plot_already=False,    dataset=dataset)
+            compare('%s/%s.Pop0.v.dat'%(r2['run_directory'], r2['reference']), show_plot_already=not nogui,dataset=dataset)
+        
+        
+        final_network = '%s/%s.net.nml'%(r2['run_directory'], ref)
+        
+        nml_doc = pynml.read_neuroml2_file(final_network)
+        
+        cell = nml_doc.cells[0]
+        
+        print("Extracted cell: %s from tuned model"%cell.id)
+        
+        new_id = '%s_%s'%(type, dataset)
+        new_cell_doc = neuroml.NeuroMLDocument(id=new_id)
+        cell.id = new_id
+        
+        cell.notes = "Cell model tuned to Allen Institute Cell Types Database, dataset: "+ \
+                     "%s\n\nTuning procedure metadata:\n\n%s\n"%(dataset, pp.pformat(r2))
+        
+        new_cell_doc.cells.append(cell)
+        new_cell_file = 'tuned_cells/%s/%s.cell.nml'%(type,new_id)
+        
+        channel_files = ['IM.channel.nml', 'Kd.channel.nml', 'Leak.channel.nml', 'Na.channel.nml']
+        for ch in channel_files:
+            new_cell_doc.includes.append(neuroml.IncludeType(ch))
+            
+        pynml.write_neuroml2_file(new_cell_doc, new_cell_file)
+
+
+
+
+def run_2_stage_allenhh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,seed = 1234678, nogui=False,mutation_rate = 0.9, tail=1):
     
         print("Running 2 stage hh optimisation")
         
@@ -478,7 +579,7 @@ def run_2_stage_allenhh(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale
                                 population_size_1 = scale(scale1,100,10),
                                 population_size_2 = scale(scale2,100,10),
                                 max_evaluations_1 = scale(scale1,1000,20),
-                                max_evaluations_2 = scale(scale2,1000,10),
+                                max_evaluations_2 = scale(scale2,1000,10)*tail,
                                 num_selected_1 = scale(scale1,30,5,30),
                                 num_selected_2 = scale(scale2,30,5,30),
                                 num_offspring_1 = scale(scale1,30,5),
@@ -1025,12 +1126,13 @@ if __name__ == '__main__':
         dataset = 468120757
         #dataset = 480351780 
         dataset = 477127614  # L23 spiny
-        dataset = 476686112  # l23 aspiny
+        #dataset = 476686112  # l23 aspiny
         #dataset = 479704527
         
-        scale1 = .3
-        scale2 = .8
-        seed = 1222244
+        scale1 = 8
+        scale2 = 10
+        tail= 3
+        seed = 123345
         mutation_rate = [0.5, 0.15]
     
          
@@ -1042,7 +1144,44 @@ if __name__ == '__main__':
             scale2 = float(sys.argv[6])
             seed = float(sys.argv[7])
         
-        run_2_stage_allenhh(dataset, simulator, scale1, scale2,seed, nogui=nogui, mutation_rate=mutation_rate)
+        run_2_stage_allenhh(dataset, simulator, scale1, scale2,seed, nogui=nogui, mutation_rate=mutation_rate, tail=tail)
+        
+    ####  Run a 2 stage optimisation for AllenHH cell model
+
+    elif '-hh2_2stage' in sys.argv:
+        
+        print("Running 2 stage optimisation")
+        simulator  = 'jNeuroML_NEURON'
+        dataset = 471141261
+        dataset = 325941643
+        dataset = 464198958
+        dataset = 485058595
+        dataset = 480169178
+        dataset = 480351780
+        dataset = 480353286
+        dataset = 468120757
+        #dataset = 480351780 
+        dataset = 477127614  # L23 spiny
+        #dataset = 476686112  # l23 aspiny
+        #dataset = 479704527
+        
+        scale1 = .1
+        scale2 = .1
+        tail= 1
+        seed = 123345
+        mutation_rate = [0.5, 0.15]
+        mutation_rate = 0.9
+    
+         
+        if len(sys.argv)>2:
+            print("Parsing args: %s"%sys.argv)
+            dataset = int(sys.argv[3])
+            simulator = sys.argv[4]
+            scale1 = float(sys.argv[5])
+            scale2 = float(sys.argv[6])
+            seed = float(sys.argv[7])
+        
+        run_2_stage_hh2(dataset, simulator, scale1, scale2,seed, nogui=nogui, mutation_rate=mutation_rate, tail=tail)
         
         
     ####  Run a 2 stage optimisation for Smith 2013 cell model
@@ -1138,22 +1277,22 @@ if __name__ == '__main__':
             scale2 = float(sys.argv[6])
             seed = float(sys.argv[7])
         
-        run_2_stage_hh(dataset, simulator, scale1, scale2,seed, nogui=nogui,mutation_rate = mutation_rate)
+        run_2_stage_hh(dataset, simulator, scale1, scale2,seed, nogui=nogui,mutation_rate = mutation_rate, tail = tail)
         
     elif '-all' in sys.argv:
         
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 5
-        scale2 = 15
+        scale1 = .1
+        scale2 = .1
         seed = 1234566677
         
         sys.path.append("../data")
         import data_helper as DH
 
         dataset_ids = DH.CURRENT_DATASETS
-        #dataset_ids = [485058595]
+        dataset_ids = [477127614]
         
         f = open('tuneAll.sh','w')
 

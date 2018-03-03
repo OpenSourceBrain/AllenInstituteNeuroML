@@ -16,42 +16,42 @@
     <Component type="Simulation" id="sim1" length="1000.0ms" step="0.005ms" target="HH2net">
         
         <Display id="CG_HH2_v" title="HH2 cell: v" xmin="-100" xmax="1100" ymin="-100" ymax="70" timeScale="1ms">
-            <Line id="v" timeScale="1 ms" quantity="Pop0/0/HH2/v" scale="1 mV" color="#000000"/>
+            <Line id="v" timeScale="1 ms" quantity="Pop0/0/RS/v" scale="1 mV" color="#000000"/>
         </Display>
         
         <Display id="rates" title="Channel variables" xmin="-100" xmax="1100" ymin="-.1" ymax="1.1" timeScale="1ms">
-            <Line id="Na m" timeScale="1 ms" quantity="Pop0/0/HH2/biophys/membraneProperties/Na_all/Na/m/q" scale="1" color="#000000"/>
-            <Line id="Na h" timeScale="1 ms" quantity="Pop0/0/HH2/biophys/membraneProperties/Na_all/Na/h/q" scale="1" color="#FF0000"/>
-            <Line id="Kd n" timeScale="1 ms" quantity="Pop0/0/HH2/biophys/membraneProperties/Kd_all/Kd/n/q" scale="1" color="#00FF00"/>
-            <Line id="I_M p" timeScale="1 ms" quantity="Pop0/0/HH2/biophys/membraneProperties/IM_all/I_M/p/q" scale="1" color="#0000FF"/>
-            <Line id="IL q" timeScale="1 ms" quantity="Pop0/0/HH2/biophys/membraneProperties/IL_all/IL/q/q" scale="1" color="#00FFFF"/>
-            <Line id="IL r" timeScale="1 ms" quantity="Pop0/0/HH2/biophys/membraneProperties/IL_all/IL/r/q" scale="1" color="#FFFF00"/>
-            <!--<Line id="IT s" timeScale="1 ms" quantity="Pop0/0/HH2/biophys/membraneProperties/IT_all/IT/s/q" scale="1" color="#aaaF00"/>
-            <Line id="IT u" timeScale="1 ms" quantity="Pop0/0/HH2/biophys/membraneProperties/IT_all/IT/u/q" scale="1" color="#aa4440"/>-->
+            <Line id="Na m" timeScale="1 ms" quantity="Pop0/0/RS/biophys/membraneProperties/Na_all/Na/m/q" scale="1" color="#000000"/>
+            <Line id="Na h" timeScale="1 ms" quantity="Pop0/0/RS/biophys/membraneProperties/Na_all/Na/h/q" scale="1" color="#FF0000"/>
+            <Line id="Kd n" timeScale="1 ms" quantity="Pop0/0/RS/biophys/membraneProperties/Kd_all/Kd/n/q" scale="1" color="#00FF00"/>
+            <Line id="IM p" timeScale="1 ms" quantity="Pop0/0/RS/biophys/membraneProperties/IM_all/IM/p/q" scale="1" color="#0000FF"/>
+            <Line id="IL q" timeScale="1 ms" quantity="Pop0/0/RS/biophys/membraneProperties/IL_all/IL/q/q" scale="1" color="#00FFFF"/>
+            <Line id="IL r" timeScale="1 ms" quantity="Pop0/0/RS/biophys/membraneProperties/IL_all/IL/r/q" scale="1" color="#FFFF00"/>
+            <!--<Line id="IT s" timeScale="1 ms" quantity="Pop0/0/RS/biophys/membraneProperties/IT_all/IT/s/q" scale="1" color="#aaaF00"/>
+            <Line id="IT u" timeScale="1 ms" quantity="Pop0/0/RS/biophys/membraneProperties/IT_all/IT/u/q" scale="1" color="#aa4440"/>-->
         </Display>
         
         
         <Display id="d3" title="Current densities" timeScale="1ms" xmin="-100" xmax="1100" ymin="-0.1" ymax="0.1">
-                <Line id="i Na" quantity="Pop0/0/HH2/biophys/membraneProperties/Na_all/iDensity" scale="1"  color="#000000" timeScale="1ms"/>
-                <Line id="i Kd" quantity="Pop0/0/HH2/biophys/membraneProperties/Kd_all/iDensity" scale="1"  color="#ff0000" timeScale="1ms"/>
-                <Line id="i I_M" quantity="Pop0/0/HH2/biophys/membraneProperties/IM_all/iDensity" scale="1"  color="#ffff00" timeScale="1ms"/>
-                <Line id="i IL" quantity="Pop0/0/HH2/biophys/membraneProperties/IL_all/iDensity" scale="1"  color="#ff00ff" timeScale="1ms"/>
-                <!--<Line id="i IT" quantity="Pop0/0/HH2/biophys/membraneProperties/IT_all/iDensity" scale="1"  color="#faaaff" timeScale="1ms"/>-->
-        </Display>
-        
-        
-        <Display id="caConc" title="[Ca2+]" xmin="-100" xmax="1100" ymin="0" ymax="1e-3" timeScale="1ms">
-            <Line id="caConc" timeScale="1 ms" quantity="Pop0/0/HH2/caConc" scale="1 mM" color="#000000"/>
-        </Display>
-        
-        <Display id="eca" title="eca" xmin="0" xmax="1000" ymin="0" ymax="140" timeScale="1ms">
-            <Line id="eca" timeScale="1 ms" quantity="Pop0/0/HH2/biophys/membraneProperties/IL_all/erev" scale="1 mV" color="#000000"/>
+                <Line id="i Na" quantity="Pop0/0/RS/biophys/membraneProperties/Na_all/iDensity" scale="1"  color="#000000" timeScale="1ms"/>
+                <Line id="i Kd" quantity="Pop0/0/RS/biophys/membraneProperties/Kd_all/iDensity" scale="1"  color="#ff0000" timeScale="1ms"/>
+                <Line id="i IM" quantity="Pop0/0/RS/biophys/membraneProperties/IM_all/iDensity" scale="1"  color="#ffff00" timeScale="1ms"/>
+                <Line id="i IL" quantity="Pop0/0/RS/biophys/membraneProperties/IL_all/iDensity" scale="1"  color="#ff00ff" timeScale="1ms"/>
+                <!--<Line id="i IT" quantity="Pop0/0/RS/biophys/membraneProperties/IT_all/iDensity" scale="1"  color="#faaaff" timeScale="1ms"/>-->
         </Display>
         
         <!--
-        <OutputFile id="CG_RS_v_0_0_OF" fileName="Five.dat">
-            <OutputColumn id="0" quantity="Pop0/0/HH2/v"/>
-        </OutputFile>-->
+        <Display id="caConc" title="[Ca2+]" xmin="-100" xmax="1100" ymin="0" ymax="1e-3" timeScale="1ms">
+            <Line id="caConc" timeScale="1 ms" quantity="Pop0/0/RS/caConc" scale="1 mM" color="#000000"/>
+        </Display>
+        
+        <Display id="eca" title="eca" xmin="0" xmax="1000" ymin="0" ymax="140" timeScale="1ms">
+            <Line id="eca" timeScale="1 ms" quantity="Pop0/0/RS/biophys/membraneProperties/IL_all/erev" scale="1 mV" color="#000000"/>
+        </Display>-->
+        
+        
+        <OutputFile id="CG_RS_v_0_0_OF" fileName="RS_v.dat">
+            <OutputColumn id="0" quantity="Pop0/0/RS/v"/>
+        </OutputFile>
         
     </Component>
     

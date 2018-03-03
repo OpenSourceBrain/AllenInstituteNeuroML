@@ -1,0 +1,41 @@
+<Lems xmlns="http://www.neuroml.org/lems/0.7.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.neuroml.org/lems/0.7.2 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.2.xsd">
+    
+    <Target component="sim1" reportFile="simulator.props" timesFile="time.dat"/>
+    
+    <!--Include standard NeuroML 2 ComponentType definitions-->
+    
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="network_477127614_HH2.net.nml"/>
+    
+    
+    <Component type="Simulation" id="sim1" length="1000.0ms" step="0.025ms" target="network_477127614_HH2">
+        
+        <Display id="DispPop__Pop0" title="Membrane potentials of cells in Pop0" timeScale="1ms" xmin="-150.0" xmax="1650.0" ymin="-90" ymax="50">
+            <Line id="Pop0[0]: v" quantity="Pop0/0/RS/v" scale="1mV" color="#1e945b" timeScale="1ms"/>
+            <Line id="Pop0[1]: v" quantity="Pop0/1/RS/v" scale="1mV" color="#492d7e" timeScale="1ms"/>
+            <Line id="Pop0[2]: v" quantity="Pop0/2/RS/v" scale="1mV" color="#2a7aa8" timeScale="1ms"/>
+            <Line id="Pop0[3]: v" quantity="Pop0/3/RS/v" scale="1mV" color="#5afe55" timeScale="1ms"/>
+            <Line id="Pop0[4]: v" quantity="Pop0/4/RS/v" scale="1mV" color="#70c81e" timeScale="1ms"/>
+            <Line id="Pop0[5]: v" quantity="Pop0/5/RS/v" scale="1mV" color="#ac47eb" timeScale="1ms"/>
+            <Line id="Pop0[6]: v" quantity="Pop0/6/RS/v" scale="1mV" color="#5bfb4e" timeScale="1ms"/>
+        </Display>
+        
+        <OutputFile id="Volts_file__Pop0" fileName="Allen2stage_STAGE2.Pop0.v.dat">
+            <OutputColumn id="v_Pop0_0_RS_v" quantity="Pop0/0/RS/v"/> 
+            <OutputColumn id="v_Pop0_1_RS_v" quantity="Pop0/1/RS/v"/> 
+            <OutputColumn id="v_Pop0_2_RS_v" quantity="Pop0/2/RS/v"/> 
+            <OutputColumn id="v_Pop0_3_RS_v" quantity="Pop0/3/RS/v"/> 
+            <OutputColumn id="v_Pop0_4_RS_v" quantity="Pop0/4/RS/v"/> 
+            <OutputColumn id="v_Pop0_5_RS_v" quantity="Pop0/5/RS/v"/> 
+            <OutputColumn id="v_Pop0_6_RS_v" quantity="Pop0/6/RS/v"/> 
+        </OutputFile>
+        
+    </Component>
+    
+    
+</Lems>

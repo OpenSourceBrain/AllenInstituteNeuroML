@@ -50,11 +50,11 @@ Equations modified by Traub, for Hippocampal Pyramidal cells, in: Traub and Mile
     <ComponentType name="Kd_n_alpha_rate" extends="baseVoltageDepRate">
         <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
         <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
-        <!--Note: this parameter (VT) should ideally be defined only once within the ionChannel! Work in progress...-->
-        <Constant name="VT" dimension="none" value="-55"/>
+        <Requirement name="vShift" dimension="voltage"/>
 
         <Dynamics>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="-55 + (vShift / VOLT_SCALE)"/>
             <ConditionalDerivedVariable name="r" exposure="r" dimension="per_time">
                 <Case condition="(V - VT) - 15 .neq. 0" value="(-0.032 * ( (V - VT) - 15 ) / ( (exp (-1*( (V - VT) - 15 ) / 5)) - 1)) / TIME_SCALE"/>
                 <Case value="(0.032 * 5) / TIME_SCALE"/>
@@ -66,11 +66,11 @@ Equations modified by Traub, for Hippocampal Pyramidal cells, in: Traub and Mile
     <ComponentType name="Kd_n_beta_rate" extends="baseVoltageDepRate">
         <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
         <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
-        <!--Note: this parameter (VT) should ideally be defined only once within the ionChannel! Work in progress...-->
-        <Constant name="VT" dimension="none" value="-55"/>
+        <Requirement name="vShift" dimension="voltage"/>
 
         <Dynamics>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="-55 + (vShift / VOLT_SCALE)"/>
             <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.5 * (exp (-1*( (V - VT) - 10 ) / 40))) / TIME_SCALE"/>
         </Dynamics>
 
