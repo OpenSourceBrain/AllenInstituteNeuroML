@@ -304,10 +304,12 @@ if __name__ == '__main__':
     #dataset_ids = [464198958]
     #dataset_ids = [476686112]
     #dataset_ids = [486111903]
+    #dataset_ids = [477127614]
 
     for dataset_id in dataset_ids:
 
         type = 'HH'
+        type = 'HH2'
         #type = 'Izh'
         #type = 'AllenHH'
 

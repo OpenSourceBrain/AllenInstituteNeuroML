@@ -504,7 +504,7 @@ def run_2_stage_hh2(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
         new_cell_doc.cells.append(cell)
         new_cell_file = 'tuned_cells/%s/%s.cell.nml'%(type,new_id)
         
-        channel_files = ['IM.channel.nml', 'Kd.channel.nml', 'Leak.channel.nml', 'Na.channel.nml']
+        channel_files = ['IM.channel.nml', 'Kd.channel.nml', 'Leak.channel.nml', 'Na.channel.nml', 'IL.channel.nml']
         for ch in channel_files:
             new_cell_doc.includes.append(neuroml.IncludeType(ch))
             
@@ -1284,20 +1284,21 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = .1
-        scale2 = .1
+        scale1 = 3
+        scale2 = 3
         seed = 1234566677
         
         sys.path.append("../data")
         import data_helper as DH
 
         dataset_ids = DH.CURRENT_DATASETS
-        dataset_ids = [477127614]
+        #dataset_ids = [477127614]
         
         f = open('tuneAll.sh','w')
 
         for dataset_id in dataset_ids:
-            f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            #f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            f.write('python tuneAllen.py -hh2_2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #f.write('python tuneAllen.py -allenhh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
@@ -1311,9 +1312,9 @@ if __name__ == '__main__':
 
         simulator  = 'jNeuroML_NEURON'
         
-        scale1 = 2
-        scale2 = 6
-        seed = 1444456
+        scale1 = 3
+        scale2 = 3
+        seed = 123
         
         sys.path.append("../data")
         import data_helper as DH
@@ -1328,7 +1329,8 @@ if __name__ == '__main__':
         for dataset_id in dataset_ids:
             #if not dataset_id in DH.CURRENT_DATASETS:
             ###f.write('python tuneAllen.py -2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
-            f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            #f.write('python tuneAllen.py -izh2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
+            f.write('python tuneAllen.py -hh2_2stage -nogui %s %s %s %s %s\n'%(dataset_id,simulator, scale1, scale2,seed))
             #run_2_stage_hh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             #run_2_stage_izh(dataset_id, simulator, scale1, scale2, seed, nogui=True)
             f.write('swapoff -a\n')
