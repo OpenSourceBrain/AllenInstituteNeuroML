@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="IM">
 
-    <notes>ChannelML file containing a single Channel description</notes>
+    <notes>NeuroML file containing a single Channel description</notes>
 
-    <ionChannel id="IM" conductance="0 pS" type="ionChannelHH" species="k">
+    <ionChannel id="IM" conductance="10pS" type="ionChannelHH" species="k">
 
-        <notes>ChannelML file containing a single Channel description</notes>
+        <notes>Slow M-type K+ current for spike frequency adaptation
+            
+Comment from original mod file:
+M-current, responsible for the adaptation of firing rate and the afterhyperpolarization (AHP) of cortical pyramidal cells
+First-order model described by hodgkin-Hyxley like equations.
+K+ current, activated by depolarization, noninactivating.
+
+Model taken from Yamada, W.M., Koch, C. and Adams, P.R.  Multiple channels and calcium dynamics.  In: Methods in Neuronal Modeling, 
+edited by C. Koch and I. Segev, MIT press, 1989, p 97-134.
+    
+See also: McCormick, D.A., Wang, Z. and Huguenard, J. Neurotransmitter control of neocortical neuronal activity and excitability. 
+Cerebral Cortex 3: 387-398, 1993.
+
+Written by Alain Destexhe, Laval University, 1995
+        </notes>
                 
         <annotation>
             <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -13,8 +27,8 @@
                     
                     <bqmodel:isDescribedBy xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
                         <rdf:Bag>
-                            <rdf:li>....</rdf:li>
-                            <rdf:li rdf:resource="..."/>
+                            <rdf:li>Minimal Hodgkin-Huxley type models for different classes of cortical and thalamic neurons</rdf:li>
+                            <rdf:li rdf:resource="19011929"/>
                         </rdf:Bag>
                     </bqmodel:isDescribedBy>
 
@@ -22,7 +36,7 @@
                     <bqbiol:isVersionOf xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
                         <rdf:Bag>
                             <rdf:li>K channels</rdf:li>
-                            <rdf:li rdf:resource="http://senselab.med.yale.edu/senselab/NeuronDB/channelGene2.htm#table3"/>
+                            <rdf:li rdf:resource="http://senselab.med.yale.edu/NeuronDB/channelGene2.aspx#table3"/>
                         </rdf:Bag>
                     </bqbiol:isVersionOf>
 
@@ -40,7 +54,8 @@
     <ComponentType name="IM_p_tau_tau" extends="baseVoltageDepTime">
         <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
         <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
-        <Constant name="tmax" dimension="none" value="1000" />
+        <!--Note: this parameter (tmax) should ideally be defined only once within the ionChannel! Work in progress...-->
+        <Constant name="tmax" dimension="none" value="1000"/>
 
         <Dynamics>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
@@ -55,10 +70,7 @@
 
         <Dynamics>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
-            <ConditionalDerivedVariable name="x" exposure="x" dimension="none" >
-                <Case condition="v .eq. -1000.070" value="0"/>
-                <Case value="1/(1+ (exp (-1 * (V+35)/10)))"/>
-            </ConditionalDerivedVariable>
+            <DerivedVariable name="x" exposure="x" dimension="none" value="1/(1+ (exp (-1 * (V+35)/10)))"/>
         </Dynamics>
 
     </ComponentType>

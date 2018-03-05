@@ -3,7 +3,7 @@
 
     <notes>NeuroML file containing a single Channel description</notes>
 
-    <ionChannel id="IL" conductance="0 pS" type="ionChannelHH" species="ca">
+    <ionChannel id="IL" conductance="10 pS" type="ionChannelHH" species="ca">
 
         <notes>High threshold calcium current
             
