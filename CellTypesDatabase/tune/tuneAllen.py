@@ -434,15 +434,15 @@ def run_2_stage_hh2(dataset, simulator  = 'jNeuroML_NEURON', scale1=1, scale2=1,
                       'cell:RS/erev_id:IL_all/mV',
                       'cell:RS/vShift_channelDensity:Na_all/mV']
 
-        max_constraints_1 = [1,     -50,  5,   100, 35, 0, 0, 60, -70,  100, 10]
+        max_constraints_1 = [2,     -50,  10,   100, 35, 0, 0, 60, -70,  100, 10]
         min_constraints_1 = [0.005, -100, 0.2, 10,  1,  0, 0, 50, -100, 100, -10]
 
         # For a quick test...
         # max_constraints_1 = [0.1,   -77.9, 0.51,   0, 0, 0, 55, -80]
         # min_constraints_1 = [0.09,  -77.8, 0.52,   0, 0, 0, 55, -80]
 
-        max_constraints_2 = ['x', 'x', 'x', 'x', 'x', 5,    1,    'x', 'x', 50, 'x']
-        min_constraints_2 = ['x', 'x', 'x', 'x', 'x', 1e-6, 1e-6, 'x', 'x', 60, 'x']
+        max_constraints_2 = ['x', 'x', 'x', 'x', 'x', 5,    1,    'x', 'x', 100, 'x']
+        min_constraints_2 = ['x', 'x', 'x', 'x', 'x', 1e-7, 1e-7, 'x', 'x', 40, 'x']
 
         sweep_numbers, weights_1, target_data_1, weights_2, target_data_2 = get_2stage_target_values(dataset)
 
@@ -1286,7 +1286,7 @@ if __name__ == '__main__':
         
         scale1 = 3
         scale2 = 3
-        seed = 1234566677
+        seed = 1234
         
         sys.path.append("../data")
         import data_helper as DH
