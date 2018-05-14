@@ -12,14 +12,13 @@ Electrophysiological data on multiple cell types from the visual cortex of mouse
 There are scripts for importing/analysing this data [here](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/CellTypesDatabase/data).
 
 
-#### NeuroML2 models
+#### NeuroML 2 models
 
 [This directory](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/CellTypesDatabase/models) contains both examples
 of the [original biophysical models in NEURON](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/CellTypesDatabase/models/NEURON)
 (e.g. [483108201](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/CellTypesDatabase/models/483108201)) which have been generated 
 by the Allen Institute from their own data, as well as [NeuroML 2 versions of these models](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/CellTypesDatabase/models/NeuroML2).
 
-*Work in progress!*
 
 #### Retuned cell models
 
