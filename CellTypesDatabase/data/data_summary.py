@@ -112,6 +112,7 @@ def analyse_extracted_data():
     to_include = None
     #to_include = ['468120757','477127614','479704527', '480351780', '480353286','485058595']
     #to_include = ['468120757']
+    #to_include = ['477127614','476686112']
     #to_include = ['477127614']
     
     
@@ -195,15 +196,15 @@ def analyse_extracted_data():
                                 show_plot_already=False,
                                 save_figure_to = target_file%('spikes', id))
 
-            data, indices = pynml.reload_standard_dat_file('%s.dat'%id)
+            data0, indices = pynml.reload_standard_dat_file('%s.dat'%id)
             x = []
             y = []
-            tt = [t*1000 for t in data['t']]
+            tt = [t*1000 for t in data0['t']]
             for i in indices:
                 x.append(tt)
-                y.append([v*1000 for v in data[i]])
+                y.append([v*1000 for v in data0[i]])
 
-            pynml.generate_plot(x,
+            ax = pynml.generate_plot(x,
                                 y, 
                                 "Example traces from: %s"%id, 
                                 xaxis = "Time (ms)", 
@@ -211,6 +212,26 @@ def analyse_extracted_data():
                                 ylim = [-120, 60],
                                 show_plot_already=False,
                                 save_figure_to = target_file%('traces', id))
+
+            ax.spines['right'].set_visible(False)
+            ax.spines['top'].set_visible(False)
+            ax.yaxis.set_ticks_position('left')
+            ax.xaxis.set_ticks_position('bottom')
+            
+            sweeps = data['sweeps']
+
+            from data_helper import CURRENT_DATASETS, DATASET_TARGET_SWEEPS
+
+            cols = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
+            
+            i = 0
+            for s in DATASET_TARGET_SWEEPS[data['data_set_id']]:
+                current = float(sweeps[str(s)]["sweep_metadata"]["aibs_stimulus_amplitude_pa"])
+                print("--- Sweep %s (%s pA)"%(s, current))
+                plt.text(1320, +8*i,"%s pA"%(float('%.2f'%current)), color=cols[i])
+                i+=1
+            
+            plt.savefig(target_file%('traces', id), bbox_inches='tight', pad_inches=0)
 
             ax = pynml.generate_plot(x,
                                 y, 
