@@ -1,0 +1,28 @@
+# Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
+
+target: LEMS_NaV.xml
+engine: jNeuroML_NetPyNE
+mep: ../NEURON/.test.nav.mep
+experiments:
+  C2:
+    observables:
+      spike times:
+        file: 
+          path: NaV.states.dat
+          columns: [0,3]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.2
+        tolerance: 2e-5
+  I4:
+    observables:
+      spike times:
+        file: 
+          path: NaV.states.dat
+          columns: [0,10]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.03
+        tolerance: 2e-5
