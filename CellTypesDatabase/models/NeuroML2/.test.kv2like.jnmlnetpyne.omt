@@ -1,0 +1,39 @@
+# Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
+
+target: LEMS_Kv2_like.xml
+engine: jNeuroML_NetPyNE
+mep: ../NEURON/.test.kv2like.mep
+experiments:
+  m:
+    observables:
+      spike times:
+        file: 
+          path: Kv2like.vars.dat
+          columns: [0,1]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.885
+        tolerance: 1e-5
+  h1:
+    observables:
+      spike times:
+        file: 
+          path: Kv2like.vars.dat
+          columns: [0,2]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.885
+        tolerance: 1e-5
+  h2:
+    observables:
+      spike times:
+        file: 
+          path: Kv2like.vars.dat
+          columns: [0,3]
+          scaling: [1000, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.885
+        tolerance: 4.152503663104413e-05
