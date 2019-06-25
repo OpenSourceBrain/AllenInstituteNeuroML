@@ -1,16 +1,22 @@
+# Framework for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
 
+dist: trusty
 sudo: false  
 
 addons:
   apt:
     packages:
-    - python-numpy 
-    - python-scipy 
+    - python-tk
     - python-lxml
-    - python-h5py
+    - python-tornado
+    - libhdf5-7
+    - python-tables
 
 language: python
 python: 2.7
+
+virtualenv:
+    system_site_packages: true
 
 
 env:
@@ -26,6 +32,9 @@ install:
     
     # Install OMV
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+    - pip install numpy scipy # Why is this needed? Scipy doesn't seem to get installed correctly on trusty with addons above...
+    - pip install tables # Ditto
+    - pip install matplotlib # This is more because Matplotlib v2.x is required...
     
     # Install Allen SDK
     #- pip install allensdk
@@ -42,6 +51,7 @@ install:
 script:
 
     - omv all -V
+    - omv list-engines -V
     
 
     

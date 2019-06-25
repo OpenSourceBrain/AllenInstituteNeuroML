@@ -289,3 +289,4 @@ original.v.dat
 /CellTypesDatabase/tune/tuned_cells/summary/AllenHH_*_traces_FIG.png
 /CellTypesDatabase/tune/tuned_cells/summary/HH2*_FIG.png
 /CellTypesDatabase/tune/tuned_cells/summary/HH2*.dat
+/CellTypesDatabase/models/NeuroML2/*netpyne.py
