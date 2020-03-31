@@ -290,3 +290,4 @@ original.v.dat
 /CellTypesDatabase/tune/tuned_cells/summary/HH2*_FIG.png
 /CellTypesDatabase/tune/tuned_cells/summary/HH2*.dat
 /CellTypesDatabase/models/NeuroML2/*netpyne.py
+/CellTypesDatabase/models/NeuroML2/NET_Kv2_like.net.nml

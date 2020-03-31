@@ -37,12 +37,12 @@ install:
     - pip install matplotlib # This is more because Matplotlib v2.x is required...
     
     # Install Allen SDK
-    #- pip install allensdk
+    - pip install allensdk
     
     # See comment in CellTypesDatabase/models/483108201/.test.483108201.nrn.omt_ 
     
     # Need to pre install NEURON so nrnivmodl can be run targeting mod files in a different directory
-    #- omv install NEURON
+    - omv install NEURON
     #- cd CellTypesDatabase/models/483108201
     #- /home/travis/neuron/nrn/x86_64/bin/nrnivmodl modfiles
     #- cd -

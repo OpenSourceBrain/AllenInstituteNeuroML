@@ -1,4 +1,10 @@
 #Based in part on example code at: http://alleninstitute.github.io/AllenSDK/biophysical_perisomatic_script.html
+
+#########
+#  Before running this script, compile the Neuron mod files to this folder:
+#      nrnivmodl  NEURON
+#########
+
     
 from allensdk.model.biophysical.utils import Utils
 from allensdk.model.biophysical.runner import load_description
@@ -259,6 +265,8 @@ for model_id in cell_dirs:
     pynml.nml2_to_svg(nml_cell_loc)
     
     
+    pref_duration_ms = 2500
+    pref_dt_ms = 0.005 # used in Allen Neuron runs
     
 
     new_nml_file_name = "Network_%s.net.nml"%model_id
@@ -267,6 +275,9 @@ for model_id in cell_dirs:
     new_net_doc = pynml.read_neuroml2_file(nml_net_loc)
     new_net = new_net_doc.networks[0]
     new_net_doc.notes = notes
+    
+    new_net.properties.append(neuroml.Property('recommended_duration_ms',pref_duration_ms))
+    new_net.properties.append(neuroml.Property('recommended_dt_ms',pref_dt_ms))
     
     for k in metadata_info.keys():
         if k.startswith("AIBS:"):
@@ -303,12 +314,12 @@ for model_id in cell_dirs:
     generate_lems_file_for_neuroml(model_id,
                                    new_net_loc,
                                    "network",
-                                   2500,
-                                   0.005, # used in Allen Neuron runs
+                                   pref_duration_ms,
+                                   pref_dt_ms, # used in Allen Neuron runs
                                    "LEMS_%s.xml"%model_id,
                                    nml2_cell_dir,
                                    copy_neuroml = False,
-                                   seed=1234)
+                                   lems_file_generate_seed=1234)
     
     
     net_doc.includes.append(neuroml.IncludeType(nml_cell_file))
