@@ -9,7 +9,6 @@ addons:
     - python-tk
     - python-lxml
     - python-tornado
-    - libhdf5-7
     - python-tables
 
 language: python
