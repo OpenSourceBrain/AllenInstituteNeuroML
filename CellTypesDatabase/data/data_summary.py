@@ -77,7 +77,7 @@ def get_if_iv_for_dataset(dataset_analysis_file):
         freq_key = '%s:mean_spike_frequency'%(s)
         steady_state_key = '%s:average_1000_1200'%(s)
         
-        if sweeps[s]["pyelectro_iclamp_analysis"].has_key(freq_key):
+        if sweeps[s]["pyelectro_iclamp_analysis"].has_key(freq_key) and sweeps[s]["pyelectro_iclamp_analysis"][freq_key]>0:
             currents_rate_spike[current] = sweeps[s]["pyelectro_iclamp_analysis"][freq_key]
         else:
             currents_rate_spike[current] = 0
@@ -110,10 +110,10 @@ def analyse_extracted_data():
     info['datasets'] = [] 
 
     to_include = None
-    #to_include = ['468120757','477127614','479704527', '480351780', '480353286','485058595']
     #to_include = ['468120757']
     #to_include = ['477127614','476686112']
     #to_include = ['477127614']
+    #to_include = ['464198958']
     
     
     for f in analysed:
@@ -204,12 +204,15 @@ def analyse_extracted_data():
                 x.append(tt)
                 y.append([v*1000 for v in data0[i]])
 
+            cols = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
+            
             ax = pynml.generate_plot(x,
                                 y, 
                                 "Example traces from: %s"%id, 
                                 xaxis = "Time (ms)", 
                                 yaxis = "Membrane potential (mV)", 
                                 ylim = [-120, 60],
+                                colors = cols,
                                 show_plot_already=False,
                                 save_figure_to = target_file%('traces', id))
 
@@ -222,7 +225,6 @@ def analyse_extracted_data():
 
             from data_helper import CURRENT_DATASETS, DATASET_TARGET_SWEEPS
 
-            cols = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
             
             i = 0
             for s in DATASET_TARGET_SWEEPS[data['data_set_id']]:
@@ -237,6 +239,7 @@ def analyse_extracted_data():
                                 y, 
                                 "Example traces from: %s"%id, 
                                 ylim = [-120, 60],
+                                colors = cols,
                                 grid = False,
                                 show_plot_already=False)
                                 
