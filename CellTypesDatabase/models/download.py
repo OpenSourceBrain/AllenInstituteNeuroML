@@ -135,7 +135,7 @@ if __name__ == '__main__':
             print("\n\n Got XML: %s for dataset %s (%i/%i)"%(root.tag, dataset_id,count,len(dataset_ids)))
             for model in root.findall('./specimens/specimen/neuronal-models/neuronal-model'):
                 for child in model:
-                    print child.tag, child.attrib, child.text
+                    print(child.tag, child.attrib, child.text)
                 id = model.find('./id').text
                 name = model.find('./name').text
                 print("===========\n  Model: %s, %s"%(id,name))
