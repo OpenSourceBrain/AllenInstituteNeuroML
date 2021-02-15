@@ -293,3 +293,4 @@ original.v.dat
 /CellTypesDatabase/models/NeuroML2/NET_Kv2_like.net.nml
 /tests.log
 /CellTypesDatabase/data/tests.log
+/CellTypesDatabase/tune/*_analysis.json

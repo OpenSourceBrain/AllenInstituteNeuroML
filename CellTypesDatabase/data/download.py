@@ -92,6 +92,5 @@ for dataset_id in dataset_ids:
     plt.xlabel('Time (s)')
     fig.canvas.set_window_title("Dataset: %s"%dataset_id)
     plt.legend()
-    
-plt.show()
 
+plt.show()

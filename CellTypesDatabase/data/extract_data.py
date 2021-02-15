@@ -25,17 +25,20 @@ test = '-test' in sys.argv
 def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
 
     info = {}
- 
+
     import h5py
     import numpy as np
     h5f = h5py.File(raw_ephys_file_name, "r")
     metas = ['aibs_cre_line','aibs_dendrite_type','intracellular_ephys/Electrode 1/location']
     for m in metas:
         d = h5f.get('/general/%s'%m)
-        print("%s = \t%s"%(m,d.value))
-        info[m.split('/')[-1]]=str(d.value)
+        val = d.value
+        if not isinstance(val, str):
+            val = val.decode('ascii')
+        print("%s = \t%s"%(m,val))
+        info[m.split('/')[-1]]=val
     h5f.close()
-    
+
     from allensdk.core.nwb_data_set import NwbDataSet
     data_set = NwbDataSet(raw_ephys_file_name)
 
@@ -43,12 +46,12 @@ def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
     sweep_numbers = data_set.get_experiment_sweep_numbers()
     if test:
         sweep_numbers = [33,45]
-        
+
     sweep_numbers.sort()
 
     info[DH.DATASET] = dataset_id
     info[DH.COMMENT] = 'Data analysed on %s'%(time.ctime())
-    
+
     info[DH.PYELECTRO_VERSION] = pyel_ver
     info[DH.ALLENSDK_VERSION] = allensdk_ver
     info[DH.SWEEPS] = {}
@@ -56,7 +59,7 @@ def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
     for sweep_number in sweep_numbers:
 
         sweep_data = data_set.get_sweep(sweep_number)
-        
+
         if data_set.get_sweep_metadata(sweep_number)['aibs_stimulus_name'] == "Long Square":
             sweep_info = {}
             sweep_info[DH.METADATA] = data_set.get_sweep_metadata(sweep_number)
@@ -84,13 +87,13 @@ def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
 
             sweep_info[DH.COMMENT] = comment
 
-            analysis = utils.simple_network_analysis({sweep_number:response}, 
-                                                     time_pts, 
-                                                     extra_targets = ['%s:value_280'%sweep_number,      
-                                                                      '%s:average_1000_1200'%sweep_number,      
+            analysis = utils.simple_network_analysis({sweep_number:response},
+                                                     time_pts,
+                                                     extra_targets = ['%s:value_280'%sweep_number,
+                                                                      '%s:average_1000_1200'%sweep_number,
                                                                       '%s:average_100_200'%sweep_number],
-                                                     end_analysis=1500, 
-                                                     plot=plot, 
+                                                     end_analysis=1500,
+                                                     plot=plot,
                                                      show_plot_already=False,
                                                      verbose=True)
 
@@ -98,15 +101,15 @@ def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
 
     analysis_file_name = '%s_analysis.json'%(dataset_id)
     analysis_file = open(analysis_file_name, 'w')
-    pretty = pp.pformat(info)
+    pretty = pprint.pformat(info, width=190, indent=4)
     pretty = pretty.replace('\'', '"')
     pretty = pretty.replace('u"', '"')
     analysis_file.write(pretty)
     analysis_file.close()
-    
+
     print('Written info to %s'%analysis_file_name)
-    
-    
+
+
 
 if __name__ == '__main__':
 
@@ -122,6 +125,3 @@ if __name__ == '__main__':
 
     if plot:
         pylab.show()
-    
-    
-    
