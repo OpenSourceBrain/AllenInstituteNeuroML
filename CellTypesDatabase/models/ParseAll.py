@@ -190,7 +190,7 @@ for model_id in cell_dirs:
                                             ion = ion)
                 membrane_properties.channel_densities.append(cd)
         else:
-            if not ca_dynamics.has_key(model_id):
+            if model_id not in ca_dynamics.keys():
                 ca_dynamics[model_id] = {}
             ca_dynamics[model_id][str(chan['name'])] = chan['value']
                 
@@ -236,7 +236,7 @@ for model_id in cell_dirs:
     
 '''     
     # @type ca_dynamics dict
-    for key, values in ca_dynamics.iteritems():
+    for key, values in ca_dynamics.items():
 
         xml += '    <concentrationModel id="CaDynamics_%s" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="%s ms" depth="0.1 um" gamma="%s" ion="ca"/>\n\n'%(key,values["decay_CaDynamics"],values["gamma_CaDynamics"])
          
