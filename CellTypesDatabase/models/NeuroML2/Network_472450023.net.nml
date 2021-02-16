@@ -1,4 +1,4 @@
-<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta5.xsd" id="NeuroML2_file_exported_from_NEURON">
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.1.xsd" id="NeuroML2_file_exported_from_NEURON">
     <notes>
 
 Export of a cell model (472450023) obtained from the Allen Institute Cell Types Database into NeuroML2
@@ -11,20 +11,22 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
 ******************************************************
 
         </notes>
-    <property tag="AIBS:subject:description" value="Mus musculus In Vitro"/>
-    <property tag="AIBS:aibs_specimen_id" value="464198958"/>
-    <property tag="AIBS:intracellular_ephys:Electrode 1:location" value="Primary visual area, layer 5"/>
-    <property tag="AIBS:subject:genotype" value="Ai14; Sst-IRES-Cre"/>
-    <property tag="AIBS:subject:species" value="Mus musculus"/>
-    <property tag="AIBS:session_id" value="464198956"/>
-    <property tag="AIBS:subject:sex" value="M"/>
     <property tag="AIBS:aibs_dendrite_type" value="aspiny"/>
     <property tag="AIBS:aibs_cre_line" value="Sst-IRES-Cre"/>
-    <property tag="AIBS:subject:age" value="P53"/>
+    <property tag="AIBS:aibs_specimen_id" value="464198958"/>
     <property tag="AIBS:aibs_specimen_name" value="Sst-IRES-Cre;Ai14-165865.03.01.01"/>
-    <include href="Cell_472450023.cell.nml"></include>
+    <property tag="AIBS:intracellular_ephys:Electrode 1:location" value="Primary visual area, layer 5"/>
+    <property tag="AIBS:session_id" value="464198956"/>
+    <property tag="AIBS:subject:age" value="P53"/>
+    <property tag="AIBS:subject:description" value="Mus musculus In Vitro"/>
+    <property tag="AIBS:subject:genotype" value="Sst-IRES-Cre; Ai14(RCL-tdT)"/>
+    <property tag="AIBS:subject:sex" value="M"/>
+    <property tag="AIBS:subject:species" value="Mus musculus"/>
+    <include href="Cell_472450023.cell.nml"/>
     <pulseGenerator id="stim" delay="1020ms" duration="1000ms" amplitude="270pA"/>
     <network id="network" type="networkWithTemperature" temperature="34 degC">
+        <property tag="recommended_duration_ms" value="2500"/>
+        <property tag="recommended_dt_ms" value="0.005"/>
         <population id="Pop_Cell_472450023" component="Cell_472450023" size="1" type="populationList">
             <instance id="0">
                 <location x="0." y="0." z="0."/>

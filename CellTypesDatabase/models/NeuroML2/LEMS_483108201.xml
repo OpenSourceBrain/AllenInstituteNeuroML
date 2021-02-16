@@ -2,7 +2,7 @@
     
     <!-- 
 
-        This LEMS file has been automatically generated using PyNeuroML v0.5.1 (libNeuroML v0.2.50)
+        This LEMS file has been automatically generated using PyNeuroML v0.5.8 (libNeuroML v0.2.54)
 
      -->
     
@@ -33,7 +33,7 @@
     <Simulation id="483108201" length="2500ms" step="0.005ms" target="network" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
         
         <Display id="DispPop__Pop_Cell_483108201" title="Membrane potentials of cells in Pop_Cell_483108201" timeScale="1ms" xmin="-250.0" xmax="2750.0" ymin="-90" ymax="50">
-            <Line id="Pop_Cell_483108201[0]: v" quantity="Pop_Cell_483108201/0/Cell_483108201/v" scale="1mV" color="#f7697f" timeScale="1ms"/>
+            <Line id="Pop_Cell_483108201[0]: v" quantity="Pop_Cell_483108201/0/Cell_483108201/v" scale="1mV" color="#e1a7b4" timeScale="1ms"/>
         </Display>
         
         <OutputFile id="Volts_file__Pop_Cell_483108201" fileName="483108201.Pop_Cell_483108201.v.dat">

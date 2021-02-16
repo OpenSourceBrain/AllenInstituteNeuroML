@@ -37,12 +37,12 @@ MODEL_IDS[464198958] = 472450023
 
 ## No longer has biophys detailed cell model..?
 #  Layer 5, spiny http://celltypes.brain-map.org/mouse/experiment/electrophysiology/325941643
-###DATASET_TARGET_SWEEPS[325941643] = [34,35,37,39,42,44,48] 
+###DATASET_TARGET_SWEEPS[325941643] = [34,35,37,39,42,44,48]
 
     #################################### Layer 4 ####################################
 
 #  Layer 4, spiny http://celltypes.brain-map.org/mouse/experiment/electrophysiology/479704527
-DATASET_TARGET_SWEEPS[479704527] = [36,40,44,45,60,52,55] 
+DATASET_TARGET_SWEEPS[479704527] = [36,40,44,45,60,52,55]
 # Perisomatic biophys model: http://celltypes.brain-map.org/neuronal_model/download/483108201
 MODEL_IDS[479704527] = 483108201
 
@@ -62,22 +62,22 @@ COMMENT = 'comment'
 PYELECTRO_VERSION = 'pyelectro_version'
 ALLENSDK_VERSION = 'allensdk_version'
 
-SWEEPS = 'sweeps' 
-SWEEP = 'sweep_id' 
-ICLAMP_ANALYSIS = 'pyelectro_iclamp_analysis' 
-METADATA = 'sweep_metadata' 
+SWEEPS = 'sweeps'
+SWEEP = 'sweep_id'
+ICLAMP_ANALYSIS = 'pyelectro_iclamp_analysis'
+METADATA = 'sweep_metadata'
 
 
 SIMULATION_TEMPERATURE = '34 degC'
 
 def get_test_current(model_id):
-    if TEST_CURRENTS.has_key(model_id):
+    if model_id in TEST_CURRENTS:
         return TEST_CURRENTS[model_id]
     else:
         return 270
-    
+
 def get_test_sweep(model_id):
-    if TEST_SWEEP.has_key(model_id):
+    if model_id in TEST_SWEEP:
         return TEST_SWEEP[model_id]
     else:
         return 55
