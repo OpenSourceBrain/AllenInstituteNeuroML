@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [2.7, 3.7]
+        python-version: [2.7, 3.7, 3.9]
 
     steps:
     - uses: actions/checkout@v2
@@ -26,4 +26,6 @@ jobs:
     - name: Run OMV tests
       run: |
         omv all -V
+    - name: Print final OMV/engine version info
+      run: |
         omv list -V # list installed engines
