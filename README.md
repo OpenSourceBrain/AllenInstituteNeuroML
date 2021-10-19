@@ -16,7 +16,6 @@ There are some initial ideas for interactions between [DiPDE](http://alleninstit
 NeuroML 2 [here](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/DiPDE).
 
 [![Continuous builds](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/ci.yml/badge.svg)](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/ci.yml)
-[![Build Status](https://travis-ci.com/OpenSourceBrain/AllenInstituteNeuroML.svg?branch=master)](https://travis-ci.com/OpenSourceBrain/AllenInstituteNeuroML)
 
 [![DOI](https://www.zenodo.org/badge/23345839.svg)](https://www.zenodo.org/badge/latestdoi/23345839)
 
