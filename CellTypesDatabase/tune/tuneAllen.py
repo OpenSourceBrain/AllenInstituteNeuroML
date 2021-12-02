@@ -282,7 +282,7 @@ def run_one_optimisation(ref,
 
 
 
-def scale(scale, number, min_=1, max_=sys.maxint):
+def scale(scale, number, min_=1, max_=sys.maxsize):
     num = max(min_, int(scale*number))
     return min(max_, num)
 
