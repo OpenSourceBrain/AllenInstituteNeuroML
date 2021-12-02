@@ -1,0 +1,8 @@
+numpy
+allensdk
+pyneuroml
+libneuroml
+git+https://github.com/OpenSourceBrain/OpenCortex@master#egg=OpenCortex
+matplotlib
+tables
+airspeed
