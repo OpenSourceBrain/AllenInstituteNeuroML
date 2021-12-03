@@ -30,7 +30,7 @@ jobs:
         
     - name: Download some data
       run: |
-         apt-get install python-h5py
+         sudo apt-get install python-h5py
          pip install allensdk
 
          cd CellTypesDatabase/data
