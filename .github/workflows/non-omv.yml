@@ -1,0 +1,42 @@
+
+name: Testing non OMV based scripts
+
+on:
+  push:
+    branches: [ master, development, experimental ]
+  pull_request:
+    branches: [ master, development, experimental ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ 3.7, 3.9 ]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python  ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version:  ${{ matrix.python-version }}
+        
+    - name: Install OMV
+      run: |
+        pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+        
+    - name: Download some data
+      run: |
+         apt-get install python-h5py
+         pip install allensdk
+
+         cd CellTypesDatabase/data
+         python download.py -test
+        
+    - name: OMV final version info
+      run: |
+        omv list -V # list installed engines
+        env
