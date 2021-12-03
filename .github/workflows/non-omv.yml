@@ -34,8 +34,17 @@ jobs:
 
          cd CellTypesDatabase/data
          python download.py -test
-        
-    - name: OMV final version info
+         ls -alt
+         
+    - name: Analyse data
       run: |
-        omv list -V # list installed engines
+         cd CellTypesDatabase/data
+         pip install pyelectro
+
+         python extract_data.py -test
+
+        
+    - name: Final version info
+      run: |
+        pip list
         env
