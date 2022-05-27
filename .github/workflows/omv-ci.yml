@@ -23,6 +23,7 @@ jobs:
     - name: Install OMV
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+        pip install scipy sympy matplotlib cython pandas tables
     - name: Run OMV tests
       run: |
         omv all -V
