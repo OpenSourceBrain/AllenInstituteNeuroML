@@ -15,7 +15,7 @@ test = '-test' in sys.argv
 
 dataset_ids = CURRENT_DATASETS
 if test:
-    dataset_ids = [479704527]
+    dataset_ids = [479704527, 464198958]
 
 sweep_numbers_for_data = DATASET_TARGET_SWEEPS
 
