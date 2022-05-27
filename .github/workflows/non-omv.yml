@@ -18,24 +18,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Set up Python  ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version:  ${{ matrix.python-version }}
-        
+
     - name: Install OMV
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
-        
+
     - name: Download some data
       run: |
-         pip install allensdk
+         pip install pynwb==1.4.0  allensdk==2.13.1 hdmf==2.4.0 h5py==2.10.0
 
          cd CellTypesDatabase/data
          python download.py -test
          ls -alt
-         
+
     - name: Analyse data
       run: |
          cd CellTypesDatabase/data
@@ -43,7 +43,7 @@ jobs:
 
          python extract_data.py -test
 
-        
+
     - name: Final version info
       run: |
         pip list
