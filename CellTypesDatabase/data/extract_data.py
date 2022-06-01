@@ -7,6 +7,7 @@ from allensdk.api.queries.cell_types_api import CellTypesApi
 from allensdk import __version__ as allensdk_ver
 import time
 import sys
+import h5py
 
 import data_helper as DH
 
@@ -26,16 +27,16 @@ def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
 
     info = {}
 
-    import h5py
     import numpy as np
     h5f = h5py.File(raw_ephys_file_name, "r")
     metas = ['aibs_cre_line','aibs_dendrite_type','intracellular_ephys/Electrode 1/location']
     for m in metas:
         d = h5f.get('/general/%s'%m)
-        val = d.value
+        #print ('%s: %s' % (d[()], type(d)))
+        val = d[()]
         if not isinstance(val, str):
             val = val.decode('ascii')
-        print("%s = \t%s"%(m,val))
+        #print("%s = \t%s"%(m,val))
         info[m.split('/')[-1]]=val
     h5f.close()
 
@@ -44,25 +45,31 @@ def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
 
 
     sweep_numbers = data_set.get_experiment_sweep_numbers()
-    if test:
-        sweep_numbers = [33,45]
+    '''if test:
+        sweep_numbers = [33,45]'''
 
     sweep_numbers.sort()
+    print('sweep_numbers: %s'%sweep_numbers)
 
     info[DH.DATASET] = dataset_id
     info[DH.COMMENT] = 'Data analysed on %s'%(time.ctime())
 
     info[DH.PYELECTRO_VERSION] = pyel_ver
     info[DH.ALLENSDK_VERSION] = allensdk_ver
+    info['h5py_version'] = h5py.__version__
     info[DH.SWEEPS] = {}
 
     for sweep_number in sweep_numbers:
 
         sweep_data = data_set.get_sweep(sweep_number)
+        #print(data_set.get_sweep_metadata(sweep_number))
 
-        if data_set.get_sweep_metadata(sweep_number)['aibs_stimulus_name'] == "Long Square":
+        if data_set.get_sweep_metadata(sweep_number)['aibs_stimulus_name'].decode('ascii') == "Long Square":
             sweep_info = {}
-            sweep_info[DH.METADATA] = data_set.get_sweep_metadata(sweep_number)
+            md = data_set.get_sweep_metadata(sweep_number)
+            sweep_info[DH.METADATA] = {}
+            for k in md:
+                sweep_info[DH.METADATA][k] = md[k] if not type(md[k])==bytes else md[k].decode('ascii')
             info[DH.SWEEPS]['%i'%sweep_number] = sweep_info
             sweep_info[DH.SWEEP] = sweep_number
 
