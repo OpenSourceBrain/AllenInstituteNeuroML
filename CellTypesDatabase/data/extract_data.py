@@ -7,6 +7,7 @@ from allensdk.api.queries.cell_types_api import CellTypesApi
 from allensdk import __version__ as allensdk_ver
 import time
 import sys
+import h5py
 
 import data_helper as DH
 
@@ -26,7 +27,6 @@ def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
 
     info = {}
 
-    import h5py
     import numpy as np
     h5f = h5py.File(raw_ephys_file_name, "r")
     metas = ['aibs_cre_line','aibs_dendrite_type','intracellular_ephys/Electrode 1/location']
@@ -44,8 +44,8 @@ def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
 
 
     sweep_numbers = data_set.get_experiment_sweep_numbers()
-    if test:
-        sweep_numbers = [33,45]
+    '''if test:
+        sweep_numbers = [33,45]'''
 
     sweep_numbers.sort()
 
@@ -54,6 +54,7 @@ def extract_info_from_nwb_file(dataset_id, raw_ephys_file_name):
 
     info[DH.PYELECTRO_VERSION] = pyel_ver
     info[DH.ALLENSDK_VERSION] = allensdk_ver
+    info['h5py_version'] = h5py.__version__
     info[DH.SWEEPS] = {}
 
     for sweep_number in sweep_numbers:
