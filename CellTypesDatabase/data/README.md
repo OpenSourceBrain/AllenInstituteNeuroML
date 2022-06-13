@@ -31,6 +31,7 @@ Run:
 
 **Plot data**
 
+    pip install pyneuroml airspeed
 
     python data_summary.py -test # run a quick test
     python data_summary.py

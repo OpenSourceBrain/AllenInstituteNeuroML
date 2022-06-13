@@ -46,6 +46,9 @@ jobs:
     - name: Generate plots of data
       run: |
 
+         cd CellTypesDatabase/data
+
+         pip install pyneuroml airspeed
          python data_summary.py -test
 
 
