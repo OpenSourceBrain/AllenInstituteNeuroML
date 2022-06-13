@@ -43,6 +43,11 @@ jobs:
 
          python extract_data.py -test
 
+    - name: Generate plots of data
+      run: |
+
+         python data_summary.py -test
+
 
     - name: Final version info
       run: |
