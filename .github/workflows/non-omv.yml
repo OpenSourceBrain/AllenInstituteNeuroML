@@ -46,6 +46,7 @@ jobs:
     - name: Generate plots of data
       run: |
 
+         cd CellTypesDatabase/data
          python data_summary.py -test
 
 
