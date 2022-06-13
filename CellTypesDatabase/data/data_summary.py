@@ -112,7 +112,11 @@ def analyse_extracted_data():
     #to_include = ['468120757']
     #to_include = ['477127614','476686112']
     #to_include = ['477127614']
-    #to_include = ['464198958']
+
+    test = '-test' in sys.argv
+
+    if test:
+        to_include = ['464198958']
 
 
     for f in analysed:
