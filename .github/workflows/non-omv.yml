@@ -30,7 +30,7 @@ jobs:
 
     - name: Download some data
       run: |
-         pip install pynwb==1.4.0  allensdk==2.13.1 hdmf==2.4.0 h5py==2.10.0
+         pip install allensdk
 
          cd CellTypesDatabase/data
          python download.py -test
