@@ -51,6 +51,13 @@ jobs:
          pip install pyneuroml airspeed
          python data_summary.py -test
 
+    - name: Download all original data using Allen SDK
+      run: |
+         pip install allensdk
+
+         cd CellTypesDatabase/models
+         python download.py
+         ls -alt
 
     - name: Final version info
       run: |
