@@ -56,9 +56,18 @@ jobs:
          pip install allensdk
          pip install MarkupSafe==2.0.1
 
+
          cd CellTypesDatabase/models
          python download.py
          ls -alt
+
+    - name: Extract NeuroML2 models from NEURON files
+      run: |
+
+         cd CellTypesDatabase/models
+
+         nrnivmodl  NEURON
+         python ParseAll.py
 
     - name: Final version info
       run: |
