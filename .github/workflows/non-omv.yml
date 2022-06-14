@@ -54,6 +54,7 @@ jobs:
     - name: Download all original data using Allen SDK
       run: |
          pip install allensdk
+         pip install MarkupSafe==2.0.1
 
          cd CellTypesDatabase/models
          python download.py
