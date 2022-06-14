@@ -60,6 +60,15 @@ jobs:
          python download.py
          ls -alt
 
+    - name: Extract NeuroML2 models from NEURON files
+      run: |
+
+         pip install neuron
+         
+         cd CellTypesDatabase/models
+         nrnivmodl  NEURON
+         python ParseAll.py
+
     - name: Final version info
       run: |
         pip list
