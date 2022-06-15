@@ -11,7 +11,7 @@ Run:
 
     pip install allensdk
 
-    cd CellTypesDatabase/data
+    cd CellTypesDatabase/tune
 
     python download.py -test # run short test to make sure all libraries installed
     python download.py  # download all
