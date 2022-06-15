@@ -252,7 +252,7 @@ def analyse_extracted_data():
 
             plt.axis('off')
 
-            fig_file = target_file%('traces_FIG', id)
+            fig_file = target_file%('traces', id)
             plt.savefig(fig_file, bbox_inches='tight', pad_inches=0)
             from PIL import Image
             img = Image.open(fig_file)

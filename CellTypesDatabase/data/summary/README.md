@@ -3,7 +3,7 @@
 <tr>
 <td width="130px">
 <p style="font-size:80%;font-family:arial"><b>464198958</b></p>
-<p style="font-size:80%;font-family:arial">Lateral visual area, layer 5</p>
+<p style="font-size:80%;font-family:arial">Primary visual area, layer 5</p>
 <p style="font-size:80%;font-family:arial">aspiny</p>
 <p style="font-size:80%;font-family:arial">Sst-IRES-Cre</p>
 <p style="font-size:80%;font-family:arial"><a href="http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958">Source data</a></p>
