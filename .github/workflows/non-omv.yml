@@ -73,7 +73,7 @@ jobs:
     - name: Tune data
       run: |
 
-         cd CellTypesDatabase/data
+         cd CellTypesDatabase/tune
          git clone https://github.com/NeuralEnsemble/neurotune.git
          cd neurotune/
          python setup.py install
