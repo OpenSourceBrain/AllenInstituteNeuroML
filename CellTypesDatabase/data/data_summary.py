@@ -12,8 +12,6 @@ import airspeed
 nogui = '-nogui' in sys.argv
 
 HTML_TEMPLATE_FILE = "CellInfo_TEMPLATE.html"
-HTML_TEMPLATE_FILE_FIG = "Fig_TEMPLATE.html"
-
 
 def make_html_file(info, template=HTML_TEMPLATE_FILE, target='CellInfo.html'):
     merged = merge_with_template(info, template)
@@ -262,7 +260,6 @@ def analyse_extracted_data():
 
     print(info)
     make_html_file(info)
-    make_html_file(info, template=HTML_TEMPLATE_FILE_FIG, target='Figure.html')
     make_md_file()
 
     if not nogui:
