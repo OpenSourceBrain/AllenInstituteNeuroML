@@ -77,10 +77,10 @@ jobs:
          git clone https://github.com/NeuralEnsemble/neurotune.git
          cd neurotune/
          python setup.py install
-         rm -rf neurotune
          cd ..
+         rm -rf neurotune
 
-         python tuneAllen.py -quick
+         python tuneAllen.py -izhone
          
     - name: Final version info
       run: |
