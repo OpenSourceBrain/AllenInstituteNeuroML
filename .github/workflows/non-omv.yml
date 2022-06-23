@@ -80,6 +80,7 @@ jobs:
          cd ..
          rm -rf neurotune
 
+         export NEURON_HOME=$pythonLocation
          python tuneAllen.py -izhone
          
     - name: Final version info
