@@ -51,6 +51,13 @@ jobs:
          pip install pyneuroml airspeed
          python data_summary.py -test
 
+    - name: Extract NeuroML2 models from NEURON files
+      run: |
+         pip install neuron
+         
+         cd CellTypesDatabase/models
+         nrnivmodl  NEURON
+         python ParseAll.py
 
     - name: Final version info
       run: |
