@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ 3.7, 3.9 ]
+        python-version: [ 3.7, 3.8 ]
 
     steps:
     - uses: actions/checkout@v2
@@ -51,7 +51,25 @@ jobs:
          pip install pyneuroml airspeed
          python data_summary.py -test
 
+    - name: Extract NeuroML2 models from NEURON files
+      run: |
+         pip install neuron
+         
+         cd CellTypesDatabase/models
+         nrnivmodl  NEURON
+         python ParseAll.py
 
+    - name: Tune data
+      run: |
+         cd CellTypesDatabase/tune
+         git clone https://github.com/NeuralEnsemble/neurotune.git
+         cd neurotune/
+         python setup.py install
+         cd ..
+         rm -rf neurotune
+         export NEURON_HOME=$pythonLocation
+         python tuneAllen.py -izhone
+         
     - name: Final version info
       run: |
         pip list
