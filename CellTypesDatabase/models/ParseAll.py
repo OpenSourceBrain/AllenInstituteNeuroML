@@ -6,7 +6,7 @@
 #########
 
 
-from allensdk.model.biophysical.utils import Utils
+from allensdk.model.biophysical.utils import Utils, AllActiveUtils
 from allensdk.model.biophysical.runner import load_description
 
 from pyneuroml.neuron import export_to_neuroml2
@@ -21,6 +21,7 @@ import os
 import os.path
 
 import neuroml
+import utils_all_active
 
 sys.path.append('../data')
 from data_helper import get_test_current
@@ -55,8 +56,16 @@ for model_id in cell_dirs:
 
     description = load_description({'manifest_file':'manifest.json'})
 
+    # find celltype
+    all_active = True if 'all active' in description.data['biophys'][0]['model_type'] else False
+
     # configure NEURON
-    utils = Utils(description)
+    if all_active:
+        utils = AllActiveUtils(description, axon_type='stub') # all-active type
+    else:
+        utils = Utils(description) # perisomatic type
+    
+    
     h = utils.h
 
     print("NEURON configured")
