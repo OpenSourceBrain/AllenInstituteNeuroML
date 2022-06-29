@@ -21,7 +21,6 @@ import os
 import os.path
 
 import neuroml
-import utils_all_active
 
 sys.path.append('../data')
 from data_helper import get_test_current
@@ -156,19 +155,27 @@ for model_id in cell_dirs:
 
     membrane_properties = neuroml.MembraneProperties()
 
-    for sc in cell_info['passive'][0]['cm']:
-        membrane_properties.specific_capacitances.append(neuroml.SpecificCapacitance(value='%s uF_per_cm2'%sc['cm'],
-                                            segment_groups=sc['section']))
+    if all_active:
+        for sc in cell_info['genome']:
+             if sc['name']=='cm':
+                membrane_properties.specific_capacitances.append(neuroml.SpecificCapacitance(value='%s uF_per_cm2'%sc['value'],
+                                                segment_groups=sc['section']))     
+    else:
+        for sc in cell_info['passive'][0]['cm']:
+            membrane_properties.specific_capacitances.append(neuroml.SpecificCapacitance(value='%s uF_per_cm2'%sc['cm'],
+                                                segment_groups=sc['section']))
 
     for chan in cell_info['genome']:
         chan_name = chan['mechanism']
-        if  chan['name'] == 'g_pas':
+        if  chan['name'] == 'g_pas' and not all_active:
+            chan_name = 'pas'
+        if chan['name'] == 'e_pas' and all_active:
             chan_name = 'pas'
         if chan['mechanism'] != 'CaDynamics':
             erev = '??'
             ion = '??'
             if chan_name == 'pas':
-                erev = '%s mV'%cell_info['passive'][0]['e_pas']
+                erev = chan['value'] if all_active else '%s mV'%cell_info['passive'][0]['e_pas']
                 ion = 'non_specific'
             elif chan['mechanism'].startswith('Na'):
                 erev = '%s mV'%cell_info['conditions'][0]['erev'][0]['ena']
