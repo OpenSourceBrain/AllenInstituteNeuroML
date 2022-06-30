@@ -3,9 +3,9 @@ name: Testing non OMV based scripts
 
 on:
   push:
-    branches: [ master, development, experimental ]
+    branches: [ master, development, experimental, pg* ]
   pull_request:
-    branches: [ master, development, experimental ]
+    branches: [ master, development, experimental, pg* ]
 
 jobs:
   build:
@@ -54,7 +54,7 @@ jobs:
     - name: Extract NeuroML2 models from NEURON files
       run: |
          pip install neuron
-         
+
          cd CellTypesDatabase/models
          nrnivmodl  NEURON
          python ParseAll.py
@@ -69,7 +69,7 @@ jobs:
          rm -rf neurotune
          export NEURON_HOME=$pythonLocation
          python tuneAllen.py -izhone
-         
+
     - name: Final version info
       run: |
         pip list
