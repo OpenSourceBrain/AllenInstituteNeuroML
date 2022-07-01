@@ -294,3 +294,4 @@ original.v.dat
 /tests.log
 /CellTypesDatabase/data/tests.log
 /CellTypesDatabase/tune/*_analysis.json
+/CellTypesDatabase/data/tmp
