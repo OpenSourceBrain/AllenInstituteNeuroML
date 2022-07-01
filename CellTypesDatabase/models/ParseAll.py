@@ -51,20 +51,22 @@ for model_id in cell_dirs:
     else:
         os.chdir('../'+model_id)
 
-    print('\n\n************************************************************\n\n    Parsing %s (cell %i/%i)\n'%(model_id, count, len(cell_dirs)))
-
     description = load_description({'manifest_file':'manifest.json'})
 
     # find celltype
     all_active = True if 'all active' in description.data['biophys'][0]['model_type'] else False
 
+
+    print('\n\n************************************************************\n\n    Parsing %s (cell %i/%i), all_active: %s\n'%(model_id, count, len(cell_dirs), all_active))
+
     # configure NEURON
     if all_active:
+        continue
         utils = AllActiveUtils(description, axon_type='stub') # all-active type
     else:
         utils = Utils(description) # perisomatic type
-    
-    
+
+
     h = utils.h
 
     print("NEURON configured")
@@ -159,7 +161,7 @@ for model_id in cell_dirs:
         for sc in cell_info['genome']:
              if sc['name']=='cm':
                 membrane_properties.specific_capacitances.append(neuroml.SpecificCapacitance(value='%s uF_per_cm2'%sc['value'],
-                                                segment_groups=sc['section']))     
+                                                segment_groups=sc['section']))
     else:
         for sc in cell_info['passive'][0]['cm']:
             membrane_properties.specific_capacitances.append(neuroml.SpecificCapacitance(value='%s uF_per_cm2'%sc['cm'],
@@ -206,7 +208,8 @@ for model_id in cell_dirs:
         else:
             if model_id not in ca_dynamics.keys():
                 ca_dynamics[model_id] = {}
-            elif all_active:
+
+            if all_active:
                 if chan['section'] not in ca_dynamics[model_id].keys():
                     ca_dynamics[model_id][chan['section']] = {}
                 ca_dynamics[model_id][chan['section']][str(chan['name'])] = chan['value']
@@ -231,7 +234,7 @@ for model_id in cell_dirs:
         for i in cell_info['genome']:
             if i['name']=='Ra':
                 resistivities.append(neuroml.Resistivity(value="%s ohm_cm" % i['value'], segment_groups=i['section']))
-    
+
     # valid from both perisomatic and all-active cells
     resistivities.append(neuroml.Resistivity(value="%s ohm_cm"%cell_info['passive'][0]['ra'], segment_groups='all'))
 
@@ -265,11 +268,12 @@ for model_id in cell_dirs:
 
 '''
     # @type ca_dynamics dict
+    print('Handling Ca dynamics: %s'%ca_dynamics)
     for key, values in ca_dynamics.items():
         if all_active:
             pass
             #TODO
-        else:    
+        else:
             xml += '    <concentrationModel id="CaDynamics_%s" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="%s ms" depth="0.1 um" gamma="%s" ion="ca"/>\n\n'%(key,values["decay_CaDynamics"],values["gamma_CaDynamics"])
 
     xml += '''
