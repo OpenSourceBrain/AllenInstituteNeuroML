@@ -39,11 +39,11 @@ def download():
     print("---- Downloading %i cell models..."%len(neuronal_model_ids))
 
     for neuronal_model_id in neuronal_model_ids:
-        print("---- Downloading cell model: %s..."%neuronal_model_id)
+        print("\n---- Downloading cell model: %s..."%neuronal_model_id)
         try:
 
             bp = BiophysicalApi('http://api.brain-map.org')
-            bp.cache_stimulus = False # change to False to not download the large stimulus NWB file
+            bp.cache_stimulus = True # change to False to not download the large stimulus NWB file
             working_directory='%i'%neuronal_model_id
             bp.cache_data(neuronal_model_id, working_directory=working_directory)
             print("---- Saved model into %s, included NWB file: %s"%(working_directory,bp.cache_stimulus))
