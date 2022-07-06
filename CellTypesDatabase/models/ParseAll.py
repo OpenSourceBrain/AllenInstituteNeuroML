@@ -64,7 +64,6 @@ for model_id in cell_dirs:
 
     # configure NEURON
     if all_active:
-        continue
         utils = AllActiveUtils(description, axon_type='stub') # all-active type
     else:
         utils = Utils(description) # perisomatic type

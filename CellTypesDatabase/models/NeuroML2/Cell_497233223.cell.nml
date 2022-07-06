@@ -1,5 +1,4 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.2.xsd" id="NeuroML2_file_exported_from_NEURON">
-    <include href=".channel.nml"/>
     <include href="pas.channel.nml"/>
     <include href="NaV.channel.nml"/>
     <include href="K_T.channel.nml"/>
@@ -25,6 +24,17 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
 ******************************************************
 
         </notes>
+        <property tag="AIBS:aibs_dendrite_type" value="aspiny"/>
+        <property tag="AIBS:aibs_cre_line" value="Sst-IRES-Cre"/>
+        <property tag="AIBS:aibs_specimen_id" value="464198958"/>
+        <property tag="AIBS:aibs_specimen_name" value="Sst-IRES-Cre;Ai14-165865.03.01.01"/>
+        <property tag="AIBS:intracellular_ephys:Electrode 1:location" value="Primary visual area, layer 5"/>
+        <property tag="AIBS:session_id" value="464198956"/>
+        <property tag="AIBS:subject:age" value="P53"/>
+        <property tag="AIBS:subject:description" value="Mus musculus In Vitro"/>
+        <property tag="AIBS:subject:genotype" value="Sst-IRES-Cre; Ai14(RCL-tdT)"/>
+        <property tag="AIBS:subject:sex" value="M"/>
+        <property tag="AIBS:subject:species" value="Mus musculus"/>
         <morphology id="morphology">
             <segment id="0" name="Seg0_soma_0">
                 <proximal x="421.553" y="352.823" z="25.1663" diameter="12.094"/>
@@ -6919,14 +6929,14 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
         </morphology>
         <biophysicalProperties id="biophys">
             <membraneProperties>
-                <channelDensity id="_soma" ionChannel="" condDensity="6.27657e-06 S_per_cm2" erev="??" segmentGroup="soma" ion="??"/>
-                <channelDensity id="pas_soma" ionChannel="pas" condDensity="-60.7688 S_per_cm2" erev="-60.7688" segmentGroup="soma" ion="non_specific"/>
-                <channelDensity id="_axon" ionChannel="" condDensity="0.00750338 S_per_cm2" erev="??" segmentGroup="axon" ion="??"/>
-                <channelDensity id="pas_axon" ionChannel="pas" condDensity="-60.741 S_per_cm2" erev="-60.741" segmentGroup="axon" ion="non_specific"/>
-                <channelDensity id="_apic" ionChannel="" condDensity="0.00964108 S_per_cm2" erev="??" segmentGroup="apic" ion="??"/>
-                <channelDensity id="pas_apic" ionChannel="pas" condDensity="-87.0523 S_per_cm2" erev="-87.0523" segmentGroup="apic" ion="non_specific"/>
-                <channelDensity id="_dend" ionChannel="" condDensity="2.67078e-06 S_per_cm2" erev="??" segmentGroup="dend" ion="??"/>
-                <channelDensity id="pas_dend" ionChannel="pas" condDensity="-100.207 S_per_cm2" erev="-100.207" segmentGroup="dend" ion="non_specific"/>
+                <channelDensity id="pas_soma" ionChannel="pas" condDensity="6.27657e-06 S_per_cm2" erev="6.27657e-06 mV" segmentGroup="soma" ion="non_specific"/>
+                <channelDensity id="pas_soma" ionChannel="pas" condDensity="-60.7688 S_per_cm2" erev="-60.7688 mV" segmentGroup="soma" ion="non_specific"/>
+                <channelDensity id="pas_axon" ionChannel="pas" condDensity="0.00750338 S_per_cm2" erev="0.00750338 mV" segmentGroup="axon" ion="non_specific"/>
+                <channelDensity id="pas_axon" ionChannel="pas" condDensity="-60.741 S_per_cm2" erev="-60.741 mV" segmentGroup="axon" ion="non_specific"/>
+                <channelDensity id="pas_apic" ionChannel="pas" condDensity="0.00964108 S_per_cm2" erev="0.00964108 mV" segmentGroup="apic" ion="non_specific"/>
+                <channelDensity id="pas_apic" ionChannel="pas" condDensity="-87.0523 S_per_cm2" erev="-87.0523 mV" segmentGroup="apic" ion="non_specific"/>
+                <channelDensity id="pas_dend" ionChannel="pas" condDensity="2.67078e-06 S_per_cm2" erev="2.67078e-06 mV" segmentGroup="dend" ion="non_specific"/>
+                <channelDensity id="pas_dend" ionChannel="pas" condDensity="-100.207 S_per_cm2" erev="-100.207 mV" segmentGroup="dend" ion="non_specific"/>
                 <channelDensity id="_soma" ionChannel="" condDensity="1.93028 S_per_cm2" erev="??" segmentGroup="soma" ion="??"/>
                 <channelDensity id="_soma" ionChannel="" condDensity="102.781 S_per_cm2" erev="??" segmentGroup="soma" ion="??"/>
                 <channelDensity id="_axon" ionChannel="" condDensity="8.77051 S_per_cm2" erev="??" segmentGroup="axon" ion="??"/>
@@ -6963,8 +6973,12 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <specificCapacitance value="0.631319 uF_per_cm2" segmentGroup="dend"/>
             </membraneProperties>
             <intracellularProperties>
-                <species id="ca" concentrationModel="CaDynamics_497233223" ion="ca" initialConcentration="0.0001 mM" initialExtConcentration="2 mM" segmentGroup="soma"/>
-                <resistivity value="100 ohm_cm"/>
+                <species id="ca" concentrationModel="CaDynamics_497233223_axon" ion="ca" initialConcentration="0.0001 mM" initialExtConcentration="2 mM" segmentGroup="axon"/>
+                <species id="ca" concentrationModel="CaDynamics_497233223_soma" ion="ca" initialConcentration="0.0001 mM" initialExtConcentration="2 mM" segmentGroup="soma"/>
+                <resistivity value="102.781 ohm_cm" segmentGroup="soma"/>
+                <resistivity value="148.993 ohm_cm" segmentGroup="axon"/>
+                <resistivity value="101.51 ohm_cm" segmentGroup="apic"/>
+                <resistivity value="135.168 ohm_cm" segmentGroup="dend"/>
             </intracellularProperties>
         </biophysicalProperties>
     </cell>
