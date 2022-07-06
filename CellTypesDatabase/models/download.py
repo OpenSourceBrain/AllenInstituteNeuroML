@@ -31,16 +31,16 @@ def download():
                           '483109057', '478513415', '482583564', '488759006', '472912107', '485904766', '480630395', '480361288', '485720616', '477878554',
                           '476637796', '479694856', '478049069', '476637747', '472450023', '478513441', '472299294']
 
-    neuronal_model_ids = [472450023, 483108201, 486556811]
+    neuronal_model_ids = [472450023, 483108201, 486556811, 497233223] #497233223 is all-active
 
     print("---- Downloading %i cell models..."%len(neuronal_model_ids))
 
     for neuronal_model_id in neuronal_model_ids:
-        print("---- Downloading cell model: %s..."%neuronal_model_id)
+        print("\n---- Downloading cell model: %s..."%neuronal_model_id)
         try:
 
             bp = BiophysicalApi('http://api.brain-map.org')
-            bp.cache_stimulus = False # change to False to not download the large stimulus NWB file
+            bp.cache_stimulus = True # change to False to not download the large stimulus NWB file
             working_directory='%i'%neuronal_model_id
             bp.cache_data(neuronal_model_id, working_directory=working_directory)
             print("---- Saved model into %s, included NWB file: %s"%(working_directory,bp.cache_stimulus))

@@ -56,6 +56,10 @@ jobs:
          pip install neuron
 
          cd CellTypesDatabase/models
+         pip install markupsafe==2.0.1
+         python download.py
+         ls -alt 4*
+
          nrnivmodl  NEURON
          python ParseAll.py
 
