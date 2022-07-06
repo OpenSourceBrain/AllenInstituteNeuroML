@@ -165,7 +165,7 @@ for model_id in cell_dirs:
                 membrane_properties.specific_capacitances.append(neuroml.SpecificCapacitance(value='%s uF_per_cm2'%sc['value'],
                                                 segment_groups=sc['section']))     
    
-   else:
+    else:
         for sc in cell_info['passive'][0]['cm']:
             membrane_properties.specific_capacitances.append(neuroml.SpecificCapacitance(value='%s uF_per_cm2'%sc['cm'],
                                                 segment_groups=sc['section']))

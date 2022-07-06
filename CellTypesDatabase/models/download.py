@@ -152,7 +152,7 @@ if __name__ == '__main__':
                     all_biophys_models.append(id)
             count+=1
 
-        print("Found %i biophysical models: %s"%(len(all_biophys_models),all_biophys_models))
+        print("Found %i biophysical models: %s"%(len(all_biophys_models), all_biophys_models))
 
     else:
 
