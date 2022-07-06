@@ -34,7 +34,7 @@ def download():
                           '476637796', '479694856', '478049069', '476637747', '472450023', '478513441', '472299294']
 
     neuronal_model_ids = [472450023, 483108201, 486556811, 497233223]
-    neuronal_model_ids.append(ALL_ACTIVE_MODEL_IDS)
+    neuronal_model_ids+=ALL_ACTIVE_MODEL_IDS
 
     print("---- Downloading %i cell models..."%len(neuronal_model_ids))
 
