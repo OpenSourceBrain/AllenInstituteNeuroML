@@ -3,9 +3,11 @@
 #########
 #  Before running this script, compile the Neuron mod files to this folder:
 #      nrnivmodl  NEURON
-#########
+#########c
 
 
+from statistics import mode
+from pyrsistent import m
 from allensdk.model.biophysical.utils import Utils, AllActiveUtils
 from allensdk.model.biophysical.runner import load_description
 
@@ -13,6 +15,8 @@ from pyneuroml.neuron import export_to_neuroml2
 from pyneuroml.neuron.nrn_export_utils import clear_neuron
 from pyneuroml.lems import generate_lems_file_for_neuroml
 from pyneuroml import pynml
+
+from download import ALL_ACTIVE_MODEL_IDS
 
 import json
 import sys
@@ -61,7 +65,6 @@ for model_id in cell_dirs:
 
     # configure NEURON
     if all_active:
-        continue
         utils = AllActiveUtils(description, axon_type='stub') # all-active type
     else:
         utils = Utils(description) # perisomatic type
@@ -219,7 +222,7 @@ for model_id in cell_dirs:
 
     inc_chans =[]
     for cd in membrane_properties.channel_densities:
-        if not cd.ion_channel in inc_chans:
+        if not cd.ion_channel in inc_chans and cd.ion_channel != '':
             nml_doc.includes.append(
                     neuroml.IncludeType(href="%s.channel.nml" % cd.ion_channel))
             inc_chans.append(cd.ion_channel)
@@ -234,14 +237,19 @@ for model_id in cell_dirs:
         for i in cell_info['genome']:
             if i['name']=='Ra':
                 resistivities.append(neuroml.Resistivity(value="%s ohm_cm" % i['value'], segment_groups=i['section']))
-
-    # valid from both perisomatic and all-active cells
-    resistivities.append(neuroml.Resistivity(value="%s ohm_cm"%cell_info['passive'][0]['ra'], segment_groups='all'))
+    else:
+        resistivities.append(neuroml.Resistivity(value="%s ohm_cm"%cell_info['passive'][0]['ra'], segment_groups='all'))
 
     species = []
     if all_active:
-        pass
-        #TODO
+        for segment in ca_dynamics[model_id].keys():
+            species.append(neuroml.Species(id='ca', \
+                                ion='ca',  \
+                                initial_concentration='0.0001 mM', \
+                                initial_ext_concentration='2 mM', \
+                                concentration_model=f"CaDynamics_{model_id}_{segment}", \
+                                segment_groups=segment))
+
     else:
         species.append(neuroml.Species(id='ca', \
                             ion='ca',  \
@@ -270,11 +278,13 @@ for model_id in cell_dirs:
     # @type ca_dynamics dict
     print('Handling Ca dynamics: %s'%ca_dynamics)
     for key, values in ca_dynamics.items():
-        if all_active:
-            pass
-            #TODO
+        if int(key) in ALL_ACTIVE_MODEL_IDS:
+            for segment, prop in values.items():
+                xml += '    <concentrationModel id="CaDynamics_%s_%s" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="%s ms" depth="0.1 um" gamma="%s" ion="ca"/>\n\n'%(key, segment, prop["decay_CaDynamics"], prop["gamma_CaDynamics"])
+
         else:
-            xml += '    <concentrationModel id="CaDynamics_%s" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="%s ms" depth="0.1 um" gamma="%s" ion="ca"/>\n\n'%(key,values["decay_CaDynamics"],values["gamma_CaDynamics"])
+            xml += '    <concentrationModel id="CaDynamics_%s" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="%s ms" depth="0.1 um" gamma="%s" ion="ca"/>\n\n'%(key, values["decay_CaDynamics"], values["gamma_CaDynamics"])
+
 
     xml += '''
 </neuroml>'''
@@ -380,4 +390,4 @@ neuroml.writers.NeuroMLWriter.write(net_doc, net_file)
 
 print("Written network with %i cells in network to: %s"%(count,net_file))
 
-pynml.nml2_to_svg(net_file)
+# pynml.nml2_to_svg(net_file)

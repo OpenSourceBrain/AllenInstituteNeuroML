@@ -1,143 +1,23 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" 
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.githubusercontent.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd"
         id="CaDynamics_all">
-    
+
     <notes>A set of concentration models for various cells exported to NeuroML, with specific values for gamma and delay</notes>
-    
+
     <!-- This file contains the definition of the ComponentType concentrationModelHayEtAl -->
     <include href="CaDynamics.nml"/>
-    
-    <concentrationModel id="CaDynamics_478513451" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="20.002290561 ms" depth="0.1 um" gamma="0.00534283823695" ion="ca"/>
 
-    <concentrationModel id="CaDynamics_473835796" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="998.877854789 ms" depth="0.1 um" gamma="0.00012837287957" ion="ca"/>
+    <concentrationModel id="CaDynamics_497233223_axon" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="418.369 ms" depth="0.1 um" gamma="0.0483136" ion="ca"/>
 
-    <concentrationModel id="CaDynamics_483108201" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="800.652559055 ms" depth="0.1 um" gamma="0.000532449236386" ion="ca"/>
+    <concentrationModel id="CaDynamics_497233223_soma" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="121.017 ms" depth="0.1 um" gamma="0.0166726" ion="ca"/>
 
-    <concentrationModel id="CaDynamics_480631402" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="536.30085241 ms" depth="0.1 um" gamma="0.00084204746152" ion="ca"/>
+    <concentrationModel id="CaDynamics_486556811" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="300.6273393255859 ms" depth="0.1 um" gamma="0.00011630595964028934" ion="ca"/>
 
-    <concentrationModel id="CaDynamics_478513459" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="783.442861346 ms" depth="0.1 um" gamma="0.0154827570396" ion="ca"/>
+    <concentrationModel id="CaDynamics_472450023" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="210.698822061785 ms" depth="0.1 um" gamma="0.023732939809244753" ion="ca"/>
 
-    <concentrationModel id="CaDynamics_473863510" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="756.47410421 ms" depth="0.1 um" gamma="0.00147327817166" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_482657381" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="999.651756312 ms" depth="0.1 um" gamma="0.000139563286533" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_480632594" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="537.88494678 ms" depth="0.1 um" gamma="7.67475661138e-05" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_471081668" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="289.957213249 ms" depth="0.1 um" gamma="0.00827908391051" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478047737" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="703.755647061 ms" depth="0.1 um" gamma="0.00151306586643" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_485510685" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="299.65095886 ms" depth="0.1 um" gamma="0.0175601804534" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472447460" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="385.103866182 ms" depth="0.1 um" gamma="0.0165419389348" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_477494382" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="533.545740626 ms" depth="0.1 um" gamma="0.0001916236273" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_479427516" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="993.450944756 ms" depth="0.1 um" gamma="0.000121183265514" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472450023" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="210.698822062 ms" depth="0.1 um" gamma="0.0237329398092" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478513224" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="35.8254323574 ms" depth="0.1 um" gamma="0.0147234372228" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_486557284" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="830.717438341 ms" depth="0.1 um" gamma="0.00370699355412" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_479694721" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="371.903424394 ms" depth="0.1 um" gamma="0.0236928877216" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_486511108" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="925.471116354 ms" depth="0.1 um" gamma="0.000381703273411" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_480051220" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="854.683328729 ms" depth="0.1 um" gamma="0.00248768359532" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472306544" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="452.590862467 ms" depth="0.1 um" gamma="0.00441171674163" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_487245869" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="484.493699857 ms" depth="0.1 um" gamma="0.0116295372803" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472306460" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="711.408229435 ms" depth="0.1 um" gamma="0.00875247172766" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_479234506" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="976.768402268 ms" depth="0.1 um" gamma="0.000385963417242" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_485591806" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="152.946875386 ms" depth="0.1 um" gamma="0.00770652966566" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_477876583" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="264.79608825 ms" depth="0.1 um" gamma="0.00210823626397" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472440759" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="915.177115341 ms" depth="0.1 um" gamma="0.0153990325747" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_479427369" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="604.057757484 ms" depth="0.1 um" gamma="0.000650807762826" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478513461" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="825.526671501 ms" depth="0.1 um" gamma="0.000215079623893" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478513445" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="873.51686935 ms" depth="0.1 um" gamma="6.01487416457e-05" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_482525598" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="206.580126876 ms" depth="0.1 um" gamma="0.0436954434973" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478513443" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="652.272072919 ms" depth="0.1 um" gamma="0.00677380078021" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_486509232" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="748.167434908 ms" depth="0.1 um" gamma="0.000103038966821" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_486509010" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="708.444023894 ms" depth="0.1 um" gamma="0.0216690965324" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_485694403" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="20.1665470448 ms" depth="0.1 um" gamma="0.00307734772759" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472306616" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="457.284812979 ms" depth="0.1 um" gamma="0.00778940833809" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478513187" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="135.185850658 ms" depth="0.1 um" gamma="0.0148097036598" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_496930338" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="129.382877703 ms" depth="0.1 um" gamma="8.32150114672e-05" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472451419" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="262.084984324 ms" depth="0.1 um" gamma="0.0319792825941" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478047816" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="668.508551668 ms" depth="0.1 um" gamma="0.000108691735429" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472442377" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="857.95984409 ms" depth="0.1 um" gamma="0.000141530419794" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_476637699" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="999.705624829 ms" depth="0.1 um" gamma="0.00193633297914" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_482525264" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="127.096177414 ms" depth="0.1 um" gamma="0.0011209095469" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_329322394" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="925.541319685 ms" depth="0.1 um" gamma="0.000575411136798" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_486556811" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="300.627339326 ms" depth="0.1 um" gamma="0.00011630595964" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478513396" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="115.944691548 ms" depth="0.1 um" gamma="0.000237131229694" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_477840124" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="435.927618131 ms" depth="0.1 um" gamma="0.00186669331066" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_486052412" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="118.506294357 ms" depth="0.1 um" gamma="0.00828289548658" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478043748" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="999.921576965 ms" depth="0.1 um" gamma="0.00652846314634" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_479234670" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="696.953804662 ms" depth="0.1 um" gamma="0.0327030434598" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472430904" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="386.098586533 ms" depth="0.1 um" gamma="0.00224432261648" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_482655070" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="653.026914936 ms" depth="0.1 um" gamma="5.73438168545e-05" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_489931963" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="57.6703276976 ms" depth="0.1 um" gamma="0.00239621723055" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_479234530" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="235.964038995 ms" depth="0.1 um" gamma="0.00674952638125" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_480633088" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="931.788051353 ms" depth="0.1 um" gamma="0.00507025388493" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478513398" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="999.961661774 ms" depth="0.1 um" gamma="0.000408473704023" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_488461970" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="470.058017076 ms" depth="0.1 um" gamma="0.00108536944341" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478045347" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="477.53128271 ms" depth="0.1 um" gamma="0.006457020009" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478810017" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="511.581115552 ms" depth="0.1 um" gamma="0.000152918848563" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_485507735" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="805.79133357 ms" depth="0.1 um" gamma="0.00113562358187" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_472352327" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="586.360026937 ms" depth="0.1 um" gamma="0.0102128191329" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_480629276" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="841.586476833 ms" depth="0.1 um" gamma="0.00827694477557" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_478513411" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="22.7771728252 ms" depth="0.1 um" gamma="0.0027637400222" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_485611914" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="208.523824909 ms" depth="0.1 um" gamma="0.0224182457274" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_488462820" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="365.102062408 ms" depth="0.1 um" gamma="0.004787288788" ion="ca"/>
+    <concentrationModel id="CaDynamics_483108201" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="800.6525590548727 ms" depth="0.1 um" gamma="0.0005324492363855399" ion="ca"/>
 
 
 </neuroml>
