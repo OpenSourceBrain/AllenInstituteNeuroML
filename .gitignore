@@ -295,3 +295,4 @@ original.v.dat
 /CellTypesDatabase/data/tests.log
 /CellTypesDatabase/tune/*_analysis.json
 /CellTypesDatabase/data/tmp
+/CellTypesDatabase/models/*sweep*.dat
