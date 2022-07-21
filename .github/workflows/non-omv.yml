@@ -65,8 +65,10 @@ jobs:
          cd CellTypesDatabase/models
          nrnivmodl  NEURON
 
-         echo "Parsing all.."
+         echo "-----   Parsing perisomatic.."
          python ParseAll.py
+         echo "-----   Parsing all active.."
+         python ParseAll.py -all_active
          ls -alt NeuroML2
 
     - name: Tune data

@@ -47,6 +47,9 @@ ca_dynamics = {}
 
 print("PA >> Parsing cell dirs: %s" % cell_dirs)
 
+do_all_active = '-all_active' in sys.argv
+
+completed = []
 for model_id in cell_dirs:
 
     count+=1
@@ -65,10 +68,14 @@ for model_id in cell_dirs:
 
     # configure NEURON
     if all_active:
-        #continue # skip this...
+        if not do_all_active:
+            print('Not proceeding with this file...')
+            continue # skip this...
         utils = AllActiveUtils(description, axon_type='stub') # all-active type
     else:
-        continue # skip this...
+        if do_all_active:
+            print('Not proceeding with this file...')
+            continue # skip this...
         utils = Utils(description) # perisomatic type
 
 
@@ -391,6 +398,7 @@ for model_id in cell_dirs:
     inst.location = neuroml.Location(x=300*X, y=0, z=300*Z)
 
     print('PA >> Adding to network of all cells at: %s'%inst.location)
+    completed.append(model_id)
 
 
 net_file = '%s/%s.net.nml'%(nml2_cell_dir,net_ref)
@@ -400,4 +408,4 @@ print("PA >> Written network with %i cells in network to: %s"%(count,net_file))
 
 pynml.nml2_to_svg(net_file, verbose=False)
 
-print("PA >> Finished parsing cell dirs: %s" % cell_dirs)
+print("PA >> Finished parsing cell dirs: %s" % completed)
