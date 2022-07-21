@@ -147,7 +147,7 @@ for model_id in cell_dirs:
         print("PA >> Found group: %s"%sg.id)
         if (sg.id.startswith('ModelViewParm')) and len(sg.members)==0:
             replace = {}
-            replace['soma_'] = 'soma'
+            #replace['soma_'] = 'soma'
             replace['axon_'] = 'axon'
             replace['apic_'] = 'apic'
             replace['dend_'] = 'dend'
@@ -157,8 +157,15 @@ for model_id in cell_dirs:
                     #print inc
                     all_match = all_match and inc.segment_groups.startswith(prefix)
                 if all_match:
-                    print("Replacing group named %s with %s"%(sg.id,replace[prefix]))
+                    print("PA >>    1) Replacing group named %s with %s"%(sg.id,replace[prefix]))
                     sg.id = replace[prefix]
+
+        if (sg.id.startswith('OneSecGrp')) and len(sg.includes)==1:
+            if sg.includes[0].segment_groups == "soma_0":
+                rep = 'soma'
+                print("PA >>    2) Replacing group named %s with %s"%(sg.id,rep))
+                sg.id = rep
+
 
     cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="soma_group", includes=[neuroml.Include("soma")]))
     cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="axon_group", includes=[neuroml.Include("axon")]))
