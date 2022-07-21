@@ -142,15 +142,19 @@ for model_id in cell_dirs:
             for prefix in replace.keys():
                 all_match = True
                 for inc in sg.includes:
-                    #print inc
+                    # print inc
                     all_match = all_match and inc.segment_groups.startswith(prefix)
                 if all_match:
                     print("Replacing group named %s with %s"%(sg.id,replace[prefix]))
                     sg.id = replace[prefix]
-
-    cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="soma_group", includes=[neuroml.Include("soma")]))
-    cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="axon_group", includes=[neuroml.Include("axon")]))
-    cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="dendrite_group", includes=[neuroml.Include("dend")]))
+                
+    segment_groups = [sg.id for sg in cell.morphology.segment_groups]
+    if 'soma' in segment_groups:
+        cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="soma_group", includes=[neuroml.Include("soma")]))
+    if 'axon' in segment_groups:
+        cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="axon_group", includes=[neuroml.Include("axon")]))
+    if 'dend' in segment_groups:
+        cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="dendrite_group", includes=[neuroml.Include("dend")]))
 
     with open(manifest_info['biophys'][0]["model_file"][1], "r") as json_file:
         cell_info = json.load(json_file)
@@ -173,6 +177,7 @@ for model_id in cell_dirs:
         if chan['name'] == 'g_pas':
             chan_name = 'pas'
         if all_active and (chan['name'] == 'e_pas' or chan['name'] == 'cm' or chan['name'] == 'Ra'):
+            # all active models have passive conductance, capacitance and resistance in the genome section, which are parsed separately
             continue
         if chan['mechanism'] != 'CaDynamics':
             erev = '??'

@@ -6917,9 +6917,6 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
             <segmentGroup id="OneSecGrp_SectionRef_1">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
-            <segmentGroup id="soma_group">
-                <include segmentGroup="soma"/>
-            </segmentGroup>
             <segmentGroup id="axon_group">
                 <include segmentGroup="axon"/>
             </segmentGroup>
