@@ -11,7 +11,7 @@ import tables
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-ALL_ACTIVE_MODEL_IDS = [497233223]
+ALL_ACTIVE_MODEL_IDS = [497232312]
 
 def download():
     neuronal_model_ids = ['478047737', '472430904', '479234506', '478513451', '472352327', '478043748', '480633088', '478513443', '489931963', '478513224',
@@ -33,7 +33,7 @@ def download():
                           '483109057', '478513415', '482583564', '488759006', '472912107', '485904766', '480630395', '480361288', '485720616', '477878554',
                           '476637796', '479694856', '478049069', '476637747', '472450023', '478513441', '472299294']
 
-    neuronal_model_ids = [472450023, 483108201, 486556811] 
+    neuronal_model_ids = [472450023, 483108201, 486556811]
     neuronal_model_ids+=ALL_ACTIVE_MODEL_IDS #adding all active celltype models
 
     print("---- Downloading %i cell models..."%len(neuronal_model_ids))
