@@ -68,7 +68,7 @@ for model_id in cell_dirs:
         #continue # skip this...
         utils = AllActiveUtils(description, axon_type='stub') # all-active type
     else:
-        #continue
+        continue # skip this...
         utils = Utils(description) # perisomatic type
 
 
