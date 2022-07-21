@@ -50,7 +50,7 @@ print("PA >> Parsing cell dirs: %s" % cell_dirs)
 do_all_active = '-all_active' in sys.argv
 
 completed = []
-for model_id in cell_dirs:
+for model_id in sorted(cell_dirs):
 
     count+=1
     if os.path.isdir(model_id):
@@ -73,9 +73,6 @@ for model_id in cell_dirs:
             continue # skip this...
         utils = AllActiveUtils(description, axon_type='stub') # all-active type
     else:
-        if do_all_active:
-            print('Not proceeding with this file...')
-            continue # skip this...
         utils = Utils(description) # perisomatic type
 
 
