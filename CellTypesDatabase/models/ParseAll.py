@@ -45,7 +45,7 @@ count = 0
 
 ca_dynamics = {}
 
-print("Parsing cell dirs: %s" % cell_dirs)
+print("PA >> Parsing cell dirs: %s" % cell_dirs)
 
 for model_id in cell_dirs:
 
@@ -65,7 +65,7 @@ for model_id in cell_dirs:
 
     # configure NEURON
     if all_active:
-        continue # skip this...
+        #continue # skip this...
         utils = AllActiveUtils(description, axon_type='stub') # all-active type
     else:
         #continue
@@ -74,7 +74,7 @@ for model_id in cell_dirs:
 
     h = utils.h
 
-    print("NEURON configured")
+    print("PA >> NEURON configured")
 
     # configure model
     manifest = description.manifest
@@ -87,9 +87,9 @@ for model_id in cell_dirs:
     with open('metadata.json', "r") as json_file:
         metadata_info = json.load(json_file)
 
-    print("Loaded manifest: %s (fit: %s)"%(manifest_info['biophys'][0]["model_type"], manifest_info['biophys'][0]["model_file"][1]))
+    print("PA >> Loaded manifest: %s (fit: %s)"%(manifest_info['biophys'][0]["model_type"], manifest_info['biophys'][0]["model_file"][1]))
 
-    print("Cell loaded from: %s"%morphology_path)
+    print("PA >> Cell loaded from: %s"%morphology_path)
 
     h.finitialize()
     h.psection()
@@ -102,14 +102,15 @@ for model_id in cell_dirs:
     nml_cell_loc = "%s/%s"%(nml2_cell_dir,nml_cell_file)
 
 
-    print(' > Exporting to %s'%(nml_net_loc))
+    print('PA >> Exporting to %s'%(nml_net_loc))
 
     export_to_neuroml2(None,
                        nml_net_loc,
                        separateCellFiles=True,
-                       includeBiophysicalProperties=False)
+                       includeBiophysicalProperties=False,
+                       validate=False)
 
-    print(' > Exported to: %s and %s'%(nml_net_loc, nml_cell_loc))
+    print('PA >> Exported to: %s and %s'%(nml_net_loc, nml_cell_loc))
 
 
     clear_neuron()
@@ -133,10 +134,10 @@ for model_id in cell_dirs:
             p = neuroml.Property(tag=k, value=metadata_info[k])
             cell.properties.append(p)
 
-    print(' > Altering groups')
+    print('PA >> Altering groups')
 
     for sg in cell.morphology.segment_groups:
-        print("Found group: %s"%sg.id)
+        print("PA >> Found group: %s"%sg.id)
         if (sg.id.startswith('ModelViewParm')) and len(sg.members)==0:
             replace = {}
             replace['soma_'] = 'soma'
@@ -282,7 +283,7 @@ for model_id in cell_dirs:
 
 '''
     # @type ca_dynamics dict
-    print('Handling Ca dynamics: %s'%ca_dynamics)
+    print('PA >> Handling Ca dynamics: %s'%ca_dynamics)
     for key, values in ca_dynamics.items():
         if int(key) in ALL_ACTIVE_MODEL_IDS:
             for segment, prop in values.items():
@@ -309,10 +310,11 @@ for model_id in cell_dirs:
     cell.biophysical_properties = biophysical_properties
 
 
-    pynml.write_neuroml2_file(nml_doc, nml_cell_loc)
+    print('PA >> Writing to: %s'%nml_cell_loc)
+    pynml.write_neuroml2_file(nml_doc, nml_cell_loc, validate=False)
 
 
-    pynml.nml2_to_svg(nml_cell_loc)
+    pynml.nml2_to_svg(nml_cell_loc, verbose=False)
 
 
     pref_duration_ms = 2500
@@ -359,7 +361,9 @@ for model_id in cell_dirs:
     input_list.input.append(input)
     new_net.input_lists.append(input_list)
 
-    pynml.write_neuroml2_file(new_net_doc, new_net_loc)
+    print('PA >> Writing to: %s'%new_net_loc)
+
+    pynml.write_neuroml2_file(new_net_doc, new_net_loc, validate=False)
 
     generate_lems_file_for_neuroml(model_id,
                                    new_net_loc,
@@ -386,12 +390,14 @@ for model_id in cell_dirs:
     Z = ((count-1) -X) / width
     inst.location = neuroml.Location(x=300*X, y=0, z=300*Z)
 
+    print('PA >> Adding to network of all cells at: %s'%inst.location)
+
 
 net_file = '%s/%s.net.nml'%(nml2_cell_dir,net_ref)
 neuroml.writers.NeuroMLWriter.write(net_doc, net_file)
 
-print("Written network with %i cells in network to: %s"%(count,net_file))
+print("PA >> Written network with %i cells in network to: %s"%(count,net_file))
 
-pynml.nml2_to_svg(net_file)
+pynml.nml2_to_svg(net_file, verbose=False)
 
-print("Finished parsing cell dirs: %s" % cell_dirs)
+print("PA >> Finished parsing cell dirs: %s" % cell_dirs)
