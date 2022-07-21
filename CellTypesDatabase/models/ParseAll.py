@@ -45,8 +45,11 @@ count = 0
 
 ca_dynamics = {}
 
+print("Parsing cell dirs: %s" % cell_dirs)
+
 for model_id in cell_dirs:
 
+    count+=1
     if os.path.isdir(model_id):
         os.chdir(model_id)
     else:
@@ -62,9 +65,10 @@ for model_id in cell_dirs:
 
     # configure NEURON
     if all_active:
+        continue # skip this...
         utils = AllActiveUtils(description, axon_type='stub') # all-active type
     else:
-        continue
+        #continue
         utils = Utils(description) # perisomatic type
 
 
@@ -378,11 +382,9 @@ for model_id in cell_dirs:
     pop.instances.append(inst)
 
     width = 7
-    X = count%width
-    Z = (count -X) / width
+    X = (count-1)%width
+    Z = ((count-1) -X) / width
     inst.location = neuroml.Location(x=300*X, y=0, z=300*Z)
-
-    count+=1
 
 
 net_file = '%s/%s.net.nml'%(nml2_cell_dir,net_ref)
@@ -391,3 +393,5 @@ neuroml.writers.NeuroMLWriter.write(net_doc, net_file)
 print("Written network with %i cells in network to: %s"%(count,net_file))
 
 pynml.nml2_to_svg(net_file)
+
+print("Finished parsing cell dirs: %s" % cell_dirs)
