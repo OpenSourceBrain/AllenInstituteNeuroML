@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     model_ids=[]
     if '-test_active' in sys.argv:
-        model_ids = ['497233223']
+        model_ids = ['497232312']
     elif '-test_perisomatic' in sys.argv:
         model_ids = ['483108201']
     elif '-all' in sys.argv:
