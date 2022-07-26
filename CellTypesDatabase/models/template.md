@@ -29,15 +29,6 @@ Conversion of Allen Cell Types Database GLIF models to NeuroML 2/LEMS can be fou
     
 <p style="font-family:arial">Simulated neurons using the NEURON mods and the generated LEMS file:</p>
 
-
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
 <table class="tg">
 <tbody>
     #foreach ($model in $models)##
