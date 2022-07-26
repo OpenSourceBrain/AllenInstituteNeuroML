@@ -51,17 +51,23 @@ jobs:
          pip install pyneuroml airspeed
          python data_summary.py -test
 
-    - name: Extract NeuroML2 models from NEURON files
+    - name: Download selected NEURON models
       run: |
          pip install neuron
-
          cd CellTypesDatabase/models
          pip install markupsafe==2.0.1
          python download.py
          ls -alt 4*
 
+
+    - name: Extract NeuroML2 models from NEURON files
+      run: |
+         cd CellTypesDatabase/models
          nrnivmodl  NEURON
-         python ParseAll.py
+
+         echo "-----   Parsing perisomatic and all active.."
+         python ParseAll.py -all_active
+         ls -alt NeuroML2
 
     - name: Tune data
       run: |

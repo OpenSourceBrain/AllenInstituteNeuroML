@@ -24,6 +24,7 @@ import neuroml
 
 sys.path.append('../data')
 from data_helper import get_test_current
+from download import ALL_ACTIVE_MODEL_IDS
 
 cell_dirs = []
 
@@ -44,8 +45,14 @@ count = 0
 
 ca_dynamics = {}
 
-for model_id in cell_dirs:
+print("PA >> Parsing cell dirs: %s" % cell_dirs)
 
+do_all_active = '-all_active' in sys.argv
+
+completed = []
+for model_id in sorted(cell_dirs):
+
+    count+=1
     if os.path.isdir(model_id):
         os.chdir(model_id)
     else:
@@ -61,7 +68,9 @@ for model_id in cell_dirs:
 
     # configure NEURON
     if all_active:
-        continue
+        if not do_all_active:
+            print('Not proceeding with this file...')
+            continue # skip this...
         utils = AllActiveUtils(description, axon_type='stub') # all-active type
     else:
         utils = Utils(description) # perisomatic type
@@ -69,7 +78,7 @@ for model_id in cell_dirs:
 
     h = utils.h
 
-    print("NEURON configured")
+    print("PA >> NEURON configured")
 
     # configure model
     manifest = description.manifest
@@ -82,9 +91,9 @@ for model_id in cell_dirs:
     with open('metadata.json', "r") as json_file:
         metadata_info = json.load(json_file)
 
-    print("Loaded manifest: %s (fit: %s)"%(manifest_info['biophys'][0]["model_type"], manifest_info['biophys'][0]["model_file"][1]))
+    print("PA >> Loaded manifest: %s (fit: %s)"%(manifest_info['biophys'][0]["model_type"], manifest_info['biophys'][0]["model_file"][1]))
 
-    print("Cell loaded from: %s"%morphology_path)
+    print("PA >> Cell loaded from: %s"%morphology_path)
 
     h.finitialize()
     h.psection()
@@ -97,14 +106,15 @@ for model_id in cell_dirs:
     nml_cell_loc = "%s/%s"%(nml2_cell_dir,nml_cell_file)
 
 
-    print(' > Exporting to %s'%(nml_net_loc))
+    print('PA >> Exporting to %s'%(nml_net_loc))
 
     export_to_neuroml2(None,
                        nml_net_loc,
                        separateCellFiles=True,
-                       includeBiophysicalProperties=False)
+                       includeBiophysicalProperties=False,
+                       validate=False)
 
-    print(' > Exported to: %s and %s'%(nml_net_loc, nml_cell_loc))
+    print('PA >> Exported to: %s and %s'%(nml_net_loc, nml_cell_loc))
 
 
     clear_neuron()
@@ -128,13 +138,13 @@ for model_id in cell_dirs:
             p = neuroml.Property(tag=k, value=metadata_info[k])
             cell.properties.append(p)
 
-    print(' > Altering groups')
+    print('PA >> Altering groups')
 
     for sg in cell.morphology.segment_groups:
-        print("Found group: %s"%sg.id)
+        print("PA >> Found group: %s"%sg.id)
         if (sg.id.startswith('ModelViewParm')) and len(sg.members)==0:
             replace = {}
-            replace['soma_'] = 'soma'
+            #replace['soma_'] = 'soma'
             replace['axon_'] = 'axon'
             replace['apic_'] = 'apic'
             replace['dend_'] = 'dend'
@@ -144,8 +154,15 @@ for model_id in cell_dirs:
                     #print inc
                     all_match = all_match and inc.segment_groups.startswith(prefix)
                 if all_match:
-                    print("Replacing group named %s with %s"%(sg.id,replace[prefix]))
+                    print("PA >>    1) Replacing group named %s with %s"%(sg.id,replace[prefix]))
                     sg.id = replace[prefix]
+
+        if (sg.id.startswith('OneSecGrp')) and len(sg.includes)==1:
+            if sg.includes[0].segment_groups == "soma_0":
+                rep = 'soma'
+                print("PA >>    2) Replacing group named %s with %s"%(sg.id,rep))
+                sg.id = rep
+
 
     cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="soma_group", includes=[neuroml.Include("soma")]))
     cell.morphology.segment_groups.append(neuroml.SegmentGroup(id="axon_group", includes=[neuroml.Include("axon")]))
@@ -169,13 +186,18 @@ for model_id in cell_dirs:
 
     for chan in cell_info['genome']:
         chan_name = chan['mechanism']
-        if  chan['name'] == 'g_pas' or chan['name'] == 'e_pas':
+        if chan['name'] == 'g_pas':
             chan_name = 'pas'
+        if all_active and (chan['name'] == 'e_pas' or chan['name'] == 'cm' or chan['name'] == 'Ra'):
+            continue
         if chan['mechanism'] != 'CaDynamics':
             erev = '??'
             ion = '??'
             if chan_name == 'pas':
-                erev = '%s mV'%chan['value'] if all_active else '%s mV'%cell_info['passive'][0]['e_pas']
+                if all_active:
+                    erev = '%s mV'%[i for i in cell_info['genome'] if (i['section']==chan['section']) and i['name']=='e_pas'][0]['value']
+                else:
+                    erev = '%s mV'%cell_info['passive'][0]['e_pas']
                 ion = 'non_specific'
             elif chan['mechanism'].startswith('Na'):
                 erev = '%s mV'%cell_info['conditions'][0]['erev'][0]['ena']
@@ -219,7 +241,7 @@ for model_id in cell_dirs:
 
     inc_chans =[]
     for cd in membrane_properties.channel_densities:
-        if not cd.ion_channel in inc_chans:
+        if not cd.ion_channel in inc_chans and cd.ion_channel != '':
             nml_doc.includes.append(
                     neuroml.IncludeType(href="%s.channel.nml" % cd.ion_channel))
             inc_chans.append(cd.ion_channel)
@@ -234,14 +256,18 @@ for model_id in cell_dirs:
         for i in cell_info['genome']:
             if i['name']=='Ra':
                 resistivities.append(neuroml.Resistivity(value="%s ohm_cm" % i['value'], segment_groups=i['section']))
-
-    # valid from both perisomatic and all-active cells
-    resistivities.append(neuroml.Resistivity(value="%s ohm_cm"%cell_info['passive'][0]['ra'], segment_groups='all'))
+    else:
+        resistivities.append(neuroml.Resistivity(value="%s ohm_cm"%cell_info['passive'][0]['ra'], segment_groups='all'))
 
     species = []
     if all_active:
-        pass
-        #TODO
+        for segment in ca_dynamics[model_id].keys():
+            species.append(neuroml.Species(id='ca', \
+                                ion='ca',  \
+                                initial_concentration='0.0001 mM', \
+                                initial_ext_concentration='2 mM', \
+                                concentration_model=f"CaDynamics_{model_id}_{segment}", \
+                                segment_groups=segment))
     else:
         species.append(neuroml.Species(id='ca', \
                             ion='ca',  \
@@ -268,11 +294,11 @@ for model_id in cell_dirs:
 
 '''
     # @type ca_dynamics dict
-    print('Handling Ca dynamics: %s'%ca_dynamics)
+    print('PA >> Handling Ca dynamics: %s'%ca_dynamics)
     for key, values in ca_dynamics.items():
-        if all_active:
-            pass
-            #TODO
+        if int(key) in ALL_ACTIVE_MODEL_IDS:
+            for segment, prop in values.items():
+                xml += '    <concentrationModel id="CaDynamics_%s_%s" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="%s ms" depth="0.1 um" gamma="%s" ion="ca"/>\n\n'%(key, segment, prop["decay_CaDynamics"], prop["gamma_CaDynamics"])
         else:
             xml += '    <concentrationModel id="CaDynamics_%s" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="%s ms" depth="0.1 um" gamma="%s" ion="ca"/>\n\n'%(key,values["decay_CaDynamics"],values["gamma_CaDynamics"])
 
@@ -295,10 +321,11 @@ for model_id in cell_dirs:
     cell.biophysical_properties = biophysical_properties
 
 
-    pynml.write_neuroml2_file(nml_doc, nml_cell_loc)
+    print('PA >> Writing to: %s'%nml_cell_loc)
+    pynml.write_neuroml2_file(nml_doc, nml_cell_loc, validate=False)
 
 
-    pynml.nml2_to_svg(nml_cell_loc)
+    pynml.nml2_to_svg(nml_cell_loc, verbose=False)
 
 
     pref_duration_ms = 2500
@@ -345,7 +372,9 @@ for model_id in cell_dirs:
     input_list.input.append(input)
     new_net.input_lists.append(input_list)
 
-    pynml.write_neuroml2_file(new_net_doc, new_net_loc)
+    print('PA >> Writing to: %s'%new_net_loc)
+
+    pynml.write_neuroml2_file(new_net_doc, new_net_loc, validate=False)
 
     generate_lems_file_for_neuroml(model_id,
                                    new_net_loc,
@@ -368,16 +397,19 @@ for model_id in cell_dirs:
     pop.instances.append(inst)
 
     width = 7
-    X = count%width
-    Z = (count -X) / width
+    X = (count-1)%width
+    Z = ((count-1) -X) / width
     inst.location = neuroml.Location(x=300*X, y=0, z=300*Z)
 
-    count+=1
+    print('PA >> Adding to network of all cells at: %s'%inst.location)
+    completed.append(model_id)
 
 
 net_file = '%s/%s.net.nml'%(nml2_cell_dir,net_ref)
 neuroml.writers.NeuroMLWriter.write(net_doc, net_file)
 
-print("Written network with %i cells in network to: %s"%(count,net_file))
+print("PA >> Written network with %i cells in network to: %s"%(count,net_file))
 
-pynml.nml2_to_svg(net_file)
+pynml.nml2_to_svg(net_file, verbose=False)
+
+print("PA >> Finished parsing cell dirs: %s" % completed)
