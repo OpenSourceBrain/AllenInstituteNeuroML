@@ -7,7 +7,7 @@ TEST_CURRENTS = {}
 
 
 
-    #################################### Layer 5 ####################################
+#################################### Layer 5 ####################################
 
 #        No longer has biophys detailed cell model..?
 ###       Layer 5, spiny http://celltypes.brain-map.org/mouse/experiment/electrophysiology/471141261
@@ -18,8 +18,8 @@ DATASET_TARGET_SWEEPS[486111903] = [35,37,41,44,51,54,57]
 # Perisomatic biophys model: http://celltypes.brain-map.org/neuronal_model/download/486556811
 MODEL_IDS[486111903] = 486556811
 TEST_SWEEP[486111903] = 54
-TEST_SWEEP[497232312] = 54
 TEST_CURRENTS[486556811] = 290
+
 
 DATASET_TARGET_SWEEPS[480169178] = [24,26,31,33,38,40,42]
 DATASET_TARGET_SWEEPS[480351780] = [24,33,34,47,42,44,46]
@@ -47,6 +47,8 @@ TEST_SWEEP[464198958] = 44
 DATASET_TARGET_SWEEPS[479704527] = [36,40,44,45,60,52,55]
 # Perisomatic biophys model: http://celltypes.brain-map.org/neuronal_model/download/483108201
 MODEL_IDS[479704527] = 483108201
+TEST_SWEEP[479704527] = 55
+TEST_CURRENTS[483108201] = 270
 
 
 #  Layer 4, aspiny http://celltypes.brain-map.org/mouse/experiment/electrophysiology/485058595
@@ -76,10 +78,14 @@ def get_test_current(model_id):
     if model_id in TEST_CURRENTS:
         return TEST_CURRENTS[model_id]
     else:
-        return 270
+        raise Exception('Cannot find test current to apply to NeuroML model for model id: %s'%model_id)
+    #else:
+    #    return 270
 
-def get_test_sweep(model_id):
-    if model_id in TEST_SWEEP:
-        return TEST_SWEEP[model_id]
+def get_test_sweep(dataset_id):
+    if dataset_id in TEST_SWEEP:
+        return TEST_SWEEP[dataset_id]
     else:
-        return 55
+        raise Exception('Cannot find test sweep to generate for NEURON model for dataset_id: %s'%dataset_id)
+    #else:
+        #return 55

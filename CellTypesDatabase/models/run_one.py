@@ -1,6 +1,6 @@
 """Simulates a specific sweep of a biophysical cell model. """
 #Based on example code at: https://allensdk.readthedocs.io/en/latest/biophysical_models.html
-    
+
 from allensdk.model.biophysical.utils import Utils, AllActiveUtils
 from allensdk.model.biophysical.runner import load_description
 
@@ -79,6 +79,8 @@ if __name__ == '__main__':
         model_ids = ['497232312']
     elif '-test_perisomatic' in sys.argv:
         model_ids = ['483108201']
+    elif '-test_perisomatic2' in sys.argv:
+        model_ids = ['486556811']
     elif '-all' in sys.argv:
         model_ids = [ f for f in os.listdir('.') if (os.path.isdir(f) and os.path.isfile(f+'/manifest.json')) ]
     else:
@@ -88,6 +90,7 @@ if __name__ == '__main__':
             print("Options:\n")
             print("     python run_one.py -test_active")
             print("     python run_one.py -test_perisomatic")
+            print("     python run_one.py -test_perisomatic2")
             print("     python run_one.py -<model_id>")
             print("     python run_one.py -all")
             sys.exit()
