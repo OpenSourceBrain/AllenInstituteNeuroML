@@ -7,6 +7,9 @@ TEST_CURRENTS = {}
 
 
 
+TEST_CURRENTS[497232312] = 270
+
+
 #################################### Layer 5 ####################################
 
 #        No longer has biophys detailed cell model..?
@@ -34,7 +37,8 @@ DATASET_TARGET_SWEEPS[477127614] = [22, 25, 27, 38, 30, 32, 35]
 DATASET_TARGET_SWEEPS[464198958] = [20,24,36,28,30,32,34]
 # Perisomatic biophys model: http://celltypes.brain-map.org/neuronal_model/download/472450023
 MODEL_IDS[464198958] = [472450023, 497233223]
-TEST_SWEEP[464198958] = 44
+TEST_SWEEP[464198958] = 29
+TEST_CURRENTS[472450023] = 70
 
 
 ## No longer has biophys detailed cell model..?
@@ -75,16 +79,16 @@ METADATA = 'sweep_metadata'
 SIMULATION_TEMPERATURE = '34 degC'
 
 def get_test_current(model_id):
-    if model_id in TEST_CURRENTS:
-        return TEST_CURRENTS[model_id]
+    if int(model_id) in TEST_CURRENTS:
+        return TEST_CURRENTS[int(model_id)]
     else:
-        raise Exception('Cannot find test current to apply to NeuroML model for model id: %s'%model_id)
+        raise Exception('Cannot find test current to apply to NeuroML model for model id: %s (known ones: %s)'%(model_id, TEST_CURRENTS.keys()))
     #else:
     #    return 270
 
 def get_test_sweep(dataset_id):
-    if dataset_id in TEST_SWEEP:
-        return TEST_SWEEP[dataset_id]
+    if int(dataset_id) in TEST_SWEEP:
+        return TEST_SWEEP[int(dataset_id)]
     else:
         raise Exception('Cannot find test sweep to generate for NEURON model for dataset_id: %s'%dataset_id)
     #else:
