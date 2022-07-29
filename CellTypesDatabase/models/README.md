@@ -32,25 +32,25 @@ Conversion of Allen Cell Types Database GLIF models to NeuroML 2/LEMS can be fou
 <table class="tg">
 <tbody>
         <tr>
-        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/497232312><b>497232312</b></a><br>Primary visual area, layer 5<br>spiny<br>Mus musculus In Vitro</td>
+        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/497232312><b>497232312</b></a><br>Primary visual area, layer 5<br>spiny<br>Rbp4-Cre_KL100</td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src= "NeuroML2/Cell_497232312.cell.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/NEURON_497232312.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/LEMS_497232312.png"></img></td>
     </tr>
     <tr>
-        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/486111903><b>486556811</b></a><br>Primary visual area, layer 5<br>spiny<br>Mus musculus In Vitro</td>
+        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/486111903><b>486556811</b></a><br>Primary visual area, layer 5<br>spiny<br>Rbp4-Cre_KL100</td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src= "NeuroML2/Cell_486556811.cell.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/NEURON_486556811.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/LEMS_486556811.png"></img></td>
     </tr>
     <tr>
-        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958><b>472450023</b></a><br>Primary visual area, layer 5<br>aspiny<br>Mus musculus In Vitro</td>
+        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958><b>472450023</b></a><br>Primary visual area, layer 5<br>aspiny<br>Sst-IRES-Cre</td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src= "NeuroML2/Cell_472450023.cell.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/NEURON_472450023.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/LEMS_472450023.png"></img></td>
     </tr>
     <tr>
-        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/479704527><b>483108201</b></a><br>Primary visual area, layer 4<br>spiny<br>Mus musculus In Vitro</td>
+        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/479704527><b>483108201</b></a><br>Primary visual area, layer 4<br>spiny<br>Rbp4-Cre_KL100</td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src= "NeuroML2/Cell_483108201.cell.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/NEURON_483108201.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/LEMS_483108201.png"></img></td>

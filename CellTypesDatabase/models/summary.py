@@ -34,7 +34,7 @@ def make_md_file(cell_dirs=None):
             "AIBS:intracellular_ephys:Electrode 1:location"
         ]
         this_data["dendrite"] = metadata["AIBS:aibs_dendrite_type"]
-        this_data["description"] = metadata["AIBS:subject:description"]
+        this_data["description"] = metadata["AIBS:aibs_cre_line"]
         this_data["id"] = model
         data.append(this_data)
 
