@@ -66,18 +66,18 @@ def main():
         DAT_FILE = [i for i in os.listdir(f"{model}") if "v.dat" in i]
         if DAT_FILE == []:
             run(model)
-        if not os.path.isfile(f"summary/NEURON_{model}.png"):
-            data, _ = pynml.reload_standard_dat_file(f"{model}/{DAT_FILE[0]}")
-            v = np.array(data[0])
-            t = np.array(data["t"])
-            plt.figure(figsize=(8, 5))
+        
+        data, _ = pynml.reload_standard_dat_file(f"{model}/{DAT_FILE[0]}")
+        v = np.array(data[0])
+        t = np.array(data["t"])
+        plt.figure(figsize=(8, 5))
 
-            plt.plot(t * 1000, v * 1000, label="NEURON mod")
-            plt.xlim([750, 2250])
-            plt.xlabel("Time (ms)")
-            plt.ylabel("Membrane Potential (mV)")
-            plt.legend()
-            plt.savefig(f"summary/NEURON_{model}.png")
+        plt.plot(t * 1000, v * 1000, label="NEURON mod")
+        plt.xlim([750, 2250])
+        plt.xlabel("Time (ms)")
+        plt.ylabel("Membrane Potential (mV)")
+        plt.legend()
+        plt.savefig(f"summary/NEURON_{model}.png")
 
         # simulate LEMS
         print(f"Generating LEMS simulation fig for model {model}...")
@@ -85,18 +85,18 @@ def main():
         if not os.path.isfile(LEMS_DAT_FILE):
             run_lems_with_jneuroml_neuron(f"NeuroML2/LEMS_{model}.xml")
 
-        if not os.path.isfile(f"summary/LEMS_{model}.png"):
-            data, i = pynml.reload_standard_dat_file(LEMS_DAT_FILE)
-            v_lems = np.array(data[0])
-            t_lems = np.array(data["t"])
-            plt.figure(figsize=(8, 5))
-            plt.plot(t_lems * 1000, v_lems * 1000, label="LEMS")
-            plt.xlim([750, 2250])
+    
+        data, i = pynml.reload_standard_dat_file(LEMS_DAT_FILE)
+        v_lems = np.array(data[0])
+        t_lems = np.array(data["t"])
+        plt.figure(figsize=(8, 5))
+        plt.plot(t_lems * 1000, v_lems * 1000, label="LEMS")
+        plt.xlim([750, 2250])
 
-            plt.xlabel("Time (ms)")
-            plt.ylabel("Membrane Potential (mV)")
-            plt.legend()
-            plt.savefig(f"summary/LEMS_{model}.png")
+        plt.xlabel("Time (ms)")
+        plt.ylabel("Membrane Potential (mV)")
+        plt.legend()
+        plt.savefig(f"summary/LEMS_{model}.png")
 
         print("Done!")
 
