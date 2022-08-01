@@ -10,6 +10,7 @@ import os
 
 sys.path.append('../data')
 from data_helper import get_test_sweep
+from download import ALL_ACTIVE_MODEL_IDS
 
 def run(model_id):
     if os.path.isdir(model_id):
@@ -44,9 +45,12 @@ def run(model_id):
 
     run_params = description.data['runs'][0]
 
-    with open('manifest.json', "r") as json_file:
-        manifest_info = json.load(json_file)
-    dataset_id = int(manifest_info['biophys'][0]["model_file"][1].split('_')[0])
+    with open('metadata.json', "r") as json_file:
+         metadata = json.load(json_file)
+    if int(model_id) in ALL_ACTIVE_MODEL_IDS:
+        dataset_id = int(metadata["AIBS:aibs_specimen_id"])
+    else:
+        dataset_id = int(metadata["exp_id"])
 
     sweeps = [get_test_sweep(dataset_id)]
 
