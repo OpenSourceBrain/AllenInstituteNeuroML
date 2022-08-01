@@ -15,9 +15,5 @@
 
     <concentrationModel id="CaDynamics_486556811" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="300.6273393255859 ms" depth="0.1 um" gamma="0.00011630595964028934" ion="ca"/>
 
-    <concentrationModel id="CaDynamics_497232312_axon" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="863.445 ms" depth="0.1 um" gamma="0.0336733" ion="ca"/>
-
-    <concentrationModel id="CaDynamics_497232312_soma" type="concentrationModelHayEtAl" minCai="1e-4 mM" decay="68.9943 ms" depth="0.1 um" gamma="0.0488083" ion="ca"/>
-
 
 </neuroml>

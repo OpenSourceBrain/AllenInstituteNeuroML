@@ -31,8 +31,14 @@ Conversion of Allen Cell Types Database GLIF models to NeuroML 2/LEMS can be fou
 
 <table class="tg">
 <tbody>
+    <tr>
+        <th class="tg-yw4l">Cell Type</td>
+        <th class="tg-yw4l">3D structure of the NeuroML model</td>
+        <th class="tg-yw4l">Neuron mods</td>
+        <th class="tg-yw4l">LEMS model</td>
+    </tr>
         <tr>
-        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/497232312><b>497232312</b></a><br>Primary visual area, layer 5<br>spiny<br>Rbp4-Cre_KL100</td>
+        <td class="tg-0pky"><a href=http://celltypes.brain-map.org/mouse/experiment/electrophysiology/485574832><b>497232312</b></a><br>Primary visual area, layer 5<br>spiny<br>Rbp4-Cre_KL100</td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src= "NeuroML2/Cell_497232312.cell.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/NEURON_497232312.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/LEMS_497232312.png"></img></td>
