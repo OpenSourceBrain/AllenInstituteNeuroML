@@ -8,6 +8,7 @@ import json
 from run_one import run
 
 import airspeed
+from download import ALL_ACTIVE_MODEL_IDS
 
 
 MD_TEMPLATE_FILE = "./template.md"
@@ -29,7 +30,10 @@ def make_md_file(cell_dirs=None):
         this_data = {}
         with open(f"{model}/metadata.json") as f:
             metadata = json.load(f)
-        this_data["metadata"] = metadata
+        if int(model) in ALL_ACTIVE_MODEL_IDS:
+            this_data["URL"] = f'http://celltypes.brain-map.org/mouse/experiment/electrophysiology/{metadata["AIBS:aibs_specimen_id"]}'
+        else:
+            this_data["URL"] = metadata["URL"]
         this_data["location"] = metadata[
             "AIBS:intracellular_ephys:Electrode 1:location"
         ]
