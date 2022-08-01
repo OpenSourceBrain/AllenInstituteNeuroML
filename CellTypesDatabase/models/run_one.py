@@ -12,8 +12,19 @@ sys.path.append('../data')
 from data_helper import get_test_sweep
 from download import ALL_ACTIVE_MODEL_IDS
 
+def _get_dataset_id(model_id):
+    with open(f'{model_id}/metadata.json', "r") as json_file:
+         metadata = json.load(json_file)
+    if int(model_id) in ALL_ACTIVE_MODEL_IDS:
+        dataset_id = int(metadata["AIBS:aibs_specimen_id"])
+    else:
+        dataset_id = int(metadata["exp_id"])
+        
+    return dataset_id
+
 def run(model_id):
     if os.path.isdir(model_id):
+        dataset_id = _get_dataset_id(model_id)
         os.chdir(model_id)
     else:
         print('Model id is invalid!')
@@ -44,13 +55,6 @@ def run(model_id):
     stimulus_path = description.manifest.get_path('stimulus_path')
 
     run_params = description.data['runs'][0]
-
-    with open('metadata.json', "r") as json_file:
-         metadata = json.load(json_file)
-    if int(model_id) in ALL_ACTIVE_MODEL_IDS:
-        dataset_id = int(metadata["AIBS:aibs_specimen_id"])
-    else:
-        dataset_id = int(metadata["exp_id"])
 
     sweeps = [get_test_sweep(dataset_id)]
 

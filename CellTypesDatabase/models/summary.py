@@ -5,10 +5,14 @@ import numpy as np
 import os
 import sys
 import json
-from run_one import run
+
 
 import airspeed
+
+sys.path.append('../data')
+from data_helper import get_test_sweep
 from download import ALL_ACTIVE_MODEL_IDS
+from run_one import _get_dataset_id, run
 
 
 MD_TEMPLATE_FILE = "./template.md"
@@ -67,11 +71,12 @@ def main():
 
         # simulate NEURON mods
         print(f"Generating NEURON simulation fig for model {model}...")
-        DAT_FILE = [i for i in os.listdir(f"{model}") if "v.dat" in i]
-        if DAT_FILE == []:
-            run(model)
         
-        data, _ = pynml.reload_standard_dat_file(f"{model}/{DAT_FILE[0]}")
+        DAT_FILE = f"{model}/sweep_{get_test_sweep(_get_dataset_id(model))}.v.dat"
+        if not os.path.isfile(DAT_FILE):
+            run(model)
+
+        data, _ = pynml.reload_standard_dat_file(DAT_FILE)
         v = np.array(data[0])
         t = np.array(data["t"])
         plt.figure(figsize=(8, 5))
