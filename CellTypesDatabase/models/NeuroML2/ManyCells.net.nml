@@ -2,6 +2,7 @@
     <include href="Cell_472450023.cell.nml"/>
     <include href="Cell_483108201.cell.nml"/>
     <include href="Cell_486556811.cell.nml"/>
+    <include href="Cell_497232312.cell.nml"/>
     <network id="ManyCells">
         <population id="Pop_472450023" component="Cell_472450023" type="populationList">
             <instance id="0">
@@ -16,6 +17,11 @@
         <population id="Pop_486556811" component="Cell_486556811" type="populationList">
             <instance id="0">
                 <location x="600." y="0." z="0."/>
+            </instance>
+        </population>
+        <population id="Pop_497232312" component="Cell_497232312" type="populationList">
+            <instance id="0">
+                <location x="900." y="0." z="0."/>
             </instance>
         </population>
     </network>
