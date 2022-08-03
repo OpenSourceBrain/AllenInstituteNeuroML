@@ -3,5 +3,5 @@
 
 
 # This test will validate MOST all of the NeuroML 2 files in the current directory
-target: "*.cell.nml *.channel.nml Network*.net.nml 4*.net.nml Many*.net.nml So*.net.nml Cel*.net.nml Large*.net.nml"
+target: "*.cell.nml *.channel.nml Network*.net.nml Many*.net.nml So*.net.nml Cel*.net.nml Large*.net.nml"
 engine: jNeuroML_validate
