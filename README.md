@@ -1,7 +1,7 @@
 ### Data from Allen Institute converted to NeuroML
 [![Continuous builds](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/omv-ci.yml/badge.svg)](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/omv-ci.yml) [![Testing non OMV based scripts](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/non-omv.yml/badge.svg)](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/non-omv.yml)
 
-Example files to test interaction between models developed at the Allen Brain Institute and NeuroML.
+Example files to test interactions between models developed at the Allen Brain Institute and NeuroML.
 
 #### Allen CellTypes Database
 
