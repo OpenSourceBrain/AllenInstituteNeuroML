@@ -207,8 +207,8 @@ def download():
 
             bp = BiophysicalApi("http://api.brain-map.org")
             bp.cache_stimulus = (
-                True
-            )  # change to False to not download the large stimulus NWB file
+                True  # change to False to not download the large stimulus NWB file
+            )
             working_directory = "%i" % neuronal_model_id
             bp.cache_data(neuronal_model_id, working_directory=working_directory)
             print(

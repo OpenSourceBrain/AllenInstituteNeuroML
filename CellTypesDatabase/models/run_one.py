@@ -24,6 +24,7 @@ def _get_dataset_id(model_id):
     return dataset_id
 
 
+
 def run(model_id):
     if os.path.isdir(model_id):
         dataset_id = _get_dataset_id(model_id)
@@ -59,6 +60,10 @@ def run(model_id):
     stimulus_path = description.manifest.get_path("stimulus_path")
 
     run_params = description.data["runs"][0]
+
+    with open("manifest.json", "r") as json_file:
+        manifest_info = json.load(json_file)
+    dataset_id = int(manifest_info["biophys"][0]["model_file"][1].split("_")[0])
 
     sweeps = [get_test_sweep(dataset_id)]
 
