@@ -101,6 +101,8 @@ if __name__ == "__main__":
         model_ids = ["483108201"]
     elif "-test_perisomatic2" in sys.argv:
         model_ids = ["486556811"]
+    elif "-test_perisomatic3" in sys.argv:
+        model_ids = ["472450023"]
     elif "-all" in sys.argv:
         model_ids = [
             f
