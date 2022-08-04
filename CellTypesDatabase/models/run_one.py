@@ -117,7 +117,7 @@ if __name__ == "__main__":
             print("     python run_one.py -test_active")
             print("     python run_one.py -test_perisomatic")
             print("     python run_one.py -test_perisomatic2")
-            print("     python run_one.py -<model_id>")
+            print("     python run_one.py <model_id>")
             print("     python run_one.py -all")
             sys.exit()
 
