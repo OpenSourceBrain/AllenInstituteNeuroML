@@ -7,11 +7,11 @@ experiments:
   Current clamp:
     observables:
       spike times:
-        file: 
+        file:
           path: 497232312.Pop_Cell_497232312.v.dat
           columns: [0, 1]
           scaling: [1000, 1000]
         spike detection:
           method: threshold
           threshold: -20
-        tolerance: 0.0001
+        tolerance: 0.0000
