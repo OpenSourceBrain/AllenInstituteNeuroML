@@ -31,9 +31,15 @@ Conversion of Allen Cell Types Database GLIF models to NeuroML 2/LEMS can be fou
 
 <table class="tg">
 <tbody>
+    <tr>
+        <th class="tg-yw4l">Cell Type</td>
+        <th class="tg-yw4l">3D structure of the NeuroML model</td>
+        <th class="tg-yw4l">Neuron mods</td>
+        <th class="tg-yw4l">LEMS model</td>
+    </tr>
     #foreach ($model in $models)##
     <tr>
-        <td class="tg-0pky"><a href=${model.metadata.URL}><b>${model.id}</b></a><br>${model.location}<br>${model.dendrite}<br>${model.description}</td>
+        <td class="tg-0pky"><a href=${model.URL}><b>${model.id}</b></a><br>${model.location}<br>${model.dendrite}<br>${model.description}</td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src= "NeuroML2/Cell_${model.id}.cell.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/NEURON_${model.id}.png"></img></td>
         <td class="tg-0pky"><img style="max-width: 250px; max-height: 100px" src="summary/LEMS_${model.id}.png"></img></td>

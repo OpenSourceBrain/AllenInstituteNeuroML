@@ -10,10 +10,24 @@ import os
 
 sys.path.append("../data")
 from data_helper import get_test_sweep
+from download import ALL_ACTIVE_MODEL_IDS
+
+
+def _get_dataset_id(model_id):
+    with open(f"{model_id}/metadata.json", "r") as json_file:
+        metadata = json.load(json_file)
+    if int(model_id) in ALL_ACTIVE_MODEL_IDS:
+        dataset_id = int(metadata["AIBS:aibs_specimen_id"])
+    else:
+        dataset_id = int(metadata["exp_id"])
+
+    return dataset_id
+
 
 
 def run(model_id):
     if os.path.isdir(model_id):
+        dataset_id = _get_dataset_id(model_id)
         os.chdir(model_id)
     else:
         print("Model id is invalid!")
@@ -75,19 +89,24 @@ def run(model_id):
         for i in range(len(vec["v"])):
             s_file.write("%s\t%s\n" % (vec["t"][i] / 1000.0, vec["v"][i] / 1000))
         s_file.close()
-    os.chdir('..')
+    os.chdir("..")
 
-if __name__ == '__main__':
 
-    model_ids=[]
-    if '-test_active' in sys.argv:
-        model_ids = ['497232312']
-    elif '-test_perisomatic' in sys.argv:
-        model_ids = ['483108201']
-    elif '-test_perisomatic2' in sys.argv:
-        model_ids = ['486556811']
-    elif '-all' in sys.argv:
-        model_ids = [ f for f in os.listdir('.') if (os.path.isdir(f) and os.path.isfile(f+'/manifest.json')) ]
+if __name__ == "__main__":
+
+    model_ids = []
+    if "-test_active" in sys.argv:
+        model_ids = ["497232312"]
+    elif "-test_perisomatic" in sys.argv:
+        model_ids = ["483108201"]
+    elif "-test_perisomatic2" in sys.argv:
+        model_ids = ["486556811"]
+    elif "-all" in sys.argv:
+        model_ids = [
+            f
+            for f in os.listdir(".")
+            if (os.path.isdir(f) and os.path.isfile(f + "/manifest.json"))
+        ]
     else:
         if len(sys.argv) > 1:
             model_ids = [sys.argv[1]]

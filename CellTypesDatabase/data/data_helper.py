@@ -6,10 +6,6 @@ TEST_SWEEP = {}
 TEST_CURRENTS = {}
 
 
-
-TEST_CURRENTS[497232312] = 270
-
-
 #################################### Layer 5 ####################################
 
 #        No longer has biophys detailed cell model..?
@@ -39,6 +35,12 @@ MODEL_IDS[464198958] = [472450023, 497233223]
 TEST_SWEEP[464198958] = 29
 TEST_CURRENTS[472450023] = 70
 
+#  Layer 5, spiny https://celltypes.brain-map.org/mouse/experiment/electrophysiology/485574832
+DATASET_TARGET_SWEEPS[485574832] = [59, 58]
+MODEL_IDS[485574832] = [486052412, 497232312]
+# Biophysical all active model: https://celltypes.brain-map.org/neuronal_model/download/497232312
+TEST_SWEEP[485574832] = 56
+TEST_CURRENTS[497232312] = 270
 
 ## No longer has biophys detailed cell model..?
 #  Layer 5, spiny http://celltypes.brain-map.org/mouse/experiment/electrophysiology/325941643
@@ -58,7 +60,6 @@ TEST_CURRENTS[483108201] = 270
 DATASET_TARGET_SWEEPS[485058595] = [25, 28, 31, 40, 34, 37, 38]
 # Perisomatic biophys model: http://celltypes.brain-map.org/neuronal_model/download/485904766
 MODEL_IDS[485058595] = 485904766
-
 
 # DATASET_TARGET_SWEEPS[464326095] = [14,18,21,24,30,32,34]
 
@@ -82,14 +83,21 @@ def get_test_current(model_id):
     if int(model_id) in TEST_CURRENTS:
         return TEST_CURRENTS[int(model_id)]
     else:
-        raise Exception('Cannot find test current to apply to NeuroML model for model id: %s (known ones: %s)'%(model_id, TEST_CURRENTS.keys()))
-    #else:
+        raise Exception(
+            "Cannot find test current to apply to NeuroML model for model id: %s (known ones: %s)"
+            % (model_id, TEST_CURRENTS.keys())
+        )
+    # else:
     #    return 270
+
 
 def get_test_sweep(dataset_id):
     if int(dataset_id) in TEST_SWEEP:
         return TEST_SWEEP[int(dataset_id)]
     else:
-        raise Exception('Cannot find test sweep to generate for NEURON model for dataset_id: %s'%dataset_id)
-    #else:
-        #return 55
+        raise Exception(
+            "Cannot find test sweep to generate for NEURON model for dataset_id: %s"
+            % dataset_id
+        )
+    # else:
+    # return 55
