@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta3.xsd" 
+         id="network_HH2">
+
+
+
+    <include href="HH2.cell.nml"/>
+
+    <pulseGenerator id="inp" delay="200.0ms" duration="1000.0ms" amplitude="350pA"/>
+
+    
+    <network id="network_HH2" type="networkWithTemperature" temperature="32.0 degC">
+
+        
+
+        <population id="Pop0" component="HH2" type="populationList" size="1">
+           <annotation>
+                <property tag="color" value="0.69921875 0.5703125 0.96484375"/>
+            </annotation>
+            <instance id="0">
+                <location x="64.65821" y="50.0" z="0.0"/>
+            </instance>
+        </population>
+
+
+
+            <!--There are no synaptic connections present in the network-->
+
+
+        <inputList id="inp0" component="inp" population="Pop0">
+            <input id="0" target="../Pop0/0/HH2" destination="synapses"/>
+        </inputList>
+
+
+
+
+
+    </network>
+
+</neuroml>
