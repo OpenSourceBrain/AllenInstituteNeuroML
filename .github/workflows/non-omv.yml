@@ -59,6 +59,16 @@ jobs:
          python download.py
          ls -alt 4*
 
+         echo "Downloading GLIF models"
+         cd GLIF
+         python download_glif.py -test
+
+    - name: Simulate selected NEURON models
+      run: |
+          echo "Simulating a GLIF cell"
+          cd CellTypesDatabase/models/GLIF
+          python run_glif.py -test
+
 
     - name: Extract NeuroML2 models from NEURON files
       run: |
