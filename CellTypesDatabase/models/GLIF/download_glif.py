@@ -1,7 +1,21 @@
+usage = """
+
+This script is used to download GLIF cell model files using the Allen SDK 
+
+To download all listed models used in this repo run:
+
+    python download_glif.py -all
+
+To download a test model run:
+    python download_glif.py -test
+
+"""
+
 from allensdk.api.queries.glif_api import GlifApi
 from allensdk.core.cell_types_cache import CellTypesCache
 import allensdk.core.json_utilities as json_utilities
 import os
+import sys
 
 GLIF_MODEL_IDS = [
     566282032,
@@ -14,7 +28,8 @@ GLIF_MODEL_IDS = [
     566302725,
 ]
 
-for neuronal_model_id in GLIF_MODEL_IDS:
+
+def download_glif_model(neuronal_model_id):
 
     print("Downloading model: %s" % neuronal_model_id)
     if not os.path.isdir(str(neuronal_model_id)):
@@ -38,3 +53,16 @@ for neuronal_model_id in GLIF_MODEL_IDS:
     )
 
     print("Done!")
+
+
+if __name__ == "__main__":
+
+    if "-all" in sys.argv:
+        for model in GLIF_MODEL_IDS:
+            download_glif_model(model)
+
+    elif "-test" in sys.argv:
+        download_glif_model(566282032)
+
+    else:
+        print(usage)
