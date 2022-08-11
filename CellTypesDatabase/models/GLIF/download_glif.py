@@ -62,7 +62,7 @@ if __name__ == "__main__":
             download_glif_model(model)
 
     elif "-test" in sys.argv:
-        download_glif_model(566282032)
+        download_glif_model(566291893)
 
     else:
         print(usage)
