@@ -18,6 +18,16 @@ import numpy as np
 import os
 import sys
 
+test_sweep = {'566282032':39,
+              '566283540':33,
+              '566283879':46,
+              '566288171':40,
+              '486557295':36,
+              '566291893':28,
+              '566291897':29,
+              '566302725':40
+              }
+
 def run_one_cell(neuronal_model_id, show_plot=False):
     print('Simulating model: %s' % neuronal_model_id)
     os.chdir(str(neuronal_model_id))
@@ -26,9 +36,8 @@ def run_one_cell(neuronal_model_id, show_plot=False):
     ephys_sweeps = json_utilities.read('ephys_sweeps.json')
     ephys_file_name = 'stimulus.nwb'
 
-    # pull out the stimulus for the current-clamp first sweep
-    ephys_sweep = next( s for s in ephys_sweeps 
-                        if s['stimulus_units'] == 'Amps' and s['num_spikes'] is not None and s['num_spikes']>10 and s['num_spikes']<24) # TODO: hand pick sweeps here
+    # pull out the stimulus for the test sweep
+    ephys_sweep = next(s for s in ephys_sweeps if s['sweep_number'] == test_sweep[neuronal_model_id])
     ds = NwbDataSet(ephys_file_name)
     data = ds.get_sweep(ephys_sweep['sweep_number']) 
     stimulus = data['stimulus']
