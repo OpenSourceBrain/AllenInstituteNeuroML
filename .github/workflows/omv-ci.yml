@@ -26,7 +26,7 @@ jobs:
         pip install scipy sympy matplotlib cython pandas tables
     - name: Run OMV tests
       run: |
-        omv all -V
+        omv all_ -V
     - name: Print final OMV/engine version info
       run: |
         omv list -V # list installed engines
