@@ -299,4 +299,4 @@ original.v.dat
 /CellTypesDatabase/models/472450023/464198956.nwb
 /CellTypesDatabase/models/497232312/485574830.nwb
 /CellTypesDatabase/models/all
-/CellTypesDatabase/models/472450023/sw*.dat
+/CellTypesDatabase/models/*/sw*.dat

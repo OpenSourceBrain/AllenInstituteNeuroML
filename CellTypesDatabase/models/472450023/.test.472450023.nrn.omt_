@@ -5,13 +5,13 @@
 #
 target: test.py
 engine: PyNEURON
-mep: .test.483108201.mep
+mep: .test.472450023.mep
 experiments:
   Current clamp:
     observables:
       spike times:
         file: 
-          path: sweep_55.v.dat
+          path: sweep_28.v.dat
           columns: [0,1]
           scaling: [1000, 1000]
         spike detection: 
