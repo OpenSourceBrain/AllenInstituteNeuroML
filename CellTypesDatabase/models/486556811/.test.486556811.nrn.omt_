@@ -11,7 +11,7 @@ experiments:
     observables:
       spike times:
         file: 
-          path: sweep_54.v.dat
+          path: sweep_51.v.dat
           columns: [0,1]
           scaling: [1000, 1000]
         spike detection: 
