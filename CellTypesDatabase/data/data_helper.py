@@ -32,8 +32,8 @@ DATASET_TARGET_SWEEPS[477127614] = [22, 25, 27, 38, 30, 32, 35]
 DATASET_TARGET_SWEEPS[464198958] = [20, 24, 36, 28, 30, 32, 34]
 # Perisomatic biophys model: http://celltypes.brain-map.org/neuronal_model/download/472450023
 MODEL_IDS[464198958] = [472450023, 497233223]
-TEST_SWEEP[464198958] = 29
-TEST_CURRENTS[472450023] = 70
+TEST_SWEEP[464198958] = 28
+TEST_CURRENTS[472450023] = 50
 
 #  Layer 5, spiny https://celltypes.brain-map.org/mouse/experiment/electrophysiology/485574832
 DATASET_TARGET_SWEEPS[485574832] = [59, 58]
