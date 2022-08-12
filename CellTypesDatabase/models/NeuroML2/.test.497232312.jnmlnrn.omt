@@ -2,7 +2,7 @@
 
 target: LEMS_497232312.xml
 engine: jNeuroML_NEURON
-mep: .test.497232312.mep
+mep: ../497232312/.test.497232312.mep
 experiments:
   Current clamp:
     observables:
@@ -14,4 +14,4 @@ experiments:
         spike detection:
           method: threshold
           threshold: -20
-        tolerance: 0.0000
+        tolerance: 0.006
