@@ -13,8 +13,8 @@ from data_helper import get_test_sweep
 from download import ALL_ACTIVE_MODEL_IDS
 
 
-def _get_dataset_id(model_id):
-    with open(f"{model_id}/metadata.json", "r") as json_file:
+def _get_dataset_id(model_id, model_path_prefix=''):
+    with open(os.path.join(model_path_prefix, model_id, "metadata.json"), "r") as json_file:
         metadata = json.load(json_file)
     if int(model_id) in ALL_ACTIVE_MODEL_IDS:
         dataset_id = int(metadata["AIBS:aibs_specimen_id"])
@@ -25,10 +25,10 @@ def _get_dataset_id(model_id):
 
 
 
-def run(model_id):
-    if os.path.isdir(model_id):
-        dataset_id = _get_dataset_id(model_id)
-        os.chdir(model_id)
+def run(model_id, model_path_prefix=''):
+    if os.path.isdir(os.path.join(model_path_prefix, model_id)):
+        dataset_id = _get_dataset_id(model_id, model_path_prefix)
+        os.chdir(os.path.join(model_path_prefix, model_id))
     else:
         print("Model id is invalid!")
         sys.exit()
