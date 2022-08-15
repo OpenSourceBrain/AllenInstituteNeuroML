@@ -26,6 +26,7 @@ jobs:
         pip install scipy sympy matplotlib cython pandas tables
     - name: Run OMV tests
       run: |
+        pip install allensdk # for original NEURON models
         omv all_ -V
     - name: Print final OMV/engine version info
       run: |
