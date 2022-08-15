@@ -16,18 +16,29 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Set up Python  ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version:  ${{ matrix.python-version }}
+        
     - name: Install OMV
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
         pip install scipy sympy matplotlib cython pandas tables
+        
+    - name: Download selected NEURON models
+      run: |
+         pip install allensdk # for NEURON models
+         cd CellTypesDatabase/models
+         pip install markupsafe==2.0.1
+         python download.py # NWB files here are required for tests
+         ls -alt 4*
+        
     - name: Run OMV tests
       run: |
-        pip install allensdk # for original NEURON models
         omv all_ -V
+        
     - name: Print final OMV/engine version info
       run: |
         omv list -V # list installed engines
