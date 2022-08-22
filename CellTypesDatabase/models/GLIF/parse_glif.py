@@ -14,7 +14,7 @@ import json
 
 from pyneuroml import pynml
 
-def generate_lems(glif_dir, curr_pA, show_plot=True):
+def generate_lems(glif_dir, sweep_number, show_plot=True):
 
     os.chdir(glif_dir)
     
@@ -22,10 +22,17 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
         model_metadata = json.load(json_file)
 
     with open('neuron_config.json', "r") as json_file:
-        neuron_config = json.load(json_file)
+        neuron_config = json.load(json_file)[f"{glif_dir}"]
 
     with open('ephys_sweeps.json', "r") as json_file:
         ephys_sweeps = json.load(json_file)
+        
+    ephys_sweep = next(
+        s
+        for s in ephys_sweeps
+        if s["sweep_number"] == sweep_number
+    )
+    curr_pA = int(ephys_sweep["stimulus_absolute_amplitude"])
 
     template_cell = '''<Lems>
 
@@ -85,7 +92,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     cell_file.close()
 
 
-    import opencortex.build as oc
+    import opencortex.core as oc
 
     nml_doc, network = oc.generate_network("Test_%s"%glif_dir)
 
@@ -138,7 +145,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     vs = [results['pop_%s/0/GLIF_%s/v'%(glif_dir,glif_dir)]]
     labels = ['LEMS - jNeuroML']
 
-    original_model_v = 'original.v.dat'
+    original_model_v = f'sweep_{sweep_number}.v.dat'
     if os.path.isfile(original_model_v):
         data, indices = pynml.reload_standard_dat_file(original_model_v)
         times.append(data['t'])
@@ -160,7 +167,7 @@ def generate_lems(glif_dir, curr_pA, show_plot=True):
     vs = [results['pop_%s/0/GLIF_%s/%s'%(glif_dir,glif_dir,thresh)]]
     labels = ['LEMS - jNeuroML']
 
-    original_model_th = 'original.thresh.dat'
+    original_model_th = f'sweep_{sweep_number}.thresh.dat'
     if os.path.isfile(original_model_th):
         data, indeces = pynml.reload_standard_dat_file(original_model_th)
         times.append(data['t'])
@@ -237,14 +244,56 @@ Current injection of %(curr)s pA
                             
 if __name__ == '__main__':
     
-    if '-all' in sys.argv:
+        
+    if '-test' in sys.argv:
         readme = '''
-## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
+        ## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
+        **Note: work in progress!**
 
-**Note: work in progress!**
+
+        ### Examples:
+
+        '''
+        models_stims = {"486557295": 36}
+                        
+        #models_stims = {'473875489': 120,
+        #                '480629471': 50}
+                        
+        for model in models_stims.keys():
+            
+            model_metadata, neuron_config, ephys_sweeps = generate_lems(model, models_stims[model], show_plot=False)
+            
+            curr_str = str(models_stims[model])
+            # @type curr_str str
+            if curr_str.endswith('.0'):
+                curr_str = curr_str[:-2]
+            readme += '''
+            #### Model: %(id)s
+
+            Model summary: %(name)s
+
+            [Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
+
+            [Full details of conversion](%(id)s/README.md)
+
+            <a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
+
+            ''' % {"id":model,"name":model_metadata['name'],"spec":model_metadata["specimen_id"],"curr":curr_str}
+
+        readme_file = open('README.md','w')
+        readme_file.write(readme)
+        readme_file.close()
+        
+        exit()
+        
+    elif '-all' in sys.argv:
+        readme = '''
+        ## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
+
+        **Note: work in progress!**
 
 
-### Examples:
+        ### Examples:
 
         '''
         models_stims = {'473875489': 120,
@@ -268,15 +317,15 @@ if __name__ == '__main__':
             if curr_str.endswith('.0'):
                 curr_str = curr_str[:-2]
             readme += '''
-#### Model: %(id)s
+            #### Model: %(id)s
 
-Model summary: %(name)s
+            Model summary: %(name)s
 
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
+            [Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
 
-[Full details of conversion](%(id)s/README.md)
+            [Full details of conversion](%(id)s/README.md)
 
-<a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
+            <a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
 
             ''' % {"id":model,"name":model_metadata['name'],"spec":model_metadata["specimen_id"],"curr":curr_str}
 
