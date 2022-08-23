@@ -79,6 +79,10 @@ jobs:
          python ParseAll.py -all_active
          ls -alt NeuroML2
 
+         echo "-----   Parsing GLIF.."
+         cd GLIF
+         python parse_glif.py -test
+
     - name: Tune data
       run: |
          cd CellTypesDatabase/tune
