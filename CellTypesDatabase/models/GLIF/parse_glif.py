@@ -94,7 +94,7 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
 
     import opencortex.core as oc
 
-    nml_doc, network = oc.generate_network("Test_%s"%glif_dir)
+    nml_doc, network = oc.generate_network("GLIF_%s"%glif_dir)
 
     pop = oc.add_single_cell_population(network,
                                          'pop_%s'%glif_dir,
@@ -254,7 +254,7 @@ if __name__ == '__main__':
         ### Examples:
 
         '''
-        models_stims = {"486557295": 36}
+        models_stims = {"566291893": 28}
                         
         #models_stims = {'473875489': 120,
         #                '480629471': 50}
