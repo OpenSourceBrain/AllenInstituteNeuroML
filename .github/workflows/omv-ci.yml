@@ -11,8 +11,11 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: [3.7, 3.8]
+        engine: ["NEURON:8.1.0", "NEURON:7.8.2"]
+
 
     steps:
     - uses: actions/checkout@v2

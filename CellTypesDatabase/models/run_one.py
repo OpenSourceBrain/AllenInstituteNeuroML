@@ -34,6 +34,12 @@ def run(model_id, model_path_prefix=""):
         print("Model id is invalid!")
         sys.exit()
 
+    # check if .nwb file is present in the current directory
+    print("Checking if .nwb file is present in the current directory...")
+    if not next(file for file in os.listdir() if file.endswith('.nwb')):
+        print(f"You need the .nwb file to run this model! Can be downloaded using CellTypesDatabase/models/download.py")
+        sys.exit()
+        
     description = load_description({"manifest_file": "manifest.json"})
 
     # find cell type
