@@ -81,6 +81,7 @@ jobs:
 
          echo "-----   Parsing GLIF.."
          cd GLIF
+         pip install git+https://github.com/OpenSourceBrain/OpenCortex
          python parse_glif.py -test
 
     - name: Tune data
