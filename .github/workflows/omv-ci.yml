@@ -38,9 +38,9 @@ jobs:
          python download.py # NWB files here are required for tests
          ls -alt 4*
 
-    - name: Run OMV tests
+    - name: Run OMV tests on engine ${{ matrix.engine }}
       run: |
-        omv all_ -V
+        omv all -V --engine=${{ matrix.engine }}
 
     - name: Print final OMV/engine version info
       run: |
