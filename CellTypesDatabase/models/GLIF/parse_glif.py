@@ -246,94 +246,18 @@ if __name__ == '__main__':
     
         
     if '-test' in sys.argv:
-        readme = '''
-        ## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
-        **Note: work in progress!**
-
-
-        ### Examples:
-
-        '''
         models_stims = {"566291893": 28}
-                        
-        #models_stims = {'473875489': 120,
-        #                '480629471': 50}
-                        
-        for model in models_stims.keys():
-            
-            model_metadata, neuron_config, ephys_sweeps = generate_lems(model, models_stims[model], show_plot=False)
-            
-            curr_str = str(models_stims[model])
-            # @type curr_str str
-            if curr_str.endswith('.0'):
-                curr_str = curr_str[:-2]
-            readme += '''
-            #### Model: %(id)s
 
-            Model summary: %(name)s
-
-            [Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
-
-            [Full details of conversion](%(id)s/README.md)
-
-            <a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
-
-            ''' % {"id":model,"name":model_metadata['name'],"spec":model_metadata["specimen_id"],"curr":curr_str}
-
-        readme_file = open('README.md','w')
-        readme_file.write(readme)
-        readme_file.close()
-        
-        exit()
-        
     elif '-all' in sys.argv:
-        readme = '''
-        ## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
-
-        **Note: work in progress!**
-
-
-        ### Examples:
-
-        '''
-        models_stims = {'473875489': 120,
-                        '480629471': 50,   
-                        '480629475': 50,  
-                        '480633674': 120, 
-                        '486557295': 160, 
-                        '472451425': 180,  
-                        '472308324': 150,
-                        '472455459': 120}
-                        
-        #models_stims = {'473875489': 120,
-        #                '480629471': 50}
-                        
-        for model in models_stims.keys():
-            
-            model_metadata, neuron_config, ephys_sweeps = generate_lems(model, models_stims[model], show_plot=False)
-            
-            curr_str = str(models_stims[model])
-            # @type curr_str str
-            if curr_str.endswith('.0'):
-                curr_str = curr_str[:-2]
-            readme += '''
-            #### Model: %(id)s
-
-            Model summary: %(name)s
-
-            [Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
-
-            [Full details of conversion](%(id)s/README.md)
-
-            <a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
-
-            ''' % {"id":model,"name":model_metadata['name'],"spec":model_metadata["specimen_id"],"curr":curr_str}
-
-        readme_file = open('README.md','w')
-        readme_file.write(readme)
-        readme_file.close()
-        
-        exit()
+        models_stims = {    "566282032": 39,
+                            "566283540": 33,
+                            "566283879": 46,
+                            "566288171": 40,
+                            "486557295": 36,
+                            "566291893": 28,
+                            "566291897": 29,
+                            "566302725": 40,
+                        }       
         
     elif len(sys.argv)==3:
 
@@ -341,6 +265,46 @@ if __name__ == '__main__':
         curr_pA = float(sys.argv[2])
         show_plot = '-nogui' not in sys.argv
         generate_lems(glif_dir, curr_pA, show_plot=show_plot)
+        exit()
     
     else:
         print(usage)
+        exit()
+    
+    
+    readme = '''
+        ## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
+
+        **Note: work in progress!**
+
+
+        ### Examples:
+
+        '''
+        
+    for model in models_stims.keys():
+    
+        model_metadata, neuron_config, ephys_sweeps = generate_lems(model, models_stims[model], show_plot=False)
+    
+        curr_str = str(models_stims[model])
+        # @type curr_str str
+        if curr_str.endswith('.0'):
+            curr_str = curr_str[:-2]
+        readme += '''
+        #### Model: %(id)s
+
+        Model summary: %(name)s
+
+        [Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
+
+        [Full details of conversion](%(id)s/README.md)
+
+        <a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
+
+        ''' % {"id":model,"name":model_metadata['name'],"spec":model_metadata["specimen_id"],"curr":curr_str}
+
+    
+    readme_file = open('README.md','w')
+    readme_file.write(readme)
+    readme_file.close()
+    exit()
