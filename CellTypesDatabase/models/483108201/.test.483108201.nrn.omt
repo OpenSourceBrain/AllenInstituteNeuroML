@@ -3,7 +3,7 @@
 #   NOTE: this requires a local copy of 479704525.nwb to pass!
 #
 #
-target: run_one.py
+target: test.py
 engine: PyNEURON
 mep: .test.483108201.mep
 experiments:

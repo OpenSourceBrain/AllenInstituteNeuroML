@@ -1,6 +1,0 @@
-system: Testing a single compartment cell
-
-experiments:
-  Current clamp:
-    expected:
-      spike times: [1054.17, 1083.62, 1114.165, 1146.89, 1183.63, 1227.5, 1284.33, 1363.015, 1462.85, 1568.52, 1673.13, 1775.98, 1877.29, 1977.335]
