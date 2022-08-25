@@ -46,12 +46,17 @@ def run_one_cell(neuronal_model_id, show_plot=False):
     )
     ds = NwbDataSet(ephys_file_name)
     data = ds.get_sweep(ephys_sweep["sweep_number"])
-    stimulus = data["stimulus"]
+    curr_pA = int(ephys_sweep["stimulus_absolute_amplitude"])
 
     # initialize the neuron
     # important! update the neuron's dt for your stimulus
     neuron = GlifNeuron.from_dict(neuron_config)
     neuron.dt = 1.0 / data["sampling_rate"]
+    stimulus = (
+        [0.0] * int(0.1 / neuron.dt)
+        + [curr_pA * 1e-12] * int(1 / neuron.dt)
+        + [0.0] * int(0.1 / neuron.dt)
+    )
 
     # simulate the neuron
     output = neuron.run(stimulus)
@@ -66,7 +71,6 @@ def run_one_cell(neuronal_model_id, show_plot=False):
         len(spike_times),
     )
     print(info)
-    curr_pA = int(ephys_sweep["stimulus_absolute_amplitude"])
 
     v_file = open(f'sweep_{ephys_sweep["sweep_number"]}.v.dat', "w")
     th_file = open(f'sweep_{ephys_sweep["sweep_number"]}.thresh.dat', "w")
@@ -89,7 +93,7 @@ def run_one_cell(neuronal_model_id, show_plot=False):
         colors=["k"],
         xaxis="Time (s)",
         yaxis="Voltage (V)",
-        xlim=(0.9, 2.1),
+        # xlim=(0.9, 2.1),
         grid=True,
         show_plot_already=show_plot,
         save_figure_to="MembranePotential_%ipA.png" % (curr_pA),
@@ -102,7 +106,7 @@ def run_one_cell(neuronal_model_id, show_plot=False):
         colors=["r"],
         xaxis="Time (s)",
         yaxis="Voltage (V)",
-        xlim=(0.9, 2.1),
+        # xlim=(0.9, 2.1),
         grid=True,
         show_plot_already=show_plot,
         save_figure_to="Threshold_%ipA.png" % (curr_pA),
