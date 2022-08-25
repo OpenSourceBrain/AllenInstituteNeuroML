@@ -309,14 +309,14 @@ if __name__ == "__main__":
         exit()
 
     readme = """
-        ## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
+## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
 
-        **Note: work in progress!**
+**Note: work in progress!**
 
 
-        ### Examples:
+### Examples:
 
-        """
+    """
 
     for model in models_stims.keys():
 
@@ -329,15 +329,15 @@ if __name__ == "__main__":
         if curr_str.endswith(".0"):
             curr_str = curr_str[:-2]
         readme += """
-        #### Model: %(id)s
+#### Model: %(id)s
 
-        Model summary: %(name)s
+Model summary: %(name)s
 
-        [Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
+[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
 
-        [Full details of conversion](%(id)s/README.md)
+[Full details of conversion](%(id)s/README.md)
 
-        <a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
+<a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
 
         """ % {
             "id": model,
