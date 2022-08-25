@@ -1,30 +1,41 @@
 {
-  "486557295": {
-    "El_reference": -0.0733360595703125,
-    "C": 1.1567297624103276e-10,
+  "566288171": {
+    "El_reference": -0.0721472447713216,
+    "C": 7.855128762588758e-11,
     "asc_amp_array": [
-      -1.8378834760932533e-10,
-      -1.517463913824861e-10
+      -1.8503069054525924e-10,
+      5.462374093255125e-10
     ],
-    "init_threshold": 0.03244059175514351,
+    "init_threshold": 0.024753449184469783,
     "threshold_reset_method": {
-      "params": {},
-      "name": "inf"
+      "params": {
+        "a_spike": 0.0019406666851699936,
+        "b_spike": 27.38144966390541
+      },
+      "name": "three_components"
     },
-    "th_inf": 0.03244059175514351,
-    "spike_cut_length": 53,
+    "th_inf": 0.024753449184469783,
+    "spike_cut_length": 39,
     "init_AScurrents": [
       0.0,
       0.0
     ],
     "init_voltage": 0.0,
     "threshold_dynamics_method": {
-      "params": {},
-      "name": "inf"
+      "params": {
+        "b_voltage": 0,
+        "a_spike": 0.0019406666851699936,
+        "b_spike": 27.38144966390541,
+        "a_voltage": 0
+      },
+      "name": "spike_component"
     },
     "voltage_reset_method": {
-      "params": {},
-      "name": "zero"
+      "params": {
+        "a": 0.20256617295915075,
+        "b": 0.004175364052704845
+      },
+      "name": "v_before"
     },
     "extrapolation_method_name": "endpoints",
     "dt": 5e-05,
@@ -37,7 +48,7 @@
       0.01,
       0.0033333333333333335
     ],
-    "R_input": 183830008.9173523,
+    "R_input": 251414718.58232906,
     "AScurrent_dynamics_method": {
       "params": {},
       "name": "none"
@@ -53,7 +64,7 @@
       "C": 1,
       "b": 1,
       "G": 1,
-      "th_inf": 0.7535493304160996,
+      "th_inf": 1.1356339494093268,
       "asc_amp_array": [
         1.0,
         1.0
