@@ -300,3 +300,7 @@ original.v.dat
 /CellTypesDatabase/models/497232312/485574830.nwb
 /CellTypesDatabase/models/all
 /CellTypesDatabase/models/*/sw*.dat
+
+/CellTypesDatabase/models/GLIF/*.v.dat
+/CellTypesDatabase/models/GLIF/*.thresh.dat
+/CellTypesDatabase/models/GLIF/*stimulus.nwb
