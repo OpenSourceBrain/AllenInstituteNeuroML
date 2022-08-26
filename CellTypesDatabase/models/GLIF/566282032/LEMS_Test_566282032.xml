@@ -1,0 +1,41 @@
+<Lems>
+    
+    <!-- 
+
+        This LEMS file has been automatically generated using PyNeuroML v0.7.1 (libNeuroML v0.4.0)
+
+     -->
+    
+    <!-- Specify which component to run -->
+    <Target component="Sim_Test_566282032"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="GLIF_566282032.xml"/>
+    <Include file="../GLIFs.xml"/>
+    <Include file="Test_566282032.net.nml"/>
+   
+    <Simulation id="Sim_Test_566282032" length="1200ms" step="0.01ms" target="Test_566282032" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
+        
+        <Display id="DispPop__pop_566282032" title="Membrane potentials of cells in pop_566282032" timeScale="1ms" xmin="-120.0" xmax="1320.0" ymin="-90" ymax="50">
+            <Line id="pop_566282032[0]: v" quantity="pop_566282032/0/GLIF_566282032/v" scale="1mV" color="#d54f33" timeScale="1ms"/>
+        </Display>
+        
+        <Display id="Threshold" title="Plots of Threshold" timeScale="1ms" xmin="-120.0" xmax="1320.0" ymin="-1" ymax="1">
+            <Line id="pop_566282032_0_GLIF_566282032_threshTotal" quantity="pop_566282032/0/GLIF_566282032/threshTotal" scale="1" color="#0534e4" timeScale="1ms"/>
+        </Display>
+        
+        <OutputFile id="Volts_file__pop_566282032" fileName="Sim_Test_566282032.pop_566282032.v.dat">
+            <OutputColumn id="v_pop_566282032_0_GLIF_566282032_v" quantity="pop_566282032/0/GLIF_566282032/v"/> 
+        </OutputFile>
+        
+        <OutputFile id="thresh_dat" fileName="thresh.dat">
+            <OutputColumn id="pop_566282032_0_GLIF_566282032_threshTotal" quantity="pop_566282032/0/GLIF_566282032/threshTotal"/> 
+        </OutputFile>
+        
+    </Simulation>
+
+</Lems>

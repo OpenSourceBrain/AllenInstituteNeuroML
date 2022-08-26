@@ -1,0 +1,21 @@
+{
+  "id": 566283540,
+  "name": "5 LIF-R-ASC + Threshold Adaptation (LIF-R-ASC-A)_Scnn1a-Tg3-Cre;Ai14-172530.03.01.01",
+  "neuron_reconstruction_id": null,
+  "neuronal_model_template_id": 395310498,
+  "specimen_id": 323834998,
+  "well_known_files": [
+    {
+      "attachable_id": 566283540,
+      "attachable_type": "NeuronalModel",
+      "download_link": "/api/v2/well_known_file_download/566302605",
+      "id": 566302605,
+      "path": "/external/mousecelltypes/prod877/neuronal_model_566283540/566283540_neuron_config.json",
+      "well_known_file_type_id": 329230374,
+      "well_known_file_type": {
+        "id": 329230374,
+        "name": "NeuronalModelParameters"
+      }
+    }
+  ]
+}
