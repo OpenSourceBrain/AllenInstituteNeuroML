@@ -18,6 +18,10 @@ import json
 
 from pyneuroml import pynml
 
+from neuromllite import Network, Cell, InputSource, Population, Synapse, RectangularRegion, RandomLayout
+from neuromllite import Projection, RandomConnectivity, Input, Simulation
+from neuromllite.NetworkGenerator import generate_and_run
+
 
 def generate_lems(glif_dir, sweep_number, show_plot=True):
 
@@ -119,44 +123,73 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
     cell_file.write(file_contents)
     cell_file.close()
 
-    import opencortex.core as oc
+    # import opencortex.core as oc
 
-    nml_doc, network = oc.generate_network("Test_%s" % glif_dir)
+    # nml_doc, network = oc.generate_network("Test_%s" % glif_dir)
+    net = Network(id="TEST_%s"%glif_dir)
+    net.notes = model_metadata['name']
+    net.temperature = 32.0
 
-    pop = oc.add_single_cell_population(network, "pop_%s" % glif_dir, cell_id)
+    # pop = oc.add_single_cell_population(network, "pop_%s" % glif_dir, cell_id)
+    cell = Cell(id='GLIF_%s'%glif_dir, lems_source_file='%s__lems.xml'%(cell_id))
+    net.cells.append(cell)
 
-    pg = oc.add_pulse_generator(
-        nml_doc, id="pg0", delay="100ms", duration="1000ms", amplitude="%s pA" % curr_pA
-    )
+    pop = Population(id='pop_%s'%glif_dir, size=1, component=cell.id, properties={'color':'0 .8 0'})
 
-    oc.add_inputs_to_population(network, "Stim0", pop, pg.id, all_cells=True)
+    net.populations.append(pop)
 
-    nml_file_name = "%s.net.nml" % network.id
-    oc.save_network(nml_doc, nml_file_name, validate=False)
+    # pg = oc.add_pulse_generator(
+    #     nml_doc, id="pg0", delay="100ms", duration="1000ms", amplitude="%s pA" % curr_pA
+    # )
+    input_source = InputSource(id='pg0', neuroml2_input='pulseGenerator', 
+            parameters={'delay': "100ms",
+                       'duration': "1000ms",
+                       'amplitude': "%s pA"%curr_pA})
+
+    net.input_sources.append(input_source)  
+
+    # oc.add_inputs_to_population(network, "Stim0", pop, pg.id, all_cells=True)
+    net.inputs.append(Input(id='Stim0', input_source=input_source.id, population=pop.id))
+
+    # nml_file_name = "%s.net.nml" % network.id
+    # oc.save_network(nml_doc, nml_file_name, validate=False)
+    new_file = net.to_json_file('%s.json'%net.id)
 
     thresh = "thresh"
     if "glifR" in type:
         thresh = "threshTotal"
 
-    lems_file_name = oc.generate_lems_simulation(
-        nml_doc,
-        network,
-        nml_file_name,
-        include_extra_lems_files=[cell_file_name, "../GLIFs.xml"],
-        duration=1200,
-        dt=0.01,
-        gen_saves_for_quantities={
-            "thresh.dat": ["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]
-        },
-        gen_plots_for_quantities={
-            "Threshold": ["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]
-        },
-    )
+    # lems_file_name = oc.generate_lems_simulation(
+    #     nml_doc,
+    #     network,
+    #     nml_file_name,
+    #     include_extra_lems_files=[cell_file_name, "../GLIFs.xml"],
+    #     duration=1200,
+    #     dt=0.01,
+    #     gen_saves_for_quantities={
+    #         "thresh.dat": ["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]
+    #     },
+    #     gen_plots_for_quantities={
+    #         "Threshold": ["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]
+    #     },
+    # )
+    
+    sim = Simulation(id='Sim_test_%s'%glif_dir,
+                 network=new_file,
+                 duration='1200',
+                 dt='0.01',
+                 record_traces={'all':'*'})
+    sim.to_json_file('Sim_test_%s.nmllite.json'%glif_dir)
+    
+    from neuromllite.NetworkGenerator import check_to_generate_or_run
+    import sys
 
-    print(
-        "Successfully generated LEMS file: %s, running it in %s"
-        % (lems_file_name[0], glif_dir)
-    )
+    check_to_generate_or_run(['-jnmlnrn'], sim)
+    
+    # print(
+    #     "Successfully generated LEMS file: %s, running it in %s"
+    #     % (lems_file_name[0], glif_dir)
+    # )
 
     results = pynml.run_lems_with_jneuroml(
         "../%s%s" % (glif_dir, lems_file_name[0].replace("./", "/")),
