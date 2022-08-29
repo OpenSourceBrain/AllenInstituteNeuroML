@@ -118,7 +118,7 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
 
     print(file_contents)
 
-    cell_file_name = "%s.xml" % (cell_id)
+    cell_file_name = "%s__lems.xml" % (cell_id)
     cell_file = open(cell_file_name, "w")
     cell_file.write(file_contents)
     cell_file.close()
