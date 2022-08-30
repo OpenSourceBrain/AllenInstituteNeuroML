@@ -18,7 +18,7 @@ import json
 
 from pyneuroml import pynml
 
-from neuromllite import Network, Cell, InputSource, Population, Synapse, RectangularRegion, RandomLayout
+from neuromllite import Network, Cell, InputSource, Population, SingleLocation, Location, RandomLayout
 from neuromllite import Projection, RandomConnectivity, Input, Simulation
 from neuromllite.NetworkGenerator import generate_and_run
 
@@ -40,6 +40,7 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
     curr_pA = int(ephys_sweep["stimulus_absolute_amplitude"])
 
     template_cell = """<Lems>
+      <Include file="../GLIFs.xml"/>
 
       <%s %s/>
 
@@ -126,15 +127,19 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
     # import opencortex.core as oc
 
     # nml_doc, network = oc.generate_network("Test_%s" % glif_dir)
-    net = Network(id="TEST_%s"%glif_dir)
-    net.notes = model_metadata['name']
+    net = Network(id="TEST_%s"%glif_dir) #TODO: rename to Test
+    net.notes = model_metadata['name'] 
     net.temperature = 32.0
+    net.seed = 1234
 
     # pop = oc.add_single_cell_population(network, "pop_%s" % glif_dir, cell_id)
     cell = Cell(id='GLIF_%s'%glif_dir, lems_source_file='%s__lems.xml'%(cell_id))
     net.cells.append(cell)
-
-    pop = Population(id='pop_%s'%glif_dir, size=1, component=cell.id, properties={'color':'0 .8 0'})
+    
+    pop = Population(id='pop_%s'%glif_dir, 
+                     size=1, 
+                     component=cell.id,
+                    single_location=SingleLocation(location=Location(x=0, y=0, z=0)))
 
     net.populations.append(pop)
 
@@ -149,7 +154,10 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
     net.input_sources.append(input_source)  
 
     # oc.add_inputs_to_population(network, "Stim0", pop, pg.id, all_cells=True)
-    net.inputs.append(Input(id='Stim0', input_source=input_source.id, population=pop.id))
+    net.inputs.append(Input(id='Stim0', 
+                            input_source=input_source.id, 
+                            population=pop.id, 
+                            percentage=100))
 
     # nml_file_name = "%s.net.nml" % network.id
     # oc.save_network(nml_doc, nml_file_name, validate=False)
@@ -191,18 +199,27 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
     #     % (lems_file_name[0], glif_dir)
     # )
 
-    results = pynml.run_lems_with_jneuroml(
-        "../%s%s" % (glif_dir, lems_file_name[0].replace("./", "/")),
-        nogui=True,
-        load_saved_data=True,
-    )
-
-    print("Ran simulation; results reloaded for: %s" % results.keys())
+    # results = pynml.run_lems_with_jneuroml(
+    #     "../%s%s" % (glif_dir, lems_file_name[0].replace("./", "/")),
+    #     nogui=True,
+    #     load_saved_data=True,
+    # )
+    # 1/0
+    # print("Ran simulation; results reloaded for: %s" % results.keys())
+    simulation_model_v = f"Sim_test_566291893.pop_{glif_dir}.v.dat"
+    if os.path.isfile(simulation_model_v):
+        data, indices = pynml.reload_standard_dat_file(simulation_model_v)
+        times = [data["t"]]
+        vs =[data[0]]
+        labels = ["LEMS - jNeuroML"]
+        
+    # print("Ran simulation; results reloaded for: %s" % results.keys())
+    
 
     info = "Model %s; %spA stimulation" % (glif_dir, curr_pA)
-    times = [results["t"]]
-    vs = [results["pop_%s/0/GLIF_%s/v" % (glif_dir, glif_dir)]]
-    labels = ["LEMS - jNeuroML"]
+    # times = [results["t"]]
+    # vs = [results["pop_%s/0/GLIF_%s/v" % (glif_dir, glif_dir)]]
+    # labels = ["LEMS - jNeuroML"]
 
     original_model_v = f"sweep_{sweep_number}.v.dat"
     if os.path.isfile(original_model_v):
