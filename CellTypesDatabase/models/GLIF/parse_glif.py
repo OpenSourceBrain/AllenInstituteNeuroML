@@ -5,8 +5,8 @@ This file can be used to generate LEMS components for each of a number of GLIF m
 Usage:
 
     To test parsing with one model:
-        python parse_glif.py -test 
-        
+        python parse_glif.py -test
+
     To parsel all models:
         python parse_glif.py -all
 
@@ -171,11 +171,11 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
         duration="1200",
         dt="0.01",
         record_traces={"all": "*"},
-        record_variables={},
+        record_variables={thresh: {"all": "*"}},
     )
     sim.to_json_file("Sim_Test_%s.nmllite.json" % glif_dir)
 
-    check_to_generate_or_run(["-jnmlnrn"], sim)
+    check_to_generate_or_run(["-jnml"], sim)
 
     simulation_model_v = f"Sim_Test_{glif_dir}.pop_{glif_dir}.v.dat"
     if os.path.isfile(simulation_model_v):
@@ -204,10 +204,10 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
         save_figure_to="Comparison_%ipA.png" % (curr_pA),
     )
 
-    # TODO: record threshold during simulation
-    # times = [results["t"]]
-    # vs = [results["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]]
-    # labels = ["LEMS - jNeuroML"]
+
+    #times = [results["t"]]
+    #vs = [results["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]]
+    #labels = ["LEMS - jNeuroML"]
 
     # original_model_th = f"sweep_{sweep_number}.thresh.dat"
     # if os.path.isfile(original_model_th):
