@@ -177,7 +177,7 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
 
     check_to_generate_or_run(["-jnmlnrn"], sim)
 
-    simulation_model_v = f"Sim_Test_566291893.pop_{glif_dir}.v.dat"
+    simulation_model_v = f"Sim_Test_{glif_dir}.pop_{glif_dir}.v.dat"
     if os.path.isfile(simulation_model_v):
         data, indices = pynml.reload_standard_dat_file(simulation_model_v)
         times = [data["t"]]
