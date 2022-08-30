@@ -303,5 +303,7 @@ original.v.dat
 
 /CellTypesDatabase/models/GLIF/*.v.dat
 /CellTypesDatabase/models/GLIF/*.thresh.dat
+/CellTypesDatabase/models/GLIF/sweep*.v.dat
+/CellTypesDatabase/models/GLIF/sweep*.thresh.dat
 /CellTypesDatabase/models/GLIF/*stimulus.nwb
 /CellTypesDatabase/models/GLIF/*/*stimulus.nwb

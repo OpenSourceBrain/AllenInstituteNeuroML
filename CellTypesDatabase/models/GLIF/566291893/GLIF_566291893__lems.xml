@@ -1,4 +1,5 @@
 <Lems>
+      <Include file="../GLIFs.xml"/>
 
       <glifCell  id="GLIF_566291893"
             C="4.946777501211952e-11 F"
