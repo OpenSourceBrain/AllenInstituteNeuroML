@@ -204,7 +204,7 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
         save_figure_to="Comparison_%ipA.png" % (curr_pA),
     )
 
-    simulation_model_thresh = f"pop_{glif_dir}_0.thresh.dat"
+    simulation_model_thresh = f"pop_{glif_dir}_0.{thresh}.dat"
     if os.path.isfile(simulation_model_thresh):
         data, indices = pynml.reload_standard_dat_file(simulation_model_thresh)
         times = [data["t"]]
