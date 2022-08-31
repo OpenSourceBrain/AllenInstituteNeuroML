@@ -312,3 +312,5 @@ original.v.dat
 /CellTypesDatabase/models/GLIF/*/report.*.txt
 /CellTypesDatabase/models/GLIF/*/Test_*.json
 /CellTypesDatabase/models/GLIF/*/Test_*__lems.xml
+/CellTypesDatabase/models/GLIF/*/*mod
+/CellTypesDatabase/models/GLIF/*/*nrn.py
