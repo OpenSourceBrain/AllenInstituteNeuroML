@@ -204,29 +204,31 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
         save_figure_to="Comparison_%ipA.png" % (curr_pA),
     )
 
+    simulation_model_thresh = f"pop_{glif_dir}_0.thresh.dat"
+    if os.path.isfile(simulation_model_thresh):
+        data, indices = pynml.reload_standard_dat_file(simulation_model_thresh)
+        times = [data["t"]]
+        vs = [data[0]]
+        labels = ["LEMS - jNeuroML"]
+        
+    original_model_th = f"sweep_{sweep_number}.thresh.dat"
+    if os.path.isfile(original_model_th):
+        data, indeces = pynml.reload_standard_dat_file(original_model_th)
+        times.append(data["t"])
+        vs.append(data[0])
+        labels.append("Allen SDK")
 
-    #times = [results["t"]]
-    #vs = [results["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]]
-    #labels = ["LEMS - jNeuroML"]
-
-    # original_model_th = f"sweep_{sweep_number}.thresh.dat"
-    # if os.path.isfile(original_model_th):
-    #     data, indeces = pynml.reload_standard_dat_file(original_model_th)
-    #     times.append(data["t"])
-    #     vs.append(data[0])
-    #     labels.append("Allen SDK")
-
-    # pynml.generate_plot(
-    #     times,
-    #     vs,
-    #     "Threshold; %s" % info,
-    #     xaxis="Time (s)",
-    #     yaxis="Voltage (V)",
-    #     labels=labels,
-    #     grid=True,
-    #     show_plot_already=show_plot,
-    #     save_figure_to="Comparison_Threshold_%ipA.png" % (curr_pA),
-    # )
+    pynml.generate_plot(
+        times,
+        vs,
+        "Threshold; %s" % info,
+        xaxis="Time (s)",
+        yaxis="Voltage (V)",
+        labels=labels,
+        grid=True,
+        show_plot_already=show_plot,
+        save_figure_to="Comparison_Threshold_%ipA.png" % (curr_pA),
+    )
 
     readme = """
 ## Model: %(id)s
