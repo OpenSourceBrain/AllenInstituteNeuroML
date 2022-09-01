@@ -5,8 +5,8 @@ This file can be used to generate LEMS components for each of a number of GLIF m
 Usage:
 
     To test parsing with one model:
-        python parse_glif.py -test 
-        
+        python parse_glif.py -test
+
     To parsel all models:
         python parse_glif.py -all
 
@@ -17,6 +17,10 @@ import os
 import json
 
 from pyneuroml import pynml
+
+from neuromllite import Network, Cell, InputSource, Population, SingleLocation, Location
+from neuromllite import Input, Simulation
+from neuromllite.NetworkGenerator import check_to_generate_or_run
 
 
 def generate_lems(glif_dir, sweep_number, show_plot=True):
@@ -36,6 +40,7 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
     curr_pA = int(ephys_sweep["stimulus_absolute_amplitude"])
 
     template_cell = """<Lems>
+      <Include file="../GLIFs.xml"/>
 
       <%s %s/>
 
@@ -114,63 +119,72 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
 
     print(file_contents)
 
-    cell_file_name = "%s.xml" % (cell_id)
+    cell_file_name = "%s__lems.xml" % (cell_id)
     cell_file = open(cell_file_name, "w")
     cell_file.write(file_contents)
     cell_file.close()
 
-    import opencortex.core as oc
+    net = Network(id="Test_%s" % glif_dir)
+    net.notes = model_metadata["name"]
+    net.temperature = 32.0
+    net.seed = 1234
 
-    nml_doc, network = oc.generate_network("Test_%s" % glif_dir)
+    cell = Cell(id="GLIF_%s" % glif_dir, lems_source_file="%s__lems.xml" % (cell_id))
+    net.cells.append(cell)
 
-    pop = oc.add_single_cell_population(network, "pop_%s" % glif_dir, cell_id)
-
-    pg = oc.add_pulse_generator(
-        nml_doc, id="pg0", delay="100ms", duration="1000ms", amplitude="%s pA" % curr_pA
+    pop = Population(
+        id="pop_%s" % glif_dir,
+        size=1,
+        component=cell.id,
+        single_location=SingleLocation(location=Location(x=0, y=0, z=0)),
     )
 
-    oc.add_inputs_to_population(network, "Stim0", pop, pg.id, all_cells=True)
+    net.populations.append(pop)
 
-    nml_file_name = "%s.net.nml" % network.id
-    oc.save_network(nml_doc, nml_file_name, validate=False)
+    input_source = InputSource(
+        id="pg0",
+        neuroml2_input="pulseGenerator",
+        parameters={
+            "delay": "100ms",
+            "duration": "1000ms",
+            "amplitude": "%s pA" % curr_pA,
+        },
+    )
+
+    net.input_sources.append(input_source)
+
+    net.inputs.append(
+        Input(
+            id="Stim0", input_source=input_source.id, population=pop.id, percentage=100
+        )
+    )
+
+    new_file = net.to_json_file("%s.json" % net.id)
 
     thresh = "thresh"
     if "glifR" in type:
         thresh = "threshTotal"
 
-    lems_file_name = oc.generate_lems_simulation(
-        nml_doc,
-        network,
-        nml_file_name,
-        include_extra_lems_files=[cell_file_name, "../GLIFs.xml"],
-        duration=1200,
-        dt=0.01,
-        gen_saves_for_quantities={
-            "thresh.dat": ["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]
-        },
-        gen_plots_for_quantities={
-            "Threshold": ["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]
-        },
+    sim = Simulation(
+        id="Sim_Test_%s" % glif_dir,
+        network=new_file,
+        duration="1200",
+        dt="0.01",
+        record_traces={"all": "*"},
+        record_variables={thresh: {"all": "*"}},
     )
+    sim.to_json_file("Sim_Test_%s.nmllite.json" % glif_dir)
 
-    print(
-        "Successfully generated LEMS file: %s, running it in %s"
-        % (lems_file_name[0], glif_dir)
-    )
+    check_to_generate_or_run(["-jnml"], sim)
 
-    results = pynml.run_lems_with_jneuroml(
-        "../%s%s" % (glif_dir, lems_file_name[0].replace("./", "/")),
-        nogui=True,
-        load_saved_data=True,
-    )
-
-    print("Ran simulation; results reloaded for: %s" % results.keys())
+    simulation_model_v = f"Sim_Test_{glif_dir}.pop_{glif_dir}.v.dat"
+    if os.path.isfile(simulation_model_v):
+        data, indices = pynml.reload_standard_dat_file(simulation_model_v)
+        times = [data["t"]]
+        vs = [data[0]]
+        labels = ["LEMS - jNeuroML"]
 
     info = "Model %s; %spA stimulation" % (glif_dir, curr_pA)
-    times = [results["t"]]
-    vs = [results["pop_%s/0/GLIF_%s/v" % (glif_dir, glif_dir)]]
-    labels = ["LEMS - jNeuroML"]
-
     original_model_v = f"sweep_{sweep_number}.v.dat"
     if os.path.isfile(original_model_v):
         data, indices = pynml.reload_standard_dat_file(original_model_v)
@@ -190,10 +204,13 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
         save_figure_to="Comparison_%ipA.png" % (curr_pA),
     )
 
-    times = [results["t"]]
-    vs = [results["pop_%s/0/GLIF_%s/%s" % (glif_dir, glif_dir, thresh)]]
-    labels = ["LEMS - jNeuroML"]
-
+    simulation_model_thresh = f"pop_{glif_dir}_0.{thresh}.dat"
+    if os.path.isfile(simulation_model_thresh):
+        data, indices = pynml.reload_standard_dat_file(simulation_model_thresh)
+        times = [data["t"]]
+        vs = [data[0]]
+        labels = ["LEMS - jNeuroML"]
+        
     original_model_th = f"sweep_{sweep_number}.thresh.dat"
     if os.path.isfile(original_model_th):
         data, indeces = pynml.reload_standard_dat_file(original_model_th)
