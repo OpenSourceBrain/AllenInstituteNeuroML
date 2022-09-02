@@ -24,6 +24,8 @@ def generate(ref="GLIF net test", add_inputs=True):
         "width": 100,
         "depth": 100,
         "input_weight": 0.1,
+        "global_e_scaling": 1,
+        "global_i_scaling": 1
     }
     net.temperature = 32.0
     net.seed = 1234
@@ -31,9 +33,8 @@ def generate(ref="GLIF net test", add_inputs=True):
     cell_list = {'L23': ['486557295'], 'L4': ['566283879'], 'L5': ['566282032'], 'L6': ['566283540']} #last 2 are aspiny
     for key, value in cell_list.items():
         for i in value:
-            cell = Cell(id=f"{key}_{i}", lems_source_file=f"{i}/GLIF_{i}__lems.xml")
+            cell = Cell(id=f"GLIF_{i}", lems_source_file=f"{i}/GLIF_{i}__lems.xml")
             net.cells.append(cell)
-            
         
     if add_inputs:
         input_cell = Cell(id="InputCell", pynn_cell="SpikeSourcePoisson")
@@ -114,7 +115,7 @@ def generate(ref="GLIF net test", add_inputs=True):
                 color = ".8 0 0" if t == "E" else "0 0 1"
 
             pop_id = "%s_%s" % (l, t)
-            cell_id = "%s_%s" % (l, cell_list[l][0])
+            cell_id = "GLIF_%s" % (cell_list[l][0])
             pops.append(pop_id)
             ref = "l%s%s" % (l[1:], t.lower())
             exec(
@@ -137,15 +138,7 @@ def generate(ref="GLIF net test", add_inputs=True):
                 exec("%s.random_layout = RandomLayout(region = r.id)" % input_ref)
                 exec("net.populations.append(%s)" % input_ref)
 
-        # l23i = Population(id='L23_I', size=int(100*scale), component=cell.id, properties={'color':})
-        # l23ei = Population(id='L23_E_input', size=int(100*scale), component=input_cell.id)
-        # l23ii = Population(id='L23_I_input', size=int(100*scale), component=input_cell.id)
-
-    # net.populations.append(l23e)
-    # net.populations.append(l23ei)
-    # net.populations.append(l23i)
-    # net.populations.append(l23ii)
-
+    #TODO: modify this?
     conn_probs = [
         [0.1009, 0.1689, 0.0437, 0.0818, 0.0323, 0.0, 0.0076, 0.0],
         [0.1346, 0.1371, 0.0316, 0.0515, 0.0755, 0.0, 0.0042, 0.0],
@@ -192,9 +185,7 @@ def generate(ref="GLIF net test", add_inputs=True):
                 proj.random_connectivity = RandomConnectivity(probability=prob)
                 net.projections.append(proj)
 
-    print(net.to_json())
-    new_file = net.to_json_file("%s.nmllite.json" % net.id)
-
+    new_file = net.to_json_file("%s.json" % net.id)
     ################################################################################
     ###   Build Simulation object & save as JSON
 
@@ -220,7 +211,7 @@ def generate(ref="GLIF net test", add_inputs=True):
         record_spikes=record_spikes,
     )
 
-    sim.to_json_file()
+    sim.to_json_file("%s.nmllite.json" % sim.id)
 
     return sim, net
 
@@ -235,6 +226,12 @@ if __name__ == "__main__":
     ################################################################################
     ###   Run in some simulators
 
-    from neuromllite.NetworkGenerator import check_to_generate_or_run
+    
+    from neuromllite.NetworkGenerator import check_to_generate_or_run, generate_neuroml2_from_network
+    
+    # generate_neuroml2_from_network(net)
 
-    check_to_generate_or_run(['-jnml'], sim)
+    check_to_generate_or_run(['-jnml', '-graph'], sim)
+    
+    #TODO: test with L23 EXC/INH -small, put input here
+    #TODO: if one pop can syn another pop
