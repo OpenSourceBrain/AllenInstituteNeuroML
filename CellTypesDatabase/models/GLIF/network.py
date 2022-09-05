@@ -1,7 +1,4 @@
-#TODO: choose L2 and L3 both spiny and aspiny cells
-#TODO: make a network with them
-#TODO: add synapses to them
-#TODO: connectivity viz with nmlit ui
+# TODO: connectivity viz with nmlit ui
 
 from neuromllite import Network, Cell, Population, Simulation, Synapse
 from neuromllite import RectangularRegion, RandomLayout
@@ -10,32 +7,42 @@ from neuromllite import Projection, RandomConnectivity, OneToOneConnector
 import sys
 
 
-def generate(ref="GLIF net test", add_inputs=True):
+def generate(ref="GLIF net test", add_inputs=True, type="large"):
 
     ################################################################################
     ###   Build new network
 
     net = Network(id=ref, notes="Network with GLIF cells")
 
-    #TODO: how to choose?
     net.parameters = {
         "N_scaling": 0.005,
         "layer_height": 400,
         "width": 100,
         "depth": 100,
-        "input_weight": 0.1,
+        "input_weight": 1,
         "global_e_scaling": 1,
-        "global_i_scaling": 1
+        "global_i_scaling": 1,
     }
     net.temperature = 32.0
     net.seed = 1234
 
-    cell_list = {'L23': ['486557295'], 'L4': ['566283879'], 'L5': ['566282032'], 'L6': ['566283540']} #last 2 are aspiny
+    # cell_list = {<layer>: [<spiny cell id>, <aspiny cell id>], ...}
+    if type == "large":
+        # TODO: update
+        cell_list = {
+            "L23": ["486557295"],
+            "L4": ["566283879"],
+            "L5": ["566282032"],
+            "L6": ["566283540"],
+        }  # last 2 are aspiny
+    elif type == "small":
+        cell_list = {"L23": ["566320096", "489931668"]}
+
     for key, value in cell_list.items():
         for i in value:
             cell = Cell(id=f"GLIF_{i}", lems_source_file=f"{i}/GLIF_{i}__lems.xml")
             net.cells.append(cell)
-        
+
     if add_inputs:
         input_cell = Cell(id="InputCell", pynn_cell="SpikeSourcePoisson")
         input_cell.parameters = {"start": 0, "duration": 10000000000, "rate": 150}
@@ -56,12 +63,15 @@ def generate(ref="GLIF net test", add_inputs=True):
     )
     net.synapses.append(i_syn)
 
-    N_full = {
-        "L23": {"E": 20683, "I": 5834},
-        "L4": {"E": 21915, "I": 5479},
-        "L5": {"E": 4850, "I": 1065},
-        "L6": {"E": 14395, "I": 2948},
-    }
+    if type == "large":
+        N_full = {
+            "L23": {"E": 20683, "I": 5834},
+            "L4": {"E": 21915, "I": 5479},
+            "L5": {"E": 4850, "I": 1065},
+            "L6": {"E": 14395, "I": 2948},
+        }
+    elif type == "small":
+        N_full = {"L23": {"E": 20683, "I": 5834}}
 
     scale = 0.1
 
@@ -69,7 +79,7 @@ def generate(ref="GLIF net test", add_inputs=True):
     input_pops = []
     pop_dict = {}
 
-    layers = ["L23", "L4", "L5", "L6"]
+    layers = ["L23", "L4", "L5", "L6"] if type == "large" else ["L23"]
 
     for l in layers:
 
@@ -115,9 +125,13 @@ def generate(ref="GLIF net test", add_inputs=True):
                 color = ".8 0 0" if t == "E" else "0 0 1"
 
             pop_id = "%s_%s" % (l, t)
-            cell_id = "GLIF_%s" % (cell_list[l][0])
+            if t == "E":
+                cell_id = "GLIF_%s" % (cell_list[l][0])
+            elif t == "I":
+                cell_id = "GLIF_%s" % (cell_list[l][1])
             pops.append(pop_id)
             ref = "l%s%s" % (l[1:], t.lower())
+
             exec(
                 ref
                 + " = Population(id=pop_id, size='int(%s*N_scaling)'%N_full[l][t], component=cell_id, properties={'color':color, 'type':t})"
@@ -138,7 +152,6 @@ def generate(ref="GLIF net test", add_inputs=True):
                 exec("%s.random_layout = RandomLayout(region = r.id)" % input_ref)
                 exec("net.populations.append(%s)" % input_ref)
 
-    #TODO: modify this?
     conn_probs = [
         [0.1009, 0.1689, 0.0437, 0.0818, 0.0323, 0.0, 0.0076, 0.0],
         [0.1346, 0.1371, 0.0316, 0.0515, 0.0755, 0.0, 0.0042, 0.0],
@@ -185,7 +198,7 @@ def generate(ref="GLIF net test", add_inputs=True):
                 proj.random_connectivity = RandomConnectivity(probability=prob)
                 net.projections.append(proj)
 
-    new_file = net.to_json_file("%s.json" % net.id)
+    new_file = net.to_json_file("%s.json" % (net.id))
     ################################################################################
     ###   Build Simulation object & save as JSON
 
@@ -202,7 +215,7 @@ def generate(ref="GLIF net test", add_inputs=True):
         record_spikes[ip] = "*"
 
     sim = Simulation(
-        id="Sim%s" % net.id,
+        id="Sim%s" % (net.id),
         network=new_file,
         duration="100",
         dt="0.025",
@@ -211,27 +224,30 @@ def generate(ref="GLIF net test", add_inputs=True):
         record_spikes=record_spikes,
     )
 
-    sim.to_json_file("%s.nmllite.json" % sim.id)
+    sim.to_json_file("%s.nmllite.json" % (sim.id))
 
     return sim, net
 
 
 if __name__ == "__main__":
 
-    if "-noinputs" in sys.argv:
-        sim, net = generate("GLIF_net_noinputs", False)
+    if "-small" in sys.argv:
+        type = "small"
     else:
-        sim, net = generate("GLIF_net", True)
+        type = "large"
+
+    if "-noinputs" in sys.argv:
+        sim, net = generate(f"GLIF_net_noinputs_{type}", False, type)
+    else:
+        sim, net = generate(f"GLIF_net_{type}", True, type)
 
     ################################################################################
     ###   Run in some simulators
 
-    
-    from neuromllite.NetworkGenerator import check_to_generate_or_run, generate_neuroml2_from_network
-    
-    # generate_neuroml2_from_network(net)
+    from neuromllite.NetworkGenerator import check_to_generate_or_run
 
-    check_to_generate_or_run(['-jnml', '-graph'], sim)
-    
-    #TODO: test with L23 EXC/INH -small, put input here
-    #TODO: if one pop can syn another pop
+    check_to_generate_or_run(["-jnml", "-graph"], sim)
+
+# TODO: usage instructions
+# TODO: add to gh-action
+# TODO: large network
