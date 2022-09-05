@@ -314,3 +314,5 @@ original.v.dat
 /CellTypesDatabase/models/GLIF/*/Test_*__lems.xml
 /CellTypesDatabase/models/GLIF/*/*mod
 /CellTypesDatabase/models/GLIF/*/*nrn.py
+/CellTypesDatabase/models/GLIF/*/*spikes
+/CellTypesDatabase/models/GLIF/*spikes
