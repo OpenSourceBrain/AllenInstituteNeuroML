@@ -35,7 +35,7 @@ test_sweep = {
     "566291897": 29,
     "566302725": 40,
     "566320096": 32,
-    "489931668": 49
+    "489931668": 49,
 }
 
 
@@ -139,10 +139,10 @@ if __name__ == "__main__":
 
     if "-network_build_small" in sys.argv:
         from download_glif import GLIF_MODEL_IDS_FOR_NETWORK_BUILD
-        
+
         for model in GLIF_MODEL_IDS_FOR_NETWORK_BUILD[:2]:
             run_one_cell(model)
         exit()
-        
+
     else:
         print(usage)

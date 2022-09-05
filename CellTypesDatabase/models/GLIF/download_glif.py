@@ -31,10 +31,8 @@ GLIF_MODEL_IDS = [
     566302725,
 ]
 
-GLIF_MODEL_IDS_FOR_NETWORK_BUILD = [
-    566320096, #L2/3 spiny
-    489931668, #L2/3 aspiny
-]
+GLIF_MODEL_IDS_FOR_NETWORK_BUILD = [566320096, 489931668]  # L2/3 spiny  # L2/3 aspiny
+
 
 def download_glif_model(neuronal_model_id):
 
@@ -70,7 +68,7 @@ if __name__ == "__main__":
 
     elif "-test" in sys.argv:
         download_glif_model(566291893)
-    
+
     elif "-network_build" in sys.argv:
         for model in GLIF_MODEL_IDS_FOR_NETWORK_BUILD:
             download_glif_model(model)

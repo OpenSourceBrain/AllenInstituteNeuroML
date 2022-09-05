@@ -216,7 +216,7 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
         times = [data["t"]]
         vs = [data[0]]
         labels = ["LEMS - jNeuroML"]
-        
+
     original_model_th = f"sweep_{sweep_number}.thresh.dat"
     if os.path.isfile(original_model_th):
         data, indeces = pynml.reload_standard_dat_file(original_model_th)
@@ -320,11 +320,8 @@ if __name__ == "__main__":
         }
 
     elif "-network_build_small" in sys.argv:
-        models_stims = {
-            "566320096": 32,
-            "489931668": 49
-        }
-        
+        models_stims = {"566320096": 32, "489931668": 49}
+
     elif len(sys.argv) == 3:
 
         glif_dir = sys.argv[1]
