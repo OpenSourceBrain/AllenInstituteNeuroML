@@ -7,8 +7,14 @@ Usage:
     To test parsing with one model:
         python parse_glif.py -test
 
-    To parsel all models:
+    To parse all models:
         python parse_glif.py -all
+    
+    To parse models included in network simulation: 
+        For small network:
+            python parse_glif.py -network_build_small
+        For large network:
+            python parse_glif.py -network_build_large
 
 """
 
@@ -313,6 +319,12 @@ if __name__ == "__main__":
             "566302725": 40,
         }
 
+    elif "-network_build_small" in sys.argv:
+        models_stims = {
+            "566320096": 32,
+            "489931668": 49
+        }
+        
     elif len(sys.argv) == 3:
 
         glif_dir = sys.argv[1]
