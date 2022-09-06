@@ -9,7 +9,14 @@ To run all the models used in this repo type:
 To run a test type:
     python run_glif.py -test
 
+To run models included in network simulation:   
+    For small network:
+        python run_glif.py -network_build_small
+    For large network:
+        python run_glif.py -network_build_large
+
 """
+import imp
 import allensdk.core.json_utilities as json_utilities
 from allensdk.model.glif.glif_neuron import GlifNeuron
 from allensdk.core.nwb_data_set import NwbDataSet
@@ -27,6 +34,8 @@ test_sweep = {
     "566291893": 28,
     "566291897": 29,
     "566302725": 40,
+    "566320096": 32,
+    "489931668": 49,
 }
 
 
@@ -126,6 +135,13 @@ if __name__ == "__main__":
 
     if "-test" in sys.argv:
         run_one_cell(566291893)
+        exit()
+
+    if "-network_build_small" in sys.argv:
+        from download_glif import GLIF_MODEL_IDS_FOR_NETWORK_BUILD
+
+        for model in GLIF_MODEL_IDS_FOR_NETWORK_BUILD[:2]:
+            run_one_cell(model)
         exit()
 
     else:
