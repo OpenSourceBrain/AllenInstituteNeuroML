@@ -1,5 +1,18 @@
-# TODO: connectivity viz with nmlit ui
+usage = """
+This file can be used to generate networks of the GLIF LEMS models
+Usage:
 
+    python network.py -flag(s)
+    
+    Flag options:
+    
+    -small      builds and simulates a small network with only L2/3
+    -large      builds and simulates a large network with 4 layers
+    -noinputs   no input to the network
+"""
+
+
+from tkinter.tix import DirSelectDialog
 from neuromllite import Network, Cell, Population, Simulation, Synapse
 from neuromllite import RectangularRegion, RandomLayout
 from neuromllite import Projection, RandomConnectivity, OneToOneConnector
@@ -28,13 +41,12 @@ def generate(ref="GLIF net test", add_inputs=True, type="large"):
 
     # cell_list = {<layer>: [<spiny cell id>, <aspiny cell id>], ...}
     if type == "large":
-        # TODO: update
         cell_list = {
-            "L23": ["486557295"],
-            "L4": ["566283879"],
-            "L5": ["566282032"],
-            "L6": ["566283540"],
-        }  # last 2 are aspiny
+            "L23": ["566320096", "489931668"],
+            "L4": ["486558431", "566382734"],
+            "L5": ["486052403", "485904755"],
+            "L6": ["566303332", "566357260"],  # layer 6a
+        }
     elif type == "small":
         cell_list = {"L23": ["566320096", "489931668"]}
 
@@ -231,6 +243,9 @@ def generate(ref="GLIF net test", add_inputs=True, type="large"):
 
 if __name__ == "__main__":
 
+    if len(sys.argv) == 1:
+        print(usage)
+        exit()
     if "-small" in sys.argv:
         type = "small"
     else:
@@ -247,7 +262,3 @@ if __name__ == "__main__":
     from neuromllite.NetworkGenerator import check_to_generate_or_run
 
     check_to_generate_or_run(["-jnml", "-graph"], sim)
-
-# TODO: usage instructions
-# TODO: add to gh-action
-# TODO: large network
