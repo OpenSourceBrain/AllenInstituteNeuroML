@@ -1,0 +1,163 @@
+<?xml version="1.0" ?>
+<Lems xmlns="http://www.neuroml.org/lems/0.7.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.6 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.6.xsd">
+  <ComponentType description="GLIF..." extends="baseIafCapCell" name="glifCell">
+    <Parameter dimension="conductance" name="leakConductance"/>
+    <Parameter dimension="voltage" name="leakReversal"/>
+    <Attachments name="synapses" type="basePointCurrent"/>
+    <Dynamics>
+      <StateVariable dimension="voltage" exposure="v" name="v"/>
+      <DerivedVariable dimension="current" exposure="iSyn" name="iSyn" reduce="add" select="synapses[*]/i"/>
+      <DerivedVariable dimension="current" exposure="iMemb" name="iMemb" value="leakConductance * (leakReversal - v)  + iSyn"/>
+      <TimeDerivative value="iMemb / C" variable="v"/>
+      <OnStart>
+        <StateAssignment value="leakReversal" variable="v"/>
+      </OnStart>
+      <OnCondition test="v .gt. thresh">
+        <StateAssignment value="reset" variable="v"/>
+        <EventOut port="spike"/>
+      </OnCondition>
+    </Dynamics>
+  </ComponentType>
+  <ComponentType description="GLIF..." extends="baseIafCapCell" name="glifRCell">
+    <Parameter dimension="conductance" name="leakConductance"/>
+    <Parameter dimension="voltage" name="leakReversal"/>
+    <Parameter dimension="per_time" name="bs"/>
+    <Parameter dimension="voltage" name="deltaThresh"/>
+    <Parameter dimension="voltage" name="deltaV"/>
+    <Parameter dimension="none" name="fv"/>
+    <Attachments name="synapses" type="basePointCurrent"/>
+    <Exposure dimension="voltage" name="threshTotal"/>
+    <Dynamics>
+      <StateVariable dimension="voltage" exposure="v" name="v"/>
+      <StateVariable dimension="voltage" name="threshS"/>
+      <DerivedVariable dimension="current" exposure="iSyn" name="iSyn" reduce="add" select="synapses[*]/i"/>
+      <DerivedVariable dimension="current" exposure="iMemb" name="iMemb" value="leakConductance * (leakReversal - v)  + iSyn"/>
+      <DerivedVariable dimension="voltage" exposure="threshTotal" name="threshTotal" value="thresh + threshS"/>
+      <TimeDerivative value="iMemb / C" variable="v"/>
+      <TimeDerivative value="-1 * bs * threshS " variable="threshS"/>
+      <OnStart>
+        <StateAssignment value="leakReversal" variable="v"/>
+      </OnStart>
+      <OnCondition test="v .gt. threshTotal">
+        <StateAssignment value="leakReversal + fv * (v - leakReversal) + deltaV" variable="v"/>
+        <StateAssignment value="threshS + deltaThresh" variable="threshS"/>
+        <EventOut port="spike"/>
+      </OnCondition>
+    </Dynamics>
+  </ComponentType>
+  <ComponentType description="GLIF..." extends="baseIafCapCell" name="glifAscCell">
+    <Parameter dimension="conductance" name="leakConductance"/>
+    <Parameter dimension="voltage" name="leakReversal"/>
+    <Parameter dimension="time" name="tau1"/>
+    <Parameter dimension="time" name="tau2"/>
+    <Parameter dimension="current" name="amp1"/>
+    <Parameter dimension="current" name="amp2"/>
+    <Attachments name="synapses" type="basePointCurrent"/>
+    <Exposure description="After-spike current 1" dimension="current" name="asc1"/>
+    <Exposure description="After-spike current 2" dimension="current" name="asc2"/>
+    <Dynamics>
+      <StateVariable dimension="voltage" exposure="v" name="v"/>
+      <StateVariable dimension="current" exposure="asc1" name="asc1"/>
+      <StateVariable dimension="current" exposure="asc2" name="asc2"/>
+      <DerivedVariable dimension="current" exposure="iSyn" name="iSyn" reduce="add" select="synapses[*]/i"/>
+      <DerivedVariable dimension="current" exposure="iMemb" name="iMemb" value="leakConductance * (leakReversal - v) + asc1 + asc2 + iSyn"/>
+      <TimeDerivative value="iMemb / C" variable="v"/>
+      <TimeDerivative value="-1 * asc1 / tau1" variable="asc1"/>
+      <TimeDerivative value="-1 * asc2 / tau2" variable="asc2"/>
+      <OnStart>
+        <StateAssignment value="leakReversal" variable="v"/>
+      </OnStart>
+      <OnCondition test="v .gt. thresh">
+        <StateAssignment value="asc1 + amp1" variable="asc1"/>
+        <StateAssignment value="asc2 + amp2" variable="asc2"/>
+        <StateAssignment value="reset" variable="v"/>
+        <EventOut port="spike"/>
+      </OnCondition>
+    </Dynamics>
+  </ComponentType>
+  <ComponentType description="GLIF..." extends="baseIafCapCell" name="glifRAscCell">
+    <Parameter dimension="conductance" name="leakConductance"/>
+    <Parameter dimension="voltage" name="leakReversal"/>
+    <Parameter dimension="time" name="tau1"/>
+    <Parameter dimension="time" name="tau2"/>
+    <Parameter dimension="current" name="amp1"/>
+    <Parameter dimension="current" name="amp2"/>
+    <Parameter dimension="per_time" name="bs"/>
+    <Parameter dimension="voltage" name="deltaThresh"/>
+    <Parameter dimension="voltage" name="deltaV"/>
+    <Parameter dimension="none" name="fv"/>
+    <Attachments name="synapses" type="basePointCurrent"/>
+    <Exposure description="After-spike current 1" dimension="current" name="asc1"/>
+    <Exposure description="After-spike current 2" dimension="current" name="asc2"/>
+    <Exposure dimension="voltage" name="threshTotal"/>
+    <Dynamics>
+      <StateVariable dimension="voltage" exposure="v" name="v"/>
+      <StateVariable dimension="current" exposure="asc1" name="asc1"/>
+      <StateVariable dimension="current" exposure="asc2" name="asc2"/>
+      <StateVariable dimension="voltage" name="threshS"/>
+      <DerivedVariable dimension="current" exposure="iSyn" name="iSyn" reduce="add" select="synapses[*]/i"/>
+      <DerivedVariable dimension="current" exposure="iMemb" name="iMemb" value="leakConductance * (leakReversal - v) + asc1 + asc2 + iSyn"/>
+      <DerivedVariable dimension="voltage" exposure="threshTotal" name="threshTotal" value="thresh + threshS"/>
+      <TimeDerivative value="iMemb / C" variable="v"/>
+      <TimeDerivative value="-1 * asc1 / tau1" variable="asc1"/>
+      <TimeDerivative value="-1 * asc2 / tau2" variable="asc2"/>
+      <TimeDerivative value="-1 * bs * threshS " variable="threshS"/>
+      <OnStart>
+        <StateAssignment value="leakReversal" variable="v"/>
+      </OnStart>
+      <OnCondition test="v .gt. threshTotal">
+        <StateAssignment value="asc1 + amp1" variable="asc1"/>
+        <StateAssignment value="asc2 + amp2" variable="asc2"/>
+        <StateAssignment value="leakReversal + fv * (v - leakReversal) + deltaV" variable="v"/>
+        <StateAssignment value="threshS + deltaThresh" variable="threshS"/>
+        <EventOut port="spike"/>
+      </OnCondition>
+    </Dynamics>
+  </ComponentType>
+  <ComponentType description="GLIF..." extends="baseIafCapCell" name="glifRAscATCell">
+    <Parameter dimension="conductance" name="leakConductance"/>
+    <Parameter dimension="voltage" name="leakReversal"/>
+    <Parameter dimension="time" name="tau1"/>
+    <Parameter dimension="time" name="tau2"/>
+    <Parameter dimension="current" name="amp1"/>
+    <Parameter dimension="current" name="amp2"/>
+    <Parameter dimension="per_time" name="bs"/>
+    <Parameter dimension="voltage" name="deltaThresh"/>
+    <Parameter dimension="voltage" name="deltaV"/>
+    <Parameter dimension="none" name="fv"/>
+    <Parameter dimension="per_time" name="a"/>
+    <Parameter dimension="per_time" name="bv"/>
+    <Attachments name="synapses" type="basePointCurrent"/>
+    <Exposure description="After-spike current 1" dimension="current" name="asc1"/>
+    <Exposure description="After-spike current 2" dimension="current" name="asc2"/>
+    <Exposure dimension="voltage" name="threshTotal"/>
+    <Dynamics>
+      <StateVariable dimension="voltage" exposure="v" name="v"/>
+      <StateVariable dimension="current" exposure="asc1" name="asc1"/>
+      <StateVariable dimension="current" exposure="asc2" name="asc2"/>
+      <StateVariable dimension="voltage" name="threshS"/>
+      <StateVariable dimension="voltage" name="threshV"/>
+      <DerivedVariable dimension="current" exposure="iSyn" name="iSyn" reduce="add" select="synapses[*]/i"/>
+      <DerivedVariable dimension="current" exposure="iMemb" name="iMemb" value="leakConductance * (leakReversal - v) + asc1 + asc2 + iSyn"/>
+      <DerivedVariable dimension="voltage" exposure="threshTotal" name="threshTotal" value="threshV + threshS"/>
+      <TimeDerivative value="iMemb / C" variable="v"/>
+      <TimeDerivative value="-1 * asc1 / tau1" variable="asc1"/>
+      <TimeDerivative value="-1 * asc2 / tau2" variable="asc2"/>
+      <TimeDerivative value="-1 * bs * threshS" variable="threshS"/>
+      <TimeDerivative value="a * (v - leakReversal) - ( bv * (threshV - thresh))" variable="threshV"/>
+      <OnStart>
+        <StateAssignment value="leakReversal" variable="v"/>
+        <StateAssignment value="thresh" variable="threshV"/>
+      </OnStart>
+      <OnCondition test="v .gt. threshTotal">
+        <StateAssignment value="asc1 + amp1" variable="asc1"/>
+        <StateAssignment value="asc2 + amp2" variable="asc2"/>
+        <StateAssignment value="leakReversal + fv * (v - leakReversal) + deltaV" variable="v"/>
+        <StateAssignment value="threshS + deltaThresh" variable="threshS"/>
+        <EventOut port="spike"/>
+      </OnCondition>
+    </Dynamics>
+  </ComponentType>
+  <Component C="7.673144890105898e-11 F" amp1="-4.7598901858615466e-12 A" amp2="-1.0071278728375193e-10 A" id="GLIF_566320096" leakConductance="3.856769140244561e-09 S" leakReversal="0.0 V" reset="0.0 V" tau1="0.3333333333333333 s" tau2="0.01 s" thresh="0.022850420036895313 V" type="glifAscCell"/>
+  <Component C="7.499811976543523e-11 F" bs="390.1801957450451 per_s" deltaThresh="0.005089326855020477 V" deltaV="0.024166039243019438 V" fv="-0.09411272889239218" id="GLIF_489931668" leakConductance="1.0687843200874298e-08 S" leakReversal="0.0 V" reset="0.0 V" thresh="0.03334020911278103 V" type="glifRCell"/>
+</Lems>
