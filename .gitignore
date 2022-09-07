@@ -316,3 +316,5 @@ original.v.dat
 /CellTypesDatabase/models/GLIF/*/*nrn.py
 /CellTypesDatabase/models/GLIF/*/*spikes
 /CellTypesDatabase/models/GLIF/*spikes
+/CellTypesDatabase/models/GLIF/*txt
+/CellTypesDatabase/models/GLIF/*json
