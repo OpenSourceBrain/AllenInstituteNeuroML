@@ -308,6 +308,7 @@ if __name__ == "__main__":
         models_stims = {"566291893": 28}
 
     elif "-all" in sys.argv:
+
         models_stims = {
             "566282032": 39,
             "566283540": 33,
@@ -321,6 +322,18 @@ if __name__ == "__main__":
 
     elif "-network_build_small" in sys.argv:
         models_stims = {"566320096": 32, "489931668": 49}
+
+    elif "-network_build_large" in sys.argv:
+        models_stims = {
+            "566320096": 32,
+            "489931668": 49,
+            "486558431": 41,
+            "566382734": 35,
+            "486052403": 54,
+            "485904755": 34,
+            "566303332": 44,
+            "566357260": 50,
+        }
 
     elif len(sys.argv) == 3:
 

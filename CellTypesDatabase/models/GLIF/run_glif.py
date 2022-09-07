@@ -16,7 +16,7 @@ To run models included in network simulation:
         python run_glif.py -network_build_large
 
 """
-import imp
+
 import allensdk.core.json_utilities as json_utilities
 from allensdk.model.glif.glif_neuron import GlifNeuron
 from allensdk.core.nwb_data_set import NwbDataSet
@@ -36,6 +36,12 @@ test_sweep = {
     "566302725": 40,
     "566320096": 32,
     "489931668": 49,
+    "486558431": 41,
+    "566382734": 35,
+    "486052403": 54,
+    "485904755": 34,
+    "566303332": 44,
+    "566357260": 50,
 }
 
 
@@ -141,6 +147,13 @@ if __name__ == "__main__":
         from download_glif import GLIF_MODEL_IDS_FOR_NETWORK_BUILD
 
         for model in GLIF_MODEL_IDS_FOR_NETWORK_BUILD[:2]:
+            run_one_cell(model)
+        exit()
+
+    if "-network_build_large" in sys.argv:
+        from download_glif import GLIF_MODEL_IDS_FOR_NETWORK_BUILD
+
+        for model in GLIF_MODEL_IDS_FOR_NETWORK_BUILD:
             run_one_cell(model)
         exit()
 

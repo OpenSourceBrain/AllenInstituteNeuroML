@@ -31,7 +31,16 @@ GLIF_MODEL_IDS = [
     566302725,
 ]
 
-GLIF_MODEL_IDS_FOR_NETWORK_BUILD = [566320096, 489931668]  # L2/3 spiny  # L2/3 aspiny
+GLIF_MODEL_IDS_FOR_NETWORK_BUILD = [
+    566320096,
+    489931668,
+    486558431,
+    566382734,
+    486052403,
+    485904755,
+    566303332,
+    566357260,
+]
 
 
 def download_glif_model(neuronal_model_id):
