@@ -7,8 +7,14 @@ Usage:
     To test parsing with one model:
         python parse_glif.py -test
 
-    To parsel all models:
+    To parse all models:
         python parse_glif.py -all
+    
+    To parse models included in network simulation: 
+        For small network:
+            python parse_glif.py -network_build_small
+        For large network:
+            python parse_glif.py -network_build_large
 
 """
 
@@ -210,7 +216,7 @@ def generate_lems(glif_dir, sweep_number, show_plot=True):
         times = [data["t"]]
         vs = [data[0]]
         labels = ["LEMS - jNeuroML"]
-        
+
     original_model_th = f"sweep_{sweep_number}.thresh.dat"
     if os.path.isfile(original_model_th):
         data, indeces = pynml.reload_standard_dat_file(original_model_th)
@@ -302,6 +308,7 @@ if __name__ == "__main__":
         models_stims = {"566291893": 28}
 
     elif "-all" in sys.argv:
+
         models_stims = {
             "566282032": 39,
             "566283540": 33,
@@ -311,6 +318,21 @@ if __name__ == "__main__":
             "566291893": 28,
             "566291897": 29,
             "566302725": 40,
+        }
+
+    elif "-network_build_small" in sys.argv:
+        models_stims = {"566320096": 32, "489931668": 49}
+
+    elif "-network_build_large" in sys.argv:
+        models_stims = {
+            "566320096": 32,
+            "489931668": 49,
+            "486558431": 41,
+            "566382734": 35,
+            "486052403": 54,
+            "485904755": 34,
+            "566303332": 44,
+            "566357260": 50,
         }
 
     elif len(sys.argv) == 3:
