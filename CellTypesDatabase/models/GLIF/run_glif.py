@@ -9,12 +9,6 @@ To run all the models used in this repo type:
 To run a test type:
     python run_glif.py -test
 
-To run models included in network simulation:   
-    For small network:
-        python run_glif.py -network_build_small
-    For large network:
-        python run_glif.py -network_build_large
-
 """
 
 import allensdk.core.json_utilities as json_utilities
@@ -133,28 +127,14 @@ def run_one_cell(neuronal_model_id, show_plot=False):
 if __name__ == "__main__":
 
     if "-all" in sys.argv:
-        from download_glif import GLIF_MODEL_IDS
+        from download_glif import GLIF_MODEL_IDS, GLIF_MODEL_IDS_FOR_NETWORK_BUILD
 
-        for model in GLIF_MODEL_IDS:
+        for model in GLIF_MODEL_IDS + GLIF_MODEL_IDS_FOR_NETWORK_BUILD:
             run_one_cell(model)
         exit()
 
     if "-test" in sys.argv:
         run_one_cell(566291893)
-        exit()
-
-    if "-network_build_small" in sys.argv:
-        from download_glif import GLIF_MODEL_IDS_FOR_NETWORK_BUILD
-
-        for model in GLIF_MODEL_IDS_FOR_NETWORK_BUILD[:2]:
-            run_one_cell(model)
-        exit()
-
-    if "-network_build_large" in sys.argv:
-        from download_glif import GLIF_MODEL_IDS_FOR_NETWORK_BUILD
-
-        for model in GLIF_MODEL_IDS_FOR_NETWORK_BUILD:
-            run_one_cell(model)
         exit()
 
     else:

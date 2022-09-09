@@ -9,9 +9,6 @@ To download all listed models used in this repo run:
 To download a test model run:
     python download_glif.py -test
 
-To download models for network simulations run:
-    python download_glif.py -network_build
-
 """
 
 from allensdk.api.queries.glif_api import GlifApi
@@ -72,15 +69,11 @@ def download_glif_model(neuronal_model_id):
 if __name__ == "__main__":
 
     if "-all" in sys.argv:
-        for model in GLIF_MODEL_IDS:
+        for model in GLIF_MODEL_IDS + GLIF_MODEL_IDS_FOR_NETWORK_BUILD:
             download_glif_model(model)
 
     elif "-test" in sys.argv:
         download_glif_model(566291893)
-
-    elif "-network_build" in sys.argv:
-        for model in GLIF_MODEL_IDS_FOR_NETWORK_BUILD:
-            download_glif_model(model)
 
     else:
         print(usage)

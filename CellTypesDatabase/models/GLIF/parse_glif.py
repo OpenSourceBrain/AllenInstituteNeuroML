@@ -9,12 +9,6 @@ Usage:
 
     To parse all models:
         python parse_glif.py -all
-    
-    To parse models included in network simulation: 
-        For small network:
-            python parse_glif.py -network_build_small
-        For large network:
-            python parse_glif.py -network_build_large
 
 """
 
@@ -318,13 +312,6 @@ if __name__ == "__main__":
             "566291893": 28,
             "566291897": 29,
             "566302725": 40,
-        }
-
-    elif "-network_build_small" in sys.argv:
-        models_stims = {"566320096": 32, "489931668": 49}
-
-    elif "-network_build_large" in sys.argv:
-        models_stims = {
             "566320096": 32,
             "489931668": 49,
             "486558431": 41,
