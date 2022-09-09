@@ -1,0 +1,41 @@
+<Lems>
+    
+    <!-- 
+
+        This LEMS file has been automatically generated using PyNeuroML v0.7.1 (libNeuroML v0.4.0)
+
+     -->
+    
+    <!-- Specify which component to run -->
+    <Target component="Sim_Test_566382734" reportFile="report.Sim_Test_566382734.txt"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="PyNN.xml"/>
+    <Include file="Test_566382734.net.nml"/>
+    <Include file="Test_566382734__lems.xml"/>
+   
+    <Simulation id="Sim_Test_566382734" length="1200.0ms" step="0.01ms" target="Test_566382734" seed="5678">  <!-- Note seed: ensures same random numbers used every run -->
+        
+        <Display id="pop_566382734_0_threshTotal" title="Plots of pop_566382734_0_threshTotal" timeScale="1ms" xmin="-120.0" xmax="1320.0" ymin="-1" ymax="1">
+            <Line id="pop_566382734_0_GLIF_566382734_threshTotal" quantity="pop_566382734/0/GLIF_566382734/threshTotal" scale="1" color="#d54f33" timeScale="1ms"/>
+        </Display>
+        
+        <Display id="pop_566382734_v" title="Plots of pop_566382734_v" timeScale="1ms" xmin="-120.0" xmax="1320.0" ymin="-80" ymax="40">
+            <Line id="pop_566382734_0_GLIF_566382734_v" quantity="pop_566382734/0/GLIF_566382734/v" scale="1mV" color="#0534e4" timeScale="1ms"/>
+        </Display>
+        
+        <OutputFile id="Sim_Test_566382734_pop_566382734_v_dat" fileName="Sim_Test_566382734.pop_566382734.v.dat">
+            <OutputColumn id="pop_566382734_0_GLIF_566382734_v" quantity="pop_566382734/0/GLIF_566382734/v"/> 
+        </OutputFile>
+        
+        <OutputFile id="pop_566382734_0_threshTotal_dat" fileName="pop_566382734_0.threshTotal.dat">
+            <OutputColumn id="pop_566382734_0_GLIF_566382734_threshTotal" quantity="pop_566382734/0/GLIF_566382734/threshTotal"/> 
+        </OutputFile>
+        
+    </Simulation>
+
+</Lems>
