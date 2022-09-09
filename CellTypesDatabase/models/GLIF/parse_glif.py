@@ -9,12 +9,6 @@ Usage:
 
     To parse all models:
         python parse_glif.py -all
-    
-    To parse models included in network simulation: 
-        For small network:
-            python parse_glif.py -network_build_small
-        For large network:
-            python parse_glif.py -network_build_large
 
 """
 
@@ -318,13 +312,6 @@ if __name__ == "__main__":
             "566291893": 28,
             "566291897": 29,
             "566302725": 40,
-        }
-
-    elif "-network_build_small" in sys.argv:
-        models_stims = {"566320096": 32, "489931668": 49}
-
-    elif "-network_build_large" in sys.argv:
-        models_stims = {
             "566320096": 32,
             "489931668": 49,
             "486558431": 41,
@@ -350,12 +337,9 @@ if __name__ == "__main__":
     readme = """
 ## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
 
-**Note: work in progress!**
-
-
-### Examples:
-
-    """
+| Model details | Comparison | Injection Current |
+| ----- | -------- | --- |
+"""
 
     for model in models_stims.keys():
 
@@ -367,18 +351,8 @@ if __name__ == "__main__":
 
         if curr_str.endswith(".0"):
             curr_str = curr_str[:-2]
-        readme += """
-#### Model: %(id)s
-
-Model summary: %(name)s
-
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s)
-
-[Full details of conversion](%(id)s/README.md)
-
-<a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a>
-
-        """ % {
+        readme += """| [%(id)s](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/%(spec)s) <br> %(name)s <br> [Conversion details](%(id)s/README.md)| <a href="%(id)s/README.md"><img alt="%(id)s" src="%(id)s/Comparison_%(curr)spA.png" height="300"/></a> | %(curr)spA |
+""" % {
             "id": model,
             "name": model_metadata["name"],
             "spec": model_metadata["specimen_id"],

@@ -1,97 +1,21 @@
 
 ## Conversion of Allen Cell Types Database GLIF models to NeuroML 2
 
-**Note: work in progress!**
-
-
-### Examples:
-
-    
-#### Model: 566282032
-
-Model summary: 2 LIF + Reset Rules (LIF-R)_Pvalb-IRES-Cre;Ai14-169130.06.01.01
-
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/318556138)
-
-[Full details of conversion](566282032/README.md)
-
-<a href="566282032/README.md"><img alt="566282032" src="566282032/Comparison_129pA.png" height="300"/></a>
-
-        
-#### Model: 566283540
-
-Model summary: 5 LIF-R-ASC + Threshold Adaptation (LIF-R-ASC-A)_Scnn1a-Tg3-Cre;Ai14-172530.03.01.01
-
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/323834998)
-
-[Full details of conversion](566283540/README.md)
-
-<a href="566283540/README.md"><img alt="566283540" src="566283540/Comparison_129pA.png" height="300"/></a>
-
-        
-#### Model: 566283879
-
-Model summary: 4 LIF-R + Afterspike Currents (LIF-R-ASC)_Rorb-IRES2-Cre-D;Ai14-172651.05.01.01
-
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/324032509)
-
-[Full details of conversion](566283879/README.md)
-
-<a href="566283879/README.md"><img alt="566283879" src="566283879/Comparison_170pA.png" height="300"/></a>
-
-        
-#### Model: 566288171
-
-Model summary: 2 LIF + Reset Rules (LIF-R)_Sst-IRES-Cre;Ai14-175894.03.02.01
-
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/328031983)
-
-[Full details of conversion](566288171/README.md)
-
-<a href="566288171/README.md"><img alt="566288171" src="566288171/Comparison_129pA.png" height="300"/></a>
-
-        
-#### Model: 486557295
-
-Model summary: 1 Leaky Integrate and Fire (LIF)_Cux2-CreERT2;Ai14-205221.05.02.01
-
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/486175203)
-
-[Full details of conversion](486557295/README.md)
-
-<a href="486557295/README.md"><img alt="486557295" src="486557295/Comparison_149pA.png" height="300"/></a>
-
-        
-#### Model: 566291893
-
-Model summary: 1 Leaky Integrate and Fire (LIF)_Sst-IRES-Cre;Ai14-165865.03.01.01
-
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958)
-
-[Full details of conversion](566291893/README.md)
-
-<a href="566291893/README.md"><img alt="566291893" src="566291893/Comparison_50pA.png" height="300"/></a>
-
-        
-#### Model: 566291897
-
-Model summary: 3 LIF + Afterspike Currents (LIF-ASC)_Sst-IRES-Cre;Ai14-165865.03.01.01
-
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958)
-
-[Full details of conversion](566291897/README.md)
-
-<a href="566291897/README.md"><img alt="566291897" src="566291897/Comparison_69pA.png" height="300"/></a>
-
-        
-#### Model: 566302725
-
-Model summary: 1 Leaky Integrate and Fire (LIF)_Scnn1a-Tg3-Cre;Ai14-181566.04.01.01
-
-[Original electrophysiological data](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/470098860)
-
-[Full details of conversion](566302725/README.md)
-
-<a href="566302725/README.md"><img alt="566302725" src="566302725/Comparison_170pA.png" height="300"/></a>
-
-        
+| Model details | Comparison | Injection Current |
+| ----- | -------- | --- |
+| [566282032](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/318556138) <br> 2 LIF + Reset Rules (LIF-R)_Pvalb-IRES-Cre;Ai14-169130.06.01.01 <br> [Conversion details](566282032/README.md)| <a href="566282032/README.md"><img alt="566282032" src="566282032/Comparison_129pA.png" height="300"/></a> | 129pA |
+| [566283540](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/323834998) <br> 5 LIF-R-ASC + Threshold Adaptation (LIF-R-ASC-A)_Scnn1a-Tg3-Cre;Ai14-172530.03.01.01 <br> [Conversion details](566283540/README.md)| <a href="566283540/README.md"><img alt="566283540" src="566283540/Comparison_129pA.png" height="300"/></a> | 129pA |
+| [566283879](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/324032509) <br> 4 LIF-R + Afterspike Currents (LIF-R-ASC)_Rorb-IRES2-Cre-D;Ai14-172651.05.01.01 <br> [Conversion details](566283879/README.md)| <a href="566283879/README.md"><img alt="566283879" src="566283879/Comparison_170pA.png" height="300"/></a> | 170pA |
+| [566288171](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/328031983) <br> 2 LIF + Reset Rules (LIF-R)_Sst-IRES-Cre;Ai14-175894.03.02.01 <br> [Conversion details](566288171/README.md)| <a href="566288171/README.md"><img alt="566288171" src="566288171/Comparison_129pA.png" height="300"/></a> | 129pA |
+| [486557295](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/486175203) <br> 1 Leaky Integrate and Fire (LIF)_Cux2-CreERT2;Ai14-205221.05.02.01 <br> [Conversion details](486557295/README.md)| <a href="486557295/README.md"><img alt="486557295" src="486557295/Comparison_149pA.png" height="300"/></a> | 149pA |
+| [566291893](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958) <br> 1 Leaky Integrate and Fire (LIF)_Sst-IRES-Cre;Ai14-165865.03.01.01 <br> [Conversion details](566291893/README.md)| <a href="566291893/README.md"><img alt="566291893" src="566291893/Comparison_50pA.png" height="300"/></a> | 50pA |
+| [566291897](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958) <br> 3 LIF + Afterspike Currents (LIF-ASC)_Sst-IRES-Cre;Ai14-165865.03.01.01 <br> [Conversion details](566291897/README.md)| <a href="566291897/README.md"><img alt="566291897" src="566291897/Comparison_69pA.png" height="300"/></a> | 69pA |
+| [566302725](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/470098860) <br> 1 Leaky Integrate and Fire (LIF)_Scnn1a-Tg3-Cre;Ai14-181566.04.01.01 <br> [Conversion details](566302725/README.md)| <a href="566302725/README.md"><img alt="566302725" src="566302725/Comparison_170pA.png" height="300"/></a> | 170pA |
+| [566320096](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/477127614) <br> 3 LIF + Afterspike Currents (LIF-ASC)_Slc17a6-IRES-Cre;Ai14-190263.04.01.01 <br> [Conversion details](566320096/README.md)| <a href="566320096/README.md"><img alt="566320096" src="566320096/Comparison_110pA.png" height="300"/></a> | 110pA |
+| [489931668](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/488501071) <br> 2 LIF + Reset Rules (LIF-R)_Pvalb-IRES-Cre;Ai14-212440.05.02.01 <br> [Conversion details](489931668/README.md)| <a href="489931668/README.md"><img alt="489931668" src="489931668/Comparison_370pA.png" height="300"/></a> | 370pA |
+| [486558431](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/486239338) <br> 2 LIF + Reset Rules (LIF-R)_Cux2-CreERT2;Ai14-207760.03.01.01 <br> [Conversion details](486558431/README.md)| <a href="486558431/README.md"><img alt="486558431" src="486558431/Comparison_190pA.png" height="300"/></a> | 190pA |
+| [566382734](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/478888083) <br> 2 LIF + Reset Rules (LIF-R)_Scnn1a-Tg2-Cre;Ai14-193643.04.01.01 <br> [Conversion details](566382734/README.md)| <a href="566382734/README.md"><img alt="566382734" src="566382734/Comparison_129pA.png" height="300"/></a> | 129pA |
+| [486052403](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/485574832) <br> 4 LIF-R + Afterspike Currents (LIF-R-ASC)_Rbp4-Cre_KL100;Ai14-203498.04.02.01 <br> [Conversion details](486052403/README.md)| <a href="486052403/README.md"><img alt="486052403" src="486052403/Comparison_230pA.png" height="300"/></a> | 230pA |
+| [485904755](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/485058595) <br> 3 LIF + Afterspike Currents (LIF-ASC)_Sst-IRES-Cre;Ai14-202726.05.02.01 <br> [Conversion details](485904755/README.md)| <a href="485904755/README.md"><img alt="485904755" src="485904755/Comparison_90pA.png" height="300"/></a> | 90pA |
+| [566303332](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/471819401) <br> 3 LIF + Afterspike Currents (LIF-ASC)_Ntsr1-Cre;Ai14-181184.02.02.01 <br> [Conversion details](566303332/README.md)| <a href="566303332/README.md"><img alt="566303332" src="566303332/Comparison_269pA.png" height="300"/></a> | 269pA |
+| [566357260](http://celltypes.brain-map.org/mouse/experiment/electrophysiology/478058328) <br> 4 LIF-R + Afterspike Currents (LIF-R-ASC)_Pvalb-IRES-Cre;Ai14-191322.04.02.01 <br> [Conversion details](566357260/README.md)| <a href="566357260/README.md"><img alt="566357260" src="566357260/Comparison_139pA.png" height="300"/></a> | 139pA |
