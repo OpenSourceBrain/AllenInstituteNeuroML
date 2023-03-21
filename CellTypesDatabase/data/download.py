@@ -91,7 +91,7 @@ for dataset_id in dataset_ids:
 
     plt.ylabel("Membrane voltage (mV)")
     plt.xlabel("Time (s)")
-    fig.canvas.set_window_title("Dataset: %s" % dataset_id)
+    fig.canvas.manager.set_window_title("Dataset: %s" % dataset_id)
     plt.legend()
 
 plt.show()
