@@ -1,0 +1,21 @@
+{
+  "id": 566303332,
+  "name": "3 LIF + Afterspike Currents (LIF-ASC)_Ntsr1-Cre;Ai14-181184.02.02.01",
+  "neuron_reconstruction_id": null,
+  "neuronal_model_template_id": 395310475,
+  "specimen_id": 471819401,
+  "well_known_files": [
+    {
+      "attachable_id": 566303332,
+      "attachable_type": "NeuronalModel",
+      "download_link": "/api/v2/well_known_file_download/566325223",
+      "id": 566325223,
+      "path": "/external/mousecelltypes/prod878/neuronal_model_566303332/566303332_neuron_config.json",
+      "well_known_file_type_id": 329230374,
+      "well_known_file_type": {
+        "id": 329230374,
+        "name": "NeuronalModelParameters"
+      }
+    }
+  ]
+}

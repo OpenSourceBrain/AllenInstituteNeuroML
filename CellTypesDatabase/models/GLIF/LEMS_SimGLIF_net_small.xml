@@ -1,0 +1,321 @@
+<Lems>
+    
+    <!-- 
+
+        This LEMS file has been automatically generated using PyNeuroML v0.7.1 (libNeuroML v0.4.0)
+
+     -->
+    
+    <!-- Specify which component to run -->
+    <Target component="SimGLIF_net_small" reportFile="report.SimGLIF_net_small.txt"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="PyNN.xml"/>
+    <Include file="GLIF_net_small.net.nml"/>
+    <Include file="GLIF_net_small__lems.xml"/>
+   
+    <Simulation id="SimGLIF_net_small" length="100.0ms" step="0.025ms" target="GLIF_net_small" seed="1234">  <!-- Note seed: ensures same random numbers used every run -->
+        
+        <Display id="L23_E_v" title="Plots of L23_E_v" timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-80" ymax="40">
+            <Line id="L23_E_0_GLIF_566320096_v" quantity="L23_E/0/GLIF_566320096/v" scale="1mV" color="#d54f33" timeScale="1ms"/>
+            <Line id="L23_E_1_GLIF_566320096_v" quantity="L23_E/1/GLIF_566320096/v" scale="1mV" color="#0534e4" timeScale="1ms"/>
+        </Display>
+        
+        <Display id="L23_I_v" title="Plots of L23_I_v" timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-80" ymax="40">
+            <Line id="L23_I_0_GLIF_489931668_v" quantity="L23_I/0/GLIF_489931668/v" scale="1mV" color="#98e752" timeScale="1ms"/>
+            <Line id="L23_I_1_GLIF_489931668_v" quantity="L23_I/1/GLIF_489931668/v" scale="1mV" color="#bca074" timeScale="1ms"/>
+        </Display>
+        
+        <OutputFile id="SimGLIF_net_small_L23_E_v_dat" fileName="SimGLIF_net_small.L23_E.v.dat">
+            <OutputColumn id="L23_E_0_GLIF_566320096_v" quantity="L23_E/0/GLIF_566320096/v"/> 
+            <OutputColumn id="L23_E_1_GLIF_566320096_v" quantity="L23_E/1/GLIF_566320096/v"/> 
+        </OutputFile>
+        
+        <OutputFile id="SimGLIF_net_small_L23_I_v_dat" fileName="SimGLIF_net_small.L23_I.v.dat">
+            <OutputColumn id="L23_I_0_GLIF_489931668_v" quantity="L23_I/0/GLIF_489931668/v"/> 
+            <OutputColumn id="L23_I_1_GLIF_489931668_v" quantity="L23_I/1/GLIF_489931668/v"/> 
+        </OutputFile>
+        
+        <EventOutputFile id="SimGLIF_net_small_L23_E_spikes" fileName="SimGLIF_net_small.L23_E.spikes" format="ID_TIME">
+            <EventSelection id="0" select="L23_E/0/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="1" select="L23_E/1/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="2" select="L23_E/2/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="3" select="L23_E/3/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="4" select="L23_E/4/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="5" select="L23_E/5/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="6" select="L23_E/6/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="7" select="L23_E/7/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="8" select="L23_E/8/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="9" select="L23_E/9/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="10" select="L23_E/10/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="11" select="L23_E/11/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="12" select="L23_E/12/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="13" select="L23_E/13/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="14" select="L23_E/14/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="15" select="L23_E/15/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="16" select="L23_E/16/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="17" select="L23_E/17/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="18" select="L23_E/18/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="19" select="L23_E/19/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="20" select="L23_E/20/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="21" select="L23_E/21/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="22" select="L23_E/22/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="23" select="L23_E/23/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="24" select="L23_E/24/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="25" select="L23_E/25/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="26" select="L23_E/26/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="27" select="L23_E/27/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="28" select="L23_E/28/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="29" select="L23_E/29/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="30" select="L23_E/30/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="31" select="L23_E/31/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="32" select="L23_E/32/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="33" select="L23_E/33/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="34" select="L23_E/34/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="35" select="L23_E/35/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="36" select="L23_E/36/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="37" select="L23_E/37/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="38" select="L23_E/38/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="39" select="L23_E/39/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="40" select="L23_E/40/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="41" select="L23_E/41/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="42" select="L23_E/42/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="43" select="L23_E/43/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="44" select="L23_E/44/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="45" select="L23_E/45/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="46" select="L23_E/46/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="47" select="L23_E/47/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="48" select="L23_E/48/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="49" select="L23_E/49/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="50" select="L23_E/50/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="51" select="L23_E/51/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="52" select="L23_E/52/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="53" select="L23_E/53/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="54" select="L23_E/54/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="55" select="L23_E/55/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="56" select="L23_E/56/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="57" select="L23_E/57/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="58" select="L23_E/58/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="59" select="L23_E/59/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="60" select="L23_E/60/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="61" select="L23_E/61/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="62" select="L23_E/62/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="63" select="L23_E/63/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="64" select="L23_E/64/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="65" select="L23_E/65/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="66" select="L23_E/66/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="67" select="L23_E/67/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="68" select="L23_E/68/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="69" select="L23_E/69/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="70" select="L23_E/70/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="71" select="L23_E/71/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="72" select="L23_E/72/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="73" select="L23_E/73/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="74" select="L23_E/74/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="75" select="L23_E/75/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="76" select="L23_E/76/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="77" select="L23_E/77/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="78" select="L23_E/78/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="79" select="L23_E/79/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="80" select="L23_E/80/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="81" select="L23_E/81/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="82" select="L23_E/82/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="83" select="L23_E/83/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="84" select="L23_E/84/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="85" select="L23_E/85/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="86" select="L23_E/86/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="87" select="L23_E/87/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="88" select="L23_E/88/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="89" select="L23_E/89/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="90" select="L23_E/90/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="91" select="L23_E/91/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="92" select="L23_E/92/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="93" select="L23_E/93/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="94" select="L23_E/94/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="95" select="L23_E/95/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="96" select="L23_E/96/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="97" select="L23_E/97/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="98" select="L23_E/98/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="99" select="L23_E/99/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="100" select="L23_E/100/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="101" select="L23_E/101/GLIF_566320096" eventPort="spike"/> 
+            <EventSelection id="102" select="L23_E/102/GLIF_566320096" eventPort="spike"/> 
+        </EventOutputFile>
+        
+        <EventOutputFile id="SimGLIF_net_small_L23_E_input_spikes" fileName="SimGLIF_net_small.L23_E_input.spikes" format="ID_TIME">
+            <EventSelection id="0" select="L23_E_input/0/InputCell" eventPort="spike"/> 
+            <EventSelection id="1" select="L23_E_input/1/InputCell" eventPort="spike"/> 
+            <EventSelection id="2" select="L23_E_input/2/InputCell" eventPort="spike"/> 
+            <EventSelection id="3" select="L23_E_input/3/InputCell" eventPort="spike"/> 
+            <EventSelection id="4" select="L23_E_input/4/InputCell" eventPort="spike"/> 
+            <EventSelection id="5" select="L23_E_input/5/InputCell" eventPort="spike"/> 
+            <EventSelection id="6" select="L23_E_input/6/InputCell" eventPort="spike"/> 
+            <EventSelection id="7" select="L23_E_input/7/InputCell" eventPort="spike"/> 
+            <EventSelection id="8" select="L23_E_input/8/InputCell" eventPort="spike"/> 
+            <EventSelection id="9" select="L23_E_input/9/InputCell" eventPort="spike"/> 
+            <EventSelection id="10" select="L23_E_input/10/InputCell" eventPort="spike"/> 
+            <EventSelection id="11" select="L23_E_input/11/InputCell" eventPort="spike"/> 
+            <EventSelection id="12" select="L23_E_input/12/InputCell" eventPort="spike"/> 
+            <EventSelection id="13" select="L23_E_input/13/InputCell" eventPort="spike"/> 
+            <EventSelection id="14" select="L23_E_input/14/InputCell" eventPort="spike"/> 
+            <EventSelection id="15" select="L23_E_input/15/InputCell" eventPort="spike"/> 
+            <EventSelection id="16" select="L23_E_input/16/InputCell" eventPort="spike"/> 
+            <EventSelection id="17" select="L23_E_input/17/InputCell" eventPort="spike"/> 
+            <EventSelection id="18" select="L23_E_input/18/InputCell" eventPort="spike"/> 
+            <EventSelection id="19" select="L23_E_input/19/InputCell" eventPort="spike"/> 
+            <EventSelection id="20" select="L23_E_input/20/InputCell" eventPort="spike"/> 
+            <EventSelection id="21" select="L23_E_input/21/InputCell" eventPort="spike"/> 
+            <EventSelection id="22" select="L23_E_input/22/InputCell" eventPort="spike"/> 
+            <EventSelection id="23" select="L23_E_input/23/InputCell" eventPort="spike"/> 
+            <EventSelection id="24" select="L23_E_input/24/InputCell" eventPort="spike"/> 
+            <EventSelection id="25" select="L23_E_input/25/InputCell" eventPort="spike"/> 
+            <EventSelection id="26" select="L23_E_input/26/InputCell" eventPort="spike"/> 
+            <EventSelection id="27" select="L23_E_input/27/InputCell" eventPort="spike"/> 
+            <EventSelection id="28" select="L23_E_input/28/InputCell" eventPort="spike"/> 
+            <EventSelection id="29" select="L23_E_input/29/InputCell" eventPort="spike"/> 
+            <EventSelection id="30" select="L23_E_input/30/InputCell" eventPort="spike"/> 
+            <EventSelection id="31" select="L23_E_input/31/InputCell" eventPort="spike"/> 
+            <EventSelection id="32" select="L23_E_input/32/InputCell" eventPort="spike"/> 
+            <EventSelection id="33" select="L23_E_input/33/InputCell" eventPort="spike"/> 
+            <EventSelection id="34" select="L23_E_input/34/InputCell" eventPort="spike"/> 
+            <EventSelection id="35" select="L23_E_input/35/InputCell" eventPort="spike"/> 
+            <EventSelection id="36" select="L23_E_input/36/InputCell" eventPort="spike"/> 
+            <EventSelection id="37" select="L23_E_input/37/InputCell" eventPort="spike"/> 
+            <EventSelection id="38" select="L23_E_input/38/InputCell" eventPort="spike"/> 
+            <EventSelection id="39" select="L23_E_input/39/InputCell" eventPort="spike"/> 
+            <EventSelection id="40" select="L23_E_input/40/InputCell" eventPort="spike"/> 
+            <EventSelection id="41" select="L23_E_input/41/InputCell" eventPort="spike"/> 
+            <EventSelection id="42" select="L23_E_input/42/InputCell" eventPort="spike"/> 
+            <EventSelection id="43" select="L23_E_input/43/InputCell" eventPort="spike"/> 
+            <EventSelection id="44" select="L23_E_input/44/InputCell" eventPort="spike"/> 
+            <EventSelection id="45" select="L23_E_input/45/InputCell" eventPort="spike"/> 
+            <EventSelection id="46" select="L23_E_input/46/InputCell" eventPort="spike"/> 
+            <EventSelection id="47" select="L23_E_input/47/InputCell" eventPort="spike"/> 
+            <EventSelection id="48" select="L23_E_input/48/InputCell" eventPort="spike"/> 
+            <EventSelection id="49" select="L23_E_input/49/InputCell" eventPort="spike"/> 
+            <EventSelection id="50" select="L23_E_input/50/InputCell" eventPort="spike"/> 
+            <EventSelection id="51" select="L23_E_input/51/InputCell" eventPort="spike"/> 
+            <EventSelection id="52" select="L23_E_input/52/InputCell" eventPort="spike"/> 
+            <EventSelection id="53" select="L23_E_input/53/InputCell" eventPort="spike"/> 
+            <EventSelection id="54" select="L23_E_input/54/InputCell" eventPort="spike"/> 
+            <EventSelection id="55" select="L23_E_input/55/InputCell" eventPort="spike"/> 
+            <EventSelection id="56" select="L23_E_input/56/InputCell" eventPort="spike"/> 
+            <EventSelection id="57" select="L23_E_input/57/InputCell" eventPort="spike"/> 
+            <EventSelection id="58" select="L23_E_input/58/InputCell" eventPort="spike"/> 
+            <EventSelection id="59" select="L23_E_input/59/InputCell" eventPort="spike"/> 
+            <EventSelection id="60" select="L23_E_input/60/InputCell" eventPort="spike"/> 
+            <EventSelection id="61" select="L23_E_input/61/InputCell" eventPort="spike"/> 
+            <EventSelection id="62" select="L23_E_input/62/InputCell" eventPort="spike"/> 
+            <EventSelection id="63" select="L23_E_input/63/InputCell" eventPort="spike"/> 
+            <EventSelection id="64" select="L23_E_input/64/InputCell" eventPort="spike"/> 
+            <EventSelection id="65" select="L23_E_input/65/InputCell" eventPort="spike"/> 
+            <EventSelection id="66" select="L23_E_input/66/InputCell" eventPort="spike"/> 
+            <EventSelection id="67" select="L23_E_input/67/InputCell" eventPort="spike"/> 
+            <EventSelection id="68" select="L23_E_input/68/InputCell" eventPort="spike"/> 
+            <EventSelection id="69" select="L23_E_input/69/InputCell" eventPort="spike"/> 
+            <EventSelection id="70" select="L23_E_input/70/InputCell" eventPort="spike"/> 
+            <EventSelection id="71" select="L23_E_input/71/InputCell" eventPort="spike"/> 
+            <EventSelection id="72" select="L23_E_input/72/InputCell" eventPort="spike"/> 
+            <EventSelection id="73" select="L23_E_input/73/InputCell" eventPort="spike"/> 
+            <EventSelection id="74" select="L23_E_input/74/InputCell" eventPort="spike"/> 
+            <EventSelection id="75" select="L23_E_input/75/InputCell" eventPort="spike"/> 
+            <EventSelection id="76" select="L23_E_input/76/InputCell" eventPort="spike"/> 
+            <EventSelection id="77" select="L23_E_input/77/InputCell" eventPort="spike"/> 
+            <EventSelection id="78" select="L23_E_input/78/InputCell" eventPort="spike"/> 
+            <EventSelection id="79" select="L23_E_input/79/InputCell" eventPort="spike"/> 
+            <EventSelection id="80" select="L23_E_input/80/InputCell" eventPort="spike"/> 
+            <EventSelection id="81" select="L23_E_input/81/InputCell" eventPort="spike"/> 
+            <EventSelection id="82" select="L23_E_input/82/InputCell" eventPort="spike"/> 
+            <EventSelection id="83" select="L23_E_input/83/InputCell" eventPort="spike"/> 
+            <EventSelection id="84" select="L23_E_input/84/InputCell" eventPort="spike"/> 
+            <EventSelection id="85" select="L23_E_input/85/InputCell" eventPort="spike"/> 
+            <EventSelection id="86" select="L23_E_input/86/InputCell" eventPort="spike"/> 
+            <EventSelection id="87" select="L23_E_input/87/InputCell" eventPort="spike"/> 
+            <EventSelection id="88" select="L23_E_input/88/InputCell" eventPort="spike"/> 
+            <EventSelection id="89" select="L23_E_input/89/InputCell" eventPort="spike"/> 
+            <EventSelection id="90" select="L23_E_input/90/InputCell" eventPort="spike"/> 
+            <EventSelection id="91" select="L23_E_input/91/InputCell" eventPort="spike"/> 
+            <EventSelection id="92" select="L23_E_input/92/InputCell" eventPort="spike"/> 
+            <EventSelection id="93" select="L23_E_input/93/InputCell" eventPort="spike"/> 
+            <EventSelection id="94" select="L23_E_input/94/InputCell" eventPort="spike"/> 
+            <EventSelection id="95" select="L23_E_input/95/InputCell" eventPort="spike"/> 
+            <EventSelection id="96" select="L23_E_input/96/InputCell" eventPort="spike"/> 
+            <EventSelection id="97" select="L23_E_input/97/InputCell" eventPort="spike"/> 
+            <EventSelection id="98" select="L23_E_input/98/InputCell" eventPort="spike"/> 
+            <EventSelection id="99" select="L23_E_input/99/InputCell" eventPort="spike"/> 
+            <EventSelection id="100" select="L23_E_input/100/InputCell" eventPort="spike"/> 
+            <EventSelection id="101" select="L23_E_input/101/InputCell" eventPort="spike"/> 
+            <EventSelection id="102" select="L23_E_input/102/InputCell" eventPort="spike"/> 
+        </EventOutputFile>
+        
+        <EventOutputFile id="SimGLIF_net_small_L23_I_spikes" fileName="SimGLIF_net_small.L23_I.spikes" format="ID_TIME">
+            <EventSelection id="0" select="L23_I/0/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="1" select="L23_I/1/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="2" select="L23_I/2/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="3" select="L23_I/3/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="4" select="L23_I/4/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="5" select="L23_I/5/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="6" select="L23_I/6/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="7" select="L23_I/7/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="8" select="L23_I/8/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="9" select="L23_I/9/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="10" select="L23_I/10/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="11" select="L23_I/11/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="12" select="L23_I/12/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="13" select="L23_I/13/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="14" select="L23_I/14/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="15" select="L23_I/15/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="16" select="L23_I/16/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="17" select="L23_I/17/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="18" select="L23_I/18/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="19" select="L23_I/19/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="20" select="L23_I/20/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="21" select="L23_I/21/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="22" select="L23_I/22/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="23" select="L23_I/23/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="24" select="L23_I/24/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="25" select="L23_I/25/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="26" select="L23_I/26/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="27" select="L23_I/27/GLIF_489931668" eventPort="spike"/> 
+            <EventSelection id="28" select="L23_I/28/GLIF_489931668" eventPort="spike"/> 
+        </EventOutputFile>
+        
+        <EventOutputFile id="SimGLIF_net_small_L23_I_input_spikes" fileName="SimGLIF_net_small.L23_I_input.spikes" format="ID_TIME">
+            <EventSelection id="0" select="L23_I_input/0/InputCell" eventPort="spike"/> 
+            <EventSelection id="1" select="L23_I_input/1/InputCell" eventPort="spike"/> 
+            <EventSelection id="2" select="L23_I_input/2/InputCell" eventPort="spike"/> 
+            <EventSelection id="3" select="L23_I_input/3/InputCell" eventPort="spike"/> 
+            <EventSelection id="4" select="L23_I_input/4/InputCell" eventPort="spike"/> 
+            <EventSelection id="5" select="L23_I_input/5/InputCell" eventPort="spike"/> 
+            <EventSelection id="6" select="L23_I_input/6/InputCell" eventPort="spike"/> 
+            <EventSelection id="7" select="L23_I_input/7/InputCell" eventPort="spike"/> 
+            <EventSelection id="8" select="L23_I_input/8/InputCell" eventPort="spike"/> 
+            <EventSelection id="9" select="L23_I_input/9/InputCell" eventPort="spike"/> 
+            <EventSelection id="10" select="L23_I_input/10/InputCell" eventPort="spike"/> 
+            <EventSelection id="11" select="L23_I_input/11/InputCell" eventPort="spike"/> 
+            <EventSelection id="12" select="L23_I_input/12/InputCell" eventPort="spike"/> 
+            <EventSelection id="13" select="L23_I_input/13/InputCell" eventPort="spike"/> 
+            <EventSelection id="14" select="L23_I_input/14/InputCell" eventPort="spike"/> 
+            <EventSelection id="15" select="L23_I_input/15/InputCell" eventPort="spike"/> 
+            <EventSelection id="16" select="L23_I_input/16/InputCell" eventPort="spike"/> 
+            <EventSelection id="17" select="L23_I_input/17/InputCell" eventPort="spike"/> 
+            <EventSelection id="18" select="L23_I_input/18/InputCell" eventPort="spike"/> 
+            <EventSelection id="19" select="L23_I_input/19/InputCell" eventPort="spike"/> 
+            <EventSelection id="20" select="L23_I_input/20/InputCell" eventPort="spike"/> 
+            <EventSelection id="21" select="L23_I_input/21/InputCell" eventPort="spike"/> 
+            <EventSelection id="22" select="L23_I_input/22/InputCell" eventPort="spike"/> 
+            <EventSelection id="23" select="L23_I_input/23/InputCell" eventPort="spike"/> 
+            <EventSelection id="24" select="L23_I_input/24/InputCell" eventPort="spike"/> 
+            <EventSelection id="25" select="L23_I_input/25/InputCell" eventPort="spike"/> 
+            <EventSelection id="26" select="L23_I_input/26/InputCell" eventPort="spike"/> 
+            <EventSelection id="27" select="L23_I_input/27/InputCell" eventPort="spike"/> 
+            <EventSelection id="28" select="L23_I_input/28/InputCell" eventPort="spike"/> 
+        </EventOutputFile>
+        
+    </Simulation>
+
+</Lems>

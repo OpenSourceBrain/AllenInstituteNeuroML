@@ -1,0 +1,21 @@
+{
+  "id": 566291893,
+  "name": "1 Leaky Integrate and Fire (LIF)_Sst-IRES-Cre;Ai14-165865.03.01.01",
+  "neuron_reconstruction_id": null,
+  "neuronal_model_template_id": 395310469,
+  "specimen_id": 464198958,
+  "well_known_files": [
+    {
+      "attachable_id": 566291893,
+      "attachable_type": "NeuronalModel",
+      "download_link": "/api/v2/well_known_file_download/566309714",
+      "id": 566309714,
+      "path": "/external/mousecelltypes/prod878/neuronal_model_566291893/566291893_neuron_config.json",
+      "well_known_file_type_id": 329230374,
+      "well_known_file_type": {
+        "id": 329230374,
+        "name": "NeuronalModelParameters"
+      }
+    }
+  ]
+}

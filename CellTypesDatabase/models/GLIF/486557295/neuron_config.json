@@ -1,61 +1,64 @@
 {
-  "spike_cut_length": 53, 
-  "asc_amp_array": [
-    -1.8378834760933223e-10, 
-    -1.5174639138238384e-10
-  ], 
-  "threshold_reset_method": {
-    "params": {}, 
-    "name": "inf"
-  }, 
-  "th_inf": 0.03199604637664753, 
-  "voltage_dynamics_method": {
-    "params": {}, 
-    "name": "linear_forward_euler"
-  }, 
-  "init_AScurrents": [
-    0.0, 
-    0.0
-  ], 
-  "voltage_reset_method": {
-    "params": {}, 
-    "name": "zero"
-  }, 
-  "threshold_dynamics_method": {
-    "params": {}, 
-    "name": "inf"
-  }, 
-  "R_input": 183830008.91742057, 
-  "AScurrent_dynamics_method": {
-    "params": {}, 
-    "name": "none"
-  }, 
-  "AScurrent_reset_method": {
-    "params": {}, 
-    "name": "none"
-  }, 
-  "type": "GLIF", 
-  "C": 1.1567297624102899e-10, 
-  "init_threshold": 0.03199604637664753, 
-  "init_voltage": 0.0, 
-  "extrapolation_method_name": "endpoints", 
-  "dt": 5e-05, 
-  "El": 0.0, 
-  "asc_tau_array": [
-    0.01, 
-    0.0033333333333333335
-  ], 
-  "dt_multiplier": 10, 
-  "th_adapt": 0.032654759268213485, 
-  "coeffs": {
-    "a": 1, 
-    "C": 1, 
-    "b": 1, 
-    "G": 1, 
-    "th_inf": 0.7640223191960127, 
+  "486557295": {
+    "El_reference": -0.0733360595703125,
+    "C": 1.1567297624103276e-10,
     "asc_amp_array": [
-      1.0, 
-      1.0
-    ]
+      -1.8378834760932533e-10,
+      -1.517463913824861e-10
+    ],
+    "init_threshold": 0.03244059175514351,
+    "threshold_reset_method": {
+      "params": {},
+      "name": "inf"
+    },
+    "th_inf": 0.03244059175514351,
+    "spike_cut_length": 53,
+    "init_AScurrents": [
+      0.0,
+      0.0
+    ],
+    "init_voltage": 0.0,
+    "threshold_dynamics_method": {
+      "params": {},
+      "name": "inf"
+    },
+    "voltage_reset_method": {
+      "params": {},
+      "name": "zero"
+    },
+    "extrapolation_method_name": "endpoints",
+    "dt": 5e-05,
+    "voltage_dynamics_method": {
+      "params": {},
+      "name": "linear_forward_euler"
+    },
+    "El": 0.0,
+    "asc_tau_array": [
+      0.01,
+      0.0033333333333333335
+    ],
+    "R_input": 183830008.9173523,
+    "AScurrent_dynamics_method": {
+      "params": {},
+      "name": "none"
+    },
+    "AScurrent_reset_method": {
+      "params": {},
+      "name": "none"
+    },
+    "dt_multiplier": 10,
+    "th_adapt": null,
+    "coeffs": {
+      "a": 1,
+      "C": 1,
+      "b": 1,
+      "G": 1,
+      "th_inf": 0.7535493304160996,
+      "asc_amp_array": [
+        1.0,
+        1.0
+      ]
+    },
+    "type": "GLIF"
   }
 }
