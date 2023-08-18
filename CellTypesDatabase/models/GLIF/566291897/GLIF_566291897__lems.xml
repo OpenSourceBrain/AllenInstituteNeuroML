@@ -1,0 +1,16 @@
+<Lems>
+      <Include file="../GLIFs.xml"/>
+
+      <glifAscCell  id="GLIF_566291897"
+            C="4.946777501211952e-11 F"
+            leakReversal="0.0 V"
+            reset="0.0 V"
+            thresh="0.020349297982082973 V"
+            leakConductance="1.7545474655479367e-09 S"
+            tau1="0.03333333333333334 s"
+            tau2="0.0033333333333333335 s"
+            amp1="-4.13596747752111e-11 A"
+            amp2="2.5812333166612035e-10 A"/>
+
+    </Lems>
+    

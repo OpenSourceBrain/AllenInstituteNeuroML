@@ -31,7 +31,6 @@
 /CellTypesDatabase/models/47242*
 /CellTypesDatabase/models/47243*
 /CellTypesDatabase/models/47244*
-/CellTypesDatabase/models/472450023
 /CellTypesDatabase/models/472455509
 /CellTypesDatabase/models/old
 
@@ -295,4 +294,28 @@ original.v.dat
 /CellTypesDatabase/data/tests.log
 /CellTypesDatabase/tune/*_analysis.json
 /CellTypesDatabase/data/tmp
-/CellTypesDatabase/models/497233223/464198956.nwb
+/CellTypesDatabase/models/*sweep*.dat
+/CellTypesDatabase/models/tmp
+/CellTypesDatabase/models/472450023/464198956.nwb
+/CellTypesDatabase/models/497232312/485574830.nwb
+/CellTypesDatabase/models/all
+/CellTypesDatabase/models/*/sw*.dat
+
+/CellTypesDatabase/models/GLIF/*.v.dat
+/CellTypesDatabase/models/GLIF/*.thresh.dat
+/CellTypesDatabase/models/GLIF/sweep*.v.dat
+/CellTypesDatabase/models/GLIF/sweep*.thresh.dat
+/CellTypesDatabase/models/GLIF/*stimulus.nwb
+/CellTypesDatabase/models/GLIF/*/*stimulus.nwb
+/CellTypesDatabase/models/GLIF/*/Sim_*.nmllite.json
+/CellTypesDatabase/models/GLIF/*/*.dat
+/CellTypesDatabase/models/GLIF/*/report.*.txt
+/CellTypesDatabase/models/GLIF/*/Test_*.json
+/CellTypesDatabase/models/GLIF/*/Test_*__lems.xml
+/CellTypesDatabase/models/GLIF/*/*mod
+/CellTypesDatabase/models/GLIF/*/*nrn.py
+/CellTypesDatabase/models/GLIF/*/*spikes
+/CellTypesDatabase/models/GLIF/*spikes
+/CellTypesDatabase/models/GLIF/*txt
+/CellTypesDatabase/models/GLIF/*json
+arm64

@@ -1,0 +1,15 @@
+{
+    "exp_id": 464198958,
+    "URL": "http://celltypes.brain-map.org/mouse/experiment/electrophysiology/464198958",
+    "AIBS:aibs_dendrite_type": "aspiny",
+    "AIBS:aibs_cre_line": "Sst-IRES-Cre",
+    "AIBS:aibs_specimen_id": "464198958",
+    "AIBS:aibs_specimen_name": "Sst-IRES-Cre;Ai14-165865.03.01.01",
+    "AIBS:intracellular_ephys:Electrode 1:location": "Primary visual area, layer 5",
+    "AIBS:session_id": "464198956",
+    "AIBS:subject:age": "P53",
+    "AIBS:subject:description": "Mus musculus In Vitro",
+    "AIBS:subject:genotype": "Sst-IRES-Cre; Ai14(RCL-tdT)",
+    "AIBS:subject:sex": "M",
+    "AIBS:subject:species": "Mus musculus"
+}

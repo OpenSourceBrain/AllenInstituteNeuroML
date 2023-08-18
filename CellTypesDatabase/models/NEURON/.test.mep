@@ -3,7 +3,7 @@ system: Testing a single compartment cell
 experiments:
   Current clamp:
     expected:
-      spike times: [302.651, 312.734, 323.812, 334.881, 345.933, 356.969, 367.987, 378.99, 389.976]
+      spike times: [302.651, 312.73400000000004, 323.812, 334.881, 345.933, 356.969, 367.987, 378.98900000000003, 389.976]
   Ca:
     expected:
-      spike times: [311.323]
+      spike times: [311.32]

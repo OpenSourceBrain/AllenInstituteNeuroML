@@ -1,12 +1,14 @@
 ### Data from Allen Institute converted to NeuroML
 [![Continuous builds](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/omv-ci.yml/badge.svg)](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/omv-ci.yml) [![Testing non OMV based scripts](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/non-omv.yml/badge.svg)](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/actions/workflows/non-omv.yml)
 
-Example files to test interaction between models developed at the Allen Brain Institute and NeuroML.
+Example files to test interactions between models developed at the Allen Brain Institute and NeuroML.
 
 #### Allen CellTypes Database
 
 Data and models from the [Allen CellTypes Database](http://celltypes.brain-map.org/) has been used to
 construct NeuroML based models. See https://github.com/OpenSourceBrain/AllenInstituteNeuroML/tree/master/CellTypesDatabase.
+
+Checkout publications and resources about the database [here](https://github.com/OpenSourceBrain/AllenInstituteNeuroML/wiki/Resources).
 
 See also https://github.com/stripathy/AIBS_cell_types.
 

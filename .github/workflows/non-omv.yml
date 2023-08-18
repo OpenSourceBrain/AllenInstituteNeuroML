@@ -3,9 +3,9 @@ name: Testing non OMV based scripts
 
 on:
   push:
-    branches: [ master, development, experimental, pg* ]
+    branches: [ master, development, experimental, pg*, add* ]
   pull_request:
-    branches: [ master, development, experimental, pg* ]
+    branches: [ master, development, experimental, pg*, add* ]
 
 jobs:
   build:
@@ -51,17 +51,39 @@ jobs:
          pip install pyneuroml airspeed
          python data_summary.py -test
 
-    - name: Extract NeuroML2 models from NEURON files
+    - name: Download selected NEURON models
       run: |
          pip install neuron
-
          cd CellTypesDatabase/models
          pip install markupsafe==2.0.1
          python download.py
          ls -alt 4*
 
+         echo "Downloading GLIF models"
+         cd GLIF
+         python download_glif.py -test
+
+    - name: Simulate selected NEURON models
+      run: |
+          echo "Simulating a GLIF cell"
+          cd CellTypesDatabase/models/GLIF
+          python run_glif.py -test
+
+
+    - name: Extract NeuroML2 models from NEURON files
+      run: |
+         cd CellTypesDatabase/models
          nrnivmodl  NEURON
-         python ParseAll.py
+
+         echo "-----   Parsing perisomatic and all active.."
+         python ParseAll.py -all_active
+         ls -alt NeuroML2
+
+         echo "-----   Parsing GLIF.."
+         cd GLIF
+         pip install git+https://github.com/OpenSourceBrain/OpenCortex
+         export NEURON_HOME=$pythonLocation
+         python parse_glif.py -test
 
     - name: Tune data
       run: |

@@ -1,0 +1,12 @@
+<Lems>
+      <Include file="../GLIFs.xml"/>
+
+      <glifCell  id="GLIF_486557295"
+            C="1.1567297624103276e-10 F"
+            leakReversal="0.0 V"
+            reset="0.0 V"
+            thresh="0.02444558619539043 V"
+            leakConductance="5.439808254862174e-09 S"/>
+
+    </Lems>
+    

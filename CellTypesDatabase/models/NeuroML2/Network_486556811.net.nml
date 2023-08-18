@@ -23,7 +23,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
     <property tag="AIBS:subject:sex" value="F"/>
     <property tag="AIBS:subject:species" value="Mus musculus"/>
     <include href="Cell_486556811.cell.nml"/>
-    <pulseGenerator id="stim" delay="1020ms" duration="1000ms" amplitude="270pA"/>
+    <pulseGenerator id="stim" delay="1020ms" duration="1000ms" amplitude="230pA"/>
     <network id="network" type="networkWithTemperature" temperature="34 degC">
         <property tag="recommended_duration_ms" value="2500"/>
         <property tag="recommended_dt_ms" value="0.005"/>

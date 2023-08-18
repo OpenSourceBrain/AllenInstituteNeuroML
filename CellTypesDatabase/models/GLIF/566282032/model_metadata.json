@@ -1,0 +1,21 @@
+{
+  "id": 566282032,
+  "name": "2 LIF + Reset Rules (LIF-R)_Pvalb-IRES-Cre;Ai14-169130.06.01.01",
+  "neuron_reconstruction_id": null,
+  "neuronal_model_template_id": 395310479,
+  "specimen_id": 318556138,
+  "well_known_files": [
+    {
+      "attachable_id": 566282032,
+      "attachable_type": "NeuronalModel",
+      "download_link": "/api/v2/well_known_file_download/566296228",
+      "id": 566296228,
+      "path": "/external/mousecelltypes/prod877/neuronal_model_566282032/566282032_neuron_config.json",
+      "well_known_file_type_id": 329230374,
+      "well_known_file_type": {
+        "id": 329230374,
+        "name": "NeuronalModelParameters"
+      }
+    }
+  ]
+}

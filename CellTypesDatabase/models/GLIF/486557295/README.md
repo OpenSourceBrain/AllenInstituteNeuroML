@@ -13,13 +13,13 @@
 
 **Membrane potential**
 
-Current injection of 160 pA
+Current injection of 149 pA
 
-![Original](MembranePotential_160pA.png)
+![Original](MembranePotential_149pA.png)
 
 **Threshold**
 
-![Threshold](Threshold_160pA.png)
+![Threshold](Threshold_149pA.png)
 
 ### Conversion to NeuroML 2
 
@@ -35,10 +35,10 @@ This model can be run locally by installing [jNeuroML](https://github.com/NeuroM
 
 **Membrane potential**
 
-Current injection of 160 pA
+Current injection of 149 pA
 
-![Comparison](Comparison_160pA.png)
+![Comparison](Comparison_149pA.png)
 
 **Threshold**
 
-![Comparison](Comparison_Threshold_160pA.png)
+![Comparison](Comparison_Threshold_149pA.png)
