@@ -21028,12 +21028,12 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
             <segmentGroup id="ModelViewParmSubset_23">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_16">
+            <segmentGroup id="ModelViewParmSubset_24">
                 <include segmentGroup="soma_0"/>
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_17">
+            <segmentGroup id="ModelViewParmSubset_25">
                 <include segmentGroup="dend_31"/>
                 <include segmentGroup="dend_30"/>
                 <include segmentGroup="dend_21"/>

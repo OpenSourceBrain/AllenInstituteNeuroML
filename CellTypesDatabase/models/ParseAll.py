@@ -3,11 +3,9 @@
 #########
 #  Before running this script, compile the Neuron mod files to this folder:
 #      nrnivmodl  NEURON
-#########c
+#########
 
 
-from statistics import mode
-from pyrsistent import m
 from allensdk.model.biophysical.utils import Utils, AllActiveUtils
 from allensdk.model.biophysical.runner import load_description
 
@@ -15,8 +13,6 @@ from pyneuroml.neuron import export_to_neuroml2
 from pyneuroml.neuron.nrn_export_utils import clear_neuron
 from pyneuroml.lems import generate_lems_file_for_neuroml
 from pyneuroml import pynml
-
-from download import ALL_ACTIVE_MODEL_IDS
 
 import json
 import sys
