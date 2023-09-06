@@ -30,7 +30,7 @@ jobs:
 
     - name: Download some data
       run: |
-         pip install allensdk
+         pip install allensdk==2.15.1
 
          cd CellTypesDatabase/data
          python download.py -test
