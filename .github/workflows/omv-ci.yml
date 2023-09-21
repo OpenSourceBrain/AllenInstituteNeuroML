@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Set up Python  ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version:  ${{ matrix.python-version }}
 
@@ -31,6 +31,7 @@ jobs:
         pip install scipy sympy matplotlib cython pandas tables
 
     - name: Download selected NEURON models
+      if: ${{ contains( matrix.engine, 'NEURON' ) }}
       run: |
          pip install allensdk # for NEURON models
          cd CellTypesDatabase/models
