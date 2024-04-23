@@ -21166,7 +21166,6 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <include segmentGroup="dend"/>
             </segmentGroup>
             <segmentGroup id="all">
-                <include segmentGroup="apic"/>
                 <include segmentGroup="apic_0"/>
                 <include segmentGroup="apic_1"/>
                 <include segmentGroup="apic_2"/>

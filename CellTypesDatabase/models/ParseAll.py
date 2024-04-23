@@ -193,16 +193,14 @@ for model_id in sorted(cell_dirs):
     dendrite_group = cell.get_segment_group("dendrite_group")
     dendrite_group.add(neuroml.Include, segment_groups="dend")
 
-    # if there are apical segments, add them to the default dendrite and all
-    # groups too
+    # If there are apical segments, add them to the default dendrite group also
+    # Note: apic unbranched segment groups are already being added to "all", so
+    # we don't need to add "apic" to it again
     try:
         apic_groups = cell.get_segment_groups_by_substring("apic")
         if len(apic_groups.keys()) > 0:
             print("PA >>    3) Apic groups found, adding to dendrite_group")
             dendrite_group.add(neuroml.Include, segment_groups="apic")
-
-            all_group = cell.get_segment_group("all")
-            all_group.add(neuroml.Include, segment_groups="apic")
     except ValueError:
         pass
 
