@@ -1,11 +1,11 @@
 <Lems>
-    
+
     <!-- 
 
-        This LEMS file has been automatically generated using PyNeuroML v0.7.1 (libNeuroML v0.4.0)
+        This LEMS file has been automatically generated using PyNeuroML v1.2.11 (libNeuroML v0.5.8)
 
      -->
-    
+
     <!-- Specify which component to run -->
     <Target component="483108201"/>
 
@@ -13,7 +13,7 @@
     <Include file="Cells.xml"/>
     <Include file="Networks.xml"/>
     <Include file="Simulation.xml"/>
-    
+
     <Include file="Network_483108201.net.nml"/>
     <Include file="Cell_483108201.cell.nml"/>
     <Include file="Im.channel.nml"/>
@@ -29,17 +29,16 @@
     <Include file="Ca_LVA.channel.nml"/>
     <Include file="CaDynamics_all.nml"/>
     <Include file="CaDynamics.nml"/>
-   
-    <Simulation id="483108201" length="2500ms" step="0.005ms" target="network" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
-        
+
+    <Simulation id="483108201" length="2500.0ms" step="0.005ms" target="network" seed="12345">  <!-- Note seed: ensures same random numbers used every run -->
         <Display id="DispPop__Pop_Cell_483108201" title="Membrane potentials of cells in Pop_Cell_483108201" timeScale="1ms" xmin="-250.0" xmax="2750.0" ymin="-90" ymax="50">
             <Line id="Pop_Cell_483108201[0]: v" quantity="Pop_Cell_483108201/0/Cell_483108201/v" scale="1mV" color="#e1a7b4" timeScale="1ms"/>
         </Display>
-        
+
         <OutputFile id="Volts_file__Pop_Cell_483108201" fileName="483108201.Pop_Cell_483108201.v.dat">
-            <OutputColumn id="v_Pop_Cell_483108201_0_Cell_483108201_v" quantity="Pop_Cell_483108201/0/Cell_483108201/v"/> 
+            <OutputColumn id="v_Pop_Cell_483108201_0_Cell_483108201_v" quantity="Pop_Cell_483108201/0/Cell_483108201/v"/>
         </OutputFile>
-        
+
     </Simulation>
 
 </Lems>

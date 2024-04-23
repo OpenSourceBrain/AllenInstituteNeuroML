@@ -134,7 +134,7 @@ for model_id in sorted(cell_dirs):
 
     nml_doc = pynml.read_neuroml2_file(nml_cell_loc0)
 
-    cell = nml_doc.cells[0]
+    cell = nml_doc.cells[0]  # type: neuroml.Cell
 
     cell.id = "Cell_%s" % model_id
 
@@ -182,15 +182,29 @@ for model_id in sorted(cell_dirs):
                 print("PA >>    2) Replacing group named %s with %s" % (sg.id, rep))
                 sg.id = rep
 
-    cell.morphology.segment_groups.append(
-        neuroml.SegmentGroup(id="soma_group", includes=[neuroml.Include("soma")])
-    )
-    cell.morphology.segment_groups.append(
-        neuroml.SegmentGroup(id="axon_group", includes=[neuroml.Include("axon")])
-    )
-    cell.morphology.segment_groups.append(
-        neuroml.SegmentGroup(id="dendrite_group", includes=[neuroml.Include("dend")])
-    )
+    cell.setup_nml_cell(use_convention=True, overwrite=False,
+                        default_groups=["all", "soma_group", "dendrite_group", "axon_group"])
+    soma_group = cell.get_segment_group("soma_group")
+    soma_group.add(neuroml.Include, segment_groups="soma")
+
+    axon_group = cell.get_segment_group("axon_group")
+    axon_group.add(neuroml.Include, segment_groups="axon")
+
+    dendrite_group = cell.get_segment_group("dendrite_group")
+    dendrite_group.add(neuroml.Include, segment_groups="dend")
+
+    # If there are apical segments, add them to the default dendrite group also
+    # Note: apic unbranched segment groups are already being added to "all", so
+    # we don't need to add "apic" to it again
+    try:
+        apic_groups = cell.get_segment_groups_by_substring("apic")
+        if len(apic_groups.keys()) > 0:
+            print("PA >>    3) Apic groups found, adding to dendrite_group")
+            dendrite_group.add(neuroml.Include, segment_groups="apic")
+    except ValueError:
+        pass
+
+    cell.optimise_segment_groups()
 
     with open(manifest_info["biophys"][0]["model_file"][1], "r") as json_file:
         cell_info = json.load(json_file)

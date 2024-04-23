@@ -5251,21 +5251,21 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <parent segment="495"/>
                 <distal x="602.127" y="345.727" z="82.0126" diameter="0.3304"/>
             </segment>
-            <segmentGroup neuroLexId="sao864921383" id="soma_0">
+            <segmentGroup id="soma_0" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
                 <member segment="0"/>
                 <member segment="2"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="axon_0">
+            <segmentGroup id="axon_0" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
                 <member segment="1292"/>
                 <member segment="1293"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_22">
+            <segmentGroup id="dend_22" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5278,7 +5278,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="977"/>
                 <member segment="978"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_17">
+            <segmentGroup id="dend_17" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5293,7 +5293,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="756"/>
                 <member segment="757"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_0">
+            <segmentGroup id="dend_0" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5301,14 +5301,14 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="4"/>
                 <member segment="5"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="axon_1">
+            <segmentGroup id="axon_1" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
                 <member segment="1294"/>
                 <member segment="1295"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_30">
+            <segmentGroup id="dend_30" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5325,7 +5325,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="1226"/>
                 <member segment="1227"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_23">
+            <segmentGroup id="dend_23" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5337,7 +5337,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="984"/>
                 <member segment="985"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_19">
+            <segmentGroup id="dend_19" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5359,7 +5359,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="795"/>
                 <member segment="796"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_18">
+            <segmentGroup id="dend_18" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5386,7 +5386,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="778"/>
                 <member segment="779"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_16">
+            <segmentGroup id="dend_16" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5409,7 +5409,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="746"/>
                 <member segment="747"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_4">
+            <segmentGroup id="dend_4" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5424,7 +5424,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="153"/>
                 <member segment="154"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_1">
+            <segmentGroup id="dend_1" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5442,7 +5442,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="17"/>
                 <member segment="18"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_32">
+            <segmentGroup id="dend_32" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5456,7 +5456,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="1290"/>
                 <member segment="1291"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_31">
+            <segmentGroup id="dend_31" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5521,7 +5521,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="1281"/>
                 <member segment="1282"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_27">
+            <segmentGroup id="dend_27" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5530,7 +5530,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="1198"/>
                 <member segment="1199"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_24">
+            <segmentGroup id="dend_24" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5586,7 +5586,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="1030"/>
                 <member segment="1031"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_21">
+            <segmentGroup id="dend_21" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5686,7 +5686,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="969"/>
                 <member segment="970"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_20">
+            <segmentGroup id="dend_20" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5780,7 +5780,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="879"/>
                 <member segment="880"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_8">
+            <segmentGroup id="dend_8" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5799,7 +5799,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="352"/>
                 <member segment="353"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_5">
+            <segmentGroup id="dend_5" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5901,7 +5901,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="245"/>
                 <member segment="246"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_3">
+            <segmentGroup id="dend_3" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -5970,7 +5970,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="143"/>
                 <member segment="144"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_2">
+            <segmentGroup id="dend_2" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6047,7 +6047,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="84"/>
                 <member segment="85"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_29">
+            <segmentGroup id="dend_29" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6062,7 +6062,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="1214"/>
                 <member segment="1215"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_28">
+            <segmentGroup id="dend_28" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6073,7 +6073,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="1204"/>
                 <member segment="1205"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_26">
+            <segmentGroup id="dend_26" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6197,7 +6197,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="1194"/>
                 <member segment="1195"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_25">
+            <segmentGroup id="dend_25" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6257,7 +6257,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="1080"/>
                 <member segment="1081"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_13">
+            <segmentGroup id="dend_13" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6337,13 +6337,13 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="591"/>
                 <member segment="592"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_12">
+            <segmentGroup id="dend_12" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
                 <member segment="522"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_9">
+            <segmentGroup id="dend_9" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6424,7 +6424,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="423"/>
                 <member segment="424"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_7">
+            <segmentGroup id="dend_7" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6502,7 +6502,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="338"/>
                 <member segment="339"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_6">
+            <segmentGroup id="dend_6" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6532,7 +6532,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="270"/>
                 <member segment="271"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_15">
+            <segmentGroup id="dend_15" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6560,7 +6560,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="728"/>
                 <member segment="729"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_14">
+            <segmentGroup id="dend_14" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6684,7 +6684,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="705"/>
                 <member segment="706"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_11">
+            <segmentGroup id="dend_11" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6714,7 +6714,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="520"/>
                 <member segment="521"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="dend_10">
+            <segmentGroup id="dend_10" neuroLexId="sao864921383">
                 <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
              neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
              These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
@@ -6796,81 +6796,43 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="495"/>
                 <member segment="496"/>
             </segmentGroup>
-            <segmentGroup id="all">
-                <include segmentGroup="soma_0"/>
-                <include segmentGroup="axon_0"/>
-                <include segmentGroup="dend_22"/>
-                <include segmentGroup="dend_17"/>
-                <include segmentGroup="dend_0"/>
-                <include segmentGroup="axon_1"/>
-                <include segmentGroup="dend_30"/>
-                <include segmentGroup="dend_23"/>
-                <include segmentGroup="dend_19"/>
-                <include segmentGroup="dend_18"/>
-                <include segmentGroup="dend_16"/>
-                <include segmentGroup="dend_4"/>
-                <include segmentGroup="dend_1"/>
-                <include segmentGroup="dend_32"/>
-                <include segmentGroup="dend_31"/>
-                <include segmentGroup="dend_27"/>
-                <include segmentGroup="dend_24"/>
-                <include segmentGroup="dend_21"/>
-                <include segmentGroup="dend_20"/>
-                <include segmentGroup="dend_8"/>
-                <include segmentGroup="dend_5"/>
-                <include segmentGroup="dend_3"/>
-                <include segmentGroup="dend_2"/>
-                <include segmentGroup="dend_29"/>
-                <include segmentGroup="dend_28"/>
-                <include segmentGroup="dend_26"/>
-                <include segmentGroup="dend_25"/>
-                <include segmentGroup="dend_13"/>
-                <include segmentGroup="dend_12"/>
-                <include segmentGroup="dend_9"/>
-                <include segmentGroup="dend_7"/>
-                <include segmentGroup="dend_6"/>
-                <include segmentGroup="dend_15"/>
-                <include segmentGroup="dend_14"/>
-                <include segmentGroup="dend_11"/>
-                <include segmentGroup="dend_10"/>
-            </segmentGroup>
             <segmentGroup id="ModelViewParmSubset_1">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
             <segmentGroup id="dend">
-                <include segmentGroup="dend_22"/>
-                <include segmentGroup="dend_17"/>
                 <include segmentGroup="dend_0"/>
-                <include segmentGroup="dend_30"/>
-                <include segmentGroup="dend_23"/>
-                <include segmentGroup="dend_19"/>
-                <include segmentGroup="dend_18"/>
-                <include segmentGroup="dend_16"/>
-                <include segmentGroup="dend_4"/>
                 <include segmentGroup="dend_1"/>
-                <include segmentGroup="dend_32"/>
-                <include segmentGroup="dend_31"/>
-                <include segmentGroup="dend_27"/>
-                <include segmentGroup="dend_24"/>
-                <include segmentGroup="dend_21"/>
-                <include segmentGroup="dend_20"/>
-                <include segmentGroup="dend_8"/>
-                <include segmentGroup="dend_5"/>
-                <include segmentGroup="dend_3"/>
                 <include segmentGroup="dend_2"/>
-                <include segmentGroup="dend_29"/>
-                <include segmentGroup="dend_28"/>
-                <include segmentGroup="dend_26"/>
-                <include segmentGroup="dend_25"/>
-                <include segmentGroup="dend_13"/>
-                <include segmentGroup="dend_12"/>
-                <include segmentGroup="dend_9"/>
-                <include segmentGroup="dend_7"/>
+                <include segmentGroup="dend_3"/>
+                <include segmentGroup="dend_4"/>
+                <include segmentGroup="dend_5"/>
                 <include segmentGroup="dend_6"/>
-                <include segmentGroup="dend_15"/>
-                <include segmentGroup="dend_14"/>
-                <include segmentGroup="dend_11"/>
+                <include segmentGroup="dend_7"/>
+                <include segmentGroup="dend_8"/>
+                <include segmentGroup="dend_9"/>
                 <include segmentGroup="dend_10"/>
+                <include segmentGroup="dend_11"/>
+                <include segmentGroup="dend_12"/>
+                <include segmentGroup="dend_13"/>
+                <include segmentGroup="dend_14"/>
+                <include segmentGroup="dend_15"/>
+                <include segmentGroup="dend_16"/>
+                <include segmentGroup="dend_17"/>
+                <include segmentGroup="dend_18"/>
+                <include segmentGroup="dend_19"/>
+                <include segmentGroup="dend_20"/>
+                <include segmentGroup="dend_21"/>
+                <include segmentGroup="dend_22"/>
+                <include segmentGroup="dend_23"/>
+                <include segmentGroup="dend_24"/>
+                <include segmentGroup="dend_25"/>
+                <include segmentGroup="dend_26"/>
+                <include segmentGroup="dend_27"/>
+                <include segmentGroup="dend_28"/>
+                <include segmentGroup="dend_29"/>
+                <include segmentGroup="dend_30"/>
+                <include segmentGroup="dend_31"/>
+                <include segmentGroup="dend_32"/>
             </segmentGroup>
             <segmentGroup id="axon">
                 <include segmentGroup="axon_0"/>
@@ -6879,14 +6841,55 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
             <segmentGroup id="soma">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
-            <segmentGroup id="soma_group">
+            <segmentGroup id="soma_group" neuroLexId="GO:0043025">
+                <notes>Default soma segment group for the cell</notes>
                 <include segmentGroup="soma"/>
             </segmentGroup>
-            <segmentGroup id="axon_group">
+            <segmentGroup id="axon_group" neuroLexId="GO:0030424">
+                <notes>Default axon segment group for the cell</notes>
                 <include segmentGroup="axon"/>
             </segmentGroup>
-            <segmentGroup id="dendrite_group">
+            <segmentGroup id="dendrite_group" neuroLexId="GO:0030425">
+                <notes>Default dendrite segment group for the cell</notes>
                 <include segmentGroup="dend"/>
+            </segmentGroup>
+            <segmentGroup id="all">
+                <include segmentGroup="axon_0"/>
+                <include segmentGroup="axon_1"/>
+                <include segmentGroup="dend_0"/>
+                <include segmentGroup="dend_1"/>
+                <include segmentGroup="dend_2"/>
+                <include segmentGroup="dend_3"/>
+                <include segmentGroup="dend_4"/>
+                <include segmentGroup="dend_5"/>
+                <include segmentGroup="dend_6"/>
+                <include segmentGroup="dend_7"/>
+                <include segmentGroup="dend_8"/>
+                <include segmentGroup="dend_9"/>
+                <include segmentGroup="dend_10"/>
+                <include segmentGroup="dend_11"/>
+                <include segmentGroup="dend_12"/>
+                <include segmentGroup="dend_13"/>
+                <include segmentGroup="dend_14"/>
+                <include segmentGroup="dend_15"/>
+                <include segmentGroup="dend_16"/>
+                <include segmentGroup="dend_17"/>
+                <include segmentGroup="dend_18"/>
+                <include segmentGroup="dend_19"/>
+                <include segmentGroup="dend_20"/>
+                <include segmentGroup="dend_21"/>
+                <include segmentGroup="dend_22"/>
+                <include segmentGroup="dend_23"/>
+                <include segmentGroup="dend_24"/>
+                <include segmentGroup="dend_25"/>
+                <include segmentGroup="dend_26"/>
+                <include segmentGroup="dend_27"/>
+                <include segmentGroup="dend_28"/>
+                <include segmentGroup="dend_29"/>
+                <include segmentGroup="dend_30"/>
+                <include segmentGroup="dend_31"/>
+                <include segmentGroup="dend_32"/>
+                <include segmentGroup="soma_0"/>
             </segmentGroup>
         </morphology>
         <biophysicalProperties id="biophys">
