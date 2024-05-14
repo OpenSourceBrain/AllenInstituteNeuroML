@@ -18761,6 +18761,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <channelDensityNernst id="Ca_LVA_axon" ionChannel="Ca_LVA" condDensity="0.00196838 S_per_cm2" segmentGroup="axon" ion="ca"/>
                 <channelDensityNernst id="Ca_HVA_soma" ionChannel="Ca_HVA" condDensity="2.05006e-05 S_per_cm2" segmentGroup="soma" ion="ca"/>
                 <channelDensityNernst id="Ca_LVA_soma" ionChannel="Ca_LVA" condDensity="0.00456603 S_per_cm2" segmentGroup="soma" ion="ca"/>
+                <spikeThresh value="10mV"/>
                 <specificCapacitance value="8.51603 uF_per_cm2" segmentGroup="soma"/>
                 <specificCapacitance value="9.34469 uF_per_cm2" segmentGroup="axon"/>
                 <specificCapacitance value="0.965264 uF_per_cm2" segmentGroup="apic"/>

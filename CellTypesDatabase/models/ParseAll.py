@@ -211,6 +211,10 @@ for model_id in sorted(cell_dirs):
 
     membrane_properties = neuroml.MembraneProperties()
 
+    # 10mV is default for Neuron spike threshold in NetCon
+    # https://www.neuron.yale.edu/neuron/static/py_doc/modelspec/programmatic/network/netcon.html
+    membrane_properties.spike_threshes.append(neuroml.SpikeThresh(value="10mV", segment_groups='all'))
+
     if all_active:
         for sc in cell_info["genome"]:
             if sc["name"] == "cm":
