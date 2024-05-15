@@ -1,6 +1,6 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" id="CellTypesPerLayer">
     <include href="ROTATED_Cell_473862496.cell.nml"></include>
-    <include href="ROTATED_Cell_472427533.cell.nml"></include>
+    <include href="ROTATED_Cell_329321704.cell.nml"></include>
     <include href="ROTATED_Cell_473871773.cell.nml"></include>
     <include href="ROTATED_Cell_473871592.cell.nml"></include>
     <network id="CellTypesPerLayer">
@@ -9,7 +9,7 @@
                 <location y="-100." x="0." z="0."/>
             </instance>
         </population>
-        <population id="Pop_ROTATED_Cell_472427533" type="populationList" component="ROTATED_Cell_472427533">
+        <population id="Pop_ROTATED_Cell_329321704" type="populationList" component="ROTATED_Cell_329321704">
             <instance id="0">
                 <location y="-295." x="300." z="0."/>
             </instance>

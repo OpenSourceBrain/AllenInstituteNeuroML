@@ -24273,15 +24273,15 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="3682"/>
                 <member segment="3683"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_9">
+            <segmentGroup id="ModelViewParmSubset_1425">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_10">
+            <segmentGroup id="ModelViewParmSubset_1426">
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="axon_1"/>
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_11">
+            <segmentGroup id="ModelViewParmSubset_1427">
                 <include segmentGroup="apic_0"/>
                 <include segmentGroup="apic_1"/>
                 <include segmentGroup="apic_2"/>
@@ -24659,6 +24659,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <channelDensity id="pas_apic" ionChannel="pas" condDensity="0.0009041788650989756 S_per_cm2" erev="-88.22792053222656 mV" segmentGroup="apic" ion="non_specific"/>
                 <channelDensityNernst id="Ca_HVA_soma" ionChannel="Ca_HVA" condDensity="0.000645323135868344 S_per_cm2" segmentGroup="soma" ion="ca"/>
                 <channelDensityNernst id="Ca_LVA_soma" ionChannel="Ca_LVA" condDensity="0.004712369819164053 S_per_cm2" segmentGroup="soma" ion="ca"/>
+                <spikeThresh value="10mV"/>
                 <specificCapacitance value="1.0 uF_per_cm2" segmentGroup="soma"/>
                 <specificCapacitance value="1.0 uF_per_cm2" segmentGroup="axon"/>
                 <specificCapacitance value="4.3300862052082865 uF_per_cm2" segmentGroup="dend"/>

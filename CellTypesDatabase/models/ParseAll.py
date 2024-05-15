@@ -211,6 +211,10 @@ for model_id in sorted(cell_dirs):
 
     membrane_properties = neuroml.MembraneProperties()
 
+    # 10mV is default for Neuron spike threshold in NetCon
+    # https://www.neuron.yale.edu/neuron/static/py_doc/modelspec/programmatic/network/netcon.html
+    membrane_properties.spike_threshes.append(neuroml.SpikeThresh(value="10mV", segment_groups='all'))
+
     if all_active:
         for sc in cell_info["genome"]:
             if sc["name"] == "cm":
@@ -438,11 +442,16 @@ for model_id in sorted(cell_dirs):
     new_net.populations[0].component = pop_comp
 
     stim_ref = "stim"
+    try:
+        curr = get_test_current(model_id)
+    except:
+        curr = 200
+
     stim = neuroml.PulseGenerator(
         id=stim_ref,
         delay="1020ms",
         duration="1000ms",
-        amplitude="%spA" % get_test_current(model_id),
+        amplitude="%spA" % curr,
     )
     new_net_doc.pulse_generators.append(stim)
 
