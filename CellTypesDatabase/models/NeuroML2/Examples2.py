@@ -208,7 +208,7 @@ for cell_file in all_cell_files:
             
     max_to_include-=1
 
-print numbers
+print(numbers)
 
 net_file = '%s.net.nml'%(net_ref)
 writers.NeuroMLWriter.write(net_doc, net_file)
