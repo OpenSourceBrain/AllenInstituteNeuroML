@@ -6796,7 +6796,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <member segment="495"/>
                 <member segment="496"/>
             </segmentGroup>
-            <segmentGroup id="ModelViewParmSubset_1">
+            <segmentGroup id="ModelViewParmSubset_235">
                 <include segmentGroup="soma_0"/>
             </segmentGroup>
             <segmentGroup id="dend">

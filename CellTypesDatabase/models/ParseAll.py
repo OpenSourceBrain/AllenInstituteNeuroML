@@ -442,11 +442,16 @@ for model_id in sorted(cell_dirs):
     new_net.populations[0].component = pop_comp
 
     stim_ref = "stim"
+    try:
+        curr = get_test_current(model_id)
+    except:
+        curr = 200
+
     stim = neuroml.PulseGenerator(
         id=stim_ref,
         delay="1020ms",
         duration="1000ms",
-        amplitude="%spA" % get_test_current(model_id),
+        amplitude="%spA" % curr,
     )
     new_net_doc.pulse_generators.append(stim)
 
