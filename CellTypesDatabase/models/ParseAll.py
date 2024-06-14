@@ -214,6 +214,7 @@ for model_id in sorted(cell_dirs):
     # 10mV is default for Neuron spike threshold in NetCon
     # https://www.neuron.yale.edu/neuron/static/py_doc/modelspec/programmatic/network/netcon.html
     membrane_properties.spike_threshes.append(neuroml.SpikeThresh(value="10mV", segment_groups='all'))
+    membrane_properties.init_memb_potentials.append(neuroml.InitMembPotential(value="-80mV", segment_groups='all'))
 
     if all_active:
         for sc in cell_info["genome"]:
@@ -410,6 +411,7 @@ for model_id in sorted(cell_dirs):
     cell.biophysical_properties = biophysical_properties
 
     print("PA >> Writing to: %s" % nml_cell_loc)
+    nml_doc.validate(True)
     pynml.write_neuroml2_file(nml_doc, nml_cell_loc, validate=False)
 
     pynml.nml2_to_svg(nml_cell_loc, verbose=False)

@@ -1,4 +1,4 @@
-<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.3.xsd" id="NeuroML2_file_exported_from_NEURON">
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.3.1.xsd" id="NeuroML2_file_exported_from_NEURON">
     <include href="Im.channel.nml"/>
     <include href="Ih.channel.nml"/>
     <include href="NaTs.channel.nml"/>
@@ -19548,6 +19548,7 @@ Electrophysiology on which this model is based: http://celltypes.brain-map.org/m
                 <specificCapacitance value="1.0 uF_per_cm2" segmentGroup="axon"/>
                 <specificCapacitance value="2.0 uF_per_cm2" segmentGroup="dend"/>
                 <specificCapacitance value="2.0 uF_per_cm2" segmentGroup="apic"/>
+                <initMembPotential value="-80mV"/>
             </membraneProperties>
             <intracellularProperties>
                 <species id="ca" concentrationModel="CaDynamics_488759006" ion="ca" initialConcentration="0.0001 mM" initialExtConcentration="2 mM" segmentGroup="soma"/>
