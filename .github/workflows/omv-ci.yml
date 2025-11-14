@@ -29,6 +29,7 @@ jobs:
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
         pip install scipy sympy matplotlib cython pandas tables
+        pip install setuptools --upgrade # needed for Neuron on py 3.12
 
     - name: Download selected NEURON models
       if: ${{ contains( matrix.engine, 'NEURON' ) }}
