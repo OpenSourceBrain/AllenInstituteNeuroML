@@ -13,9 +13,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ "3.11" ] # allensdk doesn't work with py 3.12...
+        python-version: [ "3.10", "3.11" ] # allensdk doesn't work with py 3.12...
         engine: ["NEURON", "PyNEURON", "NEURON:8.1", "PyNEURON:8.1", "jNeuroML", "jNeuroML_NEURON", "jNeuroML_NetPyNE", "jNeuroML_validate"]
-
+        exclude:
+          - python-version: "3.11"
+            engine: "NEURON:8.1"
+          - python-version: "3.11"
+            engine: "PyNEURON:8.1"
 
     steps:
     - uses: actions/checkout@v6
